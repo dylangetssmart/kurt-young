@@ -4,8 +4,16 @@ setlocal enabledelayedexpansion
 REM Set database connection variables
 set SERVER=DYLANS
 
+set "BASE_DIR=%~dp0"
+
 REM Directory containing your SQL scripts
-set SCRIPTS_DIR=C:\LocalConv\NeedlesKMY\scripts\conv
+rem set SCRIPTS_DIR=C:\LocalConv\NeedlesSLF\scripts\conv
+set "SCRIPTS_DIR=%BASE_DIR%..\sql-scripts\conv"
+rem echo %SCRIPTS_DIR%
+
+REM Normalize the path for SCRIPTS_DIR (resolves .. to an absolute path)
+for /f %%i in ("%SCRIPTS_DIR%") do set SCRIPTS_DIR=%%~fi
+echo %SCRIPTS_DIR%
 
 REM Get current date and time in a format suitable for filenames (YYYY-MM-DD_HH-MM)
 for /f "tokens=2 delims==." %%a in ('wmic os get localdatetime /value') do set "dt=%%a"
@@ -19,7 +27,7 @@ echo Error Log for SQL Script Execution > "!LOG_FILE!"
 echo. >> "!LOG_FILE!"
 
 REM Create ErrorLog table if not exists
-sqlcmd -S !SERVER! -E -d SANeedlesKMY -Q "IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ErrorLog') CREATE TABLE ErrorLog (ErrorID INT PRIMARY KEY IDENTITY, ScriptName NVARCHAR(255), Status NVARCHAR(50) DEFAULT 'Success', ExecutionTime DATETIME DEFAULT GETDATE(), OutputFilePath NVARCHAR(255));"
+sqlcmd -S !SERVER! -E -d SANeedlesSLF -Q "IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'ErrorLog') CREATE TABLE ErrorLog (ErrorID INT PRIMARY KEY IDENTITY, ScriptName NVARCHAR(255), Status NVARCHAR(50) DEFAULT 'Success', ExecutionTime DATETIME DEFAULT GETDATE(), OutputFilePath NVARCHAR(255));"
 
 REM Menu for script execution options
 :MENU
@@ -82,15 +90,15 @@ set SCRIPT=%~1
 echo Running script: %SCRIPT% >> "!LOG_FILE!"
 
 REM Execute SQL script and capture output
-sqlcmd -S !SERVER! -E -d SANeedlesKMY -i "%SCRIPT%" -b -h -1 > NUL 2>&1
+sqlcmd -S !SERVER! -E -d SANeedlesSLF -i "%SCRIPT%" -b -h -1 > NUL 2>&1
 
 if ERRORLEVEL 1 (
     REM Create output file named after script
     set "OUTPUT_FILE=%SCRIPT%_!datetime!.out"
-    sqlcmd -S !SERVER! -E -d SANeedlesKMY -i "%SCRIPT%" -o "!OUTPUT_FILE!" -b -r 1 > NUL 2>&1
+    sqlcmd -S !SERVER! -E -d SANeedlesSLF -i "%SCRIPT%" -o "!OUTPUT_FILE!" -b -r 1 > NUL 2>&1
 
     REM Log error into ErrorLog table with output file path
-    sqlcmd -S !SERVER! -E -d SANeedlesKMY -Q "INSERT INTO ErrorLog (ScriptName, Status, ExecutionTime, OutputFilePath) VALUES ('%SCRIPT%', 'Error', GETDATE(), '!OUTPUT_FILE!');" -b > NUL 2>&1
+    sqlcmd -S !SERVER! -E -d SANeedlesSLF -Q "INSERT INTO ErrorLog (ScriptName, Status, ExecutionTime, OutputFilePath) VALUES ('%SCRIPT%', 'Error', GETDATE(), '!OUTPUT_FILE!');" -b > NUL 2>&1
     
     REM Write failure message to log
     echo FAIL - %SCRIPT% >> "!LOG_FILE!"
@@ -103,7 +111,7 @@ if ERRORLEVEL 1 (
     REM start "" "!OUTPUT_FILE!"
 ) else (
     REM Log successful execution into ErrorLog table
-    sqlcmd -S !SERVER! -E -d SANeedlesKMY -Q "INSERT INTO ErrorLog (ScriptName, Status, ExecutionTime) VALUES ('%SCRIPT%', 'Success', GETDATE());" -b > NUL 2>&1
+    sqlcmd -S !SERVER! -E -d SANeedlesSLF -Q "INSERT INTO ErrorLog (ScriptName, Status, ExecutionTime) VALUES ('%SCRIPT%', 'Success', GETDATE());" -b > NUL 2>&1
     
     REM Write success message to log
     echo SUCCESS - %SCRIPT% >> "!LOG_FILE!"
