@@ -1,0 +1,45 @@
+Script execution started at Thu-06-27_10-34 AM 
+Server: DYLANS 
+Database: NeedlesKMY 
+ 
+Msg 2705, Level 16, State 4, Server DYLANS, Line 1
+Column names in each table must be unique. Column name 'ROW_ID' in table 'case_intake' is specified more than once.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\AddRowIDToCaseIntake.sql 
+ 
+
+(5574 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_case.SQL 
+ 
+
+(296763 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_case_notes.SQL 
+ 
+
+(939 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_checklist_dir.sql 
+ 
+
+(100 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_counsel.SQL 
+ 
+
+(252 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_insurance.SQL 
+ 
+
+(7567 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_party.SQL 
+ 
+
+(13749 rows affected)
+DBCC execution completed. If DBCC printed error messages, contact your system administrator.
+Successfully ran script C:\LocalConv\NeedlesKMY\scripts\InitializeNeedlesDB\memo_value.SQL 
+ 
+All scripts executed successfully. 
+Script execution completed at Thu-06-27 10-34 AM 
