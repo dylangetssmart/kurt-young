@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 go
 
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'CaseUDF' AND type = 'U')

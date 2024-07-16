@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 go
 /*
 alter table [sma_TRN_CriticalComments] disable trigger all

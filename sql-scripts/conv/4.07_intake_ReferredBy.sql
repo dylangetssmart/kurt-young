@@ -1,4 +1,4 @@
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 
 INSERT INTO [sma_TRN_OtherReferral]

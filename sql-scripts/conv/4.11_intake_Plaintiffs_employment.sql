@@ -1,4 +1,4 @@
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 /*
 alter table [dbo].[sma_TRN_Employment] disable trigger all

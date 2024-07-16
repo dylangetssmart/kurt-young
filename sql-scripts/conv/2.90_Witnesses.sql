@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 
 insert into [dbo].[sma_TRN_CaseWitness] (
 	--[witnWitnesID]

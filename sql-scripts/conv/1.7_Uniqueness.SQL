@@ -1,5 +1,5 @@
 
-USE [SANeedlesKMY]
+-- USE [SANeedlesKMY]
 GO
 ---(1)--- Phone number uniqueness
 

@@ -1,6 +1,6 @@
 
-USE SANeedlesKMY
-GO
+-- USE SANeedlesKMY
+-- GO
 
 /**************************************************
  * Functions:
