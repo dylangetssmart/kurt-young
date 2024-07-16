@@ -63,9 +63,9 @@ BEGIN
 
 	SELECT 
 		   1			    as [office_status]
-		  ,'Law Offices of Kurt M. Young, LLC' 
+		  ,'Skolrood Law Firm' 
 							as [office_name]
-		  ,(select sttnStateID from sma_MST_States where sttsDescription='Ohio') as [state_id]
+		  ,(select sttnStateID from sma_MST_States where sttsDescription='Virginia') as [state_id]
 		  ,1			    as [is_default]
 		  ,getdate()	    as [date_created]
 		  ,'dsmith'			as [user_created]
@@ -143,7 +143,7 @@ SELECT
 	1							as cstbActive,
 	1							as cstbUseIncident1,
 	'Incident 1'				as cstsIncidentLabel1,
-	'KMYCaseType'				as VenderCaseType
+	'SLFCaseType'				as VenderCaseType
 FROM [CaseTypeMixture] MIX 
 LEFT JOIN [sma_MST_CaseType] ct on ct.cststype = mix.[SmartAdvocate Case Type]
 WHERE ct.cstncasetypeid IS NULL
@@ -151,7 +151,7 @@ GO
 
 -- (1.3) - Add conversion flag to case types created above
 UPDATE [sma_MST_CaseType] 
-SET	VenderCaseType='KMYCaseType'
+SET	VenderCaseType='SLFCaseType'
 FROM [CaseTypeMixture] MIX 
 JOIN [sma_MST_CaseType] ct on ct.cststype = mix.[SmartAdvocate Case Type]
 WHERE isnull(VenderCaseType,'') = ''
@@ -260,7 +260,7 @@ SELECT
 FROM sma_MST_CaseType CST
 LEFT JOIN sma_mst_subrole S on CST.cstnCaseTypeID=S.sbrnCaseTypeID or S.sbrnCaseTypeID=1
 JOIN [CaseTypeMixture] MIX on MIX.matcode=CST.cstsCode  
-WHERE VenderCaseType='KMYCaseType'
+WHERE VenderCaseType='SLFCaseType'
 and isnull(MIX.[SmartAdvocate Case Type],'')=''
 
 -- (3.1) sma_MST_SubRole : use the sma_MST_SubRole.sbrsDscrptn value to set the sma_MST_SubRole.sbrnTypeCode field ---
@@ -271,7 +271,7 @@ FROM
 	S.sbrnSubRoleId	as SubRoleId, 
 	(select max(srcnCodeId) from sma_MST_SubRoleCode where srcsDscrptn=S.sbrsDscrptn) as CodeId
 	FROM sma_MST_SubRole S
-	JOIN sma_MST_CaseType CST on CST.cstnCaseTypeID=S.sbrnCaseTypeID and CST.VenderCaseType='KMYCaseType'
+	JOIN sma_MST_CaseType CST on CST.cstnCaseTypeID=S.sbrnCaseTypeID and CST.VenderCaseType='SLFCaseType'
 ) A
 WHERE A.SubRoleId = sbrnSubRoleId
 
@@ -311,7 +311,7 @@ CROSS JOIN
 		UNION ALL
 	SELECT [SA Roles]  as role, 5 as PorD from [PartyRoles] where [SA Party]='Defendant'
 ) R
-WHERE CST.VenderCaseType='KMYCaseType'
+WHERE CST.VenderCaseType='SLFCaseType'
 ) T
 EXCEPT SELECT sbrnRoleID,sbrsDscrptn,sbrnCaseTypeID,sbrnTypeCode FROM sma_MST_SubRole
 
@@ -322,7 +322,7 @@ EXCEPT SELECT sbrnRoleID,sbrsDscrptn,sbrnCaseTypeID,sbrnTypeCode FROM sma_MST_Su
 SELECT CST.cstnCaseTypeID,CST.cstsType,sbrsDscrptn
 FROM sma_MST_SubRole S
 INNER JOIN sma_MST_CaseType CST on CST.cstnCaseTypeID=S.sbrnCaseTypeID
-WHERE CST.VenderCaseType='KMYCaseType'
+WHERE CST.VenderCaseType='SLFCaseType'
 and sbrsDscrptn='(D)-Default Role'
 ORDER BY CST.cstnCaseTypeID
 */
@@ -360,7 +360,7 @@ SELECT
 		) else (
 			select [sttnStateID]
 			from [sma_MST_States]
-			where [sttsDescription]='Ohio'
+			where [sttsDescription]='Virginia'
 		) 
     end						as casnState,
     GETDATE()				as casdStatusFromDt,
@@ -413,7 +413,7 @@ SELECT
 			) else (
 				select [sttnStateID]
 				from [sma_MST_States]
-				where [sttsDescription]='Ohio'
+				where [sttsDescription]='Virginia'
 			)
     end						as casnStateID,
     null,
@@ -441,7 +441,7 @@ SELECT
     (
 		select office_id
 		from sma_MST_Offices
-		where office_name='Law Offices of Kurt M. Young, LLC'
+		where office_name='Skolrood Law Firm'
 	)						as office_id,
     '',
 	null,
@@ -456,7 +456,7 @@ SELECT
 FROM [NeedlesKMY].[dbo].[cases_Indexed] C
 LEFT JOIN [NeedlesKMY].[dbo].[user_case_data] U on U.casenum=C.casenum
 JOIN caseTypeMixture mix on mix.matcode = c.matcode
-LEFT JOIN sma_MST_CaseType CST on CST.cststype = mix.[smartadvocate Case Type] and VenderCaseType='KMYCaseType'
+LEFT JOIN sma_MST_CaseType CST on CST.cststype = mix.[smartadvocate Case Type] and VenderCaseType='SLFCaseType'
 ORDER BY C.casenum
 GO
 
