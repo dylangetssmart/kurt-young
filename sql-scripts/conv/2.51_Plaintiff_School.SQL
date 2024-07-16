@@ -1,10 +1,10 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 
 /* ####################################
 1.0 -- School/OtherActivities
 */
 
--- 1.2 Create Grades
+-- 1.2 Create Grades that don't currently exist
 ALTER TABLE [sma_MST_Grades] DISABLE TRIGGER ALL
 GO
 
@@ -26,11 +26,11 @@ select distinct
 	,null				as [grdnModifyUserID]
 	,null				as [grddDtModified]
 	,null				as [grdnLevelNo]
-FROM [NeedlesKMY].[dbo].[user_party_data] ud
+FROM [NeedlesSLF].[dbo].[user_party_data] ud
 WHERE isnull(ud.Education,'') <> ''
 	AND NOT EXISTS (
 		SELECT 1
-		FROM [SANeedlesKMY].[dbo].[sma_MST_Grades] g
+		FROM [SANeedlesSLF].[dbo].[sma_MST_Grades] g
 		WHERE g.grdsDescription = ud.education
 );
 ALTER TABLE [sma_MST_Grades] ENABLE TRIGGER ALL
@@ -40,7 +40,6 @@ GO
 
 -- 1.3 Add school records
 	-- See 1.32_Unidentified_School_Contact.sql
-
 ALTER TABLE [sma_TRN_SchoolOthAct] DISABLE TRIGGER ALL
 GO
 
@@ -120,7 +119,7 @@ select
 	,1							as [schnLevelNo]
 	,0							as [schnauthtodefcoun]
 	,null						as [schnauthtodefcounDt]
-from NeedlesKMY..user_party_data ud
+from NeedlesSLF..user_party_data ud
 join sma_TRN_Cases cas
 	on cas.cassCaseNumber = ud.case_id
 left join sma_TRN_Plaintiff pln
