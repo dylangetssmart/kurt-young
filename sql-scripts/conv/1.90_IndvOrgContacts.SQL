@@ -1,6 +1,4 @@
-
-
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 
 IF EXISTS (select * from sys.objects where name='IndvOrgContacts_Indexed' and type='U')

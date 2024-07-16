@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 GO
 
 if not exists (Select * From sma_mst_Indvcontacts where [cinsFirstName] = 'Staff' and [cinsLastName] = 'Unassigned')

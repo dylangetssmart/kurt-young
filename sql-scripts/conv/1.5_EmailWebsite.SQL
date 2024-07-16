@@ -1,4 +1,4 @@
-USE [SANeedlesKMY]
+-- USE [SANeedlesKMY]
 GO
 /*
 alter table [sma_MST_EmailWebsite] disable trigger all

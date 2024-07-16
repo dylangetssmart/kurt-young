@@ -1,5 +1,4 @@
-
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 /*
 alter table [sma_TRN_Defendants] disable trigger all

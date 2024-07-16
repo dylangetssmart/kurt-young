@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 GO
 /*
 alter table [sma_TRN_SOLs] disable trigger all

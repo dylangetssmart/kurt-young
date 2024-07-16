@@ -1,5 +1,4 @@
-
-use SANeedlesKMY
+-- use SANeedlesKMY
 GO
 
 TRUNCATE TABLE sma_TRN_RoleCaseStuffMainRoles

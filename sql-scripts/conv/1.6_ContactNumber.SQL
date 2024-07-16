@@ -1,5 +1,5 @@
 
-USE [SANeedlesKMY]
+-- USE [SANeedlesKMY]
 GO
 /*
 alter table [sma_MST_ContactNumbers] disable trigger all

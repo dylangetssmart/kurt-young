@@ -1,4 +1,4 @@
-use SANeedlesKMY
+-- use SANeedlesKMY
 go
 
 /* ####################################
@@ -124,8 +124,8 @@ ALTER TABLE [sma_MST_UDFDefinition] ENABLE TRIGGER ALL
 GO
 
 -- 1.2 // Insert the Plaintiff UDF Values
-	-- [sma_trn_UDFValues].[udvnRelatedID] -> References Case ID 
-	-- [sma_trn_UDFValues].[udvnSubRelatedID] -> References the Plaintiff or Defendant ID
+	-- [sma_trn_UDFValues].[udvnRelatedID] ->ï¿½References Case ID 
+	-- [sma_trn_UDFValues].[udvnSubRelatedID]ï¿½-> References the Plaintiff or Defendant ID
 ALTER TABLE sma_trn_udfvalues DISABLE TRIGGER ALL
 GO
 

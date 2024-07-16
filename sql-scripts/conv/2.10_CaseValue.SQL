@@ -1,4 +1,4 @@
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 
 ALTER TABLE sma_trn_Casevalue DISABLE TRIGGER ALL

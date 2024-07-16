@@ -1,4 +1,4 @@
-use [SANeedlesKMY]
+-- use [SANeedlesKMY]
 go
 /*
 update sma_MST_IndvContacts set cinsComments = NULL

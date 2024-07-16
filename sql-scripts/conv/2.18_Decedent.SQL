@@ -1,4 +1,4 @@
-USE SANeedlesKMY
+-- USE SANeedlesKMY
 GO
 /*
 delete from [sma_TRN_PlaintiffDeath] 
