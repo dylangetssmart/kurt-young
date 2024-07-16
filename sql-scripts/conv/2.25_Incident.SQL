@@ -8,6 +8,7 @@ DBCC CHECKIDENT ('[sma_TRN_Incidents]', RESEED, 0);
 alter table [sma_TRN_Incidents] enable trigger all
 */
 
+
 ---
 ALTER TABLE [sma_TRN_Incidents] DISABLE TRIGGER ALL
 GO
@@ -50,7 +51,7 @@ SELECT
 		else (
 				select sttnStateID
 				from sma_MST_States
-				where sttsCode='OH'
+				where sttsCode='VA'
 			)					
 		end						as [StateID]
 	,0							as LiabilityCodeId
