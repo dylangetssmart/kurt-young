@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 GO
 
 /*
@@ -63,8 +63,8 @@ SELECT
 	,getdate()					as [DtCreated]
 	,null						as [ModifyUserID]
 	,null						as [DtModified]
-FROM NeedlesKMY.[dbo].[cases_Indexed] C
-	JOIN NeedlesKMY.[dbo].[user_case_data] U
+FROM NeedlesSLF.[dbo].[cases_Indexed] C
+	JOIN NeedlesSLF.[dbo].[user_case_data] U
 		on U.casenum=C.casenum
 	JOIN [sma_TRN_cases] CAS
 		on CAS.cassCaseNumber = convert(varchar,C.casenum)
