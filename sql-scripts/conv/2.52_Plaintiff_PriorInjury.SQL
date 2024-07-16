@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 
 /* ####################################
 1.0 -- Prior/Subsequent Injuries
@@ -49,7 +49,7 @@ SELECT
 	,0												as [prlbFirmCase]
 	,null											as [prlsPrCaseNo]
 	,'Prior Injuries:' + ud.prior_injuries			as [prlsInjury]
-from NeedlesKMY..user_party_data ud
+from NeedlesSLF..user_case_data ud
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = ud.case_id
 	join sma_TRN_Plaintiff pln
