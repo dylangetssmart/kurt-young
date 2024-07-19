@@ -1,4 +1,4 @@
-USE SANeedlesKMY
+USE SANeedlesSLF
 GO
 /*
 alter table [dbo].[sma_TRN_Employment] disable trigger all
@@ -132,9 +132,9 @@ FROM NeedlesSLF..user_party_data ud
 	
 	-- Link to SA Contact Card via:
 	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
-	-- join NeedlesKMY.dbo.user_tab_name utn
+	-- join NeedlesSLF.dbo.user_tab_name utn
 	-- 	on ud.tab_id = utn.tab_id
-	-- join NeedlesKMY.dbo.names n
+	-- join NeedlesSLF.dbo.names n
 	-- 	on utn.user_name = n.names_id
 	
 
@@ -149,12 +149,12 @@ FROM NeedlesSLF..user_party_data ud
 	-- 	and org.saga_ref = 'upd_employer'
 
 	-- -- Indv
-	-- left join SANeedlesKMY.dbo.IndvOrgContacts_Indexed ioci
+	-- left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioci
 	-- 	on n.names_id = ioci.saga
 	-- 	and ioci.CTG = 1
 
 	-- -- Org
-	-- left join SANeedlesKMY.dbo.IndvOrgContacts_Indexed ioco
+	-- left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioco
 	-- 	on n.names_id = ioco.saga
 	-- 	and ioco.CTG = 2
 

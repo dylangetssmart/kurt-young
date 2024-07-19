@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 go
 
 
@@ -16,8 +16,8 @@ FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
         convert(varchar(max), [Location]) as [Location],
         convert(varchar(max), [City]) as [City]
-    FROM NeedlesKMY..user_case_data ud
-    JOIN NeedlesKMY..cases_Indexed c ON c.casenum = ud.casenum
+    FROM NeedlesSLF..user_case_data ud
+    JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -56,7 +56,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		on mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN NeedlesKMY.[dbo].[user_case_matter] M
+	JOIN NeedlesSLF.[dbo].[user_case_matter] M
 		on M.mattercode=mix.matcode and M.field_type <> 'label'
 	JOIN (
 			select DISTINCT fieldTitle

@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 --
@@ -111,7 +111,7 @@ SELECT DISTINCT
     ,''                               as [saga]
     ,''                               as [cinsSpouse]
     ,P.officer                        as [cinsGrade]
-FROM [NeedlesKMY].[dbo].[police] P 
+FROM [NeedlesSLF].[dbo].[police] P 
 WHERE ISNULL(officer, '') <> ''
 GO
 

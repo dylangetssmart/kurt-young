@@ -1,4 +1,4 @@
--- USE [SANeedlesKMY]
+-- USE [SANeedlesSLF]
 GO
 /*
 alter table [sma_TRN_ReferredOut] disable trigger all
@@ -57,7 +57,7 @@ SELECT
     1						as rfonReferred,
     0						as rfonCoCouncil,
     0						as rfonIsLawFirmUpdateToSend
-FROM NeedlesKMY.[dbo].[cases_indexed] C
+FROM NeedlesSLF.[dbo].[cases_indexed] C
 JOIN [sma_TRN_cases] CAS
 	on CAS.cassCaseNumber = C.casenum
 JOIN [IndvOrgContacts_Indexed] IOC

@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 GO
 
 /*
@@ -19,13 +19,13 @@ SELECT
 FROM
 	(
 		/*
-		Retrieves distinct descriptions from the NeedlesKMY.dbo.class table,
-		joining with the NeedlesKMY.dbo.cases table
+		Retrieves distinct descriptions from the NeedlesSLF.dbo.class table,
+		joining with the NeedlesSLF.dbo.cases table
 		to filter the classes that are associated with cases.
 		*/
 		SELECT DISTINCT [description] as [name]
-		FROM NeedlesKMY.[dbo].[class]
-		JOIN NeedlesKMY.[dbo].[cases] C
+		FROM NeedlesSLF.[dbo].[class]
+		JOIN NeedlesSLF.[dbo].[cases] C
 			on C.class=classcode
 
 		/*
@@ -120,9 +120,9 @@ SELECT
 	,null
 	,null 
 FROM [sma_trn_cases] CAS
-JOIN NeedlesKMY.[dbo].[cases_Indexed] C
+JOIN NeedlesSLF.[dbo].[cases_Indexed] C
 	on convert(varchar,C.casenum)=CAS.cassCaseNumber
-LEFT JOIN NeedlesKMY.[dbo].[class] CL
+LEFT JOIN NeedlesSLF.[dbo].[class] CL
 	on C.class=CL.classcode
 GO
 

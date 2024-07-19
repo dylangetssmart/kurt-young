@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 GO
 
 /*
@@ -86,7 +86,7 @@ SELECT
 		where StatusType = 'Not Started'
 	)																					as [tskCompleted]
     ,null																				as [saga]
-FROM NeedlesKMY.[dbo].[user_tab8_data] D
+FROM NeedlesSLF.[dbo].[user_tab8_data] D
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = D.case_id
 where Date_Due is not null

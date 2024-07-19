@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 go
 /*
 alter table [sma_TRN_CriticalComments] disable trigger all
@@ -39,7 +39,7 @@ SELECT
     null			    as [ctcdDtModified],
     null			    as [ctcnLevelNo],
     null			    as [ctcsCommentType]
-FROM NeedlesKMY.[dbo].[cases_Indexed] C
+FROM NeedlesSLF.[dbo].[cases_Indexed] C
 JOIN [sma_trn_cases] CAS
 	on CAS.cassCaseNumber=C.casenum
 WHERE isnull(special_note,'')<>''

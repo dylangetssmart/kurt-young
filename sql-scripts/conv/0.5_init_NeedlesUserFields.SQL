@@ -1,4 +1,4 @@
--- Use SANeedlesKMY
+-- Use SANeedlesSLF
 GO
 
 
@@ -38,7 +38,7 @@ SELECT field_num, field_title, column_name,  field_type,
 		else field_type
 	end
 --Select *
-FROM NeedlesKMY..[user_case_fields]
+FROM NeedlesSLF..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -59,8 +59,8 @@ BEGIN
 
 	SELECT identity(int,1,1) as Number, gd.code
 	INTO #values
-	FROM NeedlesKMY..mini_general_dir gd
-	JOIN NeedlesKMY..mini_dir_list dl on gd.num_assigned = dl.dir_key
+	FROM NeedlesSLF..mini_general_dir gd
+	JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
 	WHERE dir_name = @miniDir  
 
 
@@ -92,7 +92,7 @@ DEALLOCATE userFields_Cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from NeedlesKMY..mini_general_dir gd
-JOIN NeedlesKMY..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from NeedlesSLF..mini_general_dir gd
+JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

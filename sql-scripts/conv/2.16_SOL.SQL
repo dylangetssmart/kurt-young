@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 GO
 
 /*
@@ -68,8 +68,8 @@ select
 	A.SubRole			   as [sldnDefRole],
 	A.StateID			   as [sldnStateID],
 	case
-	   when exists (select repeat_days from NeedlesKMY.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode) 
-		  then ( select max( floor(( repeat_days + 360 ) / 365 )) FROM NeedlesKMY.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode)
+	   when exists (select repeat_days from NeedlesSLF.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode) 
+		  then ( select max( floor(( repeat_days + 360 ) / 365 )) FROM NeedlesSLF.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode)
 	   else 
 		  (select 1)
 	end				   as [sldnYears],
@@ -153,7 +153,7 @@ SELECT DISTINCT
     null				   as [soldToProcessServerDt],
     null				   as [soldRcvdDate],
     'D'				   as [solsType]
-FROM NeedlesKMY.[dbo].[cases_Indexed] C 
+FROM NeedlesSLF.[dbo].[cases_Indexed] C 
 JOIN [sma_TRN_Cases] CAS on CAS.cassCaseNumber = C.casenum 
 JOIN [sma_TRN_Defendants] D on D.defnCaseID=CAS.casnCaseID 
 WHERE C.lim_date is not null

@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 GO
 
 SET QUOTED_IDENTIFIER ON;
@@ -19,7 +19,7 @@ INSERT INTO [sma_MST_ActivityType] ( attsDscrptn, attnActivityCtg )
 SELECT A.ActivityType, (select atcnPKId FROM sma_MST_ActivityCategory where atcsDscrptn='Non-Case Related Appointment')
 FROM
 ( SELECT DISTINCT appointment_type as ActivityType 
-	FROM NeedlesKMY.[dbo].[calendar] CAL where isnull(CAL.appointment_type,'') <> '' and isnull(CAL.casenum,0)=0 
+	FROM NeedlesSLF.[dbo].[calendar] CAL where isnull(CAL.appointment_type,'') <> '' and isnull(CAL.casenum,0)=0 
 EXCEPT
 SELECT attsDscrptn as ActivityType FROM sma_MST_ActivityType 
 	WHERE attnActivityCtg = (select atcnPKId FROM sma_MST_ActivityCategory where atcsDscrptn='Non-Case Related Appointment')
@@ -72,7 +72,7 @@ SELECT
 	   else '1900-01-01'
     end					  as [ToDate],
 
-	(select ID FROM [SANeedlesKMY].[dbo].[sma_MST_CalendarAppointmentType] where AppointmentType='Non-Case related Office') 
+	(select ID FROM [SANeedlesSLF].[dbo].[sma_MST_CalendarAppointmentType] where AppointmentType='Non-Case related Office') 
 						  as [AppointmentTypeID],
 	case
 	   when isnull(CAL.appointment_type,'') <> '' then 
@@ -109,13 +109,13 @@ SELECT
 	null				  as [DtModified],
 	null,null,null,null,null,null,null,null,null,
      'Non-Case:'+convert(varchar,CAL.calendar_id)	  as [SAGA]
-FROM NeedlesKMY.[dbo].[calendar] CAL
+FROM NeedlesSLF.[dbo].[calendar] CAL
 where isnull(CAL.casenum,0)=0
 
 ------(2)-----
 INSERT INTO [sma_trn_AppointmentStaff] ( [AppointmentId] ,[StaffContactId] ) 
 SELECT APP.AppointmentID,I.cinnContactID
 FROM [sma_TRN_CalendarAppointments] APP
-JOIN NeedlesKMY.[dbo].[calendar] CAL on APP.saga='Non-Case:'+convert(varchar,CAL.calendar_id)
+JOIN NeedlesSLF.[dbo].[calendar] CAL on APP.saga='Non-Case:'+convert(varchar,CAL.calendar_id)
 JOIN [sma_MST_IndvContacts] I on I.cinsGrade = CAL.staff_id and isnull(CAL.staff_id,'')<>'' 
 

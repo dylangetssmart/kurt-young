@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 go
 
 /*
@@ -17,8 +17,8 @@ FROM (
         CONVERT(VARCHAR(MAX), [Value]) AS [Value],
         CONVERT(VARCHAR(MAX), [Type_of_Asset]) AS [Type of Asset],
         CONVERT(VARCHAR(MAX), [Held_By]) AS [Held By]
-    FROM NeedlesKMY..user_tab3_data ud
-    JOIN NeedlesKMY..cases_Indexed c ON c.casenum = ud.case_id
+    FROM NeedlesSLF..user_tab3_data ud
+    JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.case_id
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -59,7 +59,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [NeedlesKMY].[dbo].[user_tab3_matter] M
+	JOIN [NeedlesSLF].[dbo].[user_tab3_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -67,11 +67,11 @@ FROM [sma_MST_CaseType] CST
 				FROM Other3UDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	LEFT JOIN	(
 					SELECT DISTINCT table_Name, column_name
-					FROM [NeedlesKMY].[dbo].[document_merge_params]
+					FROM [NeedlesSLF].[dbo].[document_merge_params]
 					WHERE table_Name = 'user_tab3_data'
 				) dmp
 		ON dmp.column_name = ucf.field_Title

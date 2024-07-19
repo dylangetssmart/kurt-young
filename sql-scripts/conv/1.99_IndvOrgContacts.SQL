@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 IF EXISTS (select * from sys.objects where name='IndvOrgContacts_Indexed' and type='U')

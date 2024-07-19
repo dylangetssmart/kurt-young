@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 GO
 
 SET QUOTED_IDENTIFIER ON;
@@ -39,7 +39,7 @@ select
     0					as Court_Address,
     0					as Party_Contact
 into CalendarJudgeStaffCourt
-from NeedlesKMY.[dbo].[calendar] CAL
+from NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 	on CAS.cassCaseNumber = CAL.casenum
 where isnull(CAL.casenum,0)<>0 
@@ -48,7 +48,7 @@ where isnull(CAL.casenum,0)<>0
 	-- calendar.judge_link = on [sma_MST_IndvContacts].saga
 update CalendarJudgeStaffCourt
 set Judge_Contact=I.cinnContactID
-from NeedlesKMY.[dbo].[calendar] CAL
+from NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = CAL.casenum 
 	JOIN [sma_MST_IndvContacts] I
@@ -60,7 +60,7 @@ where CAL.calendar_id=CalendarId
 	-- calendar.staff_id = [sma_MST_IndvContacts].cinsGrade
 update CalendarJudgeStaffCourt
 set Staff_Contact=J.cinnContactID
-FROM NeedlesKMY.[dbo].[calendar] CAL
+FROM NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = CAL.casenum
 	JOIN [sma_MST_IndvContacts] J
@@ -72,7 +72,7 @@ where CAL.calendar_id=CalendarId
 -- Set Court_Address to [sma_MST_Address].addnAddressID
 update CalendarJudgeStaffCourt
 set Court_Contact=O.connContactID,Court_Address=A.addnAddressID
-FROM NeedlesKMY.[dbo].[calendar] CAL
+FROM NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = CAL.casenum
 	JOIN [sma_MST_OrgContacts] O
@@ -86,7 +86,7 @@ WHERE CAL.calendar_id=CalendarId
 -- Set Party_Contact to [sma_MST_IndvContacts].cinnContactID
 update CalendarJudgeStaffCourt
 set Party_Contact=J.cinnContactID
-from NeedlesKMY.[dbo].[calendar] CAL
+from NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = CAL.casenum
 	JOIN [sma_MST_IndvContacts] J
@@ -110,7 +110,7 @@ select
 from (
 		select distinct 
 			appointment_type as ActivityType 
-		from NeedlesKMY.[dbo].[calendar] CAL
+		from NeedlesSLF.[dbo].[calendar] CAL
 		where isnull(appointment_type,'') <> ''
 		except
 		select 
@@ -277,7 +277,7 @@ select
 	,null
 	,null
 	,'Case-related:'+convert(varchar,CAL.calendar_id)	as [saga]
-FROM NeedlesKMY.[dbo].[calendar] CAL
+FROM NeedlesSLF.[dbo].[calendar] CAL
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = CAL.casenum
 	JOIN CalendarJudgeStaffCourt MAP
@@ -399,7 +399,7 @@ select
 	,null
 --	,'Case-related:'+convert(varchar,CAL.calendar_id)	as [saga]
 	,null						as [saga]
-from NeedlesKMY..user_case_data ud
+from NeedlesSLF..user_case_data ud
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = ud.casenum
 	JOIN CalendarJudgeStaffCourt MAP
@@ -502,7 +502,7 @@ select
 	,null
 	,null						as [saga]
 --	,'Case-related:'+convert(varchar,CAL.calendar_id)	as [saga]
-from NeedlesKMY..user_case_data ud
+from NeedlesSLF..user_case_data ud
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = ud.casenum
 	JOIN CalendarJudgeStaffCourt MAP
@@ -525,7 +525,7 @@ select
 	APP.AppointmentID
 	,MAP.Staff_Contact 
 FROM [sma_TRN_CalendarAppointments] APP
-	JOIN NeedlesKMY.[dbo].[calendar] CAL
+	JOIN NeedlesSLF.[dbo].[calendar] CAL
 		on APP.saga='Case-related:'+convert(varchar,CAL.calendar_id)
 	JOIN CalendarJudgeStaffCourt MAP
 		on MAP.CalendarId=CAL.calendar_id
@@ -536,6 +536,6 @@ FROM [sma_TRN_CalendarAppointments] APP
 insert into [SA].[dbo].[sma_trn_AppointmentStaff] ( [AppointmentId] ,[StaffContactId] ) 
 select APP.AppointmentID, MAP.Party_Contact
 from [SA].[dbo].[sma_TRN_CalendarAppointments] APP
-inner join NeedlesKMY.[dbo].[calendar] CAL on APP.saga='Case-related:'+convert(varchar,CAL.calendar_id)
+inner join NeedlesSLF.[dbo].[calendar] CAL on APP.saga='Case-related:'+convert(varchar,CAL.calendar_id)
 inner join CalendarJudgeStaffCourt MAP on MAP.CalendarId=CAL.calendar_id
 */

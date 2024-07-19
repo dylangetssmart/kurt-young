@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 go
 /*
 alter table [sma_TRN_PlaintiffAttorney] disable trigger all
@@ -103,8 +103,8 @@ SELECT DISTINCT
     isnull('comments : ' + nullif(convert(varchar(max),C.comments) ,'') + CHAR(13),'') +
     isnull('Attorney for party : ' + nullif(convert(varchar(max),IOCP.name) ,'') + CHAR(13),'') +
     ''						  as [plasComments]
-  FROM NeedlesKMY..[counsel_Indexed] C
-  LEFT JOIN NeedlesKMY.[dbo].[user_counsel_data] UD
+  FROM NeedlesSLF..[counsel_Indexed] C
+  LEFT JOIN NeedlesSLF.[dbo].[user_counsel_data] UD
 	on UD.counsel_id=C.counsel_id
 	and C.case_num=UD.casenum  
   JOIN [sma_TRN_Cases] CAS
@@ -172,8 +172,8 @@ SELECT DISTINCT
 	isnull('comments : ' + nullif(convert(varchar(max),C.comments) ,'') + CHAR(13),'') +
 	isnull('Attorney for party : ' + nullif(convert(varchar(max),IOCD.name) ,'') + CHAR(13),'') +
     ''			    					as [lwfsComments]
-  FROM NeedlesKMY.[dbo].[counsel_Indexed] C 
-  LEFT JOIN NeedlesKMY.[dbo].[user_counsel_data] UD on UD.counsel_id=C.counsel_id and C.case_num=UD.casenum
+  FROM NeedlesSLF.[dbo].[counsel_Indexed] C 
+  LEFT JOIN NeedlesSLF.[dbo].[user_counsel_data] UD on UD.counsel_id=C.counsel_id and C.case_num=UD.casenum
   JOIN [sma_TRN_Cases] CAS
 	on CAS.cassCaseNumber = C.case_num
   JOIN IndvOrgContacts_Indexed IOC
@@ -231,7 +231,7 @@ SELECT DISTINCT
 		end								as [lwfnAttorneyAddressID]
     ,(
 		select atnnAtorneyTypeID
-		FROM SANeedlesKMY..[sma_MST_AttorneyTypes]
+		FROM SANeedlesSLF..[sma_MST_AttorneyTypes]
 		where atnsAtorneyDscrptn='Defense Attorney'
 	)									as [lwfnAttorneyTypeID]
     ,null								as [lwfsFileNumber]
@@ -244,28 +244,28 @@ SELECT DISTINCT
 	,null			    				as [lwfnLevelNo]
     ,null			    				as [lwfnAdjusterID]
 	,null								as [lwfsComments]
-FROM NeedlesKMY.[dbo].[user_party_data] ud
+FROM NeedlesSLF.[dbo].[user_party_data] ud
 	-- case data
-	JOIN NeedlesKMY.[dbo].[cases] C
+	JOIN NeedlesSLF.[dbo].[cases] C
 		on C.casenum = convert(varchar,ud.case_id)
-	join SANeedlesKMY..sma_TRN_Cases cas
+	join SANeedlesSLF..sma_TRN_Cases cas
 		on cas.cassCaseNumber = c.casenum
 	-- field link
-	JOIN NeedlesKMY.[dbo].[user_party_name] N 
+	JOIN NeedlesSLF.[dbo].[user_party_name] N 
 		on N.case_id = ud.case_id
 		and N.party_id = ud.party_id
 		and N.[user_name] <> 0 
-	JOIN NeedlesKMY.[dbo].[user_party_matter] M
+	JOIN NeedlesSLF.[dbo].[user_party_matter] M
 		on M.ref_num = N.ref_num
 		and M.mattercode = C.matcode
 		and M.field_title = 'Defense Atty'
 	-- contact card for the law firm
-	join NeedlesKMY.[dbo].names
+	join NeedlesSLF.[dbo].names
 		on names.names_id = N.user_name
-	join SANeedlesKMY..IndvOrgContacts_Indexed ioc
+	join SANeedlesSLF..IndvOrgContacts_Indexed ioc
 		on ioc.SAGA = names.names_id
 	-- contact card for the defendant
-	join SANeedlesKMY..sma_TRN_Defendants d
+	join SANeedlesSLF..sma_TRN_Defendants d
 		on d.defnCaseID = cas.casnCaseID
 		and d.defbIsPrimary = 1
 where isnull(ud.Defense_Atty,'') <> ''
@@ -318,8 +318,8 @@ UPDATE sma_MST_IndvContacts
 SET cinnContactTypeID=(select octnOrigContactTypeID FROM [sma_MST_OriginalContactTypes] where octsDscrptn='Attorney' and octnContactCtgID=1)
 FROM (
   SELECT I.cinnContactID as ID
-  FROM NeedlesKMY.[dbo].[counsel] C 
-  JOIN NeedlesKMY.[dbo].[names] L on C.counsel_id = L.names_id
+  FROM NeedlesSLF.[dbo].[counsel] C 
+  JOIN NeedlesSLF.[dbo].[names] L on C.counsel_id = L.names_id
   JOIN [dbo].[sma_MST_IndvContacts] I on saga = L.names_id
   WHERE L.person='Y'
   ) A

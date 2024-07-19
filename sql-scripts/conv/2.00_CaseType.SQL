@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 go
 /*
 alter table [sma_TRN_Cases] disable trigger all
@@ -453,8 +453,8 @@ SELECT
 	null,
 	null,
     0						as CloseReason
-FROM [NeedlesKMY].[dbo].[cases_Indexed] C
-LEFT JOIN [NeedlesKMY].[dbo].[user_case_data] U on U.casenum=C.casenum
+FROM [NeedlesSLF].[dbo].[cases_Indexed] C
+LEFT JOIN [NeedlesSLF].[dbo].[user_case_data] U on U.casenum=C.casenum
 JOIN caseTypeMixture mix on mix.matcode = c.matcode
 LEFT JOIN sma_MST_CaseType CST on CST.cststype = mix.[smartadvocate Case Type] and VenderCaseType='SLFCaseType'
 ORDER BY C.casenum

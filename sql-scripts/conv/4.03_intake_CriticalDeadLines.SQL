@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 go
 /*
 alter table [sma_TRN_CriticalDeadlines] disable trigger all
@@ -40,7 +40,7 @@ select
 		end										as [crddDueDate]
 	,null										as [crdsRequestFrom]
 	,null										as [ResponderUID]
-FROM NeedlesKMY.[dbo].case_intake n
+FROM NeedlesSLF.[dbo].case_intake n
 	JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID
 where isnull(n.Date_Application_Filed_Case, '') <> ''
 

@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 --
@@ -108,7 +108,7 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,-1                     as [cinsGrade]
 --    ,INS.insured     
-FROM [NeedlesKMY].[dbo].[insurance] INS
+FROM [NeedlesSLF].[dbo].[insurance] INS
 WHERE isnull(insured, '') <> ''
 GO
 

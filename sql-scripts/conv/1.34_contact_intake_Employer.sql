@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 -- Create Employer Org Contacts from case_intake.Employer_Name_Case
@@ -33,5 +33,5 @@ SELECT
 	,getdate()					as [condDtCreated]
 	,ci.row_id					as [saga]
     ,'employer'                 as [saga_ref]
-from NeedlesKMY..case_intake ci
+from NeedlesSLF..case_intake ci
 where isnull(ci.Employer_name_Case,'') <> ''

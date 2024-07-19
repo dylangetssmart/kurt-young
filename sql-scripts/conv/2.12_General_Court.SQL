@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 GO
 /*
 alter table [sma_trn_caseJudgeorClerk] disable trigger all
@@ -26,7 +26,7 @@ ALTER TABLE [sma_TRN_Courts] DISABLE TRIGGER ALL
 GO
 ---
 
---select * From  [NeedlesKMY].[dbo].[cases] C
+--select * From  [NeedlesSLF].[dbo].[cases] C
 --WHERE docket <> '' 
 --or court_link <> 0
 --or judge_link <> 0
@@ -49,7 +49,7 @@ from (
 		,IOC.CID
 		,IOC.AID
 		,C.judge_link
-	from [NeedlesKMY].[dbo].[cases] C
+	from [NeedlesSLF].[dbo].[cases] C
 	join [sma_TRN_cases] CAS
 		on CAS.cassCaseNumber = C.casenum
 	join IndvOrgContacts_Indexed IOC
@@ -62,7 +62,7 @@ from (
 		,IOC.CID
 		,IOC.AID
 		,C.judge_link
-	from [NeedlesKMY].[dbo].[cases] C
+	from [NeedlesSLF].[dbo].[cases] C
 	join [sma_TRN_cases] CAS
 		on CAS.cassCaseNumber = C.casenum
 	join IndvOrgContacts_Indexed IOC
@@ -107,7 +107,7 @@ SELECT
 FROM [sma_TRN_Courts] CRT
 	JOIN [sma_TRN_cases] CAS
 		on CAS.casnCaseID=CRT.crtnCaseID 
-	JOIN [NeedlesKMY].[dbo].[cases] C
+	JOIN [NeedlesSLF].[dbo].[cases] C
 		on C.casenum=CAS.cassCaseNumber
 GO
 

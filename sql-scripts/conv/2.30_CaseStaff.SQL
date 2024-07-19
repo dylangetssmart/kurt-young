@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 go
 /*
 alter table [sma_TRN_caseStaff] disable trigger all
@@ -85,7 +85,7 @@ BEGIN
         null                        as [cssnModifyUserID],
         null                        as [cssdDtModified],
         0                           as cssnLevelNo
-    FROM NeedlesKMY.[dbo].[cases_Indexed] C
+    FROM NeedlesSLF.[dbo].[cases_Indexed] C
     JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
     JOIN [sma_MST_Users] U on ( U.saga = C.' + @staffColumn + ' )
     ';
@@ -128,7 +128,7 @@ select
 	null					  as [cssnModifyUserID],
 	null					  as [cssdDtModified],
 	0					  as cssnLevelNo
-FROM NeedlesKMY.[dbo].[cases_Indexed] C
+FROM NeedlesSLF.[dbo].[cases_Indexed] C
 inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 */
@@ -166,7 +166,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null						as [cssnModifyUserID],
 --	null						as [cssdDtModified],
 --	0							as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --JOIN [sma_MST_Users] U on ( U.saga = C.staff_2 )
 
@@ -203,7 +203,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --JOIN [sma_MST_Users] U on ( U.saga = C.staff_3 )
 
@@ -237,7 +237,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_4 )
 
@@ -271,7 +271,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_5 )
 --*/
@@ -305,7 +305,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --JOIN [sma_MST_Users] U on ( U.saga = C.staff_6 )
 
@@ -339,7 +339,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_7 )
 
@@ -373,7 +373,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_8 )
 --*/
@@ -407,7 +407,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --JOIN sma_TRN_cases CAS on CAS.cassCaseNumber = C.casenum
 --JOIN sma_MST_Users U on ( U.saga = C.staff_9 )
 
@@ -441,7 +441,7 @@ inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_1 )
 --	null					  as [cssnModifyUserID],
 --	null					  as [cssdDtModified],
 --	0					  as cssnLevelNo
---FROM NeedlesKMY.[dbo].[cases_Indexed] C
+--FROM NeedlesSLF.[dbo].[cases_Indexed] C
 --inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = C.casenum
 --inner join [SA].[dbo].[sma_MST_Users] U on ( U.saga = C.staff_10 )
 --*/

@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 GO
 /*
 alter table [sma_TRN_SOLs] disable trigger all
@@ -69,12 +69,12 @@ FROM [sma_TRN_Defendants] D
 		on S.sldnCaseTypeID=CAS.casnOrgCaseTypeID
 		and S.sldnStateID=CAS.casnStateID
 		and S.sldnDefRole=D.defnSubRole
-	JOIN NeedlesKMY.[dbo].[case_checklist] CKL
+	JOIN NeedlesSLF.[dbo].[case_checklist] CKL
 		on CKL.case_id=CAS.cassCaseNumber
 WHERE CKL.due_date between '1900-01-01' and '2079-06-06'
 and (
 		select lim
-		FROM NeedlesKMY.[dbo].[checklist_dir]
+		FROM NeedlesSLF.[dbo].[checklist_dir]
 		where code = CKL.code and matcode=CKL.matcode
 	) = 'Y'
 --and CKL.[status]='Done' ---> Jay want this
@@ -89,8 +89,8 @@ select count(*)
   from [SA].[dbo].[sma_TRN_Defendants] D
   inner join [sma_TRN_Cases] CAS on CAS.casnCaseID = D.defnCaseID and D.defbIsPrimary=1
   inner join [sma_MST_SOLDetails] S on S.sldnCaseTypeID=CAS.casnOrgCaseTypeID and S.sldnStateID=CAS.casnStateID and S.sldnDefRole=D.defnSubRole
-  inner join NeedlesKMY.[dbo].[case_checklist] CKL on CKL.case_id=CAS.cassCaseNumber
-  inner join NeedlesKMY.[dbo].[checklist_dir] DIR on DIR.matcode=CKL.matcode and DIR.code=CKL.code and DIR.lim='Y'
+  inner join NeedlesSLF.[dbo].[case_checklist] CKL on CKL.case_id=CAS.cassCaseNumber
+  inner join NeedlesSLF.[dbo].[checklist_dir] DIR on DIR.matcode=CKL.matcode and DIR.code=CKL.code and DIR.lim='Y'
   where CKL.due_date between '1900-01-01' and '2079-06-06'
 
 

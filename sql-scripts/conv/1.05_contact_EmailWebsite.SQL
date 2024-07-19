@@ -1,4 +1,4 @@
--- USE [SANeedlesKMY]
+-- USE [SANeedlesSLF]
 GO
 /*
 alter table [sma_MST_EmailWebsite] disable trigger all
@@ -28,7 +28,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		1					as saga -- indicate email
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 WHERE isnull(email,'') <> ''
 
@@ -47,7 +47,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		2					as saga -- indicate email_work
- FROM [NeedlesKMY].[dbo].[names] N
+ FROM [NeedlesSLF].[dbo].[names] N
  JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
  WHERE isnull(email_work,'') <> ''
 
@@ -66,7 +66,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		3					as saga -- indicate other_email
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 WHERE isnull(other_email,'') <> ''
 
@@ -85,7 +85,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		4					as saga -- indicate website
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 WHERE isnull(website,'') <> ''
 
@@ -106,7 +106,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		1					as saga -- indicate email
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 WHERE isnull(email,'') <> ''
 
@@ -124,7 +124,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		2					as saga -- indicate email_work
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 WHERE isnull(email_work,'') <> ''
 
@@ -143,7 +143,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		3					as saga -- indicate other_email
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 WHERE isnull(other_email,'') <> ''
 
@@ -161,7 +161,7 @@ SELECT
 		getdate()			as cewdDtModified,
 		null,
 		4					as saga -- indicate website
-FROM [NeedlesKMY].[dbo].[names] N
+FROM [NeedlesSLF].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 WHERE isnull(website,'') <> ''
 

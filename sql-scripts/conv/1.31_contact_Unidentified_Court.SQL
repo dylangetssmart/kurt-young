@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 --- saga=-1: consName="Unidentified Court"
@@ -50,5 +50,5 @@ END
 --		getdate()					as [condDtCreated],
 --		-1							as [saga]
 ----select Distinct hearing_Location
---from NeedlesKMY..user_tab4_data
+--from NeedlesSLF..user_tab4_data
 --where isnull(hearing_Location,'')<>''

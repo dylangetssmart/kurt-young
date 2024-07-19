@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 go
 
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'CaseIntakeUDF' AND type = 'U')
@@ -21,7 +21,7 @@ FROM (
         convert(varchar(max), [Treatment_Since_Injury_Case]) as [Treatment Since Injury], 
         convert(varchar(max), [How_Many_Years_Worked_Case]) as [How Many Years Worked?],
         convert(varchar(max), [Occupation_Case]) as [Occupation]
-    FROM NeedlesKMY.[dbo].case_intake N
+    FROM NeedlesSLF.[dbo].case_intake N
 JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID 
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -65,7 +65,7 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --FROM [sma_MST_CaseType] CST
 --	JOIN CaseTypeMixture mix
 --		ON mix.[SmartAdvocate Case Type] = cst.cstsType
---	JOIN [NeedlesKMY].[dbo].[user_case_matter] M
+--	JOIN [NeedlesSLF].[dbo].[user_case_matter] M
 --		ON M.mattercode = mix.matcode
 --		AND M.field_type <> 'label'
 --	JOIN	(
@@ -73,11 +73,11 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --				FROM CaseUDF
 --			) vd
 --		ON vd.FieldTitle = M.field_title
---	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+--	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 --		ON ucf.field_num = M.ref_num
 --	--LEFT JOIN	(
 --	--				SELECT DISTINCT table_Name, column_name
---	--				FROM [NeedlesKMY].[dbo].[document_merge_params]
+--	--				FROM [NeedlesSLF].[dbo].[document_merge_params]
 --	--				WHERE table_Name = 'user_case_data'
 --	--			) dmp
 --	--	ON dmp.column_name = ucf.field_Title
@@ -105,7 +105,7 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --FROM [sma_MST_CaseType] CST
 --	JOIN CaseTypeMixture mix
 --		ON mix.[SmartAdvocate Case Type] = cst.cstsType
---	JOIN [NeedlesKMY].[dbo].[user_tab_matter] M
+--	JOIN [NeedlesSLF].[dbo].[user_tab_matter] M
 --		ON M.mattercode = mix.matcode
 --		AND M.field_type <> 'label'
 --	JOIN	(
@@ -113,7 +113,7 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --				FROM CaseUDF
 --			) vd
 --		ON vd.FieldTitle = M.field_title
---	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+--	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 --		ON ucf.field_num = M.ref_num
 --	LEFT JOIN [sma_MST_UDFDefinition] def
 --		ON def.[udfnRelatedPK] = cst.cstnCaseTypeID
@@ -139,7 +139,7 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --FROM [sma_MST_CaseType] CST
 --	JOIN CaseTypeMixture mix
 --		ON mix.[SmartAdvocate Case Type] = cst.cstsType
---	JOIN [NeedlesKMY].[dbo].[user_party_matter] M
+--	JOIN [NeedlesSLF].[dbo].[user_party_matter] M
 --		ON M.mattercode = mix.matcode
 --		AND M.field_type <> 'label'
 --	JOIN	(
@@ -147,7 +147,7 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --				FROM CaseUDF
 --			) vd
 --		ON vd.FieldTitle = M.field_title
---	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+--	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 --		ON ucf.field_num = M.ref_num
 --	LEFT JOIN [sma_MST_UDFDefinition] def
 --		ON def.[udfnRelatedPK] = cst.cstnCaseTypeID

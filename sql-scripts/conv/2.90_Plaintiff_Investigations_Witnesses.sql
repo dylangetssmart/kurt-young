@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+-- use SANeedlesSLF
 
 insert into [dbo].[sma_TRN_CaseWitness] (
 	--[witnWitnesID]
@@ -37,14 +37,14 @@ SELECT
 	,null					as [witnModifyUserID]
 	,null					as [witdDtModified]
 	,null					as [witnLevelNo]
-FROM NeedlesKMY..user_tab_data utd
+FROM NeedlesSLF..user_tab_data utd
 	JOIN sma_trn_Cases cas
 		on cas.cassCaseNumber = convert(varchar,utd.case_id)
 	-- Link to SA Contact Card via:
 	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
-	join NeedlesKMY.dbo.user_tab_name utn
+	join NeedlesSLF.dbo.user_tab_name utn
 		on utd.tab_id = utn.tab_id
-	join NeedlesKMY.dbo.names n
+	join NeedlesSLF.dbo.names n
 		on utn.user_name = n.names_id
 	left join IndvOrgContacts_Indexed ioci
 		on n.names_id = ioci.saga
