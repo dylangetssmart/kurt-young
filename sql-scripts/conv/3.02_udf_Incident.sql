@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+use SANeedlesSLF
 go
 
 
@@ -10,27 +10,11 @@ BEGIN
     DROP TABLE IncidentUDF
 END
 
--- SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
--- INTO IncidentUDF
--- FROM (
---     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
---         convert(varchar(max), [Location]) as [Location],
---         convert(varchar(max), [City]) as [City]
---     FROM NeedlesSLF..user_case_data ud
---     JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
---     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
--- ) pv
--- UNPIVOT (FieldVal FOR FieldTitle IN (
---     [Location], [City]
--- )) AS unpvt
-
 SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
 INTO IncidentUDF
 FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
         convert(varchar(max), [AlcoholDrugs]) as [Alcohol/Drugs?], 
-        convert(varchar(max), [Time_of_Accident]) as [Time of Accident], 
-        convert(varchar(max), [Location]) as [Location], 
         convert(varchar(max), [Time_of_Call]) as [Time of Call], 
         convert(varchar(max), [Staff_Taking_Call]) as [Staff Taking Call], 
         convert(varchar(max), [On_the_job]) as [On the job?], 
@@ -39,15 +23,29 @@ FROM (
         convert(varchar(max), [Recorded_Statement_to_Us]) as [Recorded Statement to Us?], 
         convert(varchar(max), [Recorded_Statemnt_to_Ins]) as [Recorded Statemnt to Ins?], 
         convert(varchar(max), [Eyewitness]) as [Eyewitness?], 
-        convert(varchar(max), [Vantage_Point]) as [Vantage Point]
+        convert(varchar(max), [Vantage_Point]) as [Vantage Point],
+        convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
+    FROM NeedlesSLF..user_party_data ud
+    JOIN sma_TRN_Cases cas ON cas.casnCaseID = ud.case_id
+) pv
+UNPIVOT (FieldVal FOR FieldTitle IN (
+    [Alcohol/Drugs?], [Time of Call], [Staff Taking Call], 
+    [On the job?], [Vehicle Owner], [Resident Relative], [Recorded Statement to Us?], 
+    [Recorded Statemnt to Ins?], [Eyewitness?], [Vantage Point], [Caller Phone # (not P)]
+)) AS unpvt;
+
+-- Add Location to IncidentUDF from user_case_data
+insert INTO IncidentUDF
+SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
+FROM (
+    SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
+        convert(varchar(max), [Location]) as [Location]
     FROM NeedlesSLF..user_case_data ud
     JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
-    [Alcohol/Drugs?], [Time of Accident], [Location], [Time of Call], [Staff Taking Call], 
-    [On the job?], [Vehicle Owner], [Resident Relative], [Recorded Statement to Us?], 
-    [Recorded Statemnt to Ins?], [Eyewitness?], [Vantage Point]
+    [Location]
 )) AS unpvt;
 
 ----------------------------
