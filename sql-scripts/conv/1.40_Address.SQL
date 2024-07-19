@@ -1,4 +1,4 @@
--- USE [SANeedlesKMY]
+-- USE [SANeedlesSLF]
 GO
 /*
 alter table [sma_MST_Address] disable trigger all
@@ -6,8 +6,8 @@ delete from [sma_MST_Address]
 DBCC CHECKIDENT ('[sma_MST_Address]', RESEED, 0);
 alter table [sma_MST_Address] enable trigger all
 */
--- select distinct addr_Type from  [NeedlesKMY].[dbo].[multi_addresses]
--- select * from  [NeedlesKMY].[dbo].[multi_addresses] where addr_type not in ('Home','business', 'other')
+-- select distinct addr_Type from  [NeedlesSLF].[dbo].[multi_addresses]
+-- select * from  [NeedlesSLF].[dbo].[multi_addresses] where addr_type not in ('Home','business', 'other')
 
 ALTER TABLE [sma_MST_Address] DISABLE TRIGGER ALL
 GO
@@ -55,7 +55,7 @@ SELECT
 	368						as addnModifyUserID,
 	getdate()				as adddDtModified,
 	null,null,null,null,null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Indvcontacts] I on I.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = I.cinnContactCtg and T.addsCode='HM'
 WHERE (A.[addr_type]='Home' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
@@ -108,7 +108,7 @@ SELECT
 	null,
 	null,
 	null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Indvcontacts] I on I.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = I.cinnContactCtg and T.addsCode='WORK'
 WHERE (A.[addr_type]='Business' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
@@ -161,7 +161,7 @@ SELECT
 	null,
 	null,
 	null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Indvcontacts] I on I.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = I.cinnContactCtg and T.addsCode='OTH'
 WHERE (A.[addr_type]='Other' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
@@ -220,7 +220,7 @@ SELECT
 	null,
 	null,
 	null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Orgcontacts] O on O.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = O.connContactCtg and T.addsCode='HO'
 WHERE (A.[addr_type]='Home' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
@@ -259,7 +259,7 @@ SELECT
 		368					as addnModifyUserID,
 		getdate()			as adddDtModified,
 		null,null,null,null,null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Orgcontacts] O on O.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = O.connContactCtg and T.addsCode='WRK'
 WHERE (A.[addr_type]='Business' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
@@ -312,7 +312,7 @@ SELECT
 	null,
 	null,
 	null
-FROM [NeedlesKMY].[dbo].[multi_addresses] A
+FROM [NeedlesSLF].[dbo].[multi_addresses] A
 JOIN [sma_MST_Orgcontacts] O on O.saga = A.names_id
 JOIN [sma_MST_AddressTypes] T on T.addnContactCategoryID = O.connContactCtg and T.addsCode='BR'
 WHERE (A.[addr_type]='Other' and ( isnull(A.[address],'')<>'' or isnull(A.[address_2],'')<>'' or isnull( A.[city],'')<>'' or isnull(A.[state],'')<>'' or isnull(A.[zipcode],'')<>'' or isnull(A.[county],'')<>'' or isnull(A.[country],'')<>''))   
