@@ -10,21 +10,45 @@ BEGIN
     DROP TABLE IncidentUDF
 END
 
+-- SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
+-- INTO IncidentUDF
+-- FROM (
+--     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
+--         convert(varchar(max), [Location]) as [Location],
+--         convert(varchar(max), [City]) as [City]
+--     FROM NeedlesSLF..user_case_data ud
+--     JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
+--     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
+-- ) pv
+-- UNPIVOT (FieldVal FOR FieldTitle IN (
+--     [Location], [City]
+-- )) AS unpvt
+
 SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
 INTO IncidentUDF
 FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
-        convert(varchar(max), [Location]) as [Location],
-        convert(varchar(max), [City]) as [City]
+        convert(varchar(max), [AlcoholDrugs]) as [Alcohol/Drugs?], 
+        convert(varchar(max), [Time_of_Accident]) as [Time of Accident], 
+        convert(varchar(max), [Location]) as [Location], 
+        convert(varchar(max), [Time_of_Call]) as [Time of Call], 
+        convert(varchar(max), [Staff_Taking_Call]) as [Staff Taking Call], 
+        convert(varchar(max), [On_the_job]) as [On the job?], 
+        convert(varchar(max), [Vehicle_Owner]) as [Vehicle Owner], 
+        convert(varchar(max), [Resident_Relative]) as [Resident Relative], 
+        convert(varchar(max), [Recorded_Statement_to_Us]) as [Recorded Statement to Us?], 
+        convert(varchar(max), [Recorded_Statemnt_to_Ins]) as [Recorded Statemnt to Ins?], 
+        convert(varchar(max), [Eyewitness]) as [Eyewitness?], 
+        convert(varchar(max), [Vantage_Point]) as [Vantage Point]
     FROM NeedlesSLF..user_case_data ud
     JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
-    [Location], [City]
-)) AS unpvt
-
-
+    [Alcohol/Drugs?], [Time of Accident], [Location], [Time of Call], [Staff Taking Call], 
+    [On the job?], [Vehicle Owner], [Resident Relative], [Recorded Statement to Us?], 
+    [Recorded Statemnt to Ins?], [Eyewitness?], [Vantage Point]
+)) AS unpvt;
 
 ----------------------------
 --UDF DEFINITION
@@ -66,7 +90,8 @@ FROM [sma_MST_CaseType] CST
 	JOIN NeedlesUserFields ucf
 		on ucf.field_num = m.ref_num
 	LEFT JOIN [sma_MST_UDFDefinition] def
-		on def.[udfnRelatedPK] = cst.cstnCaseTypeID
+		-- on def.[udfnRelatedPK] = cst.cstnCaseTypeID
+	    on def.[udfnRelatedPK] = cg.IncidentTypeID		-- for Incidents, the [sma_mst_UDFDefinition].[udfnRelatedPK] references the [sma_mst_casegroup].[IncidentTypeID]
 		and def.[udfsUDFName] = m.field_title
 		and def.[udfsScreenName] = 'Incident Wizard'
 		and udfstype = ucf.UDFType
@@ -76,7 +101,9 @@ where def.udfnUDFID IS NULL
 order by m.field_title
 
 
-
+----------------------------
+-- Values
+----------------------------
 ALTER TABLE sma_trn_udfvalues DISABLE TRIGGER ALL
 GO
 
