@@ -39,13 +39,14 @@ insert INTO IncidentUDF
 SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
 FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
-        convert(varchar(max), [Location]) as [Location]
+        convert(varchar(max), [Location]) as [Location],
+		convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
     FROM NeedlesSLF..user_case_data ud
     JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
-    [Location]
+    [Location], [Caller Phone # (not P)]
 )) AS unpvt;
 
 ----------------------------
