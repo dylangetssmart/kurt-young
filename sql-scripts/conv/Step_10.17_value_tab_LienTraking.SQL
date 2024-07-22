@@ -81,7 +81,7 @@ insert into [SANeedlesSLF].[dbo].[sma_MST_LienType] ([lntsCode],[lntsDscrptn])
 select distinct 'CONVERSION',VC.[description]
 from [NeedlesSLF].[dbo].[value] V
 inner join [NeedlesSLF].[dbo].[value_code] VC on VC.code=V.code 
-where isnull(V.code,'') in (SELECT code FROM LienValueCodes)
+where isnull(V.code,'') in (SELECT code FROM @LienValueCodes)
 )
 except
 select [lntsCode],[lntsDscrptn] from [SANeedlesSLF].[dbo].[sma_MST_LienType] 
@@ -133,7 +133,7 @@ select
 from [NeedlesSLF].[dbo].[value_Indexed] V
 inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.provider and isnull(V.provider,0)<>0
-where code in (SELECT code FROM LienValueCodes)
+where code in (SELECT code FROM @LienValueCodes)
 OR  V.value_id in ( select value_id from value_tab_Liencheckbox_Helper ) 
 
 GO
