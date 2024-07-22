@@ -4,14 +4,16 @@ const path = require('path');
 
 const SERVER = 'DYLANS';
 const DATABASE = 'SANeedlesSLF';
+const NEEDLES_DB = 'NeedlesSLF'
+const SA_DB = 'SANeedlesSLF'
 const BASE_DIR = __dirname;
+const datetime = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
 
-let SQL_SCRIPTS_DIR = path.resolve(BASE_DIR, '../sql-scripts/conv');
+let SQL_SCRIPTS_DIR = path.resolve(BASE_DIR, '../sql-scripts/test');
 const LOGS_DIR = path.join(BASE_DIR, '../logs');
 const LOG_FILE = path.join(LOGS_DIR, `error_log_${datetime}.txt`);
 
 // (YYYY-MM-DD_HH-MM)
-const datetime = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
 
 // Initialize log file and logs directory
 // const initializeLogs = () => {
@@ -34,29 +36,62 @@ const datetime = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').s
 // Function to log messages to the log file
 function logMessage(message) {
     appendFileSync(LOG_FILE, message + '\n');
-    console.log(message);
+    // console.log(message);
 }
 
 // Function to run a SQL script
-function runScript(scriptPath, database = DATABASE) {
+function runScript(scriptPath) {
     const scriptName = path.basename(scriptPath);
     logMessage(`Running script: ${scriptName}`);
 
+    const outputFilePath = path.join(LOGS_DIR, `${scriptName}_${datetime}.out`);
+    
     try {
-        execSync(`sqlcmd -S ${SERVER} -E -d ${database} -i "${scriptPath}" -b -h -1`, { stdio: 'ignore' });
+        // Use execSync with stdio set to 'pipe' to capture output and error
+        const result = execSync(`sqlcmd -S ${SERVER} -E -v Needles=${NEEDLES_DB} -v SA=${SA_DB} -i "${scriptPath}" -b -h -1`, { encoding: 'utf-8', stdio: 'pipe' });
+        
+        // Log the successful output
         logMessage(`SUCCESS - ${scriptName}`);
-        logMessage(`    Timestamp: ${datetime}\n`);
+        logMessage(`    Timestamp: ${datetime}`);
+        if (result) {
+            logMessage(`    Output:\n${result}`);
+        }
+        logMessage('');
     } catch (error) {
-        const outputFilePath = path.join(LOGS_DIR, `${scriptName}_${datetime}.out`);
+        // Capture both stdout and stderr from the error
+        const errorOutput = error.stdout.toString() + error.stderr.toString();
+        
+        // Log failure and write detailed error to the output file
         logMessage(`FAIL - ${scriptName}`);
         logMessage(`    Timestamp: ${datetime}`);
-        logMessage(`    Output File: ${outputFilePath}\n`);
-
-        // Write error output to a file
-        writeFileSync(outputFilePath, error.message);
+        logMessage(`    Output File: ${outputFilePath}`);
+        
+        // writeFileSync(outputFilePath, errorOutput);
+        logMessage(`    Error Message:\n${errorOutput}`);
         console.error(`FAIL - ${scriptName}`);
+        // console.error(`Error Message:\n${errorOutput}`);
     }
 }
+// function runScript(scriptPath, database = DATABASE) {
+//     const scriptName = path.basename(scriptPath);
+//     logMessage(`Running script: ${scriptName}`);
+
+//     try {
+//         // execSync(`sqlcmd -S ${SERVER} -E -d ${database} -i "${scriptPath}" -b -h -1`, { stdio: 'ignore' });
+//         execSync(`sqlcmd -S ${SERVER} -E -v Needles=${NEEDLES_DB} -v SA=${SA_DB} -i "${scriptPath}" -b`, { stdio: 'ignore' });
+//         logMessage(`SUCCESS - ${scriptName}`);
+//         logMessage(`    Timestamp: ${datetime}\n`);
+//     } catch (error) {
+//         const outputFilePath = path.join(LOGS_DIR, `${scriptName}_${datetime}.out`);
+//         logMessage(`FAIL - ${scriptName}`);
+//         logMessage(`    Timestamp: ${datetime}`);
+//         logMessage(`    Output File: ${outputFilePath}\n`);
+
+//         // Write error output to a file
+//         writeFileSync(outputFilePath, error.message);
+//         console.error(`FAIL - ${scriptName}`);
+//     }
+// }
 
 // Menu for script execution options
 const menuOptions = {
@@ -81,12 +116,13 @@ const selectedOption = menuOptions[choice];
 
 if (selectedOption && selectedOption.pattern) {
     try {
-        console.log(`Checking for scripts in directory: ${SQL_SCRIPTS_DIR}`);
+        // console.log(`Checking for scripts in directory: ${SQL_SCRIPTS_DIR}`);
         const allFiles = readdirSync(SQL_SCRIPTS_DIR);
-        console.log('Files in directory:', allFiles);
+        // console.log('Files in directory:', allFiles);
 
         const files = allFiles.filter(file => selectedOption.pattern.test(file));
-        console.log(`Matching files for pattern ${selectedOption.pattern}:`, files);
+        console.log(`Matching files:`, files);
+        // console.log(`Matching files for pattern ${selectedOption.pattern}:`, files);
 
         if (files.length === 0) {
             console.log(`No scripts found for pattern: ${selectedOption.pattern}`);
