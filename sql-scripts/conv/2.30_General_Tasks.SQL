@@ -11,7 +11,7 @@ alter table [sma_TRN_TaskNew] disable trigger all
 ----(0)----
 --INSERT INTO [sma_MST_TaskCategory] (tskCtgDescription)
 --SELECT DISTINCT Type_Of_Record 
---FROM NeedlesGMA..user_tab2_data 
+--FROM NeedlesSLF..user_tab2_data 
 --WHERE Type_of_Record in ('Accident Report', 'Criminal', 'Death Cert', 'Dec Page', 'DMV Record', 'Education', 
 --					'Employment', 'Expert Opinion', 'Funeral', 'Photograph', 'Tax', 'Court Transcript', 'Police Notes', 
 --					'Depo Trans.', 'FCE', 'IME', 'SDT by Employer', 'Lost Wages', 'Questionnaire')

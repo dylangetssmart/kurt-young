@@ -95,7 +95,7 @@ select count(*)
 
 
 
-use NeedlesGMA
+use NeedlesSLF
 
 select A.*
 from 
@@ -122,7 +122,7 @@ from [dbo].[checklist_dir] DIR
 where DIR.lim='Y'
 
 
-use NeedlesGMA
+use NeedlesSLF
 select C.lim_date,CKL.due_date,CKL.case_id,CKL.*
 from [dbo].[case_checklist] CKL
 inner join [dbo].[cases] C on C.casenum=CKL.case_id

@@ -233,7 +233,7 @@ inner join sma_TRN_Employment e
 	on e.empnPlaintiffID = p.plnnPlaintiffID
 where v.code = 'LWG'
 
--- FROM NeedlesGMA..user_tab4_data ud
+-- FROM NeedlesSLF..user_tab4_data ud
 -- JOIN EmployerTemp et on et.employer = ud.employer and et.employer_address = ud.Employer_Address
 -- JOIN IndvOrgContacts_Indexed ioc on ioc.SAGA = et.empID and ioc.[Name] = et.employer
 -- JOIN [sma_TRN_Employment] e on  e.empnPlaintiffID = p.plnnPlaintiffID and empnEmployerID = ioc.CID

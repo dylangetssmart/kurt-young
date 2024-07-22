@@ -2,6 +2,15 @@
 use [SA]
 GO
 
+/* ##############################################
+Store applicable value codes
+*/
+DECLARE @NegSetValueCodes TABLE (code VARCHAR(10));
+
+INSERT INTO @NegSetValueCodes (code)
+VALUES
+('MP'), ('PTC'), ('SET')
+
 /*
 alter table [sma_TRN_Settlements] disable trigger all
 delete [sma_TRN_Settlements]
@@ -9,7 +18,7 @@ DBCC CHECKIDENT ('[sma_TRN_Settlements]', RESEED, 1);
 alter table [sma_TRN_Settlements] enable trigger all
 */
 
---select distinct code, description from [NeedlesGMA].[dbo].[value] order by code
+--select distinct code, description from [NeedlesSLF].[dbo].[value] order by code
 ---(0)---
 if not exists (SELECT * FROM sys.columns WHERE Name = N'saga' AND Object_ID = Object_ID(N'sma_TRN_Settlements'))
 begin
@@ -70,10 +79,10 @@ select
     IOC.AID		    as ProviderAID,
     CAS.casnCaseID	as casnCaseID,
     null			as PlaintiffID
-from [NeedlesGMA].[dbo].[value_Indexed] V
+from [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA = V.provider and isnull(V.provider,0) <> 0
-where code in  ( 'CD', 'FEE', 'MDP', 'RET', 'SET' )
+where code in (SELECT code FROM NegSetValueCodes);
 GO
 ---(0)---
 DBCC DBREINDEX('value_tab_Settlement_Helper',' ',90)  WITH NO_INFOMSGS 
@@ -92,7 +101,7 @@ select
     V.value_id		    as vid,
     T.plnnPlaintiffID
 INTO value_tab_Multi_Party_Helper_Temp   
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
@@ -115,7 +124,7 @@ select
     V.value_id		    as vid,
     ( select plnnPlaintiffID from [sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesGMA].[dbo].[value_Indexed] V
+from [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
@@ -173,7 +182,7 @@ select
     case when V.[start_date] between '1900-01-01' and '2079-06-06' then V.[start_date]
 	   else null end				as stldSettlementDate,
     V.value_id						as saga
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN value_tab_Settlement_Helper MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
 WHERE V.code in  ( 'CD', 'FEE', 'MDP', 'RET', 'SET' )
 GO
@@ -210,7 +219,7 @@ insert into [SA].[dbo].[sma_TRN_CheckReceivedFeeRecorded]
 )
 
 SELECT 
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
 inner join value_tab_Settlement_Helper MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
 where V.code in  ( 'LOAN INTER','VA REIMBUR' )
 */
