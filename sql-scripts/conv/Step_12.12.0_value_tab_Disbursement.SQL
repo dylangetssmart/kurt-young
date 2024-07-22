@@ -2,6 +2,16 @@
 use [SA]
 GO
 
+/* ##############################################
+Store applicable disbursement value codes
+*/
+DECLARE @DisbursementValueCodes TABLE (code VARCHAR(10));
+
+INSERT INTO @DisbursementValueCodes (code)
+VALUES
+('CAD'), ('CEX'), ('CPY'), ('DTF'), ('EXP'), ('FUT MED'), ('PHO'), ('PST'), 
+('PTF'), ('PTG'), ('PTP'), ('RPT'), ('TEL');
+
 /*
 alter table [sma_TRN_Disbursement] disable trigger all
 delete from [sma_TRN_Disbursement] 
@@ -9,7 +19,10 @@ DBCC CHECKIDENT ('[sma_TRN_Disbursement]', RESEED, 0);
 alter table [sma_TRN_Disbursement] enable trigger all
 */
 
--- Add saga to sma_TRN_Disbursement
+
+/* ##############################################
+Add saga to sma_TRN_Disbursement
+*/
 if not exists (SELECT * FROM sys.columns WHERE Name = N'saga' AND Object_ID = Object_ID(N'sma_TRN_Disbursement'))
 begin
     ALTER TABLE [sma_TRN_Disbursement] ADD [saga] int NULL; 
@@ -22,20 +35,22 @@ GO
     -- EXCEPT SELECT [description] FROM [sma_MST_CheckRequestStatus]
 
 
--- Create disbursement types for applicable value codes
+/* ##############################################
+Create disbursement types for applicable value codes
+*/
 INSERT INTO [sma_MST_DisbursmentType]
 (
     disnTypeCode
-    , dissTypeName
+    ,dissTypeName
 )
 (
 	SELECT DISTINCT
     'CONVERSION'
     ,VC.[description]
-	FROM [NeedlesGMA].[dbo].[value] V
-	    JOIN [NeedlesGMA].[dbo].[value_code] VC
+	FROM [NeedlesSLF].[dbo].[value] V
+	    JOIN [NeedlesSLF].[dbo].[value_code] VC
             on VC.code=V.code 
-	WHERE isnull(V.code,'') in ( 'CEX', 'CSF', 'ICF', 'MCF', 'UCC', 'DTF') 
+	WHERE isnull(V.code,'') in (SELECT code FROM @DisbursementValueCodes)
 )
 EXCEPT 
 SELECT 
@@ -47,7 +62,6 @@ FROM [sma_MST_DisbursmentType]
 /* ##############################################
 Create Disbursement helper table
 */
-
 if exists (select * from sys.objects where name='value_tab_Disbursement_Helper' and type='U')
 begin
 	drop table value_tab_Disbursement_Helper
@@ -100,12 +114,12 @@ select
     IOC.UNQCID		    as ProviderUID,
     CAS.casnCaseID	    as casnCaseID,
     null			    as PlaintiffID
-from [NeedlesGMA].[dbo].[value_Indexed] V
-    JOIN [sma_TRN_cases] CAS
-        on CAS.cassCaseNumber = V.case_id
-    JOIN IndvOrgContacts_Indexed IOC
-        on IOC.SAGA = V.provider and isnull(V.provider,0) <> 0
-where code in ( 'CEX', 'CSF', 'ICF', 'MCF', 'UCC', 'DTF' ) 
+from [NeedlesSLF].[dbo].[value_Indexed] V
+JOIN [sma_TRN_cases] CAS
+    on CAS.cassCaseNumber = V.case_id
+JOIN IndvOrgContacts_Indexed IOC
+    on IOC.SAGA = V.provider and isnull(V.provider,0) <> 0
+where code in (SELECT code FROM DisbursementValueCodes);
 GO
 
 ---(0)---
@@ -125,7 +139,7 @@ SELECT
     ,V.value_id		    as vid
     ,T.plnnPlaintiffID
 INTO value_tab_Multi_Party_Helper_Temp   
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
     JOIN [sma_TRN_cases] CAS
         on CAS.cassCaseNumber = V.case_id
     JOIN IndvOrgContacts_Indexed IOC
@@ -156,7 +170,7 @@ SELECT
         where plnnCaseID = CAS.casnCaseID and plnbIsPrimary = 1
     )                   as plnnPlaintiffID 
 into value_tab_Multi_Party_Helper_Temp
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
     JOIN [sma_TRN_cases] CAS
         on CAS.cassCaseNumber = V.case_id
     JOIN [IndvOrgContacts_Indexed] IOC
@@ -182,6 +196,7 @@ GO
 INSERT INTO [sma_TRN_Disbursement]
 (
     disnCaseID,
+    disdCheckDt,
     disnPayeeContactCtgID,
     disnPayeeContactID,
     disnAmount,
@@ -200,6 +215,7 @@ INSERT INTO [sma_TRN_Disbursement]
 )
 select 
     MAP.casnCaseID		                    as disnCaseID
+    ,u.Check_Requested                        as disdCheckDt
     ,MAP.ProviderCTG	                    as disnPayeeContactCtgID
     ,MAP.ProviderCID	                    as disnPayeeContactID
     ,V.total_value		                    as disnAmount
@@ -209,26 +225,39 @@ select
         from [sma_MST_DisbursmentType]
         where dissTypeName = (
                                 select [description]
-                                FROM [NeedlesGMA].[dbo].[value_code]
+                                FROM [NeedlesSLF].[dbo].[value_code]
                                 where [code]=V.code
                             )
     )                                       as dissDisbursementType
     ,MAP.ProviderUID	                    as UniquePayeeID
     ,V.[memo]                               as dissDescription
-    ,V.[settlement_memo]                    as dissComments
+    ,v.settlement_memo + 
+    ISNULL('Account Number: ' + NULLIF(CAST(Account_Number AS VARCHAR(MAX)), '') + CHAR(13), '') +
+    ISNULL('Cancel: ' + NULLIF(CAST(Cancel AS VARCHAR(MAX)), '') + CHAR(13), '') +    
+    ISNULL('CM Reviewed: ' + NULLIF(CAST(CM_Reviewed AS VARCHAR(MAX)), '') + CHAR(13), '') +
+    ISNULL('Date Paid: ' + NULLIF(CAST(Date_Paid AS VARCHAR(MAX)), '') + CHAR(13), '') +
+    ISNULL('For Dates From: ' + NULLIF(CAST(For_Dates_From AS VARCHAR(MAX)), '') + CHAR(13), '') +
+    ISNULL('OI Checked: ' + NULLIF(CAST(OI_Checked AS VARCHAR(MAX)), '') + CHAR(13), '')
+                                            as dissComments
     ,case
-        when v.code in ('CEX', 'CSF', 'ICF', 'MCF' )
+        -- when v.code in ('CEX', 'CSF', 'ICF', 'MCF' )
+        --     then (
+        --             select Id
+        --             FROM [sma_MST_CheckRequestStatus]
+        --             where [Description]='Paid'
+        --         )
+		-- when v.code in ('UCC')
+        --     then (
+        --             select Id
+        --             FROM [sma_MST_CheckRequestStatus]
+        --             where [Description]='Check Pending'
+        --         )
+        when isnull(Check_Requested,'') <> ''
             then (
-                    select Id
-                    FROM [sma_MST_CheckRequestStatus]
-                    where [Description]='Paid'
-                )
-		when v.code in ('UCC')
-            then (
-                    select Id
-                    FROM [sma_MST_CheckRequestStatus]
-                    where [Description]='Unrecouped'
-                )
+                select Id
+                FROM [sma_MST_CheckRequestStatus]
+                where [Description]='Check Pending'
+            )
 		else NULL
         end	                                as disnCheckRequestStatus
     ,case
@@ -257,10 +286,12 @@ select
         else 1 
         end		                            as disnRecoverable
     ,V.value_id			                    as saga
-FROM [NeedlesGMA].[dbo].[value_Indexed] V
+FROM [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN value_tab_Disbursement_Helper MAP
     on MAP.case_id = V.case_id 
     and MAP.value_id = V.value_id
+join NeedlesSLF..user_tab2_data u
+    on u.case_id = v.case_id
 GO
 ---
 alter table [sma_TRN_Disbursement] enable trigger all
