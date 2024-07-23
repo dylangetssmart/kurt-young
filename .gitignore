@@ -25,5 +25,6 @@ backups/
 *.bak
 *.backup
 
-# Ignore the trans directory
+# Directories to ignore
 trans/
+logs/
