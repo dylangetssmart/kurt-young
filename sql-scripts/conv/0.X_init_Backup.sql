@@ -5,7 +5,7 @@ DECLARE @prefix NVARCHAR(10) = '0.X_';
 DECLARE @step NVARCHAR(10) = 'Init';
 DECLARE @databaseName1 sysname = 'NeedlesSLF';
 DECLARE @databaseName2 sysname = 'SANeedlesSLF';
-DECLARE @directory NVARCHAR(128) = 'C:\LocalConv\NeedlesSLF\backups\';
+DECLARE @directory NVARCHAR(128) = 'C:\LocalConv\Needles-Skolrood\backups\';
 
 -- Specify the backup file paths with timestamp
 DECLARE @backupPath1 NVARCHAR(255) = @directory + @prefix + @databaseName1 + '_After' + @step + '_' + @currentTimestamp + '.bak';
