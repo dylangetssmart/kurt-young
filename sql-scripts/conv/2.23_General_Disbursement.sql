@@ -27,7 +27,6 @@ if not exists (SELECT * FROM sys.columns WHERE Name = N'saga' AND Object_ID = Ob
 begin
     ALTER TABLE [sma_TRN_Disbursement] ADD [saga] int NULL; 
 end
-GO
 
 -- Use this to create custom CheckRequestStatuses
     -- INSERT INTO [sma_MST_CheckRequestStatus] ([description])
