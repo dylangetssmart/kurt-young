@@ -29,7 +29,7 @@ INSERT INTO sma_MST_SpecialDamageType
     SpDamageTypeDescription
     ,IsEditableType
     ,SpDamageTypeCreatedUserID
-    ,SpDamageTypeDtCreate
+    ,SpDamageTypeDtCreated
 )
 select
     'Other'

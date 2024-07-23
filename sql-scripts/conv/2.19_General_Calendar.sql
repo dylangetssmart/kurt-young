@@ -409,106 +409,106 @@ user_case_data Pass 1
 
 
 
-/* ####################################
-user_case_data Pass 2
-- appt_date -> start date
-- appt_location -> address (no contact card available)
-- appointment type = "Appointment"
-*/
+-- /* ####################################
+-- user_case_data Pass 2
+-- - appt_date -> start date
+-- - appt_location -> address (no contact card available)
+-- - appointment type = "Appointment"
+-- */
 
--- Create calendar appointments
-insert into [sma_TRN_CalendarAppointments]
-(
-	[FromDate]
-	,[ToDate]
-	,[AppointmentTypeID]
-	,[ActivityTypeID]
-	,[CaseID]
-	,[LocationContactID]
-	,[LocationContactGtgID]
-	,[JudgeID]
-	,[Comments]
-	,[StatusID]
-	,[Address]
-	,[Subject]
-	,[RecurranceParentID]
-	,[AdjournedID]
-	,[RecUserID]
-	,[DtCreated]
-	,[ModifyUserID]
-	,[DtModified]
-	,[DepositionType]
-	,[Deponants]
-	,[OriginalAppointmentID]
-	,[OriginalAdjournedID]
-	,[RecurrenceId]
-	,[WorkPlanItemId]
-	,[AutoUpdateAppId]
-	,[AutoUpdated]
-	,[AutoUpdateProviderId]
-	,[saga]
-)
-select 
-	case
-		when ud.[appt_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(ud.[appt_time],'00:00:00')) <> convert(time,'00:00:00')  
-			then CAST(CAST(ud.[appt_date] AS DATE) AS DATETIME) + CAST(ud.[appt_time] AS TIME)  
-			--then cast(ud.[appt_date] as datetime)
-		when ud.[appt_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(ud.[appt_time],'00:00:00')) = convert(time,'00:00:00')  
-			then CAST(CAST(ud.[appt_date] AS DATE) AS DATETIME) + CAST('00:00:00' AS TIME)  
-		else '1900-01-01'
-		end							as [FromDate]
-    ,'1900-01-01'					as [ToDate]
-	,(
-		select ID
-		from [sma_MST_CalendarAppointmentType]
-		where AppointmentType='Case-related'
-	)								as [AppointmentTypeID]
-	,(
-		select attnActivityTypeID
-		from [sma_MST_ActivityType] 
-		where attnActivityCtg = (
-								select atcnPKId
-								from sma_MST_ActivityCategory
-								where atcsDscrptn='Case-Related Appointment'
-								) 
-			and attsDscrptn = 'Appointment'
-	)							as [ActivityTypeID]
-	,CAS.casnCaseID				as [CaseID]
-	,null						as [LocationContactID]
-	,null						as [LocationContactGtgID]
-	,null						as [JudgeID]
-	,null						as [Comments]
-	,(
-		select [StatusId]
-		from [sma_MST_AppointmentStatus]
-		where [StatusName]='Open'
-	)							as [StatusID]
-	,ud.Location				as [Address]
-	,'Appointment'				as [Subject]
-	,null						as [RecurranceParentID]
-	,null						as [AdjournedID]
-	,368						as [RecUserID]
-	,getdate()					as [DtCreated]
-	,null						as [ModifyUserID]
-	,null						as [DtModified]
-	,null
-	,null
-	,null
-	,null
-	,null
-	,null
-	,null
-	,null
-	,null
-	,null						as [saga]
---	,'Case-related:'+convert(varchar,CAL.calendar_id)	as [saga]
-from NeedlesSLF..user_case_data ud
-	join sma_TRN_Cases cas
-		on cas.cassCaseNumber = ud.casenum
-	JOIN CalendarJudgeStaffCourt MAP
-		on MAP.CaseID=cas.casnCaseID
-where isnull(ud.Appt_Date,'') <> ''
-GO
+-- -- Create calendar appointments
+-- insert into [sma_TRN_CalendarAppointments]
+-- (
+-- 	[FromDate]
+-- 	,[ToDate]
+-- 	,[AppointmentTypeID]
+-- 	,[ActivityTypeID]
+-- 	,[CaseID]
+-- 	,[LocationContactID]
+-- 	,[LocationContactGtgID]
+-- 	,[JudgeID]
+-- 	,[Comments]
+-- 	,[StatusID]
+-- 	,[Address]
+-- 	,[Subject]
+-- 	,[RecurranceParentID]
+-- 	,[AdjournedID]
+-- 	,[RecUserID]
+-- 	,[DtCreated]
+-- 	,[ModifyUserID]
+-- 	,[DtModified]
+-- 	,[DepositionType]
+-- 	,[Deponants]
+-- 	,[OriginalAppointmentID]
+-- 	,[OriginalAdjournedID]
+-- 	,[RecurrenceId]
+-- 	,[WorkPlanItemId]
+-- 	,[AutoUpdateAppId]
+-- 	,[AutoUpdated]
+-- 	,[AutoUpdateProviderId]
+-- 	,[saga]
+-- )
+-- select 
+-- 	case
+-- 		when ud.[appt_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(ud.[appt_time],'00:00:00')) <> convert(time,'00:00:00')  
+-- 			then CAST(CAST(ud.[appt_date] AS DATE) AS DATETIME) + CAST(ud.[appt_time] AS TIME)  
+-- 			--then cast(ud.[appt_date] as datetime)
+-- 		when ud.[appt_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(ud.[appt_time],'00:00:00')) = convert(time,'00:00:00')  
+-- 			then CAST(CAST(ud.[appt_date] AS DATE) AS DATETIME) + CAST('00:00:00' AS TIME)  
+-- 		else '1900-01-01'
+-- 		end							as [FromDate]
+--     ,'1900-01-01'					as [ToDate]
+-- 	,(
+-- 		select ID
+-- 		from [sma_MST_CalendarAppointmentType]
+-- 		where AppointmentType='Case-related'
+-- 	)								as [AppointmentTypeID]
+-- 	,(
+-- 		select attnActivityTypeID
+-- 		from [sma_MST_ActivityType] 
+-- 		where attnActivityCtg = (
+-- 								select atcnPKId
+-- 								from sma_MST_ActivityCategory
+-- 								where atcsDscrptn='Case-Related Appointment'
+-- 								) 
+-- 			and attsDscrptn = 'Appointment'
+-- 	)							as [ActivityTypeID]
+-- 	,CAS.casnCaseID				as [CaseID]
+-- 	,null						as [LocationContactID]
+-- 	,null						as [LocationContactGtgID]
+-- 	,null						as [JudgeID]
+-- 	,null						as [Comments]
+-- 	,(
+-- 		select [StatusId]
+-- 		from [sma_MST_AppointmentStatus]
+-- 		where [StatusName]='Open'
+-- 	)							as [StatusID]
+-- 	,ud.Location				as [Address]
+-- 	,'Appointment'				as [Subject]
+-- 	,null						as [RecurranceParentID]
+-- 	,null						as [AdjournedID]
+-- 	,368						as [RecUserID]
+-- 	,getdate()					as [DtCreated]
+-- 	,null						as [ModifyUserID]
+-- 	,null						as [DtModified]
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null
+-- 	,null						as [saga]
+-- --	,'Case-related:'+convert(varchar,CAL.calendar_id)	as [saga]
+-- from NeedlesSLF..user_case_data ud
+-- 	join sma_TRN_Cases cas
+-- 		on cas.cassCaseNumber = ud.casenum
+-- 	JOIN CalendarJudgeStaffCourt MAP
+-- 		on MAP.CaseID=cas.casnCaseID
+-- where isnull(ud.Appt_Date,'') <> ''
+-- GO
 
                 
 ---

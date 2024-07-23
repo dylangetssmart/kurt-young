@@ -189,65 +189,65 @@ BEGIN
 END
 
 
-/* ####################################
-Create from User Field: user_case_data.Date_Application_Filed
-*/
-insert into [sma_TRN_CriticalDeadlines] (
-	[crdnCaseID]				
-	,[crdnCriticalDeadlineTypeID]
-	,[crddDueDate]
-	,[crdsRequestFrom]
-	,[ResponderUID]
-	)
-select
-	CAS.casnCaseID								as [crdnCaseID]
-	,(
-		select cdtnCriticalTypeID
-		from [sma_MST_CriticalDeadlineTypes]
-		where cdtbActive = 1
-			and cdtsDscrptn = 'Date Application Filed'
-		)										as [crdnCriticalDeadlineTypeID]
-	,case 
-		when ud.Date_Application_Filed between '1900-01-01' and '2079-06-01'
-			then ud.Date_Application_Filed
-		else null
-		end										as [crddDueDate]
-	,null										as [crdsRequestFrom]
-	,null										as [ResponderUID]
-from NeedlesSLF..user_case_data ud
-	join [sma_TRN_cases] CAS
-		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
-where isnull(ud.Date_Application_Filed, '') <> ''
+-- /* ####################################
+-- Create from User Field: user_case_data.Date_Application_Filed
+-- */
+-- insert into [sma_TRN_CriticalDeadlines] (
+-- 	[crdnCaseID]				
+-- 	,[crdnCriticalDeadlineTypeID]
+-- 	,[crddDueDate]
+-- 	,[crdsRequestFrom]
+-- 	,[ResponderUID]
+-- 	)
+-- select
+-- 	CAS.casnCaseID								as [crdnCaseID]
+-- 	,(
+-- 		select cdtnCriticalTypeID
+-- 		from [sma_MST_CriticalDeadlineTypes]
+-- 		where cdtbActive = 1
+-- 			and cdtsDscrptn = 'Date Application Filed'
+-- 		)										as [crdnCriticalDeadlineTypeID]
+-- 	,case 
+-- 		when ud.Date_Application_Filed between '1900-01-01' and '2079-06-01'
+-- 			then ud.Date_Application_Filed
+-- 		else null
+-- 		end										as [crddDueDate]
+-- 	,null										as [crdsRequestFrom]
+-- 	,null										as [ResponderUID]
+-- from NeedlesSLF..user_case_data ud
+-- 	join [sma_TRN_cases] CAS
+-- 		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
+-- where isnull(ud.Date_Application_Filed, '') <> ''
 
-/* ####################################
-ds 7-11-2024 // Create from User Field: user_case_data.Date_Application_Denied
-*/
-insert into [sma_TRN_CriticalDeadlines] (
-	[crdnCaseID]				
-	,[crdnCriticalDeadlineTypeID]
-	,[crddDueDate]
-	,[crdsRequestFrom]
-	,[ResponderUID]
-	)
-select
-	CAS.casnCaseID								as [crdnCaseID]
-	,(
-		select cdtnCriticalTypeID
-		from [sma_MST_CriticalDeadlineTypes]
-		where cdtbActive = 1
-			and cdtsDscrptn = 'Date Application Denied'
-		)										as [crdnCriticalDeadlineTypeID]
-	,case 
-		when ud.Date_Application_Denied between '1900-01-01' and '2079-06-01'
-			then ud.Date_Application_Denied
-		else null
-		end										as [crddDueDate]
-	,null										as [crdsRequestFrom]
-	,null										as [ResponderUID]
-from NeedlesSLF..user_case_data ud
-	join [sma_TRN_cases] CAS
-		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
-where isnull(ud.Date_Application_Denied, '') <> ''
+-- /* ####################################
+-- ds 7-11-2024 // Create from User Field: user_case_data.Date_Application_Denied
+-- */
+-- insert into [sma_TRN_CriticalDeadlines] (
+-- 	[crdnCaseID]				
+-- 	,[crdnCriticalDeadlineTypeID]
+-- 	,[crddDueDate]
+-- 	,[crdsRequestFrom]
+-- 	,[ResponderUID]
+-- 	)
+-- select
+-- 	CAS.casnCaseID								as [crdnCaseID]
+-- 	,(
+-- 		select cdtnCriticalTypeID
+-- 		from [sma_MST_CriticalDeadlineTypes]
+-- 		where cdtbActive = 1
+-- 			and cdtsDscrptn = 'Date Application Denied'
+-- 		)										as [crdnCriticalDeadlineTypeID]
+-- 	,case 
+-- 		when ud.Date_Application_Denied between '1900-01-01' and '2079-06-01'
+-- 			then ud.Date_Application_Denied
+-- 		else null
+-- 		end										as [crddDueDate]
+-- 	,null										as [crdsRequestFrom]
+-- 	,null										as [ResponderUID]
+-- from NeedlesSLF..user_case_data ud
+-- 	join [sma_TRN_cases] CAS
+-- 		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
+-- where isnull(ud.Date_Application_Denied, '') <> ''
 
 -----
 ALTER TABLE [sma_TRN_CriticalDeadlines] ENABLE TRIGGER ALL
