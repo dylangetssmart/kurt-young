@@ -56,7 +56,7 @@ FROM NeedlesSLF.[dbo].[cases_Indexed] C
 		on U.casenum=C.casenum
 	JOIN [sma_TRN_cases] CAS
 		on CAS.cassCaseNumber = convert(varchar,C.casenum)
-where ISNULL(u.State, '') <> '' OR ISNULL(u.Time_of_Accident, '') <> ''
+where ISNULL(u.Time_of_Accident, '') <> ''
                 
 
 
