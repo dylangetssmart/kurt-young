@@ -228,8 +228,8 @@ FROM Employer_Address_Helper help
 		and org.saga_ref = 'upd_employer'
 
 	JOIN [sma_MST_Address] A
-		on A.addnContactID = C.connContactID
-		and A.addnContactCtgID = C.connContactCtg
+		on A.addnContactID = org.connContactID
+		and A.addnContactCtgID = org.connContactCtg
 		and A.addbPrimary = 1
 WHERE isnull(help.Employers_Phone_Number,'') <> ''
 		

@@ -1,15 +1,19 @@
 const { execSync } = require('child_process');
 const { readdirSync, writeFileSync, appendFileSync } = require('fs');
 const path = require('path');
+const moment = require('moment');
+
+// Get the current date and time, formatted without seconds
+const datetime = moment().format('YYYY-MM-DD_HH-mm');
 
 const SERVER = 'DYLANS';
-const DATABASE = 'SANeedlesSLF';
+// const DATABASE = 'SANeedlesSLF';
 const NEEDLES_DB = 'NeedlesSLF'
 const SA_DB = 'SANeedlesSLF'
 const BASE_DIR = __dirname;
-const datetime = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
+// const datetime = new Date().toISOString().replace(/T/, '_').replace(/:/g, '-').split('.')[0];
 
-let SQL_SCRIPTS_DIR = path.resolve(BASE_DIR, '../sql-scripts/test');
+let SQL_SCRIPTS_DIR = path.resolve(BASE_DIR, '../sql-scripts/conv/');
 const LOGS_DIR = path.join(BASE_DIR, '../logs');
 const LOG_FILE = path.join(LOGS_DIR, `error_log_${datetime}.txt`);
 
@@ -42,15 +46,17 @@ function logMessage(message) {
 // Function to run a SQL script
 function runScript(scriptPath) {
     const scriptName = path.basename(scriptPath);
-    logMessage(`Running script: ${scriptName}`);
+    // logMessage(`Running script: ${scriptName}`);
 
     const outputFilePath = path.join(LOGS_DIR, `${scriptName}_${datetime}.out`);
     
     try {
         // Use execSync with stdio set to 'pipe' to capture output and error
-        const result = execSync(`sqlcmd -S ${SERVER} -E -v Needles=${NEEDLES_DB} -v SA=${SA_DB} -i "${scriptPath}" -b -h -1`, { encoding: 'utf-8', stdio: 'pipe' });
+        const result = execSync(`sqlcmd -S ${SERVER} -E -d ${SA_DB} -v Needles=${NEEDLES_DB} -v SA=${SA_DB} -i "${scriptPath}" -b -h -1`, { encoding: 'utf-8', stdio: 'pipe' });
         
         // Log the successful output
+        
+        console.log(`SUCCESS - ${scriptName}`);
         logMessage(`SUCCESS - ${scriptName}`);
         logMessage(`    Timestamp: ${datetime}`);
         if (result) {
@@ -66,8 +72,8 @@ function runScript(scriptPath) {
         logMessage(`    Timestamp: ${datetime}`);
         logMessage(`    Output File: ${outputFilePath}`);
         
-        // writeFileSync(outputFilePath, errorOutput);
-        logMessage(`    Error Message:\n${errorOutput}`);
+        writeFileSync(outputFilePath, errorOutput);
+        // logMessage(`    Error Message:\n${errorOutput}`);
         console.error(`FAIL - ${scriptName}`);
         // console.error(`Error Message:\n${errorOutput}`);
     }
@@ -127,7 +133,7 @@ if (selectedOption && selectedOption.pattern) {
         if (files.length === 0) {
             console.log(`No scripts found for pattern: ${selectedOption.pattern}`);
         } else {
-            files.forEach(file => runScript(path.join(SQL_SCRIPTS_DIR, file), DATABASE));
+            files.forEach(file => runScript(path.join(SQL_SCRIPTS_DIR, file)));
         }
     } catch (error) {
         console.error(`Error reading directory ${SQL_SCRIPTS_DIR}\n`, error.message);

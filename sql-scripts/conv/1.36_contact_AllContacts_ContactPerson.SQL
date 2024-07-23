@@ -64,6 +64,7 @@ SELECT
 		SELECT octnOrigContactTypeID
 		FROM [dbo].[sma_MST_OriginalContactTypes]
 		WHERE octsDscrptn = 'General'
+        and octnContactCtgID = 1
 	)									as [cinnContactTypeID]
     ,null								as [cinnContactSubCtgID]
     ,''                                 as [cinsPrefix]
