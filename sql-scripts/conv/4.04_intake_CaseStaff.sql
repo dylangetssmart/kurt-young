@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 
 --case staff
@@ -32,7 +32,7 @@ SELECT DISTINCT
 	,null						as [cssnModifyUserID]
 	,null						as [cssdDtModified]
 	,0							as cssnLevelNo
-FROM NeedlesKMY.[dbo].[case_intake] c
+FROM NeedlesSLF.[dbo].[case_intake] c
 	JOIN [sma_TRN_cases] CAS on CAS.saga = C.row_ID
 	JOIN [sma_MST_Users] U on ( U.saga = C.staff_1 )
 	LEFT JOIN sma_TRN_caseStaff cs

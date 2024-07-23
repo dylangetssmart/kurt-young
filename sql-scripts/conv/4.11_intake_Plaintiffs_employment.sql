@@ -1,4 +1,4 @@
--- USE SANeedlesKMY
+-- USE SANeedlesSLF
 GO
 /*
 alter table [dbo].[sma_TRN_Employment] disable trigger all
@@ -105,20 +105,20 @@ SELECT
 	,null					as [empdReceived]		--emp verification request received
 	,null					as [empnStatusId]		--status  sma_MST_EmploymentStatuses.ID
 	,null					as [empnWorkSiteId]
-FROM NeedlesKMY..case_intake ci
+FROM NeedlesSLF..case_intake ci
 	-- Link to SA Contact Card via:
 		-- case_intake -> case_intake_name -> names -> IndvOrgContacts_Indexed
-	left join NeedlesKMY..case_intake_name cin
+	left join NeedlesSLF..case_intake_name cin
 		on cin.field_title = 'employer_case'
 		and cin.intake_taken = ci.intake_taken
-	join NeedlesKMY.dbo.names n
+	join NeedlesSLF.dbo.names n
 		on cin.user_name = n.names_id
 	-- Indv
-	left join SANeedlesKMY.dbo.IndvOrgContacts_Indexed ioci
+	left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioci
 		on n.names_id = ioci.saga
 		and ioci.CTG = 1
 	-- Org
-	left join SANeedlesKMY.dbo.IndvOrgContacts_Indexed ioco
+	left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioco
 		on n.names_id = ioco.saga
 		and ioco.CTG = 2
 	
@@ -228,8 +228,8 @@ SELECT
 	,null					as [empdReceived]		--emp verification request received
 	,null					as [empnStatusId]		--status  sma_MST_EmploymentStatuses.ID
 	,null					as [empnWorkSiteId]
-FROM NeedlesKMY..case_intake ci
-	left join SANeedlesKMY..sma_mst_OrgContacts org
+FROM NeedlesSLF..case_intake ci
+	left join SANeedlesSLF..sma_mst_OrgContacts org
 		on org.saga = ci.row_id
 		and org.saga_ref = 'employer'
 	JOIN [sma_TRN_cases] CAS

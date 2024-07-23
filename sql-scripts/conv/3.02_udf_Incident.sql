@@ -1,4 +1,4 @@
--- use SANeedlesKMY
+use SANeedlesSLF
 go
 
 
@@ -14,17 +14,40 @@ SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
 INTO IncidentUDF
 FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
+        convert(varchar(max), [AlcoholDrugs]) as [Alcohol/Drugs?], 
+        convert(varchar(max), [Time_of_Call]) as [Time of Call], 
+        convert(varchar(max), [Staff_Taking_Call]) as [Staff Taking Call], 
+        convert(varchar(max), [On_the_job]) as [On the job?], 
+        convert(varchar(max), [Vehicle_Owner]) as [Vehicle Owner], 
+        convert(varchar(max), [Resident_Relative]) as [Resident Relative], 
+        convert(varchar(max), [Recorded_Statement_to_Us]) as [Recorded Statement to Us?], 
+        convert(varchar(max), [Recorded_Statemnt_to_Ins]) as [Recorded Statemnt to Ins?], 
+        convert(varchar(max), [Eyewitness]) as [Eyewitness?], 
+        convert(varchar(max), [Vantage_Point]) as [Vantage Point],
+        convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
+    FROM NeedlesSLF..user_party_data ud
+    JOIN sma_TRN_Cases cas ON cas.casnCaseID = ud.case_id
+) pv
+UNPIVOT (FieldVal FOR FieldTitle IN (
+    [Alcohol/Drugs?], [Time of Call], [Staff Taking Call], 
+    [On the job?], [Vehicle Owner], [Resident Relative], [Recorded Statement to Us?], 
+    [Recorded Statemnt to Ins?], [Eyewitness?], [Vantage Point], [Caller Phone # (not P)]
+)) AS unpvt;
+
+-- Add Location to IncidentUDF from user_case_data
+insert INTO IncidentUDF
+SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
+FROM (
+    SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
         convert(varchar(max), [Location]) as [Location],
-        convert(varchar(max), [City]) as [City]
-    FROM NeedlesKMY..user_case_data ud
-    JOIN NeedlesKMY..cases_Indexed c ON c.casenum = ud.casenum
+		convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
+    FROM NeedlesSLF..user_case_data ud
+    JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
-    [Location], [City]
-)) AS unpvt
-
-
+    [Location], [Caller Phone # (not P)]
+)) AS unpvt;
 
 ----------------------------
 --UDF DEFINITION
@@ -56,7 +79,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		on mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN NeedlesKMY.[dbo].[user_case_matter] M
+	JOIN NeedlesSLF.[dbo].[user_case_matter] M
 		on M.mattercode=mix.matcode and M.field_type <> 'label'
 	JOIN (
 			select DISTINCT fieldTitle
@@ -66,7 +89,8 @@ FROM [sma_MST_CaseType] CST
 	JOIN NeedlesUserFields ucf
 		on ucf.field_num = m.ref_num
 	LEFT JOIN [sma_MST_UDFDefinition] def
-		on def.[udfnRelatedPK] = cst.cstnCaseTypeID
+		-- on def.[udfnRelatedPK] = cst.cstnCaseTypeID
+	    on def.[udfnRelatedPK] = cg.IncidentTypeID		-- for Incidents, the [sma_mst_UDFDefinition].[udfnRelatedPK] references the [sma_mst_casegroup].[IncidentTypeID]
 		and def.[udfsUDFName] = m.field_title
 		and def.[udfsScreenName] = 'Incident Wizard'
 		and udfstype = ucf.UDFType
@@ -76,7 +100,9 @@ where def.udfnUDFID IS NULL
 order by m.field_title
 
 
-
+----------------------------
+-- Values
+----------------------------
 ALTER TABLE sma_trn_udfvalues DISABLE TRIGGER ALL
 GO
 

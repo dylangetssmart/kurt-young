@@ -1,4 +1,4 @@
--- use [SANeedlesKMY]
+-- use [SANeedlesSLF]
 GO
 
 /*
@@ -50,7 +50,7 @@ SELECT
 	,getdate()						as [DtCreated]
 	,null							as [ModifyUserID]
 	,null							as [DtModified]
-FROM NeedlesKMY.[dbo].case_intake N
+FROM NeedlesSLF.[dbo].case_intake N
 JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID
 where ISNULL(N.synopsis, '') <> '' OR ISNULL(N.comments, '') <> '' OR ISNULL(N.date_of_incident, '') <> ''
                 
