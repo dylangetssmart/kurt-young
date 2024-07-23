@@ -89,17 +89,6 @@ union
 	
 	select distinct dbo.GMACaseDate(M.case_date_9)
 	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_9), '') <> ''
-
-	-- ds 6/20/2024 // for user_case_data.date_application_filed
-union
-	select
-	'Date Application Filed'
-	,1
-	-- ds 7/11/2024 // for user_case_data.date_application_denied
-union
-	select
-	'Date Application Denied'
-	,1
 )
 
 except

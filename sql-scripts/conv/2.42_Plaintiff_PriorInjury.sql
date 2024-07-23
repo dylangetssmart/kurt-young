@@ -51,7 +51,7 @@ SELECT
 	,'Prior Injuries:' + ud.prior_injuries			as [prlsInjury]
 from NeedlesSLF..user_case_data ud
 	join sma_TRN_Cases cas
-		on cas.cassCaseNumber = ud.case_id
+		on cas.cassCaseNumber = ud.casenum
 	join sma_TRN_Plaintiff pln
 		on pln.plnnCaseID = cas.casnCaseID
 where isnull(ud.Prior_Injuries,'') <> ''

@@ -1,4 +1,4 @@
-USE SANeedlesSLF
+-- USE SANeedlesSLF
 GO
 /*
 alter table [dbo].[sma_TRN_Employment] disable trigger all
@@ -87,6 +87,8 @@ SELECT
 	,null									as [empnOverTimeAmt]		--Overtime Amoun
 	,null									as [empnOtherFreqID]		--Other Compensation (frequency)  sma_mst_frequencies.fqmnFrequencyID
     ,null									as [empnOtherCompensationAmt]	--Other Compensation Amount
+	,null 									as [empsComments]
+    ,null 									as [empbWorksOffBooks]
 	,null									as empsCompensationComments			-- Compensation Comments
 	,null									as [empbWorksPartiallyOffBooks]	--bit
 	,null									as [empbOnTheJob]				--On the job injury? bit

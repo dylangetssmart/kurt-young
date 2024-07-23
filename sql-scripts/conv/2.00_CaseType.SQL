@@ -351,18 +351,12 @@ SELECT
 		from [sma_MST_CaseSubType] ST
 		where ST.cstnGroupID = CST.cstnCaseTypeID and ST.cstsDscrptn=MIX.[SmartAdvocate Case Sub Type]
 	)						as casnCaseTypeID,
-    case
-		when isnull(U.[State],'')<>'' then
-		(
-			select [sttnStateID]
-			from [sma_MST_States]
-			where [sttsCode]=U.[State]
-		) else (
-			select [sttnStateID]
-			from [sma_MST_States]
-			where [sttsDescription]='Virginia'
-		) 
-    end						as casnState,
+    (
+		select [sttnStateID]
+		from [sma_MST_States]
+		where [sttsDescription]='Virginia'
+	)
+							as casnState,
     GETDATE()				as casdStatusFromDt,
     (
 		select cssnStatusID 
@@ -404,18 +398,11 @@ SELECT
 	null,
 	0,
 	0,
-    case
-		when isnull(U.[State],'')<>'' then
-			(
-				select [sttnStateID]
-				from [sma_MST_States]
-				where [sttsCode]=U.[State]
-			) else (
-				select [sttnStateID]
-				from [sma_MST_States]
-				where [sttsDescription]='Virginia'
-			)
-    end						as casnStateID,
+    (
+		select [sttnStateID]
+		from [sma_MST_States]
+		where [sttsDescription]='Virginia'
+	)						as casnStateID,
     null,
 	null,
     (

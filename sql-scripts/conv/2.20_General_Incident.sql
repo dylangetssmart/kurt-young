@@ -37,23 +37,11 @@ SELECT
 			then convert(date,C.[date_of_incident]) 
 		else null 
 		end 					as IncidentDate
-	,case
-		when exists (
-						select *
-						from sma_MST_States
-						where sttsCode=U.[State]
-					)
-			then (
-					select sttnStateID
-					from sma_MST_States
-					where sttsCode=U.[State]
-				) 
-		else (
-				select sttnStateID
-				from sma_MST_States
-				where sttsCode='VA'
-			)					
-		end						as [StateID]
+	,(
+		select sttnStateID
+		from sma_MST_States
+		where sttsCode='VA'
+	)							as [StateID]
 	,0							as LiabilityCodeId
 	,null						as IncidentFacts
 	,null						as [MergedFacts]
