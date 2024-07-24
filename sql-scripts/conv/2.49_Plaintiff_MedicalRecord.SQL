@@ -314,11 +314,27 @@ SELECT
 		From sma_mst_users
 		where saga = ud.Received_By
 	)						 		as MedPrvAssignee
-    ,(
+	,case
+		when isnull(ud.Ordered_By,'') <> ''
+			then (
+					select usrnUserID
+					From sma_mst_users
+					where saga = ud.Ordered_By
+				)
+		when isnull(ud.Requested_By,'') <> ''
+			then (
+					select usrnUserID
+					From sma_mst_users
+					where saga = ud.Requested_By
+				)
+		else null
+		end 						as MedPrvAssignedBy
+	,(
 		select usrnUserID
 		From sma_mst_users
 		where saga = ud.Ordered_By
-	)								as MedPrvAssignedBy
+	)
+
     ,case
 		when ud.Order_Immediately = 'Y'
 			then 1
