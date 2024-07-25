@@ -8,7 +8,7 @@ import { createDatabaseBackups, BackupOptions } from './backup-db';
 
 // Variables & Constants
 const datetime = moment().format('YYYY-MM-DD_HH-mm');
-const SERVER = 'DYLANS';
+const SERVER = 'DYLANS\\MSSQLSERVER2022';
 const NEEDLES_DB = 'NeedlesSLF';
 const SA_DB = 'SANeedlesSLF';
 const BASE_DIR = __dirname;
