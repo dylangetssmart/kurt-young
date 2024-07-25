@@ -1,4 +1,3 @@
-
 -- USE SANeedlesSLF
 -- GO
 
@@ -182,20 +181,39 @@ IF OBJECT_ID (N'dbo.Integer2DateTime', N'FN') IS NOT NULL
     DROP FUNCTION Integer2DateTime;
 GO
 
+-- CREATE FUNCTION dbo.Integer2DateTime( @intDate int, @intTime int )
+-- RETURNS smalldatetime 
+-- AS 
+
+-- BEGIN
+-- 	DECLARE @ret smalldatetime;
+-- 	DECLARE @date date;
+-- 	DECLARE @time time;
+
+-- 	SELECT @date = cast(dateadd(day,@intDate,'1800-12-28') as date)
+
+-- 	SELECT @time = cast(dateadd(second,@intTime/100,'1800-12-28 00:00:00') as time)
+
+-- 	SET @ret= @date + cast(@time as smalldatetime);
+
+--     RETURN @ret;
+-- END
 CREATE FUNCTION dbo.Integer2DateTime( @intDate int, @intTime int )
-RETURNS smalldatetime 
+RETURNS datetime 
 AS 
-
 BEGIN
-	DECLARE @ret smalldatetime;
-	DECLARE @date date;
-	DECLARE @time time;
+    DECLARE @ret datetime;
+    DECLARE @date datetime;
+    DECLARE @time datetime;
 
-	SELECT @date = cast(dateadd(day,@intDate,'1800-12-28') as date)
+    -- Convert intDate to date
+    SET @date = DATEADD(day, @intDate, '1800-12-28')
 
-	SELECT @time = cast(dateadd(second,@intTime/100,'1800-12-28 00:00:00') as time)
+    -- Convert intTime to time (as smalldatetime)
+    SET @time = CAST(DATEADD(second, @intTime / 100, '1800-12-28 00:00:00') AS smalldatetime)
 
-	SET @ret= @date + cast(@time as smalldatetime);
+    -- Combine date and time
+    SET @ret = DATEADD(day, DATEDIFF(day, '19000101', @date), @time)
 
     RETURN @ret;
 END
