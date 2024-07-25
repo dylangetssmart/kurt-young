@@ -54,23 +54,42 @@ END
 /* RECORD REQUEST TYPES -----------------------------------------------------------------------
 - Update num_assigned with the mini_dir_id of the applicable mini directory
 */
+-- Create a temporary table to store record types
+CREATE TABLE #recordTypes (
+    Type_of_Record VARCHAR(255)
+);
 
--- Get the list of Type_of_Record values
-DECLARE @recordTypes TABLE (Type_of_Record VARCHAR(255));
-
-INSERT INTO @recordTypes (Type_of_Record)
+-- Insert the required record types into the temporary table
+INSERT INTO #recordTypes (Type_of_Record)
 SELECT DISTINCT code
-FROM [NeedlesSLF].[dbo].[mini_general_dir]
-WHERE num_assigned = 41; -- update this value
+FROM  [NeedlesSLF].[dbo].[mini_general_dir]
+WHERE num_assigned = 41; -- update this value accordingly
 
--- Insert into sma_MST_Request_RecordTypes
-INSERT INTO sma_MST_Request_RecordTypes (RecordType)
+-- Insert into sma_MST_Request_RecordTypes from the temporary table
+INSERT INTO [sma_MST_Request_RecordTypes] (RecordType)
 SELECT DISTINCT Type_of_Record
-FROM [NeedlesSLF].[dbo].[user_tab2_data] D
-WHERE d.Type_of_Record IN (SELECT Type_of_Record FROM @recordTypes)
+FROM  [NeedlesSLF].[dbo].[user_tab2_data] D
+WHERE D.Type_of_Record IN (SELECT Type_of_Record FROM #recordTypes)
 EXCEPT 
 SELECT RecordType 
-FROM sma_MST_Request_RecordTypes;
+FROM [sma_MST_Request_RecordTypes];
+
+-- -- Get the list of Type_of_Record values
+-- DECLARE @recordTypes TABLE (Type_of_Record VARCHAR(255));
+
+-- INSERT INTO @recordTypes (Type_of_Record)
+-- SELECT DISTINCT code
+-- FROM [NeedlesSLF].[dbo].[mini_general_dir]
+-- WHERE num_assigned = 41; -- update this value
+
+-- -- Insert into sma_MST_Request_RecordTypes
+-- INSERT INTO sma_MST_Request_RecordTypes (RecordType)
+-- SELECT DISTINCT Type_of_Record
+-- FROM [NeedlesSLF].[dbo].[user_tab2_data] D
+-- WHERE d.Type_of_Record IN (SELECT Type_of_Record FROM @recordTypes)
+-- EXCEPT 
+-- SELECT RecordType 
+-- FROM sma_MST_Request_RecordTypes;
 
 -- INSERT INTO sma_MST_Request_RecordTypes
 -- (
@@ -161,7 +180,7 @@ JOIN [sma_TRN_Cases] CAS
 	on CAS.cassCaseNumber = D.case_id
 where D.Type_of_Record IN (
 							SELECT Type_of_Record 
-							FROM @recordTypes
+							FROM #recordTypes
 						)
 -- WHERE D.Type_of_Record in ('Ambulance Bill', 'Ambulance Record', 'Anesthesiologist', 'Autopsy', 'Dental Bill', 'Dental Record', 'ER Bill', 'ER Record', 
 -- 						'ER Physician Bill', 'Hospital Bill', 'Hospital Record', 'Hospital Bil&Rec', 'Medical Bill', 'Medical Record', 'Med Bill & Rec', 
@@ -329,12 +348,6 @@ SELECT
 				)
 		else null
 		end 						as MedPrvAssignedBy
-	,(
-		select usrnUserID
-		From sma_mst_users
-		where saga = ud.Ordered_By
-	)
-
     ,case
 		when ud.Order_Immediately = 'Y'
 			then 1
@@ -355,7 +368,7 @@ SELECT
 		+ isnull('Method: ' + NULLIF(convert(varchar(max),ud.Method),'') + CHAR(13),'')
 		+ isnull('Reason Cancelled: ' + NULLIF(convert(varchar(max),ud.Reason_Cancelled),'') + CHAR(13),'')
 	 	+ ''						as MedPrvComments
-	,isnull('Notes To Provider: ' + NULLIF(convert(varchar(max),ud.Notes_to_Provider,'') + CHAR(13),'')
+	,isnull('Notes To Provider: ' + NULLIF(convert(varchar(max),ud.Notes_to_Provider),'') + CHAR(13),'')
 									as MedPrvNotes
     ,case
 		when (UD.Date_Received between '1900-01-01' and '2079-06-06')
