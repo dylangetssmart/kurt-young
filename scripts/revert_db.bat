@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 REM Set database connection variables
-set SERVER=DYLANS
+set SERVER=DylanS\MSSQLSERVER2022
 
 REM Prompt for database name
 set /p DATABASE=Enter the name of the database to restore: 
