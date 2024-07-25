@@ -5,14 +5,14 @@ GO
 /* ##############################################
 Create temporary table to hold disbursement value codes
 */
-IF OBJECT_ID('tempdb..##SpDmgValueCodes') IS NOT NULL
+IF OBJECT_ID('tempdb..#SpDmgValueCodes') IS NOT NULL
     DROP TABLE ##SpDmgValueCodes;
 
 CREATE TABLE ##SpDmgValueCodes (
     code VARCHAR(10)
 );
 
-INSERT INTO ##SpDmgValueCodes (code)
+INSERT INTO #SpDmgValueCodes (code)
 VALUES
 ('MIL'), ('MISC LOSS'), ('PRO')
 
