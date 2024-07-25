@@ -70,7 +70,7 @@ SELECT DISTINCT
     ,(
 		SELECT octnOrigContactTypeID
 		FROM [dbo].[sma_MST_OriginalContactTypes]
-		WHERE octsDscrptn = 'General'
+		WHERE octsDscrptn = 'General' and octnContactCtgID = 1
 	)									as [cinnContactTypeID]
     ,null								as [cinnContactSubCtgID]
     ,null		                        as [cinsPrefix]
