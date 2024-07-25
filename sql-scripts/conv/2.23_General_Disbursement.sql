@@ -3,11 +3,16 @@
 GO
 
 /* ##############################################
-Store applicable disbursement value codes
+Create temporary table to hold disbursement value codes
 */
-DECLARE @DisbursementValueCodes TABLE (code VARCHAR(10));
+IF OBJECT_ID('tempdb..#DisbursementValueCodes') IS NOT NULL
+    DROP TABLE #DisbursementValueCodes;
 
-INSERT INTO @DisbursementValueCodes (code)
+CREATE TABLE #DisbursementValueCodes (
+    code VARCHAR(10)
+);
+
+INSERT INTO #DisbursementValueCodes (code)
 VALUES
 ('CAD'), ('CEX'), ('CPY'), ('DTF'), ('EXP'), ('FUT MED'), ('PHO'), ('PST'), 
 ('PTF'), ('PTG'), ('PTP'), ('RPT'), ('TEL');
@@ -49,7 +54,7 @@ INSERT INTO [sma_MST_DisbursmentType]
 	FROM [NeedlesSLF].[dbo].[value] V
 	    JOIN [NeedlesSLF].[dbo].[value_code] VC
             on VC.code=V.code 
-	WHERE isnull(V.code,'') in (SELECT code FROM @DisbursementValueCodes)
+	WHERE isnull(V.code,'') in (SELECT code FROM #DisbursementValueCodes)
 )
 EXCEPT 
 SELECT 
@@ -118,7 +123,7 @@ JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
     on IOC.SAGA = V.provider and isnull(V.provider,0) <> 0
-where code in (SELECT code FROM @DisbursementValueCodes);
+where code in (SELECT code FROM #DisbursementValueCodes);
 GO
 
 ---(0)---

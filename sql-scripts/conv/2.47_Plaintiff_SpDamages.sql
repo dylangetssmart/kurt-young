@@ -3,15 +3,19 @@
 GO
 
 /* ##############################################
-Store applicable value codes
+Create temporary table to hold disbursement value codes
 */
-DECLARE @SpDmgValueCodes TABLE (code VARCHAR(10));
+IF OBJECT_ID('tempdb..##SpDmgValueCodes') IS NOT NULL
+    DROP TABLE ##SpDmgValueCodes;
 
-INSERT INTO @SpDmgValueCodes (code)
+CREATE TABLE ##SpDmgValueCodes (
+    code VARCHAR(10)
+);
+
+INSERT INTO ##SpDmgValueCodes (code)
 VALUES
 ('MIL'), ('MISC LOSS'), ('PRO')
 
---select * From [sma_TRN_SpDamages]
 
 ----------------------------------------------------------------------------
 --CUSTOM DAMAGE
@@ -56,7 +60,7 @@ select
     ,getdate()
     ,368
 from NeedlesSLF..value_code vc
-where code in (SELECT code FROM SpDmgValueCodes)
+where code in (SELECT code FROM #SpDmgValueCodes)
 
 
 ---(0)---
@@ -113,7 +117,7 @@ select
 from [NeedlesSLF].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA = V.provider and isnull(V.provider,0)<>0
-where code in (SELECT code FROM SpDmgValueCodes)
+where code in (SELECT code FROM #SpDmgValueCodes)
 
 ---(0)---
 DBCC DBREINDEX('value_tab_spDamages_Helper',' ',90)  WITH NO_INFOMSGS 
@@ -245,7 +249,7 @@ JOIN [NeedlesSLF].[dbo].[value_Code] VC
     on v.code = vc.code
 JOIN [value_tab_spDamages_Helper] SDH
     on v.value_id = sdh.value_id
-WHERE v.code in (SELECT code FROM SpDmgValueCodes)
+WHERE v.code in (SELECT code FROM #SpDmgValueCodes)
 GO
 
 
