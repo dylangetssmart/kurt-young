@@ -1,6 +1,6 @@
 
 -- use [SA]
-GO
+-- GO
 
 /* ##############################################
 Create temporary table to hold disbursement value codes
@@ -170,7 +170,7 @@ SELECT
     ,V.value_id		    as vid
     ,(
         select plnnPlaintiffID
-        from [SA].[dbo].[sma_TRN_Plaintiff]
+        from sma_TRN_Plaintiff
         where plnnCaseID = CAS.casnCaseID and plnbIsPrimary = 1
     )                   as plnnPlaintiffID 
 into value_tab_Multi_Party_Helper_Temp
