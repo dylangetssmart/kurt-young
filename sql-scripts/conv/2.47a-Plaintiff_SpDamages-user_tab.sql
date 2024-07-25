@@ -293,11 +293,11 @@ select distinct
     ,null                   as spdsComments
 FROM [NeedlesSLF].[dbo].[user_tab_data] u
 join [sma_trn_cases] cas
-    on cas.cassCaseNumber = u.case_id
+    on cas.cassCaseNumber = convert(varchar,u.case_id)
 JOIN sma_trn_plaintiff p
 	on p.plnnCaseID = cas.casnCaseID
 	and p.plnbIsPrimary = 1
-WHERE isnull(u.Total_Damages,'') <> ''
+WHERE isnull(u.Total_Damages,0) <> 0
 GO
 
 alter table [sma_TRN_SpDamages] enable trigger all

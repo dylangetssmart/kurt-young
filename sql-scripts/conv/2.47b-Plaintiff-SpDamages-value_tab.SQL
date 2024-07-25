@@ -5,9 +5,9 @@
 Create temporary table to hold disbursement value codes
 */
 IF OBJECT_ID('tempdb..#SpDmgValueCodes') IS NOT NULL
-    DROP TABLE ##SpDmgValueCodes;
+    DROP TABLE #SpDmgValueCodes;
 
-CREATE TABLE ##SpDmgValueCodes (
+CREATE TABLE #SpDmgValueCodes (
     code VARCHAR(10)
 );
 

@@ -1,11 +1,11 @@
-use SANeedlesSLF
+-- use SANeedlesSLF
 
 /* ####################################
 1.0 -- Create PlaintiffInjury records
 */
 ALTER TABLE [sma_TRN_PlaintiffInjury] DISABLE TRIGGER ALL
 GO
-SET IDENTITY_INSERT [sma_TRN_PlaintiffInjury] ON;
+-- SET IDENTITY_INSERT [sma_TRN_PlaintiffInjury] ON;
 GO
 
 insert into [sma_TRN_PlaintiffInjury]
@@ -59,7 +59,7 @@ go
 	
 ALTER TABLE [sma_TRN_PlaintiffInjury] ENABLE TRIGGER ALL
 GO
-SET IDENTITY_INSERT [sma_TRN_PlaintiffInjury] OFF;
+-- SET IDENTITY_INSERT [sma_TRN_PlaintiffInjury] OFF;
 GO
 
 
