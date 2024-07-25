@@ -89,12 +89,12 @@ if (selectedOption && selectedOption.pattern) {
 } else {
     console.log('Invalid choice. Please try again.');
 }
-// console.log(path.join(BASE_DIR, '../backups'))
-// Create backups after all scripts have been run, only if not quitting
+
+// Create db backups
 if (choice !== 'Q') {
     createDatabaseBackups({
-        databaseName1: NEEDLES_DB,
-        databaseName2: SA_DB,
+        databaseName1: SA_DB,
+        // databaseName2: NEEDLES_DB,
         directory: path.join(BASE_DIR, '../backups'),
         step: selectedOption.description
     });
