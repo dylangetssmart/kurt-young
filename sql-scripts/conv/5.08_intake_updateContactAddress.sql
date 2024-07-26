@@ -34,13 +34,13 @@ go
 ---------------------------------------------------------
 --UPDATE SSN, DOD, DOB & SEX IF NOT ALREADY IN INDVCONTACTS
 ---------------------------------------------------------
-UPDATE ind
-SET cinsSSNNo = ss_number
-FROM NeedlesSLF..case_intake c
-JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
-JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
-WHERE isnull(ss_number,'') <> ''
-and isnull(ind.cinsSSNNo, '') = ''
+-- UPDATE ind
+-- SET cinsSSNNo = ss_number
+-- FROM NeedlesSLF..case_intake c
+-- JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
+-- JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
+-- WHERE isnull(ss_number,'') <> ''
+-- and isnull(ind.cinsSSNNo, '') = ''
 
 -- UPDATE ind
 -- SET cindDateOfDeath = Date_of_Death

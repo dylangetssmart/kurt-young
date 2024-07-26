@@ -34,9 +34,9 @@ function runScript(scriptPath: string): void {
         logMessage(`SUCCESS - ${scriptName}`);
         logMessage(`    Timestamp: ${datetime}`);
         if (result) {
-            logMessage(`    Output:\n${result}`);
+            logMessage(`n${result}`);
         }
-        logMessage('');
+        logMessage('---------------------------------------------------------------------------------------');
     } catch (error: any) {
         const errorOutput = (error.stdout || '').toString() + (error.stderr || '').toString();
         
@@ -58,7 +58,9 @@ const menuOptions: {
     '1': { description: 'Contact', pattern: /^1.*\.sql$/i },
     '2': { description: 'Case', pattern: /^2.*\.sql$/i },
     '3': { description: 'UDF', pattern: /^3.*\.sql$/i },
-    '4': { description: 'Intake', pattern: /^4.*\.sql$/i },
+    '4': { description: 'Misc', pattern: /^4.*\.sql$/i },
+    '5': { description: 'Intake', pattern: /^5.*\.sql$/i },
+    'P': { description: 'Post', pattern: /^post.*\.sql$/i },
     'Q': { description: 'Quit', pattern: null }
 };
 
