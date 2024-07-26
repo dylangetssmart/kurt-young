@@ -172,7 +172,7 @@ JOIN [NeedlesSLF].[dbo].[user_tab2_name] N
 	and N.ref_num = (
 						SELECT TOP 1 M.ref_num
 						FROM [NeedlesSLF].[dbo].[user_tab2_matter] M
-						WHERE M.field_title='Name' 
+						WHERE M.field_title='Provider'
 					)
 JOIN [IndvOrgContacts_Indexed] IOC
 	on IOC.SAGA = N.user_name
