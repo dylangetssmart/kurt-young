@@ -98,6 +98,7 @@ if (choice !== 'Q') {
         databaseName1: SA_DB,
         // databaseName2: NEEDLES_DB,
         directory: path.join(BASE_DIR, '../backups'),
-        step: selectedOption.description
+        step: selectedOption.description,
+        server: SERVER
     });
 }
