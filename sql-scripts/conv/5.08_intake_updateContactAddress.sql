@@ -50,22 +50,22 @@ go
 -- WHERE isnull(Date_of_Death,'') <> ''
 -- and isnull(ind.cindDateOfDeath, '') = ''
 
-UPDATE ind
-SET cindBirthDate = Date_of_Birth
-FROM NeedlesSLF..case_intake c
-JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
-JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
-WHERE isnull(Date_of_Birth,'') <> ''
-and isnull(ind.cindBirthDate, '') = ''
+--UPDATE ind
+--SET cindBirthDate = Date_of_Birth
+--FROM NeedlesSLF..case_intake c
+--JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
+--JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
+--WHERE isnull(Date_of_Birth,'') <> ''
+--and isnull(ind.cindBirthDate, '') = ''
 
-UPDATE ind
-SET cinnGender = case when [sex]='M' then 1
-					when [sex]='F' then 2 end
-FROM NeedlesSLF..case_intake c
-JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
-JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
-WHERE isnull(sex,'') <> ''
-and isnull(ind.cinnGender, '') = ''
+--UPDATE ind
+--SET cinnGender = case when [sex]='M' then 1
+--					when [sex]='F' then 2 end
+--FROM NeedlesSLF..case_intake c
+--JOIN IndvOrgContacts_Indexed ioc on ioc.saga = c.name_id
+--JOIN sma_MST_IndvContacts ind on ind.cinnContactID= ioc.cid and ind.cinnContactCtg = ioc.CTG
+--WHERE isnull(sex,'') <> ''
+--and isnull(ind.cinnGender, '') = ''
 
 -- UPDATE ind
 -- SET cinsNickName = 	isnull( nullif(convert(Varchar,AKA_First)+' ','') ,'') +
