@@ -1,13 +1,14 @@
 -- USE SANeedlesSLF
-GO
+-- GO
 
 --
 ALTER TABLE [sma_MST_IndvContacts] DISABLE TRIGGER ALL
 GO
 --
 
-INSERT INTO [sma_MST_IndvContacts] (
-     [cinbPrimary]
+INSERT INTO [sma_MST_IndvContacts]
+(
+    [cinbPrimary]
     ,[cinnContactTypeID]
     ,[cinnContactSubCtgID]
     ,[cinsPrefix]

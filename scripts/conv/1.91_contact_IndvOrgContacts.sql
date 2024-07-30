@@ -1,7 +1,12 @@
 -- USE SANeedlesSLF
-GO
+-- GO
 
-IF EXISTS (select * from sys.objects where name='IndvOrgContacts_Indexed' and type='U')
+IF EXISTS (
+    select *
+    from sys.objects
+    where name = 'IndvOrgContacts_Indexed'
+    and type = 'U'
+    )
 BEGIN
     DROP TABLE IndvOrgContacts_Indexed
 END
@@ -29,22 +34,45 @@ GO
 CREATE NONCLUSTERED INDEX IX_NonClustered_Index_IndvOrgContacts_Indexed_SAGA ON IndvOrgContacts_Indexed (SAGA); 
 GO
 
-INSERT INTO IndvOrgContacts_Indexed ( CID,CTG,AID,UNQCID,Name,SAGA )
+INSERT INTO IndvOrgContacts_Indexed
+(
+    CID
+    ,CTG
+    ,AID
+    ,UNQCID
+    ,Name
+    ,SAGA 
+)
 SELECT 
-    IOC.CID				as CID,
-    IOC.CTG				as CTG,	
-    A.addnAddressID	    as AID,
-    ACF.UniqueContactId as UNQCID,
-    IOC.Name		    as Name,
-    IOC.SAGA		    as SAGA 
+    IOC.CID				    as CID
+    ,IOC.CTG				as CTG
+    ,A.addnAddressID	    as AID
+    ,ACF.UniqueContactId    as UNQCID
+    ,IOC.Name		        as Name
+    ,IOC.SAGA		        as SAG 
 FROM
 (
-	SELECT cinnContactID as CID, cinnContactCtg as CTG, cinsFirstName + ' ' + cinsLastName as Name, saga as SAGA FROM [sma_MST_IndvContacts]  
+	SELECT
+        cinnContactID                           as CID
+        ,cinnContactCtg                         as CTG
+        ,cinsFirstName + ' ' + cinsLastName     as Name
+        ,saga                                   as SAGA
+    FROM [sma_MST_IndvContacts]  
 	UNION
-	SELECT connContactID as CID, connContactCtg as CTG, consName as Name, saga as SAGA FROM [sma_MST_OrgContacts]  
+	SELECT
+        connContactID as CID
+        ,connContactCtg as CTG
+        ,consName as Name
+        ,saga as SAGA
+    FROM [sma_MST_OrgContacts]  
 ) IOC
-JOIN [sma_MST_Address] A on A.addnContactID=IOC.CID and A.addnContactCtgID=IOC.CTG and A.addbPrimary=1
-JOIN [sma_MST_AllContactInfo] ACF on ACF.ContactId=IOC.CID and ACF.ContactCtg=IOC.CTG
+JOIN [sma_MST_Address] A
+    on A.addnContactID = IOC.CID
+    and A.addnContactCtgID = IOC.CTG
+    and A.addbPrimary = 1
+JOIN [sma_MST_AllContactInfo] ACF
+    on ACF.ContactId = IOC.CID
+    and ACF.ContactCtg = IOC.CTG
 GO
 
 DBCC DBREINDEX('IndvOrgContacts_Indexed',' ',90) WITH NO_INFOMSGS 
