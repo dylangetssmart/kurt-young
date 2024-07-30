@@ -1,6 +1,5 @@
-
 -- USE [SANeedlesSLF]
-GO
+-- GO
 /*
 alter table [sma_MST_ContactNumbers] disable trigger all
 delete from [sma_MST_ContactNumbers] 
@@ -10,14 +9,32 @@ alter table [sma_MST_ContactNumbers] enable trigger all
 
 
 ---(0)---
-INSERT INTO sma_MST_ContactNoType ( ctysDscrptn,ctynContactCategoryID, ctysDefaultTexting )
-SELECT 'Work Phone',1, 0
+INSERT INTO sma_MST_ContactNoType
+(
+	ctysDscrptn
+	,ctynContactCategoryID
+	,ctysDefaultTexting
+)
+SELECT
+	'Work Phone'
+	,1
+	,0
 UNION
-SELECT 'Work Fax',1, 0
+SELECT
+	'Work Fax'
+	,1
+	,0
 UNION
-SELECT 'Cell Phone',1, 0
+SELECT
+	'Cell Phone'
+	,1
+	,0
 EXCEPT
-SELECT ctysDscrptn,ctynContactCategoryID, ctysDefaultTexting FROM sma_MST_ContactNoType 
+SELECT
+	ctysDscrptn
+	,ctynContactCategoryID
+	,ctysDefaultTexting
+FROM sma_MST_ContactNoType 
 
 
 ---(0)----
@@ -40,29 +57,53 @@ GO
 ALTER TABLE [sma_MST_ContactNumbers] DISABLE TRIGGER ALL
 ---
 
+-- Home Phone
 INSERT INTO [sma_MST_ContactNumbers]
 (     
-       [cnnnContactCtgID],[cnnnContactID],[cnnnPhoneTypeID],[cnnsContactNumber],[cnnsExtension],[cnnbPrimary],[cnnbVisible],[cnnnAddressID],[cnnsLabelCaption]
-	   ,[cnnnRecUserID],[cnndDtCreated],[cnnnModifyUserID],[cnndDtModified],[cnnnLevelNo],[caseNo]
+	[cnnnContactCtgID]
+	,[cnnnContactID]
+	,[cnnnPhoneTypeID]
+	,[cnnsContactNumber]
+	,[cnnsExtension]
+	,[cnnbPrimary]
+	,[cnnbVisible]
+	,[cnnnAddressID]
+	,[cnnsLabelCaption]
+	,[cnnnRecUserID]
+	,[cnndDtCreated]
+	,[cnnnModifyUserID]
+	,[cnndDtModified]
+	,[cnnnLevelNo]
+	,[caseNo]
 )
 SELECT 
-		C.cinnContactCtg			as cnnnContactCtgID,
-		C.cinnContactID				as cnnnContactID,
-		(select ctynContactNoTypeID from sma_MST_ContactNoType where ctysDscrptn='Home Primary Phone' and ctynContactCategoryID=1) as cnnnPhoneTypeID,   -- Home Phone 
-		dbo.FormatPhone(home_phone)	as cnnsContactNumber,
-		home_ext					as cnnsExtension,
-		1							as cnnbPrimary,
-		null						as cnnbVisible,
-		A.addnAddressID				as cnnnAddressID,
-		'Home Phone'				as cnnsLabelCaption,
-		368							as cnnnRecUserID,
-		getdate()					as cnndDtCreated,
-		368							as cnnnModifyUserID,
-		getdate()					as cnndDtModified,
-		null,null
+	C.cinnContactCtg				as cnnnContactCtgID
+	,C.cinnContactID				as cnnnContactID
+	,(
+		select ctynContactNoTypeID
+		from sma_MST_ContactNoType
+		where ctysDscrptn = 'Home Primary Phone'
+		and ctynContactCategoryID = 1
+	)								as cnnnPhoneTypeID   -- Home Phone 
+	,dbo.FormatPhone(home_phone)	as cnnsContactNumber
+	,home_ext						as cnnsExtension
+	,1								as cnnbPrimary
+	,null							as cnnbVisible
+	,A.addnAddressID				as cnnnAddressID
+	,'Home Phone'					as cnnsLabelCaption
+	,368							as cnnnRecUserID
+	,getdate()						as cnndDtCreated
+	,368							as cnnnModifyUserID
+	,getdate()						as cnndDtModified
+	,null							as cnnnLevelNo
+	,null							as caseNo
 FROM [NeedlesSLF].[dbo].[names] N
-JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
-JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
+JOIN [sma_MST_IndvContacts] C
+	on C.saga = N.names_id
+JOIN [sma_MST_Address] A
+	on A.addnContactID = C.cinnContactID
+	and A.addnContactCtgID = C.cinnContactCtg
+	and A.addbPrimary = 1
 WHERE isnull(N.home_phone,'') <> ''  
 
 

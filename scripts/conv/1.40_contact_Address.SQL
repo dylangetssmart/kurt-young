@@ -1,5 +1,5 @@
 -- USE [SANeedlesSLF]
-GO
+-- GO
 /*
 alter table [sma_MST_Address] disable trigger all
 delete from [sma_MST_Address] 
@@ -17,10 +17,42 @@ GO
 -----------------------------------------------------------------------------
  
  -- Home from IndvContacts
- INSERT INTO [sma_MST_Address] (
-		[addnContactCtgID],[addnContactID],[addnAddressTypeID],[addsAddressType],[addsAddTypeCode],[addsAddress1],[addsAddress2],[addsAddress3],[addsStateCode],[addsCity],[addnZipID],
-		[addsZip],[addsCounty],[addsCountry],[addbIsResidence],[addbPrimary],[adddFromDate],[adddToDate],[addnCompanyID],[addsDepartment],[addsTitle],[addnContactPersonID],[addsComments],
-		[addbIsCurrent],[addbIsMailing],[addnRecUserID],[adddDtCreated],[addnModifyUserID],[adddDtModified],[addnLevelNo],[caseno],[addbDeleted],[addsZipExtn],[saga]
+ INSERT INTO [sma_MST_Address]
+ (
+	[addnContactCtgID]
+	,[addnContactID]
+	,[addnAddressTypeID]
+	,[addsAddressType]
+	,[addsAddTypeCode]
+	,[addsAddress1]
+	,[addsAddress2]
+	,[addsAddress3]
+	,[addsStateCode]
+	,[addsCity]
+	,[addnZipID]
+	,[addsZip]
+	,[addsCounty]
+	,[addsCountry]
+	,[addbIsResidence]
+	,[addbPrimary]
+	,[adddFromDate]
+	,[adddToDate]
+	,[addnCompanyID]
+	,[addsDepartment]
+	,[addsTitle]
+	,[addnContactPersonID]
+	,[addsComments]
+	,[addbIsCurrent]
+	,[addbIsMailing]
+	,[addnRecUserID]
+	,[adddDtCreated]
+	,[addnModifyUserID]
+	,[adddDtModified]
+	,[addnLevelNo]
+	,[caseno]
+	,[addbDeleted]
+	,[addsZipExtn]
+	,[saga]
 )
 SELECT 
 	I.cinnContactCtg		as addnContactCtgID,

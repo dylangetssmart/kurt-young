@@ -1,5 +1,5 @@
 -- USE SANeedlesSLF
-GO
+-- GO
 
 --
 ALTER TABLE [sma_MST_IndvContacts] DISABLE TRIGGER ALL
@@ -7,7 +7,7 @@ GO
 --
 INSERT INTO [sma_MST_IndvContacts]
 (
-     [cinbPrimary]
+    [cinbPrimary]
     ,[cinnContactTypeID]
     ,[cinnContactSubCtgID]
     ,[cinsPrefix]
@@ -107,7 +107,6 @@ SELECT DISTINCT
     ,''                     as [saga]
     ,''                     as [cinsSpouse]
     ,-1                     as [cinsGrade]
---    ,INS.insured     
 FROM [NeedlesSLF].[dbo].[insurance] INS
 WHERE isnull(insured, '') <> ''
 GO

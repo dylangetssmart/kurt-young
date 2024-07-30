@@ -1,5 +1,5 @@
-USE SANeedlesSLF
-GO
+-- USE SANeedlesSLF
+-- GO
 
 /* ########################################################
 1.0 - Create helper table

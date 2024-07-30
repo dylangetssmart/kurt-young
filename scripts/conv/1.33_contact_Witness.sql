@@ -1,5 +1,5 @@
-USE SANeedlesSLF
-GO
+-- USE SANeedlesSLF
+-- GO
 
 -- Create individual contacts for Witness_1, Witness_2, and Witness_3 from user_party_data
 
@@ -19,7 +19,7 @@ GO
 -- Witness 1
 INSERT INTO [sma_MST_IndvContacts]
 (
-     [cinbPrimary]
+    [cinbPrimary]
     ,[cinnContactTypeID]
     ,[cinnContactSubCtgID]
     ,[cinsPrefix]

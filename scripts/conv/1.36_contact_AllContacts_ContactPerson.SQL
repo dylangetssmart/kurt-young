@@ -7,8 +7,9 @@ GO
 --
 
 -- Create contact card 
-INSERT INTO [sma_MST_IndvContacts] (
-     [cinbPrimary]
+INSERT INTO [sma_MST_IndvContacts]
+(
+    [cinbPrimary]
     ,[cinnContactTypeID]
     ,[cinnContactSubCtgID]
     ,[cinsPrefix]

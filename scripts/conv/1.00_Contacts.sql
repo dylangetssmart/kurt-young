@@ -1,6 +1,6 @@
 
 -- USE SANeedlesSLF
-GO
+-- GO
 /*
 alter table [sma_MST_IndvContacts] disable trigger all
 delete from [sma_MST_IndvContacts] 
@@ -47,6 +47,9 @@ EXCEPT SELECT RaceDesc From sma_Mst_ContactRace
 --SET IDENTITY_INSERT [sma_MST_IndvContacts] ON 
 --GO
 
+/* ########################################################
+Create Unidentifed Plaintiff, Defendant
+*/
 INSERT INTO [sma_MST_IndvContacts]
 (
 	[cinbPrimary]
@@ -266,7 +269,7 @@ INSERT INTO [sma_MST_IndvContacts]
 	,[cinbPreventMailing]
 	,[cinsNickName]
 	,[cinsPrimaryLanguage]
-    ,[cinsOtherLanguage]
+	,[cinsOtherLanguage]
 	,[cinnRace]
 	,[saga]					
 )
@@ -362,108 +365,110 @@ WHERE N.[person]='Y'
 ---------------------------------------
 -- Construct [sma_MST_OrgContacts]
 ---------------------------------------
-INSERT INTO [sma_MST_OrgContacts] (
-		[consName],
-		[consWorkPhone],
-		[consComments],
-		[connContactCtg],
-		[connContactTypeID],	
-		[connRecUserID],		
-		[condDtCreated],
-		[conbStatus],			
-		[saga]					
-	)
+INSERT INTO [sma_MST_OrgContacts]
+(
+	[consName]
+	,[consWorkPhone]
+	,[consComments]
+	,[connContactCtg]
+	,[connContactTypeID]	
+	,[connRecUserID]		
+	,[condDtCreated]
+	,[conbStatus]			
+	,[saga]
+)
 SELECT 
-    N.[last_long_name]							as [consName],
-    N.[work_phone]								as [consWorkPhone],
-    case 
-		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') = '' then (
-			'AKA: ' +  N.[aka_full]
-		)
-		when isnull(N.[aka_full],'') = '' and  isnull(N.[email],'') <> '' then (
-			'EMAIL: ' + N.[email]
-		)
-		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') <> '' then (
-			'AKA: ' +  N.[aka_full] + ' EMAIL: ' + N.[email]
-		)
-    end											as [consComments],
-    2											as [connContactCtg],
-    (
+	N.[last_long_name]							as [consName]
+	,N.[work_phone]								as [consWorkPhone]
+	,case 
+		when isnull(N.[aka_full],'') <> '' and isnull(N.[email],'') = ''
+			then ('AKA: ' +  N.[aka_full])
+		when isnull(N.[aka_full],'') = '' and  isnull(N.[email],'') <> ''
+			then ('EMAIL: ' + N.[email])
+		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') <> ''
+			then ('AKA: ' +  N.[aka_full] + ' EMAIL: ' + N.[email])
+	end											as [consComments]
+	,2											as [connContactCtg]
+	,(
 		select octnOrigContactTypeID
 		FROM [SANeedlesSLF].[dbo].[sma_MST_OriginalContactTypes]
-		where octsDscrptn='General' and octnContactCtgID=2
-	)											as [connContactTypeID],
-    368											as [connRecUserID],
-    getdate()									as [condDtCreated],
-    1											as [conbStatus],	-- Hardcode Status as ACTIVE
-    N.[names_id]								as [saga]			-- remember the [names].[names_id] number
+		where octsDscrptn = 'General'
+		and octnContactCtgID = 2
+	)											as [connContactTypeID]
+	,368										as [connRecUserID]
+	,getdate()									as [condDtCreated]
+	,1											as [conbStatus]		-- Hardcode Status as ACTIVE
+	,N.[names_id]								as [saga]			-- remember the [names].[names_id] number
 FROM [NeedlesSLF].[dbo].[names] N
 WHERE N.[person] <> 'Y'
 
 ---------------------------------------
 -- INDIVIDUAL CONTACT CARD FOR STAFF
 ---------------------------------------
-INSERT INTO [sma_MST_IndvContacts] (
-		[cinsPrefix],
-		[cinsSuffix],
-		[cinsFirstName],
-		[cinsmiddleName],
-		[cinsLastName],
-		[cinsHomePhone],
-		[cinsWorkPhone],
-		[cinsSSNNo],
-		[cindBirthDate],
-		[cindDateOfDeath],
-		[cinnGender],
-		[cinsMobile],
-		[cinsComments],
-		[cinnContactCtg],
-		[cinnContactTypeID],	
-		[cinnRecUserID],		
-		[cindDtCreated],
-		[cinbStatus],			
-		[cinbPreventMailing],
-		[cinsNickName],
-		[saga],
-		[cinsGrade]				-- remember the [staff_code]
+INSERT INTO [sma_MST_IndvContacts]
+(
+	[cinsPrefix]
+	,[cinsSuffix]
+	,[cinsFirstName]
+	,[cinsmiddleName]
+	,[cinsLastName]
+	,[cinsHomePhone]
+	,[cinsWorkPhone]
+	,[cinsSSNNo]
+	,[cindBirthDate]
+	,[cindDateOfDeath]
+	,[cinnGender]
+	,[cinsMobile]
+	,[cinsComments]
+	,[cinnContactCtg]
+	,[cinnContactTypeID]	
+	,[cinnRecUserID]		
+	,[cindDtCreated]
+	,[cinbStatus]			
+	,[cinbPreventMailing]
+	,[cinsNickName]
+	,[saga]
+	,[cinsGrade]			-- remember the [staff_code]
 )
 SELECT 
-		iu.Prefix							as [cinsPrefix],
-		iu.Suffix							as [cinsSuffix],
-		--left(isnull(first_name,dbo.get_firstword(full_name)),30)	as [cinsFirstName],
-		SAFirst								as [cinsFirstName],
-		SAMiddle							as [cinsmiddleName],
-		--left(isnull(last_name,dbo.get_lastword(full_name)),40)	    as [cinsLastName],
-		SALast								as [cinsLastName],
-		NULL								as [cinsHomePhone],
-		left(s.phone_number,20)				as [cinsWorkPhone],
-		NULL								as [cinsSSNNo],
-		NULL								as [cindBirthDate],
-		NULL								as [cindDateOfDeath],
-		case s.[sex] 
-			when 'M' then 1
-			when 'F' then 2
-			else 0
-		end									as [cinnGender],
-		left(s.mobil_phone,20)   			as [cinsMobile],
-		NULL								as [cinsComments],
-		1									as [cinnContactCtg],
-		(
-			select octnOrigContactTypeID
-			from sma_MST_OriginalContactTypes
-			where octsDscrptn='General' and octnContactCtgID=1
-		)									as [cinnContactTypeID],
-		368, 
-		getdate(),
-		1									as [cinbStatus],
-		0,
-		convert(varchar(15),s.full_name)	as [cinsNickName],
-		NULL								as [saga],
-		staff_code							as [cinsGrade] -- Remember it to go to sma_MST_Users
---Select *
+	iu.Prefix							as [cinsPrefix]
+	,iu.Suffix							as [cinsSuffix]	
+	,SAFirst							as [cinsFirstName]
+	,SAMiddle							as [cinsmiddleName]
+	,SALast								as [cinsLastName]
+	,NULL								as [cinsHomePhone]
+	,left(s.phone_number,20)			as [cinsWorkPhone]
+	,NULL								as [cinsSSNNo]
+	,NULL								as [cindBirthDate]
+	,NULL								as [cindDateOfDeath]
+	,case s.[sex]
+		when 'M'
+			then 1
+		when 'F'
+			then 2
+		else 0
+	end									as [cinnGender]
+	,left(s.mobil_phone,20)   			as [cinsMobile]
+	,NULL								as [cinsComments]
+	,1									as [cinnContactCtg]
+	,(
+		select octnOrigContactTypeID
+		from sma_MST_OriginalContactTypes
+		where octsDscrptn = 'General'
+		and octnContactCtgID = 1
+	)									as [cinnContactTypeID]
+	,368
+	,getdate()
+	,1									as [cinbStatus]
+	,0
+	,convert(varchar(15),s.full_name)	as [cinsNickName]
+	,NULL								as [saga]
+	,staff_code							as [cinsGrade] -- Remember it to go to sma_MST_Users
 FROM [implementation_users] iu
-LEFT JOIN [sma_MST_IndvContacts] ind on iu.StaffCode = ind.cinsgrade
-LEFT JOIN NeedlesSLF..[staff] s on s.staff_code = iu.staffcode
+LEFT JOIN [sma_MST_IndvContacts] ind
+	on iu.StaffCode = ind.cinsgrade
+LEFT JOIN NeedlesSLF..[staff] s
+	on s.staff_code = iu.staffcode
 WHERE cinncontactid IS NULL
 and SALoginID <> 'aadmin'
 
@@ -471,36 +476,105 @@ and SALoginID <> 'aadmin'
 -- EMAILS FOR STAFF
 ---------------------------------------
 INSERT INTO [sma_MST_EmailWebsite]
-  ( [cewnContactCtgID],[cewnContactID],[cewsEmailWebsiteFlag],[cewsEmailWebSite],[cewbDefault],[cewnRecUserID],[cewdDtCreated],[cewnModifyUserID],[cewdDtModified],[cewnLevelNo],[saga] )
+(
+	[cewnContactCtgID]
+	,[cewnContactID]
+	,[cewsEmailWebsiteFlag]
+	,[cewsEmailWebSite]
+	,[cewbDefault]
+	,[cewnRecUserID]
+	,[cewdDtCreated]
+	,[cewnModifyUserID]
+	,[cewdDtModified]
+	,[cewnLevelNo]
+	,[saga]
+)
 SELECT 
-		C.cinnContactCtg	as cewnContactCtgID,
-		C.cinnContactID		as cewnContactID,
-		'E'					as cewsEmailWebsiteFlag,
-		s.email				as cewsEmailWebSite,
-		null				as cewbDefault,
-		368					as cewnRecUserID,
-		getdate()			as cewdDtCreated,
-		368					as cewnModifyUserID,
-		getdate()			as cewdDtModified,
-		null,
-		1					as saga -- indicate email
+	C.cinnContactCtg		as cewnContactCtgID
+	,C.cinnContactID		as cewnContactID
+	,'E'					as cewsEmailWebsiteFlag
+	,s.email				as cewsEmailWebSite
+	,null					as cewbDefault
+	,368					as cewnRecUserID
+	,getdate()				as cewdDtCreated
+	,368					as cewnModifyUserID
+	,getdate()				as cewdDtModified
+	,null					as cewnLevelNo
+	,1						as saga -- indicate email
 FROM implementation_users iu
-JOIN NeedlesSLF..staff s on s.staff_code = iu.staffcode
-JOIN [sma_MST_IndvContacts] C on C.cinsgrade = iu.staffcode
+JOIN NeedlesSLF..staff s
+	on s.staff_code = iu.staffcode
+JOIN [sma_MST_IndvContacts] C
+	on C.cinsgrade = iu.staffcode
 WHERE isnull(email,'') <> ''
 
 ----------------------------------------------------
 -- INSERT AADMIN USER IF DOES NOT ALREADY EXIST
 ----------------------------------------------------
-IF (select count(*) from sma_mst_users where usrsloginid = 'aadmin') =0
+IF (select count(*) from sma_mst_users where usrsloginid = 'aadmin') = 0
 BEGIN
 	SET IDENTITY_INSERT sma_mst_users ON
 
 	INSERT INTO [sma_MST_Users]
-	(usrnuserid,[usrnContactID],[usrsLoginID],[usrsPassword],[usrsBackColor],[usrsReadBackColor],[usrsEvenBackColor],[usrsOddBackColor],[usrnRoleID],[usrdLoginDate],[usrdLogOffDate],[usrnUserLevel],[usrsWorkstation],[usrnPortno],[usrbLoggedIn],
-	[usrbCaseLevelRights],[usrbCaseLevelFilters],[usrnUnsuccesfulLoginCount],[usrnRecUserID],[usrdDtCreated],[usrnModifyUserID],[usrdDtModified],[usrnLevelNo],[usrsCaseCloseColor],[usrnDocAssembly],[usrnAdmin],[usrnIsLocked], [usrbActiveState])     
-	SELECT DISTINCT 368,8,'aadmin','2/',null,null,null,null,33,null,null,null,null,null,null,null,null,null,1,GETDATE(),null,null,null,null,null,null,null,1
-
+	(
+		usrnuserid
+		,[usrnContactID]
+		,[usrsLoginID]
+		,[usrsPassword]
+		,[usrsBackColor]
+		,[usrsReadBackColor]
+		,[usrsEvenBackColor]
+		,[usrsOddBackColor]
+		,[usrnRoleID]
+		,[usrdLoginDate]
+		,[usrdLogOffDate]
+		,[usrnUserLevel]
+		,[usrsWorkstation]
+		,[usrnPortno]
+		,[usrbLoggedIn]
+		,[usrbCaseLevelRights]
+		,[usrbCaseLevelFilters]
+		,[usrnUnsuccesfulLoginCount]
+		,[usrnRecUserID]
+		,[usrdDtCreated]
+		,[usrnModifyUserID]
+		,[usrdDtModified]
+		,[usrnLevelNo]
+		,[usrsCaseCloseColor]
+		,[usrnDocAssembly]
+		,[usrnAdmin]
+		,[usrnIsLocked]
+		,[usrbActiveState]
+	)
+	SELECT DISTINCT
+		368
+		,8
+		,'aadmin'
+		,'2/'
+		,null
+		,null
+		,null
+		,null
+		,33
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,1
+		,GETDATE()
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,null
+		,1
 	SET IDENTITY_INSERT sma_mst_users OFF
 END
 
@@ -527,36 +601,37 @@ GO
 --WHERE u.usrsLoginID IS NULL
 
 -- Insert data into sma_MST_Users table from implementation_users table
-INSERT INTO [sma_MST_Users] (
-    [usrnContactID],         -- Contact ID
-    [usrsLoginID],           -- Login ID
-    [usrsPassword],          -- Password
-    [usrsBackColor],         -- Background Color
-    [usrsReadBackColor],     -- Read Background Color
-    [usrsEvenBackColor],     -- Even Background Color
-    [usrsOddBackColor],      -- Odd Background Color
-    [usrnRoleID],            -- Role ID
-    [usrdLoginDate],         -- Login Date
-    [usrdLogOffDate],        -- Log Off Date
-    [usrnUserLevel],         -- User Level
-    [usrsWorkstation],       -- Workstation
-    [usrnPortno],            -- Port Number
-    [usrbLoggedIn],          -- Logged In
-    [usrbCaseLevelRights],   -- Case Level Rights
-    [usrbCaseLevelFilters],  -- Case Level Filters
-    [usrnUnsuccesfulLoginCount], -- Unsuccessful Login Count
-    [usrnRecUserID],         -- Record User ID
-    [usrdDtCreated],         -- Date Created
-    [usrnModifyUserID],      -- Modify User ID
-    [usrdDtModified],        -- Date Modified
-    [usrnLevelNo],           -- Level Number
-    [usrsCaseCloseColor],    -- Case Close Color
-    [usrnDocAssembly],       -- Document Assembly
-    [usrnAdmin],             -- Admin
-    [usrnIsLocked],          -- Is Locked
-    [saga],                  -- Staff Code
-    [usrbActiveState],       -- Active State
-    [usrbIsShowInSystem]     -- Show In System
+INSERT INTO [sma_MST_Users]
+(
+    [usrnContactID]         -- Contact ID
+    ,[usrsLoginID]           -- Login ID
+    ,[usrsPassword]          -- Password
+    ,[usrsBackColor]         -- Background Color
+    ,[usrsReadBackColor]     -- Read Background Color
+    ,[usrsEvenBackColor]     -- Even Background Color
+    ,[usrsOddBackColor]      -- Odd Background Color
+    ,[usrnRoleID]            -- Role ID
+    ,[usrdLoginDate]         -- Login Date
+    ,[usrdLogOffDate]        -- Log Off Date
+    ,[usrnUserLevel]         -- User Level
+    ,[usrsWorkstation]       -- Workstation
+    ,[usrnPortno]            -- Port Number
+    ,[usrbLoggedIn]          -- Logged In
+    ,[usrbCaseLevelRights]   -- Case Level Rights
+    ,[usrbCaseLevelFilters]  -- Case Level Filters
+    ,[usrnUnsuccesfulLoginCount] -- Unsuccessful Login Count
+    ,[usrnRecUserID]         -- Record User ID
+    ,[usrdDtCreated]         -- Date Created
+    ,[usrnModifyUserID]      -- Modify User ID
+    ,[usrdDtModified]        -- Date Modified
+    ,[usrnLevelNo]           -- Level Number
+    ,[usrsCaseCloseColor]    -- Case Close Color
+    ,[usrnDocAssembly]       -- Document Assembly
+    ,[usrnAdmin]             -- Admin
+    ,[usrnIsLocked]          -- Is Locked
+    ,[saga]                  -- Staff Code
+    ,[usrbActiveState]       -- Active State
+    ,[usrbIsShowInSystem]     -- Show In System
 )
 SELECT 
     INDV.cinncontactid,                 -- [usrnContactID]
@@ -589,8 +664,10 @@ SELECT
     1,			                        -- [usrbActiveState]
     1									-- [usrbIsShowInSystem]
 FROM implementation_users STF
-JOIN sma_MST_IndvContacts INDV ON INDV.cinsGrade = STF.staffcode
-LEFT JOIN [sma_MST_Users] u ON u.saga = CONVERT(VARCHAR(20), STF.staffcode)
+JOIN sma_MST_IndvContacts INDV
+	ON INDV.cinsGrade = STF.staffcode
+LEFT JOIN [sma_MST_Users] u
+	ON u.saga = CONVERT(VARCHAR(20), STF.staffcode)
 WHERE u.usrsLoginID IS NULL
 GO
 
