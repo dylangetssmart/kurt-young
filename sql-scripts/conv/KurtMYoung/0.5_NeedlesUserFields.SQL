@@ -1,38 +1,27 @@
--- Use SANeedlesSLF
--- GO
+Use SANeedlesKMY
+GO
+
 
 IF EXISTS (Select * From sys.tables where name = 'NeedlesUserFields' and type = 'U')
 BEGIN
 	DROP TABLE NeedlesUserFields
 END
-
 -------------------------------------------
 --CREATE TABLE NEEDLES USER FIELDS
 -------------------------------------------
-CREATE TABLE NeedlesUserFields
-( 
-	field_num			int
-	,field_title		varchar(30)
-	,column_name		varchar(30)
-	,field_Type			varchar(20)
-	,field_len			varchar(10)
-	,mini_Dir			varchar(50)
-	,UDFType			varchar(30)
-	,DropDownValues		varchar(max)
-)
+CREATE TABLE NeedlesUserFields ( 
+		field_num int,
+		field_title varchar(30),
+		column_name varchar(30),
+		field_Type varchar(20),
+		field_len varchar(10),
+		mini_Dir varchar(50),
+		UDFType varchar(30),
+		DropDownValues varchar(max))
 -------------------------------------------------------------------
 --BUILD USER FIELDS PLUS DROP DOWNS FOR UDF DEFINITION PURPOSES
 -------------------------------------------------------------------
-INSERT INTO NeedlesUserFields
-(
-	field_num
-	,field_title
-	,column_name
-	,field_Type
-	,field_len
-	,mini_Dir
-	,UDFType
-)
+INSERT INTO NeedlesUserFields (field_num, field_title, column_name, field_Type, field_len, mini_Dir, UDFType)
 SELECT field_num, field_title, column_name,  field_type, 
 	case
 		when field_Type in ('number','money') then convert(varchar,field_len) + ',2'
@@ -49,7 +38,7 @@ SELECT field_num, field_title, column_name,  field_type,
 		else field_type
 	end
 --Select *
-FROM NeedlesSLF..[user_case_fields]
+FROM NeedlesKMY..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -70,8 +59,8 @@ BEGIN
 
 	SELECT identity(int,1,1) as Number, gd.code
 	INTO #values
-	FROM NeedlesSLF..mini_general_dir gd
-	JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
+	FROM NeedlesKMY..mini_general_dir gd
+	JOIN NeedlesKMY..mini_dir_list dl on gd.num_assigned = dl.dir_key
 	WHERE dir_name = @miniDir  
 
 
@@ -103,7 +92,7 @@ DEALLOCATE userFields_Cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from NeedlesSLF..mini_general_dir gd
-JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from NeedlesKMY..mini_general_dir gd
+JOIN NeedlesKMY..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

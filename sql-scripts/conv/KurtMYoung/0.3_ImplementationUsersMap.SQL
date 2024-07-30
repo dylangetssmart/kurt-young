@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+USE SANeedlesKMY
 
 if exists (select * from sys.objects where name='implementation_users' and type='U')
 begin
@@ -12,25 +12,24 @@ GO
 -- INSERT INTO implementation_users (StaffCode, SAloginID, Prefix, SAFirst, SAMiddle, SALast, suffix, Active, Visible)
 
 -- ds 2024-05-31 // Modified to insert data into the implementation_users table from the dbo.staff table
-INSERT INTO implementation_users
-(
-    StaffCode
-    ,SAloginID
-    ,Prefix
-    ,SAFirst
-    ,SAMiddle
-    ,SALast
-    ,suffix
+INSERT INTO implementation_users (
+    StaffCode,
+    SAloginID,
+    Prefix,
+    SAFirst,
+    SAMiddle,
+    SALast,
+    suffix
 )
 SELECT 
-    staff_code                          as StaffCode
-    ,staff_code                         as SAloginID
-	,prefix                             as Prefix
-	,dbo.get_firstword(s.full_name)     as SAFirst
-    ,''                                 as SAMiddle
-    ,dbo.get_lastword(s.full_name)      as SALast
-    ,suffix                             as suffix
-FROM [NeedlesSLF].[dbo].[staff] s
+    staff_code						as StaffCode,
+    staff_code						as SAloginID,
+	prefix							as Prefix,
+	dbo.get_firstword(s.full_name)	as SAFirst,
+    ''								as SAMiddle,
+    dbo.get_lastword(s.full_name)	as SALast,
+    suffix							as suffix
+FROM [Needleskmy].[dbo].[staff] s
 GO
 
 --SELECT '@PORTAL', '@PORTAL', '', 'Mary', '', 'McCabe', '', 'N', 'Y' UNION
