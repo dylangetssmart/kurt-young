@@ -88,14 +88,14 @@ FROM [sma_MST_CaseType] CST
 		on vd.FieldTitle = m.field_title
 	JOIN NeedlesUserFields ucf
 		on ucf.field_num = m.ref_num
+	join sma_MST_CaseGroup cg
+		on cgpnCaseGroupID = cst.cstnGroupID
 	LEFT JOIN [sma_MST_UDFDefinition] def
 		-- on def.[udfnRelatedPK] = cst.cstnCaseTypeID
 	    on def.[udfnRelatedPK] = cg.IncidentTypeID		-- for Incidents, the [sma_mst_UDFDefinition].[udfnRelatedPK] references the [sma_mst_casegroup].[IncidentTypeID]
 		and def.[udfsUDFName] = m.field_title
 		and def.[udfsScreenName] = 'Incident Wizard'
 		and udfstype = ucf.UDFType
-	join sma_MST_CaseGroup cg
-		on cgpnCaseGroupID = cst.cstnGroupID
 where def.udfnUDFID IS NULL
 order by m.field_title
 

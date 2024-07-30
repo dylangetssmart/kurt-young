@@ -91,16 +91,16 @@ INSERT INTO [sma_TRN_CalendarAppointments]
 SELECT 
     case -- FromDate
 		when CAL.[start_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(CAL.[start_time],'00:00:00')) <> convert(time,'00:00:00')  
-			then CAST(CAST(CAL.[start_date] AS DATE) AS DATETIME) + CAST(CAL.[start_time] AS TIME)  
+			then CAST(CAST(CAL.[start_date] AS DATETIME) + CAST(CAL.[start_time] AS DATETIME) AS DATETIME)
 		when CAL.[start_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(CAL.[start_time],'00:00:00')) = convert(time,'00:00:00')  
-			then CAST(CAST(CAL.[start_date] AS DATE) AS DATETIME) + CAST('00:00:00' AS TIME)  
+			then CAST(CAST(CAL.[start_date] AS DATETIME) + CAST('00:00:00' AS DATETIME) AS DATETIME)
 		else '1900-01-01'
 		end					  as [FromDate]
     ,case -- ToDate
 		when CAL.[stop_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(CAL.[stop_time],'00:00:00')) <> convert(time,'00:00:00')  
-			then CAST(CAST(CAL.[stop_date] AS DATE) AS DATETIME) + CAST(CAL.[stop_time] AS TIME)  
+			then CAST(CAST(CAL.[stop_date] AS DATETIME) + CAST(CAL.[stop_time] AS DATETIME) AS DATETIME)  
 		when CAL.[stop_date] between '1900-01-01' and '2079-06-06' and convert(time,isnull(CAL.[stop_time],'00:00:00')) = convert(time,'00:00:00')  
-			then CAST(CAST(CAL.[stop_date] AS DATE) AS DATETIME) + CAST('00:00:00' AS TIME)  
+			then CAST(CAST(CAL.[stop_date] AS DATETIME) + CAST('00:00:00' AS DATETIME) AS DATETIME)  
 		else '1900-01-01'
 		end					  as [ToDate]
 	,(

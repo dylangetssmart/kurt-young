@@ -124,6 +124,125 @@ FROM NeedlesSLF.[dbo].[party_indexed] P
 WHERE pr.[sa party] = 'Plaintiff' 
 GO
 
+/* ########################################################
+Add Plaintiff Spouses from user_party_data
+*/
+
+-- Create (P)-Spouse PlaintiffRole
+insert into [sma_MST_PlaintiffRole]
+(
+	[plnnRoleDesc]
+	,[plnnRecUserID]
+	,[plnnDtCreated]
+	,[plnnModifyUserID]
+	,[plnntModified] 
+)
+select
+	'(P)-Spouse'	as [plnnRoleDesc]
+	,368			as [plnnRecUserID]
+	,GETDATE() 		as [plnnDtCreated]
+	,null			as [plnnModifyUserID]
+	,null			as [plnntModified] 
+
+-- Create Plaintiffs
+INSERT INTO [sma_TRN_Plaintiff] (
+	[plnnCaseID]
+	,[plnnContactCtg]
+	,[plnnContactID]
+	,[plnnAddressID]
+	,[plnnRole]
+	,[plnbIsPrimary]
+	,[plnbWCOut]
+	,[plnnPartiallySettled]
+	,[plnbSettled]
+	,[plnbOut]
+	,[plnbSubOut]
+	,[plnnSeatBeltUsed]
+	,[plnnCaseValueID]
+	,[plnnCaseValueFrom]
+	,[plnnCaseValueTo]
+	,[plnnPriority]
+	,[plnnDisbursmentWt]
+	,[plnbDocAttached]
+	,[plndFromDt]
+	,[plndToDt]
+	,[plnnRecUserID]
+	,[plndDtCreated]
+	,[plnnModifyUserID]
+	,[plndDtModified]
+	,[plnnLevelNo]
+	,[plnsMarked]
+	,[saga]
+	,[plnnNoInj]
+	,[plnnMissing]
+	,[plnnLIPBatchNo]
+	,[plnnPlaintiffRole]
+	,[plnnPlaintiffGroup]
+	,[plnnPrimaryContact]
+	,[saga_party]
+	)
+SELECT
+	CAS.casnCaseID 		AS [plnnCaseID]
+	,CIO.CTG 			AS [plnnContactCtg]
+	,CIO.CID 			AS [plnnContactID]
+	,CIO.AID 			AS [plnnAddressID]
+	,(
+		select plnnRoleID
+		from sma_MST_PlaintiffRole
+		where plnnRoleDesc = '(P)-Spouse'
+
+	) 					AS [plnnRole]
+	,0 					AS [plnbIsPrimary]
+	,0
+	,0
+	,0
+	,0
+	,0
+	,0
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,GETDATE()
+	,NULL
+	,368 				AS [plnnRecUserID]
+	,GETDATE() 			AS [plndDtCreated]
+	,NULL
+	,NULL
+	,NULL 				AS [plnnLevelNo]
+	,NULL
+	,''
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,NULL
+	,0 					AS [plnnPrimaryContact]
+	,null				AS [saga_party]
+	-- ,P.TableIndex AS [saga_party]
+--SELECT cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
+FROM NeedlesSLF.[dbo].[user_party_data] P
+	JOIN [sma_TRN_Cases] CAS
+		on CAS.cassCaseNumber = P.case_id  
+	JOIN IndvOrgContacts_Indexed CIO
+		on CIO.SAGA = P.party_id
+	join sma_MST_IndvContacts i
+		on i.saga = p.case_id
+		and i.saga_ref = 'plaintiff-spouse'
+where isnull(p.Spouse,'') <> ''
+-- 	JOIN [PartyRoles] pr
+-- 		on pr.[Needles Roles] = p.[role]
+-- 	JOIN [sma_MST_SubRole] S
+-- 		on CAS.casnOrgCaseTypeID = S.sbrnCaseTypeID
+-- 			and s.sbrsDscrptn = [sa roles]
+-- 			and  S.sbrnRoleID=4
+-- WHERE pr.[sa party] = 'Plaintiff' 
+GO
+
+
+
 /*
 select * from [sma_MST_SubRole]
 ---( Now. do special role assignment )

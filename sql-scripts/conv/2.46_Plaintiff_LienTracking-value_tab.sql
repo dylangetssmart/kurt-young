@@ -63,10 +63,19 @@ CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_va
 GO
 
 ---(0)---
-insert into value_tab_Liencheckbox_Helper ( value_id )
+insert into value_tab_Liencheckbox_Helper
+(
+    value_id 
+)
 select VP1.value_id
 from [NeedlesSLF].[dbo].[value_payment] VP1 
-left join ( select distinct value_id from [NeedlesSLF].[dbo].[value_payment] where lien='Y' ) VP2 on VP1.value_id=VP2.value_id and VP2.value_id is not null
+    left join (
+                select distinct value_id
+                from [NeedlesSLF].[dbo].[value_payment]
+                where lien='Y'
+                ) VP2 
+        on VP1.value_id = VP2.value_id
+        and VP2.value_id is not null
 where VP2.value_id is not null -- ( Lien checkbox got marked ) 
 GO
 
@@ -76,12 +85,17 @@ GO
 
 
 ---(0)---
-insert into [SANeedlesSLF].[dbo].[sma_MST_LienType] ([lntsCode],[lntsDscrptn])
+insert into [SANeedlesSLF].[dbo].[sma_MST_LienType]
 (
-select distinct 'CONVERSION',VC.[description]
-from [NeedlesSLF].[dbo].[value] V
-inner join [NeedlesSLF].[dbo].[value_code] VC on VC.code=V.code 
-where isnull(V.code,'') in (SELECT code FROM #LienValueCodes)
+    [lntsCode]
+    ,[lntsDscrptn]
+)
+(
+    select distinct 'CONVERSION',VC.[description]
+    from [NeedlesSLF].[dbo].[value] V
+    inner join [NeedlesSLF].[dbo].[value_code] VC
+        on VC.code = V.code 
+    where isnull(V.code,'') in (SELECT code FROM #LienValueCodes)
 )
 except
 select [lntsCode],[lntsDscrptn] from [SANeedlesSLF].[dbo].[sma_MST_LienType] 
@@ -124,17 +138,20 @@ select
     V.value_id		    as tab_id,		-- needles records TAB item
     V.provider		    as ProviderNameId,  
     IOC.Name		    as ProviderName,
-    IOC.CID		    as ProviderCID,  
-    IOC.CTG		    as ProviderCTG,
-    IOC.AID		    as ProviderAID,
-    CAS.casnCaseID	as casnCaseID,
+    IOC.CID		        as ProviderCID,  
+    IOC.CTG		        as ProviderCTG,
+    IOC.AID		        as ProviderAID,
+    CAS.casnCaseID	    as casnCaseID,
     null			    as PlaintiffID,
     null			    as Paid
 from [NeedlesSLF].[dbo].[value_Indexed] V
-inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
-inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.provider and isnull(V.provider,0)<>0
+inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS
+    on CAS.cassCaseNumber = V.case_id
+inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC
+    on IOC.SAGA = V.provider
+    and isnull(V.provider,0)<>0
 where code in (SELECT code FROM #LienValueCodes)
-OR  V.value_id in ( select value_id from value_tab_Liencheckbox_Helper ) 
+OR V.value_id in ( select value_id from value_tab_Liencheckbox_Helper ) 
 
 GO
 ---(0)---

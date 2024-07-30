@@ -39,12 +39,12 @@ SELECT
 	,(
 		select sttnStateID
 		from sma_MST_States
-		where sttsCode='OH'
+		where sttsCode='VA'
 	)								as [StateID]			
 	,0								as LiabilityCodeId
 	,N.synopsis						as IncidentFacts
 	,''								as [MergedFacts]
-	,N.comments						as comments
+	,null							as comments
 	,null							as [IncidentTime]
 	,368							as [RecUserID]
 	,getdate()						as [DtCreated]
@@ -52,7 +52,7 @@ SELECT
 	,null							as [DtModified]
 FROM NeedlesSLF.[dbo].case_intake N
 JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID
-where ISNULL(N.synopsis, '') <> '' OR ISNULL(N.comments, '') <> '' OR ISNULL(N.date_of_incident, '') <> ''
+where ISNULL(N.synopsis, '') <> '' OR ISNULL(N.date_of_incident, '') <> ''
                 
 
 

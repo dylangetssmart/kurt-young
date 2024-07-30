@@ -1,5 +1,5 @@
 -- USE SANeedlesSLF
-GO
+-- GO
 
 INSERT INTO [sma_TRN_OtherReferral]
 (

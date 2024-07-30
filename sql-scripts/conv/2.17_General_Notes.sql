@@ -64,13 +64,13 @@ SELECT
     ,null								as [notsPriority]
     ,null								as [notnFormID]
     ,U.usrnUserID						as [notnRecUserID]
-    ,case
-		when N.note_date between '1900-01-01' and '2079-06-06' and convert(time,isnull(N.note_time,'00:00:00')) <> convert(time,'00:00:00')
-			then CAST(CAST(N.note_date AS DATE) AS DATETIME) + CAST(N.note_time AS TIME)
-		when N.note_date between '1900-01-01' and '2079-06-06' and convert(time,isnull(N.note_time,'00:00:00')) = convert(time,'00:00:00') 
-			then CAST(CAST(N.note_date AS DATE) AS DATETIME) + CAST('00:00:00' AS TIME)  
-	   else '1900-01-01'
-	   end								as notdDtCreated
+    ,CASE
+    	WHEN N.note_date BETWEEN '1900-01-01' AND '2079-06-06' AND CONVERT(time, ISNULL(N.note_time,'00:00:00')) <> CONVERT(time,'00:00:00')
+        	THEN CAST(CAST(N.note_date AS DATETIME) + CAST(N.note_time AS DATETIME) AS DATETIME)
+    	WHEN N.note_date BETWEEN '1900-01-01' AND '2079-06-06' AND CONVERT(time, ISNULL(N.note_time,'00:00:00')) = CONVERT(time,'00:00:00') 
+	        THEN CAST(CAST(N.note_date AS DATETIME) + CAST('00:00:00' AS DATETIME) AS DATETIME)
+	    ELSE '1900-01-01'
+	END									AS notdDtCreated
     ,null								as [notnModifyUserID]
     ,null								as notdDtModified
     ,null								as [notnLevelNo]
