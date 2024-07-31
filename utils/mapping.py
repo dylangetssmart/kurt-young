@@ -1,0 +1,83 @@
+import pandas as pd
+from sqlalchemy import create_engine
+import os
+
+# Database connection details
+conn_str = (
+    "mssql+pyodbc://DYLANS/NeedlesSLF?driver=ODBC+Driver+17+for+SQL+Server"
+)
+
+# Directory containing SQL files and output directory
+sql_dir = '../scripts/mapping'
+output_dir = '../scripts/'
+
+def execute_query(query, engine):
+    """Executes a SQL query and returns the result as a DataFrame."""
+    try:
+        df = pd.read_sql_query(query, engine)
+        print(f"Query executed successfully.")
+        return df
+    except Exception as e:
+        print(f"Error executing query: {e}")
+        return pd.DataFrame()
+
+def save_to_excel(dataframes, output_path):
+    """Saves multiple DataFrames to an Excel file with different sheets."""
+    if not dataframes:
+        print("No data to save.")
+        return
+
+    with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
+        for sheet_name, df in dataframes.items():
+            if not df.empty:
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+            else:
+                print(f"Skipping empty DataFrame for sheet: {sheet_name}")
+
+def main():
+    # Get the current working directory
+    base_dir = os.path.dirname(__file__)
+    
+    # Construct full paths using relative paths
+    full_sql_dir = os.path.abspath(os.path.join(base_dir, sql_dir))
+    full_output_dir = os.path.abspath(os.path.join(base_dir, output_dir))
+    
+    # Ensure output directory exists
+    os.makedirs(full_output_dir, exist_ok=True)
+    
+    # Create SQLAlchemy engine
+    engine = create_engine(conn_str)
+    
+    # Create a dictionary to store DataFrames for each query
+    dataframes = {}
+    
+    # Iterate over SQL files
+    for filename in os.listdir(full_sql_dir):
+        if filename.endswith('.sql'):
+            full_file_path = os.path.join(full_sql_dir, filename)
+            sheet_name = os.path.splitext(filename)[0]  # Use filename without extension as sheet name
+            try:
+                with open(full_file_path, 'r') as file:
+                    query = file.read().strip()
+                    df = execute_query(query, engine)
+                    if not df.empty:
+                        dataframes[sheet_name] = df
+                    else:
+                        print(f"Empty DataFrame for SQL file: {filename}")
+            except Exception as e:
+                print(f"Failed to read SQL file {filename}: {e}")
+    
+    # Debug print statements
+    print(f"Queries executed: {len(dataframes)}")
+    for name in dataframes:
+        print(f"DataFrame '{name}' shape: {dataframes[name].shape}")
+    
+    # Save all DataFrames to a single Excel file
+    output_filename = 'result.xlsx'
+    output_path = os.path.join(full_output_dir, output_filename)
+    save_to_excel(dataframes, output_path)
+    
+    print(f'Saved results to {output_path}')
+
+if __name__ == "__main__":
+    main()
