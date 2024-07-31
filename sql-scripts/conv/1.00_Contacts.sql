@@ -47,9 +47,17 @@ EXCEPT SELECT RaceDesc From sma_Mst_ContactRace
 --SET IDENTITY_INSERT [sma_MST_IndvContacts] ON 
 --GO
 
+/* ########################################################
+Construct special contacts
+cinncontactid = 8 -> Unassigned Staff
+cinncontactid = 9 -> Unidentified Individual
+cinncontactid = 10 -> Unidentified Plaintiff
+cinncontactid = 11 -> Unidentified Defendant
+*/
 INSERT INTO [sma_MST_IndvContacts]
 (
-	[cinbPrimary]
+	[cinncontactid]
+	,[cinbPrimary]
 	,[cinnContactTypeID]
 	,[cinnContactSubCtgID]
 	,[cinsPrefix]
@@ -112,8 +120,117 @@ INSERT INTO [sma_MST_IndvContacts]
 --SELECT DISTINCT 1,10,null,null,'Defendant','','Unidentified',null,null,1,null,
 --null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
 
+
+-- 1: Unassigned Staff (cinncontactid = 8)
 SELECT DISTINCT 
-     1                      as [cinbPrimary]
+	8						as cinncontactid
+    ,1                      as [cinbPrimary]
+    ,10                     as [cinnContactTypeID]
+    ,null                   as [cinnContactSubCtgID]
+    ,null                   as [cinsPrefix]
+    ,'Staff'            	as [cinsFirstName]
+    ,''                     as [cinsMiddleName]
+    ,'Unassigned'         	as [cinsLastName]
+    ,null                   as [cinsSuffix]
+    ,null                   as [cinsNickName]
+    ,1                      as [cinbStatus]
+    ,null                   as [cinsSSNNo]
+    ,null                   as [cindBirthDate]
+    ,null                   as [cinsComments]
+    ,1                      as [cinnContactCtg]
+    ,''                     as [cinnRefByCtgID]
+    ,''                     as [cinnReferredBy]
+    ,null                   as [cindDateOfDeath]
+    ,''                     as [cinsCVLink]
+    ,''                     as [cinnMaritalStatusID]
+    ,1                      as [cinnGender]
+    ,''                     as [cinsBirthPlace]
+    ,1                      as [cinnCountyID]
+    ,1                      as [cinsCountyOfResidence]
+    ,null                   as [cinbFlagForPhoto]
+    ,null                   as [cinsPrimaryContactNo]
+    ,''                     as [cinsHomePhone]
+    ,''                     as [cinsWorkPhone]
+    ,null                   as [cinsMobile]
+    ,0                      as [cinbPreventMailing]
+    ,368                    as [cinnRecUserID]
+    ,GETDATE()              as [cindDtCreated]
+    ,''                     as [cinnModifyUserID]
+    ,null                   as [cindDtModified]
+    ,0                      as [cinnLevelNo]
+    ,''                     as [cinsPrimaryLanguage]
+    ,''                     as [cinsOtherLanguage]
+    ,''                     as [cinbDeathFlag]
+    ,''                     as [cinsCitizenship]
+    ,null                   as [cinsHeight]
+    ,''                     as [cinnWeight]
+    ,''                     as [cinsReligion]
+    ,null                   as [cindMarriageDate]
+    ,null                   as [cinsMarriageLoc]
+    ,null                   as [cinsDeathPlace]
+    ,''                     as [cinsMaidenName]
+    ,''                     as [cinsOccupation]
+    ,-1                     as [saga]
+    ,''                     as [cinsSpouse]
+    ,null                   as [cinsGrade]
+UNION
+-- 2: Unidentified Individual (cinncontactid = 9)
+SELECT DISTINCT 
+    9						as cinncontactid
+	,1                      as [cinbPrimary]
+    ,10                     as [cinnContactTypeID]
+    ,null                   as [cinnContactSubCtgID]
+    ,null                   as [cinsPrefix]
+    ,'Individual'           as [cinsFirstName]
+    ,''                     as [cinsMiddleName]
+    ,'Unidentified'         as [cinsLastName]
+    ,null                   as [cinsSuffix]
+    ,null                   as [cinsNickName]
+    ,1                      as [cinbStatus]
+    ,null                   as [cinsSSNNo]
+    ,null                   as [cindBirthDate]
+    ,null                   as [cinsComments]
+    ,1                      as [cinnContactCtg]
+    ,''                     as [cinnRefByCtgID]
+    ,''                     as [cinnReferredBy]
+    ,null                   as [cindDateOfDeath]
+    ,''                     as [cinsCVLink]
+    ,''                     as [cinnMaritalStatusID]
+    ,1                      as [cinnGender]
+    ,''                     as [cinsBirthPlace]
+    ,1                      as [cinnCountyID]
+    ,1                      as [cinsCountyOfResidence]
+    ,null                   as [cinbFlagForPhoto]
+    ,null                   as [cinsPrimaryContactNo]
+    ,''                     as [cinsHomePhone]
+    ,''                     as [cinsWorkPhone]
+    ,null                   as [cinsMobile]
+    ,0                      as [cinbPreventMailing]
+    ,368                    as [cinnRecUserID]
+    ,GETDATE()              as [cindDtCreated]
+    ,''                     as [cinnModifyUserID]
+    ,null                   as [cindDtModified]
+    ,0                      as [cinnLevelNo]
+    ,''                     as [cinsPrimaryLanguage]
+    ,''                     as [cinsOtherLanguage]
+    ,''                     as [cinbDeathFlag]
+    ,''                     as [cinsCitizenship]
+    ,null                   as [cinsHeight]
+    ,''                     as [cinnWeight]
+    ,''                     as [cinsReligion]
+    ,null                   as [cindMarriageDate]
+    ,null                   as [cinsMarriageLoc]
+    ,null                   as [cinsDeathPlace]
+    ,''                     as [cinsMaidenName]
+    ,''                     as [cinsOccupation]
+    ,0	                    as [saga]
+    ,''                     as [cinsSpouse]
+    ,null                   as [cinsGrade]
+UNION
+-- 3: Unidentified Plaintiff (cinncontactid = 10)
+SELECT DISTINCT 
+    10						as cinncontactid
+	,1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -163,6 +280,7 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 UNION
+-- 4: Unidentified Defendant (cinncontactid = 11)
 SELECT DISTINCT 
      1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
@@ -492,15 +610,74 @@ WHERE isnull(email,'') <> ''
 ----------------------------------------------------
 -- INSERT AADMIN USER IF DOES NOT ALREADY EXIST
 ----------------------------------------------------
-IF (select count(*) from sma_mst_users where usrsloginid = 'aadmin') =0
+IF (
+	select count(*)
+	from sma_mst_users
+	where usrsloginid = 'aadmin'
+	) = 0
 BEGIN
 	SET IDENTITY_INSERT sma_mst_users ON
 
 	INSERT INTO [sma_MST_Users]
-	(usrnuserid,[usrnContactID],[usrsLoginID],[usrsPassword],[usrsBackColor],[usrsReadBackColor],[usrsEvenBackColor],[usrsOddBackColor],[usrnRoleID],[usrdLoginDate],[usrdLogOffDate],[usrnUserLevel],[usrsWorkstation],[usrnPortno],[usrbLoggedIn],
-	[usrbCaseLevelRights],[usrbCaseLevelFilters],[usrnUnsuccesfulLoginCount],[usrnRecUserID],[usrdDtCreated],[usrnModifyUserID],[usrdDtModified],[usrnLevelNo],[usrsCaseCloseColor],[usrnDocAssembly],[usrnAdmin],[usrnIsLocked], [usrbActiveState])     
-	SELECT DISTINCT 368,8,'aadmin','2/',null,null,null,null,33,null,null,null,null,null,null,null,null,null,1,GETDATE(),null,null,null,null,null,null,null,1
-
+	(
+		usrnuserid
+		,[usrnContactID]
+		,[usrsLoginID]
+		,[usrsPassword]
+		,[usrsBackColor]
+		,[usrsReadBackColor]
+		,[usrsEvenBackColor]
+		,[usrsOddBackColor]
+		,[usrnRoleID]
+		,[usrdLoginDate]
+		,[usrdLogOffDate]
+		,[usrnUserLevel]
+		,[usrsWorkstation]
+		,[usrnPortno]
+		,[usrbLoggedIn]
+		,[usrbCaseLevelRights]
+		,[usrbCaseLevelFilters]
+		,[usrnUnsuccesfulLoginCount]
+		,[usrnRecUserID]
+		,[usrdDtCreated]
+		,[usrnModifyUserID]
+		,[usrdDtModified]
+		,[usrnLevelNo]
+		,[usrsCaseCloseColor]
+		,[usrnDocAssembly]
+		,[usrnAdmin]
+		,[usrnIsLocked]
+		,[usrbActiveState]
+	)
+	SELECT DISTINCT
+		368							as usrnuserid
+		,8							as usrnContactID
+		,'aadmin'					as usrsLoginID
+		,'2/'				 as usrsPassword
+		,null						as [usrsBackColor]
+		,null						as [usrsReadBackColor]
+		,null						as [usrsEvenBackColor]
+		,null						as [usrsOddBackColor]
+		,33							as [usrnRoleID]
+		,null						as [usrdLoginDate]
+		,null						as [usrdLogOffDate]
+		,null						as [usrnUserLevel]
+		,null						as [usrsWorkstation]
+		,null						as [usrnPortno]
+		,null						as [usrbLoggedIn]
+		,null						as [usrbCaseLevelRights]
+		,null						as [usrbCaseLevelFilters]
+		,null						as [usrnUnsuccesfulLoginCount]
+		,1							as [usrnRecUserID]
+		,GETDATE()					as [usrdDtCreated]
+		,null						as [usrnModifyUserID]
+		,null						as [usrdDtModified]
+		,null						as [usrnLevelNo]
+		,null						as [usrsCaseCloseColor]
+		,null						as [usrnDocAssembly]
+		,null						as [usrnAdmin]
+		,null						as [usrnIsLocked]
+		,1							as [usrbActiveState]
 	SET IDENTITY_INSERT sma_mst_users OFF
 END
 
@@ -559,38 +736,40 @@ INSERT INTO [sma_MST_Users] (
     [usrbIsShowInSystem]     -- Show In System
 )
 SELECT 
-    INDV.cinncontactid,                 -- [usrnContactID]
-    STF.SAloginID,                      -- [usrsLoginID]
-    '#',                             -- [usrsPassword]
-    NULL,                               -- [usrsBackColor]
-    NULL,                               -- [usrsReadBackColor]
-    NULL,                               -- [usrsEvenBackColor]
-    NULL,                               -- [usrsOddBackColor]
-    33,                                 -- [usrnRoleID]
-    NULL,                               -- [usrdLoginDate]
-    NULL,                               -- [usrdLogOffDate]
-    NULL,                               -- [usrnUserLevel]
-    NULL,                               -- [usrsWorkstation]
-    NULL,                               -- [usrnPortno]
-    NULL,                               -- [usrbLoggedIn]
-    NULL,                               -- [usrbCaseLevelRights]
-    NULL,                               -- [usrbCaseLevelFilters]
-    NULL,                               -- [usrnUnsuccesfulLoginCount]
-    1,                                  -- [usrnRecUserID]
-    GETDATE(),                          -- [usrdDtCreated]
-    NULL,                               -- [usrnModifyUserID]
-    NULL,                               -- [usrdDtModified]
-    NULL,                               -- [usrnLevelNo]
-    NULL,                               -- [usrsCaseCloseColor]
-    NULL,                               -- [usrnDocAssembly]
-    NULL,                               -- [usrnAdmin]
-    NULL,                               -- [usrnIsLocked]
-    CONVERT(VARCHAR(20), STF.staffcode), -- [saga]
-    1,			                        -- [usrbActiveState]
-    1									-- [usrbIsShowInSystem]
+    INDV.cinncontactid                -- [usrnContactID]
+    ,STF.SAloginID                      -- [usrsLoginID]
+    ,'#'                             -- [usrsPassword]
+    ,NULL                               -- [usrsBackColor]
+    ,NULL                               -- [usrsReadBackColor]
+    ,NULL                               -- [usrsEvenBackColor]
+    ,NULL                               -- [usrsOddBackColor]
+    ,33                                 -- [usrnRoleID]
+    ,NULL                               -- [usrdLoginDate]
+    ,NULL                               -- [usrdLogOffDate]
+    ,NULL                               -- [usrnUserLevel]
+    ,NULL                               -- [usrsWorkstation]
+    ,NULL                               -- [usrnPortno]
+    ,NULL                               -- [usrbLoggedIn]
+    ,NULL                               -- [usrbCaseLevelRights]
+    ,NULL                               -- [usrbCaseLevelFilters]
+    ,NULL                               -- [usrnUnsuccesfulLoginCount]
+    ,1                                  -- [usrnRecUserID]
+    ,GETDATE()                          -- [usrdDtCreated]
+    ,NULL                               -- [usrnModifyUserID]
+    ,NULL                               -- [usrdDtModified]
+    ,NULL                               -- [usrnLevelNo]
+    ,NULL                               -- [usrsCaseCloseColor]
+    ,NULL                               -- [usrnDocAssembly]
+    ,NULL                               -- [usrnAdmin]
+    ,NULL                               -- [usrnIsLocked]
+    ,CONVERT(VARCHAR(20), STF.staffcode) -- [saga]
+    ,stf.Active
+	,stf.visible
 FROM implementation_users STF
-JOIN sma_MST_IndvContacts INDV ON INDV.cinsGrade = STF.staffcode
-LEFT JOIN [sma_MST_Users] u ON u.saga = CONVERT(VARCHAR(20), STF.staffcode)
+JOIN sma_MST_IndvContacts INDV
+	ON INDV.cinsGrade = STF.staffcode
+LEFT JOIN [sma_MST_Users] u
+	ON u.saga = CONVERT(VARCHAR(20), STF.staffcode)
 WHERE u.usrsLoginID IS NULL
 GO
 
@@ -659,6 +838,9 @@ DEALLOCATE staff_cursor
 INSERT INTO Account_UsersInRoles ( user_id,role_id)
 SELECT usrnUserID as user_id,2 as role_id 
 FROM sma_MST_Users
+
+-- update sma_MST_Users set usrbActiveState=1
+-- where usrsLoginID='aadmin'
 
 UPDATE Account_UsersInRoles 
 SET role_id=1 
