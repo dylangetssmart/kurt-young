@@ -1,6 +1,6 @@
 
 -- USE SANeedlesSLF
--- GO
+GO
 /*
 alter table [sma_MST_IndvContacts] disable trigger all
 delete from [sma_MST_IndvContacts] 
@@ -48,11 +48,16 @@ EXCEPT SELECT RaceDesc From sma_Mst_ContactRace
 --GO
 
 /* ########################################################
-Create Unidentifed Plaintiff, Defendant
+Construct special contacts
+cinncontactid = 8 -> Unassigned Staff
+cinncontactid = 9 -> Unidentified Individual
+cinncontactid = 10 -> Unidentified Plaintiff
+cinncontactid = 11 -> Unidentified Defendant
 */
 INSERT INTO [sma_MST_IndvContacts]
 (
-	[cinbPrimary]
+	[cinncontactid]
+	,[cinbPrimary]
 	,[cinnContactTypeID]
 	,[cinnContactSubCtgID]
 	,[cinsPrefix]
@@ -115,8 +120,117 @@ INSERT INTO [sma_MST_IndvContacts]
 --SELECT DISTINCT 1,10,null,null,'Defendant','','Unidentified',null,null,1,null,
 --null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
 
+
+-- 1: Unassigned Staff (cinncontactid = 8)
 SELECT DISTINCT 
-     1                      as [cinbPrimary]
+	8						as cinncontactid
+    ,1                      as [cinbPrimary]
+    ,10                     as [cinnContactTypeID]
+    ,null                   as [cinnContactSubCtgID]
+    ,null                   as [cinsPrefix]
+    ,'Staff'            	as [cinsFirstName]
+    ,''                     as [cinsMiddleName]
+    ,'Unassigned'         	as [cinsLastName]
+    ,null                   as [cinsSuffix]
+    ,null                   as [cinsNickName]
+    ,1                      as [cinbStatus]
+    ,null                   as [cinsSSNNo]
+    ,null                   as [cindBirthDate]
+    ,null                   as [cinsComments]
+    ,1                      as [cinnContactCtg]
+    ,''                     as [cinnRefByCtgID]
+    ,''                     as [cinnReferredBy]
+    ,null                   as [cindDateOfDeath]
+    ,''                     as [cinsCVLink]
+    ,''                     as [cinnMaritalStatusID]
+    ,1                      as [cinnGender]
+    ,''                     as [cinsBirthPlace]
+    ,1                      as [cinnCountyID]
+    ,1                      as [cinsCountyOfResidence]
+    ,null                   as [cinbFlagForPhoto]
+    ,null                   as [cinsPrimaryContactNo]
+    ,''                     as [cinsHomePhone]
+    ,''                     as [cinsWorkPhone]
+    ,null                   as [cinsMobile]
+    ,0                      as [cinbPreventMailing]
+    ,368                    as [cinnRecUserID]
+    ,GETDATE()              as [cindDtCreated]
+    ,''                     as [cinnModifyUserID]
+    ,null                   as [cindDtModified]
+    ,0                      as [cinnLevelNo]
+    ,''                     as [cinsPrimaryLanguage]
+    ,''                     as [cinsOtherLanguage]
+    ,''                     as [cinbDeathFlag]
+    ,''                     as [cinsCitizenship]
+    ,null                   as [cinsHeight]
+    ,''                     as [cinnWeight]
+    ,''                     as [cinsReligion]
+    ,null                   as [cindMarriageDate]
+    ,null                   as [cinsMarriageLoc]
+    ,null                   as [cinsDeathPlace]
+    ,''                     as [cinsMaidenName]
+    ,''                     as [cinsOccupation]
+    ,-1                     as [saga]
+    ,''                     as [cinsSpouse]
+    ,null                   as [cinsGrade]
+UNION
+-- 2: Unidentified Individual (cinncontactid = 9)
+SELECT DISTINCT 
+    9						as cinncontactid
+	,1                      as [cinbPrimary]
+    ,10                     as [cinnContactTypeID]
+    ,null                   as [cinnContactSubCtgID]
+    ,null                   as [cinsPrefix]
+    ,'Individual'           as [cinsFirstName]
+    ,''                     as [cinsMiddleName]
+    ,'Unidentified'         as [cinsLastName]
+    ,null                   as [cinsSuffix]
+    ,null                   as [cinsNickName]
+    ,1                      as [cinbStatus]
+    ,null                   as [cinsSSNNo]
+    ,null                   as [cindBirthDate]
+    ,null                   as [cinsComments]
+    ,1                      as [cinnContactCtg]
+    ,''                     as [cinnRefByCtgID]
+    ,''                     as [cinnReferredBy]
+    ,null                   as [cindDateOfDeath]
+    ,''                     as [cinsCVLink]
+    ,''                     as [cinnMaritalStatusID]
+    ,1                      as [cinnGender]
+    ,''                     as [cinsBirthPlace]
+    ,1                      as [cinnCountyID]
+    ,1                      as [cinsCountyOfResidence]
+    ,null                   as [cinbFlagForPhoto]
+    ,null                   as [cinsPrimaryContactNo]
+    ,''                     as [cinsHomePhone]
+    ,''                     as [cinsWorkPhone]
+    ,null                   as [cinsMobile]
+    ,0                      as [cinbPreventMailing]
+    ,368                    as [cinnRecUserID]
+    ,GETDATE()              as [cindDtCreated]
+    ,''                     as [cinnModifyUserID]
+    ,null                   as [cindDtModified]
+    ,0                      as [cinnLevelNo]
+    ,''                     as [cinsPrimaryLanguage]
+    ,''                     as [cinsOtherLanguage]
+    ,''                     as [cinbDeathFlag]
+    ,''                     as [cinsCitizenship]
+    ,null                   as [cinsHeight]
+    ,''                     as [cinnWeight]
+    ,''                     as [cinsReligion]
+    ,null                   as [cindMarriageDate]
+    ,null                   as [cinsMarriageLoc]
+    ,null                   as [cinsDeathPlace]
+    ,''                     as [cinsMaidenName]
+    ,''                     as [cinsOccupation]
+    ,0	                    as [saga]
+    ,''                     as [cinsSpouse]
+    ,null                   as [cinsGrade]
+UNION
+-- 3: Unidentified Plaintiff (cinncontactid = 10)
+SELECT DISTINCT 
+    10						as cinncontactid
+	,1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -166,6 +280,7 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 UNION
+-- 4: Unidentified Defendant (cinncontactid = 11)
 SELECT DISTINCT 
      1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
@@ -269,7 +384,7 @@ INSERT INTO [sma_MST_IndvContacts]
 	,[cinbPreventMailing]
 	,[cinsNickName]
 	,[cinsPrimaryLanguage]
-	,[cinsOtherLanguage]
+    ,[cinsOtherLanguage]
 	,[cinnRace]
 	,[saga]					
 )
@@ -365,110 +480,108 @@ WHERE N.[person]='Y'
 ---------------------------------------
 -- Construct [sma_MST_OrgContacts]
 ---------------------------------------
-INSERT INTO [sma_MST_OrgContacts]
-(
-	[consName]
-	,[consWorkPhone]
-	,[consComments]
-	,[connContactCtg]
-	,[connContactTypeID]	
-	,[connRecUserID]		
-	,[condDtCreated]
-	,[conbStatus]			
-	,[saga]
-)
+INSERT INTO [sma_MST_OrgContacts] (
+		[consName],
+		[consWorkPhone],
+		[consComments],
+		[connContactCtg],
+		[connContactTypeID],	
+		[connRecUserID],		
+		[condDtCreated],
+		[conbStatus],			
+		[saga]					
+	)
 SELECT 
-	N.[last_long_name]							as [consName]
-	,N.[work_phone]								as [consWorkPhone]
-	,case 
-		when isnull(N.[aka_full],'') <> '' and isnull(N.[email],'') = ''
-			then ('AKA: ' +  N.[aka_full])
-		when isnull(N.[aka_full],'') = '' and  isnull(N.[email],'') <> ''
-			then ('EMAIL: ' + N.[email])
-		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') <> ''
-			then ('AKA: ' +  N.[aka_full] + ' EMAIL: ' + N.[email])
-	end											as [consComments]
-	,2											as [connContactCtg]
-	,(
+    N.[last_long_name]							as [consName],
+    N.[work_phone]								as [consWorkPhone],
+    case 
+		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') = '' then (
+			'AKA: ' +  N.[aka_full]
+		)
+		when isnull(N.[aka_full],'') = '' and  isnull(N.[email],'') <> '' then (
+			'EMAIL: ' + N.[email]
+		)
+		when isnull(N.[aka_full],'') <> '' and  isnull(N.[email],'') <> '' then (
+			'AKA: ' +  N.[aka_full] + ' EMAIL: ' + N.[email]
+		)
+    end											as [consComments],
+    2											as [connContactCtg],
+    (
 		select octnOrigContactTypeID
 		FROM [SANeedlesSLF].[dbo].[sma_MST_OriginalContactTypes]
-		where octsDscrptn = 'General'
-		and octnContactCtgID = 2
-	)											as [connContactTypeID]
-	,368										as [connRecUserID]
-	,getdate()									as [condDtCreated]
-	,1											as [conbStatus]		-- Hardcode Status as ACTIVE
-	,N.[names_id]								as [saga]			-- remember the [names].[names_id] number
+		where octsDscrptn='General' and octnContactCtgID=2
+	)											as [connContactTypeID],
+    368											as [connRecUserID],
+    getdate()									as [condDtCreated],
+    1											as [conbStatus],	-- Hardcode Status as ACTIVE
+    N.[names_id]								as [saga]			-- remember the [names].[names_id] number
 FROM [NeedlesSLF].[dbo].[names] N
 WHERE N.[person] <> 'Y'
 
 ---------------------------------------
 -- INDIVIDUAL CONTACT CARD FOR STAFF
 ---------------------------------------
-INSERT INTO [sma_MST_IndvContacts]
-(
-	[cinsPrefix]
-	,[cinsSuffix]
-	,[cinsFirstName]
-	,[cinsmiddleName]
-	,[cinsLastName]
-	,[cinsHomePhone]
-	,[cinsWorkPhone]
-	,[cinsSSNNo]
-	,[cindBirthDate]
-	,[cindDateOfDeath]
-	,[cinnGender]
-	,[cinsMobile]
-	,[cinsComments]
-	,[cinnContactCtg]
-	,[cinnContactTypeID]	
-	,[cinnRecUserID]		
-	,[cindDtCreated]
-	,[cinbStatus]			
-	,[cinbPreventMailing]
-	,[cinsNickName]
-	,[saga]
-	,[cinsGrade]			-- remember the [staff_code]
+INSERT INTO [sma_MST_IndvContacts] (
+		[cinsPrefix],
+		[cinsSuffix],
+		[cinsFirstName],
+		[cinsmiddleName],
+		[cinsLastName],
+		[cinsHomePhone],
+		[cinsWorkPhone],
+		[cinsSSNNo],
+		[cindBirthDate],
+		[cindDateOfDeath],
+		[cinnGender],
+		[cinsMobile],
+		[cinsComments],
+		[cinnContactCtg],
+		[cinnContactTypeID],	
+		[cinnRecUserID],		
+		[cindDtCreated],
+		[cinbStatus],			
+		[cinbPreventMailing],
+		[cinsNickName],
+		[saga],
+		[cinsGrade]				-- remember the [staff_code]
 )
 SELECT 
-	iu.Prefix							as [cinsPrefix]
-	,iu.Suffix							as [cinsSuffix]	
-	,SAFirst							as [cinsFirstName]
-	,SAMiddle							as [cinsmiddleName]
-	,SALast								as [cinsLastName]
-	,NULL								as [cinsHomePhone]
-	,left(s.phone_number,20)			as [cinsWorkPhone]
-	,NULL								as [cinsSSNNo]
-	,NULL								as [cindBirthDate]
-	,NULL								as [cindDateOfDeath]
-	,case s.[sex]
-		when 'M'
-			then 1
-		when 'F'
-			then 2
-		else 0
-	end									as [cinnGender]
-	,left(s.mobil_phone,20)   			as [cinsMobile]
-	,NULL								as [cinsComments]
-	,1									as [cinnContactCtg]
-	,(
-		select octnOrigContactTypeID
-		from sma_MST_OriginalContactTypes
-		where octsDscrptn = 'General'
-		and octnContactCtgID = 1
-	)									as [cinnContactTypeID]
-	,368
-	,getdate()
-	,1									as [cinbStatus]
-	,0
-	,convert(varchar(15),s.full_name)	as [cinsNickName]
-	,NULL								as [saga]
-	,staff_code							as [cinsGrade] -- Remember it to go to sma_MST_Users
+		iu.Prefix							as [cinsPrefix],
+		iu.Suffix							as [cinsSuffix],
+		--left(isnull(first_name,dbo.get_firstword(full_name)),30)	as [cinsFirstName],
+		SAFirst								as [cinsFirstName],
+		SAMiddle							as [cinsmiddleName],
+		--left(isnull(last_name,dbo.get_lastword(full_name)),40)	    as [cinsLastName],
+		SALast								as [cinsLastName],
+		NULL								as [cinsHomePhone],
+		left(s.phone_number,20)				as [cinsWorkPhone],
+		NULL								as [cinsSSNNo],
+		NULL								as [cindBirthDate],
+		NULL								as [cindDateOfDeath],
+		case s.[sex] 
+			when 'M' then 1
+			when 'F' then 2
+			else 0
+		end									as [cinnGender],
+		left(s.mobil_phone,20)   			as [cinsMobile],
+		NULL								as [cinsComments],
+		1									as [cinnContactCtg],
+		(
+			select octnOrigContactTypeID
+			from sma_MST_OriginalContactTypes
+			where octsDscrptn='General' and octnContactCtgID=1
+		)									as [cinnContactTypeID],
+		368, 
+		getdate(),
+		1									as [cinbStatus],
+		0,
+		convert(varchar(15),s.full_name)	as [cinsNickName],
+		NULL								as [saga],
+		staff_code							as [cinsGrade] -- Remember it to go to sma_MST_Users
+--Select *
 FROM [implementation_users] iu
-LEFT JOIN [sma_MST_IndvContacts] ind
-	on iu.StaffCode = ind.cinsgrade
-LEFT JOIN NeedlesSLF..[staff] s
-	on s.staff_code = iu.staffcode
+LEFT JOIN [sma_MST_IndvContacts] ind on iu.StaffCode = ind.cinsgrade
+LEFT JOIN NeedlesSLF..[staff] s on s.staff_code = iu.staffcode
 WHERE cinncontactid IS NULL
 and SALoginID <> 'aadmin'
 
@@ -476,42 +589,32 @@ and SALoginID <> 'aadmin'
 -- EMAILS FOR STAFF
 ---------------------------------------
 INSERT INTO [sma_MST_EmailWebsite]
-(
-	[cewnContactCtgID]
-	,[cewnContactID]
-	,[cewsEmailWebsiteFlag]
-	,[cewsEmailWebSite]
-	,[cewbDefault]
-	,[cewnRecUserID]
-	,[cewdDtCreated]
-	,[cewnModifyUserID]
-	,[cewdDtModified]
-	,[cewnLevelNo]
-	,[saga]
-)
+  ( [cewnContactCtgID],[cewnContactID],[cewsEmailWebsiteFlag],[cewsEmailWebSite],[cewbDefault],[cewnRecUserID],[cewdDtCreated],[cewnModifyUserID],[cewdDtModified],[cewnLevelNo],[saga] )
 SELECT 
-	C.cinnContactCtg		as cewnContactCtgID
-	,C.cinnContactID		as cewnContactID
-	,'E'					as cewsEmailWebsiteFlag
-	,s.email				as cewsEmailWebSite
-	,null					as cewbDefault
-	,368					as cewnRecUserID
-	,getdate()				as cewdDtCreated
-	,368					as cewnModifyUserID
-	,getdate()				as cewdDtModified
-	,null					as cewnLevelNo
-	,1						as saga -- indicate email
+		C.cinnContactCtg	as cewnContactCtgID,
+		C.cinnContactID		as cewnContactID,
+		'E'					as cewsEmailWebsiteFlag,
+		s.email				as cewsEmailWebSite,
+		null				as cewbDefault,
+		368					as cewnRecUserID,
+		getdate()			as cewdDtCreated,
+		368					as cewnModifyUserID,
+		getdate()			as cewdDtModified,
+		null,
+		1					as saga -- indicate email
 FROM implementation_users iu
-JOIN NeedlesSLF..staff s
-	on s.staff_code = iu.staffcode
-JOIN [sma_MST_IndvContacts] C
-	on C.cinsgrade = iu.staffcode
+JOIN NeedlesSLF..staff s on s.staff_code = iu.staffcode
+JOIN [sma_MST_IndvContacts] C on C.cinsgrade = iu.staffcode
 WHERE isnull(email,'') <> ''
 
 ----------------------------------------------------
 -- INSERT AADMIN USER IF DOES NOT ALREADY EXIST
 ----------------------------------------------------
-IF (select count(*) from sma_mst_users where usrsloginid = 'aadmin') = 0
+IF (
+	select count(*)
+	from sma_mst_users
+	where usrsloginid = 'aadmin'
+	) = 0
 BEGIN
 	SET IDENTITY_INSERT sma_mst_users ON
 
@@ -547,34 +650,34 @@ BEGIN
 		,[usrbActiveState]
 	)
 	SELECT DISTINCT
-		368
-		,8
-		,'aadmin'
-		,'2/'
-		,null
-		,null
-		,null
-		,null
-		,33
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,1
-		,GETDATE()
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,null
-		,1
+		368							as usrnuserid
+		,8							as usrnContactID
+		,'aadmin'					as usrsLoginID
+		,'2/'				 as usrsPassword
+		,null						as [usrsBackColor]
+		,null						as [usrsReadBackColor]
+		,null						as [usrsEvenBackColor]
+		,null						as [usrsOddBackColor]
+		,33							as [usrnRoleID]
+		,null						as [usrdLoginDate]
+		,null						as [usrdLogOffDate]
+		,null						as [usrnUserLevel]
+		,null						as [usrsWorkstation]
+		,null						as [usrnPortno]
+		,null						as [usrbLoggedIn]
+		,null						as [usrbCaseLevelRights]
+		,null						as [usrbCaseLevelFilters]
+		,null						as [usrnUnsuccesfulLoginCount]
+		,1							as [usrnRecUserID]
+		,GETDATE()					as [usrdDtCreated]
+		,null						as [usrnModifyUserID]
+		,null						as [usrdDtModified]
+		,null						as [usrnLevelNo]
+		,null						as [usrsCaseCloseColor]
+		,null						as [usrnDocAssembly]
+		,null						as [usrnAdmin]
+		,null						as [usrnIsLocked]
+		,1							as [usrbActiveState]
 	SET IDENTITY_INSERT sma_mst_users OFF
 END
 
@@ -601,68 +704,67 @@ GO
 --WHERE u.usrsLoginID IS NULL
 
 -- Insert data into sma_MST_Users table from implementation_users table
-INSERT INTO [sma_MST_Users]
-(
-    [usrnContactID]         -- Contact ID
-    ,[usrsLoginID]           -- Login ID
-    ,[usrsPassword]          -- Password
-    ,[usrsBackColor]         -- Background Color
-    ,[usrsReadBackColor]     -- Read Background Color
-    ,[usrsEvenBackColor]     -- Even Background Color
-    ,[usrsOddBackColor]      -- Odd Background Color
-    ,[usrnRoleID]            -- Role ID
-    ,[usrdLoginDate]         -- Login Date
-    ,[usrdLogOffDate]        -- Log Off Date
-    ,[usrnUserLevel]         -- User Level
-    ,[usrsWorkstation]       -- Workstation
-    ,[usrnPortno]            -- Port Number
-    ,[usrbLoggedIn]          -- Logged In
-    ,[usrbCaseLevelRights]   -- Case Level Rights
-    ,[usrbCaseLevelFilters]  -- Case Level Filters
-    ,[usrnUnsuccesfulLoginCount] -- Unsuccessful Login Count
-    ,[usrnRecUserID]         -- Record User ID
-    ,[usrdDtCreated]         -- Date Created
-    ,[usrnModifyUserID]      -- Modify User ID
-    ,[usrdDtModified]        -- Date Modified
-    ,[usrnLevelNo]           -- Level Number
-    ,[usrsCaseCloseColor]    -- Case Close Color
-    ,[usrnDocAssembly]       -- Document Assembly
-    ,[usrnAdmin]             -- Admin
-    ,[usrnIsLocked]          -- Is Locked
-    ,[saga]                  -- Staff Code
-    ,[usrbActiveState]       -- Active State
-    ,[usrbIsShowInSystem]     -- Show In System
+INSERT INTO [sma_MST_Users] (
+    [usrnContactID],         -- Contact ID
+    [usrsLoginID],           -- Login ID
+    [usrsPassword],          -- Password
+    [usrsBackColor],         -- Background Color
+    [usrsReadBackColor],     -- Read Background Color
+    [usrsEvenBackColor],     -- Even Background Color
+    [usrsOddBackColor],      -- Odd Background Color
+    [usrnRoleID],            -- Role ID
+    [usrdLoginDate],         -- Login Date
+    [usrdLogOffDate],        -- Log Off Date
+    [usrnUserLevel],         -- User Level
+    [usrsWorkstation],       -- Workstation
+    [usrnPortno],            -- Port Number
+    [usrbLoggedIn],          -- Logged In
+    [usrbCaseLevelRights],   -- Case Level Rights
+    [usrbCaseLevelFilters],  -- Case Level Filters
+    [usrnUnsuccesfulLoginCount], -- Unsuccessful Login Count
+    [usrnRecUserID],         -- Record User ID
+    [usrdDtCreated],         -- Date Created
+    [usrnModifyUserID],      -- Modify User ID
+    [usrdDtModified],        -- Date Modified
+    [usrnLevelNo],           -- Level Number
+    [usrsCaseCloseColor],    -- Case Close Color
+    [usrnDocAssembly],       -- Document Assembly
+    [usrnAdmin],             -- Admin
+    [usrnIsLocked],          -- Is Locked
+    [saga],                  -- Staff Code
+    [usrbActiveState],       -- Active State
+    [usrbIsShowInSystem]     -- Show In System
 )
 SELECT 
-    INDV.cinncontactid,                 -- [usrnContactID]
-    STF.SAloginID,                      -- [usrsLoginID]
-    '#',                             -- [usrsPassword]
-    NULL,                               -- [usrsBackColor]
-    NULL,                               -- [usrsReadBackColor]
-    NULL,                               -- [usrsEvenBackColor]
-    NULL,                               -- [usrsOddBackColor]
-    33,                                 -- [usrnRoleID]
-    NULL,                               -- [usrdLoginDate]
-    NULL,                               -- [usrdLogOffDate]
-    NULL,                               -- [usrnUserLevel]
-    NULL,                               -- [usrsWorkstation]
-    NULL,                               -- [usrnPortno]
-    NULL,                               -- [usrbLoggedIn]
-    NULL,                               -- [usrbCaseLevelRights]
-    NULL,                               -- [usrbCaseLevelFilters]
-    NULL,                               -- [usrnUnsuccesfulLoginCount]
-    1,                                  -- [usrnRecUserID]
-    GETDATE(),                          -- [usrdDtCreated]
-    NULL,                               -- [usrnModifyUserID]
-    NULL,                               -- [usrdDtModified]
-    NULL,                               -- [usrnLevelNo]
-    NULL,                               -- [usrsCaseCloseColor]
-    NULL,                               -- [usrnDocAssembly]
-    NULL,                               -- [usrnAdmin]
-    NULL,                               -- [usrnIsLocked]
-    CONVERT(VARCHAR(20), STF.staffcode), -- [saga]
-    1,			                        -- [usrbActiveState]
-    1									-- [usrbIsShowInSystem]
+    INDV.cinncontactid                -- [usrnContactID]
+    ,STF.SAloginID                      -- [usrsLoginID]
+    ,'#'                             -- [usrsPassword]
+    ,NULL                               -- [usrsBackColor]
+    ,NULL                               -- [usrsReadBackColor]
+    ,NULL                               -- [usrsEvenBackColor]
+    ,NULL                               -- [usrsOddBackColor]
+    ,33                                 -- [usrnRoleID]
+    ,NULL                               -- [usrdLoginDate]
+    ,NULL                               -- [usrdLogOffDate]
+    ,NULL                               -- [usrnUserLevel]
+    ,NULL                               -- [usrsWorkstation]
+    ,NULL                               -- [usrnPortno]
+    ,NULL                               -- [usrbLoggedIn]
+    ,NULL                               -- [usrbCaseLevelRights]
+    ,NULL                               -- [usrbCaseLevelFilters]
+    ,NULL                               -- [usrnUnsuccesfulLoginCount]
+    ,1                                  -- [usrnRecUserID]
+    ,GETDATE()                          -- [usrdDtCreated]
+    ,NULL                               -- [usrnModifyUserID]
+    ,NULL                               -- [usrdDtModified]
+    ,NULL                               -- [usrnLevelNo]
+    ,NULL                               -- [usrsCaseCloseColor]
+    ,NULL                               -- [usrnDocAssembly]
+    ,NULL                               -- [usrnAdmin]
+    ,NULL                               -- [usrnIsLocked]
+    ,CONVERT(VARCHAR(20), STF.staffcode) -- [saga]
+    ,stf.Active
+	,stf.visible
 FROM implementation_users STF
 JOIN sma_MST_IndvContacts INDV
 	ON INDV.cinsGrade = STF.staffcode
@@ -736,6 +838,9 @@ DEALLOCATE staff_cursor
 INSERT INTO Account_UsersInRoles ( user_id,role_id)
 SELECT usrnUserID as user_id,2 as role_id 
 FROM sma_MST_Users
+
+-- update sma_MST_Users set usrbActiveState=1
+-- where usrsLoginID='aadmin'
 
 UPDATE Account_UsersInRoles 
 SET role_id=1 
