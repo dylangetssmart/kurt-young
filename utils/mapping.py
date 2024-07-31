@@ -9,10 +9,10 @@ conn_str = f"mssql+pyodbc://{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+
 
 # Directory containing SQL files and output directory
 sql_dir = '../scripts/mapping'
-output_dir = '../scripts/mapping'
+output_dir = '../scripts/'
 
 def execute_query(query, engine, additional_columns=None):
-    # Executes a SQL query and returns the result as a DataFrame with additional columns
+    """Executes a SQL query and returns the result as a DataFrame with additional columns."""
     try:
         df = pd.read_sql_query(query, engine)
         print(f"Query executed successfully.")
@@ -29,17 +29,15 @@ def execute_query(query, engine, additional_columns=None):
         return pd.DataFrame()
 
 def save_to_excel(dataframes, output_path):
-    # Saves multiple DataFrames to an Excel file with different sheets
+    """Saves multiple DataFrames to an Excel file with different sheets."""
     if not dataframes:
         print("No data to save.")
         return
 
+    # Save DataFrames to Excel
     with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
         for sheet_name, df in dataframes.items():
-            if not df.empty:
-                df.to_excel(writer, sheet_name=sheet_name, index=False)
-            else:
-                print(f"Skipping empty DataFrame for sheet: {sheet_name}")
+            df.to_excel(writer, sheet_name=sheet_name, index=False)
 
 def main():
     # Get the current working directory
