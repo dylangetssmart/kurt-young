@@ -2,27 +2,34 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 
-# Database connection details
-conn_str = (
-    "mssql+pyodbc://DYLANS/NeedlesSLF?driver=ODBC+Driver+17+for+SQL+Server"
-)
+# Variables for database connection
+db_server = "DYLANS"
+db_name = "NeedlesSLF"
+conn_str = f"mssql+pyodbc://{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+Server"
 
 # Directory containing SQL files and output directory
 sql_dir = '../scripts/mapping'
-output_dir = '../scripts/'
+output_dir = '../scripts/mapping'
 
-def execute_query(query, engine):
-    """Executes a SQL query and returns the result as a DataFrame."""
+def execute_query(query, engine, additional_columns=None):
+    # Executes a SQL query and returns the result as a DataFrame with additional columns
     try:
         df = pd.read_sql_query(query, engine)
         print(f"Query executed successfully.")
+        
+        # Add additional columns if provided
+        if additional_columns:
+            for col, default_value in additional_columns.items():
+                if col not in df.columns:
+                    df[col] = default_value
+        
         return df
     except Exception as e:
         print(f"Error executing query: {e}")
         return pd.DataFrame()
 
 def save_to_excel(dataframes, output_path):
-    """Saves multiple DataFrames to an Excel file with different sheets."""
+    # Saves multiple DataFrames to an Excel file with different sheets
     if not dataframes:
         print("No data to save.")
         return
@@ -51,6 +58,24 @@ def main():
     # Create a dictionary to store DataFrames for each query
     dataframes = {}
     
+    # Define additional columns for general data and party roles
+    general_columns = {
+        "classcode": None,
+        "description": None,
+        "SmartAdvocate Section": None,
+        "SmartAdvocate Screen": None,
+        "SmartAdvocate Field": None,
+        "Contact Role": None,
+        "Contact Category": None,
+        "Contact Type": None,
+        "Comment": None
+    }
+    
+    party_role_columns = {
+        "SA Role": None,
+        "SA Party": None
+    }
+    
     # Iterate over SQL files
     for filename in os.listdir(full_sql_dir):
         if filename.endswith('.sql'):
@@ -59,7 +84,12 @@ def main():
             try:
                 with open(full_file_path, 'r') as file:
                     query = file.read().strip()
-                    df = execute_query(query, engine)
+                    # Choose additional columns based on file or content type
+                    if 'party_roles' in filename.lower():
+                        df = execute_query(query, engine, additional_columns=party_role_columns)
+                    else:
+                        df = execute_query(query, engine, additional_columns=general_columns)
+                    
                     if not df.empty:
                         dataframes[sheet_name] = df
                     else:
