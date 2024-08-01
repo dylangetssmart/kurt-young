@@ -6,75 +6,84 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def select_bak_file():
+def select_bak_backup_file():
     root = tk.Tk()
     root.withdraw()
-    file_path = filedialog.askopenfilename(
-        title="Select the .bak file to restore",
-        filetypes=[("SQL Backup Files", "*.bak")]
+    backup_file_path = filedialog.askopenfile(
+        title="Select the .bak backup_file to restore",
+        filetypes=[("SQL Backup backup_files", "*.bak")],
+        initialdir='C:\LocalConv'
     )
-    return file_path
+    return backup_file_path
 
-def main():
-    # SERVER = 'DylanS\\MSSQLSERVER2022'
-    SERVER = os.getenv('SERVER')  # Retrieve server from environment variables
-    DATABASE = os.getenv('SA_DB')  # Retrieve database from environment variables
+def revert_db():
+    # server = 'DylanS\\MSSQLserver2022'
+    server = os.getenv('server')  # Retrieve server from environment variables
+    database = os.getenv('SA_DB')  # Retrieve database from environment variables
 
-    if not SERVER:
-        print("Server environment variable is not set.")
+    print(server)
+    print(database)
+    # print(backup_file)
+
+    if not server:
+        print("Missing server parameter.")
         return
 
-    if not DATABASE:
-        print("Database environment variable is not set.")
+    if not database:
+        print("Missing database parameter.")
         return
-
-    # Prompt for database name
-    # DATABASE = input("Enter the name of the database to restore: ")
-
-    # if not DATABASE:
-    #     print("Database name cannot be empty. Exiting script.")
+    
+    # if not backup_file:
+    #     print("Missing backup backup_file parameter.")
     #     return
 
-    # Prompt user to select .bak file using file dialog
-    print("Select the .bak file to restore:")
-    FILE = select_bak_file()
+    # Prompt for database name
+    # database = input("Enter the name of the database to restore: ")
 
-    if not FILE:
-        print("No file selected. Exiting script.")
-        return
+    # if not database:
+    #     print("database name cannot be empty. Exiting script.")
+    #     return
+
+    # Prompt user to select .bak backup_file using backup_file dialog
+    print("Select the .bak backup_file to restore:")
+    backup_file = select_bak_backup_file()
+
+    # if not backup_file:
+    #     print("No backup_file selected. Exiting script.")
+    #     return
 
     # Put the database in single user mode
-    print(f"\nPutting database {DATABASE} in single user mode ...")
+    print(f"\nPutting database {database} in single user mode ...")
     try:
         subprocess.run(
-            ['sqlcmd', '-S', SERVER, '-Q', f"ALTER DATABASE [{DATABASE}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", '-b', '-d', 'master'],
+            ['sqlcmd', '-S', server, '-Q', f"ALTER database [{database}] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;", '-b', '-d', 'master'],
             check=True
         )
     except subprocess.CalledProcessError:
-        print(f"Failed to set database {DATABASE} to single user mode. Exiting script.")
+        print(f"Failed to set database {database} to single user mode. Exiting script.")
         return
 
     # Restore the database
-    print(f"\nRestoring database {DATABASE} from {FILE} ...")
+    print(f"\nRestoring database {database} from {backup_file} ...")
     try:
         subprocess.run(
-            ['sqlcmd', '-S', SERVER, '-Q', f"RESTORE DATABASE [{DATABASE}] FROM DISK='{FILE}' WITH REPLACE, RECOVERY;", '-b', '-d', 'master'],
+            ['sqlcmd', '-S', server, '-Q', f"RESTORE database [{database}] FROM DISK='{backup_file}' WITH REPLACE, RECOVERY;", '-b', '-d', 'master'],
             check=True
         )
-        print(f"Database {DATABASE} restored successfully from {FILE}.")
+        print(f"database {database} restored successfully from {backup_file}.")
     except subprocess.CalledProcessError:
-        print("Database restore failed. Check the SQL Server error log for details.")
+        print("database restore failed. Check the SQL server error log for details.")
         return
 
     # Set the database back to multi-user mode
-    print(f"\nPutting database {DATABASE} back in multi-user mode ...")
+    print(f"\nPutting database {database} back in multi-user mode ...")
     try:
         subprocess.run(
-            ['sqlcmd', '-S', SERVER, '-Q', f"ALTER DATABASE [{DATABASE}] SET MULTI_USER;", '-b', '-d', 'master'],
+            ['sqlcmd', '-S', server, '-Q', f"ALTER database [{database}] SET MULTI_USER;", '-b', '-d', 'master'],
             check=True
         )
     except subprocess.CalledProcessError:
-        print(f"Failed to set database {DATABASE} back to multi-user mode. Manual intervention may be required.")
+        print(f"Failed to set database {database} back to multi-user mode. Manual intervention may be required.")
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
