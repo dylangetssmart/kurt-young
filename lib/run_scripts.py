@@ -21,7 +21,6 @@ SQL_SCRIPTS_DIR = os.path.join(BASE_DIR, '../sql-scripts/conv/')
 LOGS_DIR = os.path.join(BASE_DIR, '../logs')
 LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
 
-# Menu for script execution options
 menu_options = {
     'A': {'description': 'All', 'pattern': re.compile(r'^.*\.sql$', re.I)},
     '0': {'description': 'Initialize', 'pattern': re.compile(r'^0.*\.sql$', re.I)},
@@ -34,6 +33,10 @@ menu_options = {
     'Q': {'description': 'Quit', 'pattern': None}
 }
 
+def prompt_for_backup():
+    backup_choice = input('Do you want to create database backups before running scripts? (Y/N): ').upper()
+    return backup_choice == 'Y'
+
 # Display menu and prompt user for choice
 print('Select scripts to run:')
 for key, option in menu_options.items():
@@ -43,6 +46,16 @@ choice = input('Enter your choice: ').upper()
 selected_option = menu_options.get(choice)
 
 if selected_option and selected_option['pattern']:
+    if prompt_for_backup():
+        # Create db backups
+        create_database_backups({
+            'databaseName1': SA_DB,
+            # 'databaseName2': NEEDLES_DB,
+            'directory': os.path.join(BASE_DIR, '../backups'),
+            'step': selected_option['description'],
+            'server': SERVER
+        })
+
     try:
         all_files = os.listdir(SQL_SCRIPTS_DIR)
         files = [file for file in all_files if selected_option['pattern'].match(file)]
@@ -59,12 +72,12 @@ elif choice == 'Q':
 else:
     print('Invalid choice. Please try again.')
 
-# Create db backups
-if choice != 'Q':
-    create_database_backups({
-        'databaseName1': SA_DB,
-        # 'databaseName2': NEEDLES_DB,
-        'directory': os.path.join(BASE_DIR, '../backups'),
-        'step': selected_option['description'],
-        'server': SERVER
-    })
+# # Create db backups
+# if choice != 'Q':
+#     create_database_backups({
+#         'databaseName1': SA_DB,
+#         # 'databaseName2': NEEDLES_DB,
+#         'directory': os.path.join(BASE_DIR, '../backups'),
+#         'step': selected_option['description'],
+#         'server': SERVER
+#     })
