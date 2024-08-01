@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-def create_database_backups(options):
+def backup_db(options):
     directory = options['directory']
     step = options['step']
     database_name1 = options['databaseName1']
