@@ -28,3 +28,5 @@ backups/
 # Directories to ignore
 trans/
 logs/
+
+.env
