@@ -9,10 +9,10 @@ conn_str = f"mssql+pyodbc://{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+
 
 # Directory containing SQL files and output directory
 sql_dir = '../scripts/mapping'
-output_dir = '../scripts/'
+output_dir = '../scripts/mapping'
 
 def execute_query(query, engine, additional_columns=None):
-    """Executes a SQL query and returns the result as a DataFrame with additional columns."""
+    # Executes a SQL query and returns the result as a DataFrame with additional columns.
     try:
         df = pd.read_sql_query(query, engine)
         print(f"Query executed successfully.")
@@ -29,7 +29,7 @@ def execute_query(query, engine, additional_columns=None):
         return pd.DataFrame()
 
 def save_to_excel(dataframes, output_path):
-    """Saves multiple DataFrames to an Excel file with different sheets."""
+    # Saves multiple DataFrames to an Excel file with different sheets.
     if not dataframes:
         print("No data to save.")
         return
@@ -100,8 +100,10 @@ def main():
     for name in dataframes:
         print(f"DataFrame '{name}' shape: {dataframes[name].shape}")
     
+    parent_dir_name = os.path.basename(os.path.abspath(os.path.join(base_dir, os.pardir)))
+
     # Save all DataFrames to a single Excel file
-    output_filename = 'result.xlsx'
+    output_filename = f'{parent_dir_name} Mapping Template.xlsx'
     output_path = os.path.join(full_output_dir, output_filename)
     save_to_excel(dataframes, output_path)
     
