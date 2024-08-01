@@ -1,5 +1,5 @@
 
--- USE SANeedlesSLF
+ USE SANeedlesSLF
 GO
 /*
 alter table [sma_MST_IndvContacts] disable trigger all
@@ -54,6 +54,9 @@ cinncontactid = 9 -> Unidentified Individual
 cinncontactid = 10 -> Unidentified Plaintiff
 cinncontactid = 11 -> Unidentified Defendant
 */
+
+SET IDENTITY_INSERT [sma_MST_IndvContacts] ON
+
 INSERT INTO [sma_MST_IndvContacts]
 (
 	[cinncontactid]
@@ -282,7 +285,8 @@ SELECT DISTINCT
 UNION
 -- 4: Unidentified Defendant (cinncontactid = 11)
 SELECT DISTINCT 
-     1                      as [cinbPrimary]
+    11						as cinncontactid
+	,1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -332,7 +336,7 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 
---SET IDENTITY_INSERT [sma_MST_IndvContacts] OFF
+SET IDENTITY_INSERT [sma_MST_IndvContacts] OFF
 --GO
  
  /*
@@ -736,9 +740,9 @@ INSERT INTO [sma_MST_Users] (
     [usrbIsShowInSystem]     -- Show In System
 )
 SELECT 
-    INDV.cinncontactid                -- [usrnContactID]
+    INDV.cinncontactid					 -- [usrnContactID]
     ,STF.SAloginID                      -- [usrsLoginID]
-    ,'#'                             -- [usrsPassword]
+    ,'#'								 -- [usrsPassword]
     ,NULL                               -- [usrsBackColor]
     ,NULL                               -- [usrsReadBackColor]
     ,NULL                               -- [usrsEvenBackColor]
@@ -763,8 +767,8 @@ SELECT
     ,NULL                               -- [usrnAdmin]
     ,NULL                               -- [usrnIsLocked]
     ,CONVERT(VARCHAR(20), STF.staffcode) -- [saga]
-    ,stf.Active
-	,stf.visible
+    ,0									as [usrbActiveState]
+	,1									as [usrbIsShowInSystem]
 FROM implementation_users STF
 JOIN sma_MST_IndvContacts INDV
 	ON INDV.cinsGrade = STF.staffcode
