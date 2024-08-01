@@ -1,0 +1,40 @@
+import os
+import subprocess
+from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
+
+def create_database_backups(options):
+    directory = options['directory']
+    step = options['step']
+    database_name1 = options['databaseName1']
+    # server = options['server']
+    server = os.getenv('SERVER')
+    # database_name2 = options['databaseName2']
+
+    if not server:
+        raise ValueError("Server environment variable is not set.")
+
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M')
+    backup_path1 = os.path.join(directory, f'{database_name1}-after-{step}_{timestamp}.bak')
+    # backup_path2 = os.path.join(directory, f'{database_name2}-after-{step}_{timestamp}.bak')
+
+    # Ensure the backup directory exists
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+
+    backup_command1 = f"sqlcmd -S {server} -Q \"BACKUP DATABASE [{database_name1}] TO DISK = '{backup_path1}' WITH FORMAT, INIT, NAME = '{database_name1} Full Backup', SKIP, NOREWIND, NOUNLOAD, STATS = 10\""
+    # backup_command2 = f"sqlcmd -S {server} -Q \"BACKUP DATABASE [{database_name2}] TO DISK = '{backup_path2}' WITH FORMAT, INIT, NAME = '{database_name2} Full Backup', SKIP, NOREWIND, NOUNLOAD, STATS = 10\""
+
+    try:
+        subprocess.run(backup_command1, check=True, shell=True)
+        print(f"Backup for {database_name1} completed successfully at {directory}.")
+    except subprocess.CalledProcessError as error:
+        print(f"Error backing up database {database_name1}:", error)
+
+    # try:
+    #     subprocess.run(backup_command2, check=True, shell=True)
+    #     print(f"Backup for {database_name2} completed successfully at {directory}.")
+    # except subprocess.CalledProcessError as error:
+    #     print(f"Error backing up database {database_name2}:", error)
