@@ -1,33 +1,70 @@
-use SANeedlesKMY
+use SANeedlesSLF
 go
 
-/*
-Pivot Table
+/* ########################################################
+This script populates UDF Other4 with all columns from user_tab4_data
 */
+
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Other4UDF' AND type = 'U')
 BEGIN
     DROP TABLE Other4UDF
 END
 
+-- Create temporary table for columns to exclude
+IF OBJECT_ID('tempdb..#ExcludedColumns') IS NOT NULL
+    DROP TABLE #ExcludedColumns;
+
+CREATE TABLE #ExcludedColumns (
+    column_name VARCHAR(128)
+);
+
+
+-- Insert columns to exclude
+INSERT INTO #ExcludedColumns (column_name)
+VALUES
+('case_id'),
+('tab_id_location'),
+('modified_timestamp'),
+('show_on_status_tab'),
+('case_status_attn'),
+('case_status_client');
+
+
+-- Dynamically get all columns from NeedlesSLF..user_tab4_data for unpivoting
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql = STRING_AGG(CONVERT(VARCHAR(MAX), 
+    N'CONVERT(VARCHAR(MAX), ' + QUOTENAME(column_name) + N') AS ' + QUOTENAME(column_name)
+), ', ')
+FROM NeedlesSLF.INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'user_tab4_data'
+AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
+
+
+-- Dynamically create the UNPIVOT list
+DECLARE @unpivot_list NVARCHAR(MAX) = N'';
+SELECT @unpivot_list = STRING_AGG(QUOTENAME(column_name), ', ')
+FROM NeedlesSLF.INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'user_tab4_data'
+AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
+
+
+-- Generate the dynamic SQL for creating the pivot table
+SET @sql = N'
 SELECT casnCaseID, casnOrgCaseTypeID, FieldTitle, FieldVal
 INTO Other4UDF
 FROM ( 
     SELECT 
         cas.casnCaseID, 
-        cas.casnOrgCaseTypeID, 
-        CONVERT(VARCHAR(MAX), [Date_Received]) AS [Date Received],
-        CONVERT(VARCHAR(MAX), [Settlement_Description]) AS [Settlement Description],
-        CONVERT(VARCHAR(MAX), [Net_Amount]) AS [Net Amount],
-        CONVERT(VARCHAR(MAX), [Fees_paid]) AS [Fees Paid],
-        CONVERT(VARCHAR(MAX), [Costs_recd]) AS [Costs Recd]
-    FROM NeedlesKMY..user_tab4_data ud
-    JOIN NeedlesKMY..cases_Indexed c ON c.casenum = ud.case_id
+        cas.casnOrgCaseTypeID, ' + @sql + N'
+    FROM NeedlesSLF..user_tab4_data ud
+    JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.case_id
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 ) pv
-UNPIVOT (FieldVal FOR FieldTitle IN (
-    [Date Received], [Settlement Description], [Net Amount], [Fees Paid], [Costs Recd]
-)) AS unpvt;
+UNPIVOT (FieldVal FOR FieldTitle IN (' + @unpivot_list + N')) AS unpvt;';
 
+EXEC sp_executesql @sql;
+select * from other4udf
+select * from NeedlesSLF..user_tab4_data
 
 ----------------------------
 --UDF DEFINITION
@@ -37,7 +74,7 @@ GO
 
 INSERT INTO [sma_MST_UDFDefinition]
 (
-    [udfsUDFCtg]
+   [udfsUDFCtg]
 	,[udfnRelatedPK]
 	,[udfsUDFName]
 	,[udfsScreenName]
@@ -49,7 +86,7 @@ INSERT INTO [sma_MST_UDFDefinition]
 	,[udfnSortOrder]
 )
 SELECT DISTINCT 
-    'C'													as [udfsUDFCtg]
+   'C'													as [udfsUDFCtg]
 	,CST.cstnCaseTypeID									as [udfnRelatedPK]
 	,M.field_title										as [udfsUDFName]
 	,'Other4'											as [udfsScreenName]
@@ -62,7 +99,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [NeedlesKMY].[dbo].[user_tab2_matter] M
+	JOIN [NeedlesSLF].[dbo].[user_tab4_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -70,11 +107,11 @@ FROM [sma_MST_CaseType] CST
 				FROM Other4UDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	LEFT JOIN	(
 					SELECT DISTINCT table_Name, column_name
-					FROM [NeedlesKMY].[dbo].[document_merge_params]
+					FROM [NeedlesSLF].[dbo].[document_merge_params]
 					WHERE table_Name = 'user_tab4_data'
 				) dmp
 		ON dmp.column_name = ucf.field_Title
@@ -93,7 +130,7 @@ GO
 
 INSERT INTO [sma_TRN_UDFValues]
 (
-    [udvnUDFID]
+   [udvnUDFID]
 	,[udvsScreenName]
 	,[udvsUDFCtg]
 	,[udvnRelatedID]
@@ -106,7 +143,7 @@ INSERT INTO [sma_TRN_UDFValues]
 	,[udvnLevelNo]
 )
 SELECT 
-    def.udfnUDFID		as [udvnUDFID],
+   def.udfnUDFID		as [udvnUDFID],
 	'Other4'				as [udvsScreenName],
 	'C'					as [udvsUDFCtg],
 	casnCaseID			as [udvnRelatedID],
