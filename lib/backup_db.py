@@ -1,24 +1,18 @@
 import os
 import subprocess
 from datetime import datetime
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 def backup_db(options):
-    # directory = options['directory']
-    # step = options['step']
-    # database = options['databaseName1']
-    # # server = options['server']
-    # server = os.getenv('SERVER')
     directory = options.get('directory')
     step = options.get('step')
     database = options.get('database')
-    # server = options['server']
-    server = os.getenv('SERVER')
-    # database_name2 = options['databaseName2']
+    server = options.get('server')
+    # server = os.getenv('SERVER')
 
-    print(directory, step, database, server)
+    # print(directory, step, database, server)
 
     if not server:
         raise ValueError("Server environment variable is not set.")

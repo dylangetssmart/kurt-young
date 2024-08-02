@@ -9,7 +9,7 @@ from tkinter.filedialog import askopenfilename
 
 # Lib
 from lib.backup_db import backup_db
-from lib.sql_runner import run_sql_script
+from lib.exec_conv import exec_conv
 from lib.revert_db import revert_db
 from lib.hello import hello
 
@@ -26,11 +26,10 @@ SQL_SCRIPTS_DIR = os.path.join(BASE_DIR, '../sql-scripts/conv/')
 LOGS_DIR = os.path.join(BASE_DIR, '../logs')
 LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
 
-def backup_db_cmd(args):
+def bu(args):
     server = args.server or SERVER
     database = args.database or os.getenv('SA_DB')
     directory = args.directory or os.path.join(os.getcwd(),'backups')
-    # print(os.path.join(os.getcwd(),'backups'))
     options = {
         'directory': directory,
         'step': args.step,
@@ -39,28 +38,38 @@ def backup_db_cmd(args):
     }
     backup_db(options)
 
-def run_scripts_cmd(args):
-    if not os.path.isdir(args.script_directory):
-        print(f"Directory {args.script_directory} does not exist.")
-        return
+def exec(args):
+    server = args.server or SERVER
+    database = args.database or os.getenv('SA_DB')
+    options = {
+        'server': server,
+        'database': database,
+        'sequence': args.sequence,
+        'backup': args.backup
+    }
+    exec_conv(options)
 
-    print(f"Running scripts from {args.script_directory} on server {args.server}...")
+    # if not os.path.isdir(args.script_directory):
+    #     print(f"Directory {args.script_directory} does not exist.")
+    #     return
 
-    try:
-        all_files = os.listdir(args.script_directory)
-        for file in all_files:
-            if file.endswith('.sql'):
-                run_sql_script(
-                    os.path.join(args.script_directory, file),
-                        args.server,
-                        args.database,
-                        args.logs_dir,
-                        args.datetime_str
-                    )
-    except Exception as e:
-        print(f'Error running scripts: {str(e)}')
+    # print(f"Running scripts from {args.script_directory} on server {args.server}...")
 
-def revert_db_cmd(args):
+    # try:
+    #     all_files = os.listdir(args.script_directory)
+    #     for file in all_files:
+    #         if file.endswith('.sql'):
+    #             run_sql_script(
+    #                 os.path.join(args.script_directory, file),
+    #                     args.server,
+    #                     args.database,
+    #                     args.logs_dir,
+    #                     args.datetime_str
+    #                 )
+    # except Exception as e:
+    #     print(f'Error running scripts: {str(e)}')
+
+def revert(args):
     # server = args.server or SERVER
     # database = args.database or os.getenv('SOURCE_DATABASE')
 
@@ -115,12 +124,19 @@ def main():
     backup_parser.add_argument('--server', help='Server name.')
 
     # Run Scripts command
-    run_scripts_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
-    # run_scripts_parser.add_argument('script_directory', help='Directory containing SQL scripts.')
-    # run_scripts_parser.add_argument('server', help='Server name.')
-    # run_scripts_parser.add_argument('database', help='Database name.')
-    # run_scripts_parser.add_argument('logs_dir', help='Directory to store logs.')
-    # run_scripts_parser.add_argument('datetime_str', help='Timestamp string for logging.')
+    exec_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
+    exec_parser.add_argument('-s', '--sequence',
+                                    help='Enter the sequence of scripts to execute.',
+                                    choices=['0','1','2','3','4','5','a','p','q']
+                                    )
+    exec_parser.add_argument('-bu', '--backup', action='store_true', help='Create database backups before running scripts.')
+    exec_parser.add_argument('--server', help='Server name.')
+    exec_parser.add_argument('--database', help='Database to backup.')
+    # exec_parser.add_argument('script_directory', help='Directory containing SQL scripts.')
+    # exec_parser.add_argument('server', help='Server name.')
+    # exec_parser.add_argument('database', help='Database name.')
+    # exec_parser.add_argument('logs_dir', help='Directory to store logs.')
+    # exec_parser.add_argument('datetime_str', help='Timestamp string for logging.')
 
     # Revert DB command
     revert_db_parser = subparsers.add_parser('rev', help='Revert a database from a backup file.')
@@ -134,11 +150,11 @@ def main():
     args = parser.parse_args()
 
     if args.command == 'bu':
-        backup_db_cmd(args)
+        bu(args)
     elif args.command == 'exec':
-        run_scripts_cmd(args)
+        exec(args)
     elif args.command == 'rev':
-        revert_db_cmd()
+        revert()
     elif args.command == 'hello':
         hello(args.name)
     else:
