@@ -12,7 +12,7 @@ from lib.sql_runner import sql_runner
 # SERVER = 'DYLANS\\MSSQLSERVER2022'
 # NEEDLES_DB = 'NeedlesSLF'
 # SA_DB = 'SANeedlesSLF'
-datetime_str = datetime.now().strftime('%Y-%m-%d_%H-%M')
+# datetime_str = datetime.now().strftime('%Y-%m-%d_%H-%M')
 # SERVER = os.getenv('SERVER')
 # NEEDLES_DB = os.getenv('SOURCE_DATABASE')
 # SA_DB = os.getenv('SA_DB')
