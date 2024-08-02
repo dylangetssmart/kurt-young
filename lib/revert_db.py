@@ -9,20 +9,21 @@ load_dotenv()
 def select_bak_backup_file():
     root = tk.Tk()
     root.withdraw()
-    backup_file_path = filedialog.askopenfile(
+    backup_file = filedialog.askopenfile(
         title="Select the .bak backup_file to restore",
         filetypes=[("SQL Backup backup_files", "*.bak")],
         initialdir='C:\LocalConv'
     )
-    return backup_file_path
+    if backup_file:
+        return backup_file.name  # Return the path to the file
+    return None
 
-def revert_db():
-    # server = 'DylanS\\MSSQLserver2022'
-    server = os.getenv('server')  # Retrieve server from environment variables
-    database = os.getenv('SA_DB')  # Retrieve database from environment variables
+def revert_db(options):
+    server = options.get('server')
+    database = options.get('database')
 
-    print(server)
-    print(database)
+    # print(server)
+    # print(database)
     # print(backup_file)
 
     if not server:
@@ -32,25 +33,16 @@ def revert_db():
     if not database:
         print("Missing database parameter.")
         return
-    
-    # if not backup_file:
-    #     print("Missing backup backup_file parameter.")
-    #     return
-
-    # Prompt for database name
-    # database = input("Enter the name of the database to restore: ")
-
-    # if not database:
-    #     print("database name cannot be empty. Exiting script.")
-    #     return
 
     # Prompt user to select .bak backup_file using backup_file dialog
     print("Select the .bak backup_file to restore:")
     backup_file = select_bak_backup_file()
 
-    # if not backup_file:
-    #     print("No backup_file selected. Exiting script.")
-    #     return
+    if not backup_file:
+        print("No backup_file selected. Exiting script.")
+        return
+
+    print(f'Revert database: {server}.{database}')
 
     # Put the database in single user mode
     print(f"\nPutting database {database} in single user mode ...")
@@ -84,6 +76,3 @@ def revert_db():
         )
     except subprocess.CalledProcessError:
         print(f"Failed to set database {database} back to multi-user mode. Manual intervention may be required.")
-
-# if __name__ == "__main__":
-#     main()

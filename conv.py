@@ -1,11 +1,8 @@
 # External
-import argparse
 import os
-import re
-from datetime import datetime
+import argparse
+# from datetime import datetime
 from dotenv import load_dotenv
-from tkinter import Tk
-from tkinter.filedialog import askopenfilename
 
 # Lib
 from lib.backup_db import backup_db
@@ -15,20 +12,20 @@ from lib.hello import hello
 
 # Load environment variables
 load_dotenv()
-
-# Constants
-datetime_str = datetime.now().strftime('%Y-%m-%d_%H-%M')
 SERVER = os.getenv('SERVER')
 NEEDLES_DB = os.getenv('SOURCE_DATABASE')
 SA_DB = os.getenv('SA_DB')
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SQL_SCRIPTS_DIR = os.path.join(BASE_DIR, '../sql-scripts/conv/')
-LOGS_DIR = os.path.join(BASE_DIR, '../logs')
-LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
+
+# Constants
+# datetime_str = datetime.now().strftime('%Y-%m-%d_%H-%M')
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# SQL_SCRIPTS_DIR = os.path.join(BASE_DIR, '../sql-scripts/conv/')
+# LOGS_DIR = os.path.join(BASE_DIR, '../logs')
+# LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
 
 def bu(args):
     server = args.server or SERVER
-    database = args.database or os.getenv('SA_DB')
+    database = args.database or SA_DB
     directory = args.directory or os.path.join(os.getcwd(),'backups')
     options = {
         'directory': directory,
@@ -40,7 +37,7 @@ def bu(args):
 
 def exec(args):
     server = args.server or SERVER
-    database = args.database or os.getenv('SA_DB')
+    database = args.database or SA_DB
     options = {
         'server': server,
         'database': database,
@@ -49,63 +46,18 @@ def exec(args):
     }
     exec_conv(options)
 
-    # if not os.path.isdir(args.script_directory):
-    #     print(f"Directory {args.script_directory} does not exist.")
-    #     return
-
-    # print(f"Running scripts from {args.script_directory} on server {args.server}...")
-
-    # try:
-    #     all_files = os.listdir(args.script_directory)
-    #     for file in all_files:
-    #         if file.endswith('.sql'):
-    #             run_sql_script(
-    #                 os.path.join(args.script_directory, file),
-    #                     args.server,
-    #                     args.database,
-    #                     args.logs_dir,
-    #                     args.datetime_str
-    #                 )
-    # except Exception as e:
-    #     print(f'Error running scripts: {str(e)}')
-
 def revert(args):
-    # server = args.server or SERVER
-    # database = args.database or os.getenv('SOURCE_DATABASE')
+    server = args.server or SERVER
+    database = args.database or SA_DB
 
-    # print(f'server')
-    # if not server:
-    #     print('Server is required.')
-    #     return
-    
-    # if not database:
-    #     print('Database is required.')
-    #     return
-    
-    # # Use provided backup file path or open file dialog to select a .bak file
-    # if args.backup_file:
-    #     backup_file = args.backup_file
-    # else:
-    #     root = Tk()
-    #     root.withdraw()  # Hide the root window
-    #     backup_file = askopenfilename(
-    #         filetypes=[("SQL Backup Files", "*.bak")],
-    #         title="Select the .bak file to restore"
-    #     )
+    options = {
+        'server': server,
+        'database': database
+    }
+    revert_db(options)
 
-    # if not backup_file:
-    #     print('No backup file selected.')
-    #     return
-
-    # revert_db(
-    #     server=server,
-    #     database=database,
-    #     backup_file=backup_file
-    # )
-    revert_db()
-
-def hello_cmd(args):
-    hello(args.name)
+# def hello_cmd(args):
+    # hello(args.name)
 
 def main():
     # Main entry point for the CLI.
@@ -116,14 +68,14 @@ def main():
         dest='command'
     )
 
-    # Backup DB command
+    # Backup DB
     backup_parser = subparsers.add_parser('bu', help='Create database backups.')
     backup_parser.add_argument('--directory',  help='Backup directory.')
     backup_parser.add_argument('--database', help='Database to backup.')
-    backup_parser.add_argument('-s','--step',required=True, help='Backup step description.')
+    backup_parser.add_argument('-s','--sequence',required=True, help='Backup sequence description.')
     backup_parser.add_argument('--server', help='Server name.')
 
-    # Run Scripts command
+    # Execute conversion
     exec_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
     exec_parser.add_argument('-s', '--sequence',
                                     help='Enter the sequence of scripts to execute.',
@@ -132,20 +84,13 @@ def main():
     exec_parser.add_argument('-bu', '--backup', action='store_true', help='Create database backups before running scripts.')
     exec_parser.add_argument('--server', help='Server name.')
     exec_parser.add_argument('--database', help='Database to backup.')
-    # exec_parser.add_argument('script_directory', help='Directory containing SQL scripts.')
-    # exec_parser.add_argument('server', help='Server name.')
-    # exec_parser.add_argument('database', help='Database name.')
-    # exec_parser.add_argument('logs_dir', help='Directory to store logs.')
-    # exec_parser.add_argument('datetime_str', help='Timestamp string for logging.')
 
-    # Revert DB command
+    # Revert DB
     revert_db_parser = subparsers.add_parser('rev', help='Revert a database from a backup file.')
-    # revert_db_parser.add_argument('-s', '--server', help='Server name (overrides .env value).')
-    # revert_db_parser.add_argument('-d', '--database', help='Database name (overrides .env value).')
-    # revert_db_parser.add_argument('-f', '--backup_file', help='Path to the .bak file.')
-
-    hello_parser = subparsers.add_parser('hello', help='test')
-    hello_parser.add_argument('name', type=str, help="enter name")
+    revert_db_parser.add_argument('--server', help='Server name.')
+    revert_db_parser.add_argument('--database', help='Database to backup.')
+    # hello_parser = subparsers.add_parser('hello', help='test')
+    # hello_parser.add_argument('name', type=str, help="enter name")
 
     args = parser.parse_args()
 
@@ -154,9 +99,9 @@ def main():
     elif args.command == 'exec':
         exec(args)
     elif args.command == 'rev':
-        revert()
-    elif args.command == 'hello':
-        hello(args.name)
+        revert(args)
+    # elif args.command == 'hello':
+    #     hello(args.name)
     else:
         parser.print_help()
 

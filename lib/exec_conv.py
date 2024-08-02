@@ -83,6 +83,6 @@ def exec_conv(options):
         backup_db({
             'database': database,
             'directory': os.path.join(BASE_DIR, '../backups'),
-            'step': sequence,
+            'sequence': sequence,
             'server': server
         })

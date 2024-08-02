@@ -7,19 +7,19 @@ from datetime import datetime
 
 def backup_db(options):
     directory = options.get('directory')
-    step = options.get('step')
+    sequence = options.get('sequence')
     database = options.get('database')
     server = options.get('server')
     # server = os.getenv('SERVER')
 
-    # print(directory, step, database, server)
+    # print(directory, sequence, database, server)
 
     if not server:
         raise ValueError("Server environment variable is not set.")
 
     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M')
-    backup_path1 = os.path.join(directory, f'{database}-afterStep-{step}_{timestamp}.bak')
-    # backup_path2 = os.path.join(directory, f'{database_name2}-after-{step}_{timestamp}.bak')
+    backup_path1 = os.path.join(directory, f'{database}-aftersequence-{sequence}_{timestamp}.bak')
+    # backup_path2 = os.path.join(directory, f'{database_name2}-after-{sequence}_{timestamp}.bak')
 
     # Ensure the backup directory exists
     if not os.path.exists(directory):
