@@ -27,11 +27,15 @@ LOGS_DIR = os.path.join(BASE_DIR, '../logs')
 LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
 
 def backup_db_cmd(args):
+    server = args.server or SERVER
+    database = args.database or os.getenv('SA_DB')
+    directory = args.directory or os.path.join(os.getcwd(),'backups')
+    # print(os.path.join(os.getcwd(),'backups'))
     options = {
-        'directory': args.directory,
+        'directory': directory,
         'step': args.step,
-        'databaseName1': args.database_name1,
-        'server': args.server
+        'database': database,
+        'server': server
     }
     backup_db(options)
 
@@ -105,10 +109,10 @@ def main():
 
     # Backup DB command
     backup_parser = subparsers.add_parser('bu', help='Create database backups.')
-    backup_parser.add_argument('--directory', required=True, help='Backup directory.')
-    backup_parser.add_argument('--database_name1', required=True, help='First database name.')
-    backup_parser.add_argument('--step', required=True, help='Backup step description.')
-    backup_parser.add_argument('--server', required=True, help='Server name.')
+    backup_parser.add_argument('--directory',  help='Backup directory.')
+    backup_parser.add_argument('--database', help='Database to backup.')
+    backup_parser.add_argument('-s','--step',required=True, help='Backup step description.')
+    backup_parser.add_argument('--server', help='Server name.')
 
     # Run Scripts command
     run_scripts_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
@@ -130,11 +134,11 @@ def main():
     args = parser.parse_args()
 
     if args.command == 'bu':
-        backup_db(args)
+        backup_db_cmd(args)
     elif args.command == 'exec':
         run_scripts_cmd(args)
     elif args.command == 'rev':
-        revert_db()
+        revert_db_cmd()
     elif args.command == 'hello':
         hello(args.name)
     else:
