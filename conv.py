@@ -66,7 +66,10 @@ def revert(args):
     revert_db(options)
 
 def init(args):
-    init_dir = os.path.join(BASE_DIR,'sql-scripts','conv', 'InitializeNeedlesDB')
+    print(f'Initializing Needles database...')
+    server = args.server or SERVER
+    database = args.database or SA_DB
+    init_dir = os.path.join(BASE_DIR, 'sql-scripts', 'initialize-needles')
     sql_pattern = re.compile(r'^.*\.sql$', re.I)
     try:
         # List all files in the initialization directory
@@ -80,7 +83,7 @@ def init(args):
             for file in files:
                 sql_file_path = os.path.join(init_dir, file)
                 # print(f'Executing script: {sql_file_path}')
-                sql_runner(sql_file_path, SERVER, NEEDLES_DB)
+                sql_runner(sql_file_path, server, database)
     except Exception as e:
         print(f'Error reading directory {init_dir}\n{str(e)}')
 
