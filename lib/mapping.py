@@ -3,9 +3,8 @@ from sqlalchemy import create_engine
 import os
 
 # Variables for database connection
-db_server = "DYLANS"
-db_name = "NeedlesSLF"
-conn_str = f"mssql+pyodbc://{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+Server"
+# db_server = "DYLANS"
+# db_name = "NeedlesSLF"
 
 # Directory containing SQL files and output directory
 sql_dir = '../sql-scripts/mapping'
@@ -39,16 +38,20 @@ def save_to_excel(dataframes, output_path):
         for sheet_name, df in dataframes.items():
             df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-def generate_mapping():
+def generate_mapping(options):
+    server = options.get('server')
+    database = options.get('database')
+    conn_str = f"mssql+pyodbc://{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server"
+
     # Get the current working directory
     base_dir = os.path.dirname(__file__)
     
     # Construct full paths using relative paths
     full_sql_dir = os.path.abspath(os.path.join(base_dir, sql_dir))
-    full_output_dir = os.path.abspath(os.path.join(base_dir, output_dir))
+    # full_output_dir = os.path.abspath(os.path.join(base_dir, output_dir))
     
     # Ensure output directory exists
-    os.makedirs(full_output_dir, exist_ok=True)
+    # os.makedirs(full_output_dir, exist_ok=True)
     
     # Create SQLAlchemy engine
     engine = create_engine(conn_str)
@@ -58,8 +61,6 @@ def generate_mapping():
     
     # Define additional columns for general data and party roles
     general_columns = {
-        "classcode": None,
-        "description": None,
         "SmartAdvocate Section": None,
         "SmartAdvocate Screen": None,
         "SmartAdvocate Field": None,
@@ -104,8 +105,8 @@ def generate_mapping():
 
     # Save all DataFrames to a single Excel file
     output_filename = f'{parent_dir_name} Mapping Template.xlsx'
-    output_path = os.path.join(full_output_dir, output_filename)
-    save_to_excel(dataframes, output_path)
+    output_path = os.path.join(base_dir, output_filename)
+    save_to_excel(dataframes, base_dir)
     
     print(f'Saved results to {output_path}')
 

@@ -21,7 +21,14 @@ SA_DB = os.getenv('SA_DB')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def map(args):
-    generate_mapping()
+    server = args.server or SERVER
+    database = args.database or SA_DB
+    options = {
+        'server': server,
+        'database': database
+    }
+
+    generate_mapping(options)
 
 def bu(args):
     server = args.server or SERVER
@@ -76,10 +83,6 @@ def init(args):
                 sql_runner(sql_file_path, SERVER, NEEDLES_DB)
     except Exception as e:
         print(f'Error reading directory {init_dir}\n{str(e)}')
-
-
-# def hello_cmd(args):
-    # hello(args.name)
 
 def main():
     # Main entry point for the CLI.
@@ -169,8 +172,7 @@ def main():
     # Generate Mapping Template
     mapping_parser = subparsers.add_parser(
         'map',
-        help='Generate Excel mapping template.',
-        metavar=''
+        help='Generate Excel mapping template.'
     )
     mapping_parser.set_defaults(func=map)
 
