@@ -2,7 +2,6 @@
 import os
 import argparse
 import re
-# from datetime import datetime
 from dotenv import load_dotenv
 
 # Lib
@@ -10,6 +9,7 @@ from lib.backup_db import backup_db
 from lib.exec_conv import exec_conv
 from lib.revert_db import revert_db
 from lib.sql_runner import sql_runner
+from lib.mapping import generate_mapping
 
 # Load environment variables
 load_dotenv()
@@ -19,10 +19,9 @@ SA_DB = os.getenv('SA_DB')
 
 # Constants
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-# datetime_str = datetime.now().strftime('%Y-%m-%d_%H-%M')
-# SQL_SCRIPTS_DIR = os.path.join(BASE_DIR, '../sql-scripts/conv/')
-# LOGS_DIR = os.path.join(BASE_DIR, '../logs')
-# LOG_FILE = os.path.join(LOGS_DIR, f'error_log_{datetime_str}.txt')
+
+def map(args):
+    generate_mapping()
 
 def bu(args):
     server = args.server or SERVER
@@ -34,6 +33,7 @@ def bu(args):
         'database': database,
         'server': server
     }
+    
     backup_db(options)
 
 def exec(args):
@@ -45,19 +45,20 @@ def exec(args):
         'sequence': args.sequence,
         'backup': args.backup
     }
+
     exec_conv(options)
 
 def revert(args):
     server = args.server or SERVER
     database = args.database or SA_DB
-
     options = {
         'server': server,
         'database': database
     }
+
     revert_db(options)
 
-def init():
+def init(args):
     init_dir = os.path.join(BASE_DIR,'sql-scripts','conv', 'InitializeNeedlesDB')
     sql_pattern = re.compile(r'^.*\.sql$', re.I)
     try:
@@ -82,18 +83,25 @@ def init():
 
 def main():
     # Main entry point for the CLI.
-    parser = argparse.ArgumentParser(description='Database management CLI.')
+    parser = argparse.ArgumentParser(description='Needles Conversion CLI.')
     subparsers = parser.add_subparsers(
-        title="subcommands",
-        help='sub-command help'
+        title="conversion operations",
+        # help='sub-command help'
     )
 
     # Backup DB
     backup_parser = subparsers.add_parser('bu', help='Create database backups.')
-    backup_parser.add_argument('--directory',  help='Backup directory.')
-    backup_parser.add_argument('-srv','--server', help='Server name.')
+    backup_parser.add_argument(
+        '--directory',
+        help='Backup directory.'
+    )
+    backup_parser.add_argument(
+        '-srv','--server',
+        help='Server name.'
+    )
     backup_parser.add_argument('--database', help='Database to backup.')
     backup_parser.add_argument('-seq','--sequence',required=True, help='Backup sequence description.')
+    backup_parser.set_defaults(func=bu)
 
     # Execute conversion
     exec_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
@@ -105,32 +113,48 @@ def main():
     exec_parser.add_argument('-bu', '--backup', action='store_true', help='Create database backups before running scripts.')
     exec_parser.add_argument('-srv','--server', help='Server name.')
     exec_parser.add_argument('-db','--database', help='Database to backup.')
+    exec_parser.set_defaults(func=exec)
+
 
     # Revert DB
     revert_db_parser = subparsers.add_parser('revert', help='Revert a database from a backup file.')
     revert_db_parser.add_argument('-srv','--server', help='Server name.')
     revert_db_parser.add_argument('-db','--database', help='Database to backup.')
+    revert_db_parser.set_defaults(func=revert)
+
     # hello_parser = subparsers.add_parser('hello', help='test')
     # hello_parser.add_argument('name', type=str, help="enter name")
 
     # Initiliaze Needles DB
     initialize_needles_parser = subparsers.add_parser('init', help='Initialize Needles database with functions and indexes.')
     initialize_needles_parser.add_argument('-srv','--server', help='Server name.')
+    initialize_needles_parser.set_defaults(func=init)
+
+    # Generate Mapping Template
+    mapping_parser = subparsers.add_parser(
+        'map',
+        help='Generate Excel mapping template.'
+    )
+    mapping_parser.set_defaults(func=map)
+
 
     args = parser.parse_args()
 
-    if args.command == 'bu':
-        bu(args)
-    elif args.command == 'exec':
-        exec(args)
-    elif args.command == 'revert':
-        revert(args)
-    elif args.command == 'init':
-        revert(args)
-    # elif args.command == 'hello':
-    #     hello(args.name)
-    else:
+    if 'func' not in args:
         parser.print_help()
+    else:
+        args.func(args)
+
+    # if args.command == 'bu':
+    #     bu(args)
+    # elif args.command == 'exec':
+    #     exec(args)
+    # elif args.command == 'revert':
+    #     revert(args)
+    # elif args.command == 'init':
+    #     revert(args)
+    # else:
+    #     parser.print_help()
 
 if __name__ == "__main__":
     main()

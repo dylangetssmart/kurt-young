@@ -8,8 +8,8 @@ db_name = "NeedlesSLF"
 conn_str = f"mssql+pyodbc://{db_server}/{db_name}?driver=ODBC+Driver+17+for+SQL+Server"
 
 # Directory containing SQL files and output directory
-sql_dir = '../scripts/mapping'
-output_dir = '../scripts/mapping'
+sql_dir = '../sql-scripts/mapping'
+output_dir = '../sql-scripts/mapping'
 
 def execute_query(query, engine, additional_columns=None):
     # Executes a SQL query and returns the result as a DataFrame with additional columns.
@@ -39,7 +39,7 @@ def save_to_excel(dataframes, output_path):
         for sheet_name, df in dataframes.items():
             df.to_excel(writer, sheet_name=sheet_name, index=False)
 
-def main():
+def generate_mapping():
     # Get the current working directory
     base_dir = os.path.dirname(__file__)
     
@@ -109,5 +109,5 @@ def main():
     
     print(f'Saved results to {output_path}')
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
