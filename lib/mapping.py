@@ -1,6 +1,7 @@
 import pandas as pd
-from sqlalchemy import create_engine
 import os
+from sqlalchemy import create_engine
+from lib.sql_runner import sql_runner
 
 # Variables for database connection
 # db_server = "DYLANS"
@@ -8,7 +9,7 @@ import os
 
 # Directory containing SQL files and output directory
 sql_dir = '../sql-scripts/mapping'
-output_dir = '../sql-scripts/mapping'
+# output_dir = '../sql-scripts/mapping'
 
 def execute_query(query, engine, additional_columns=None):
     # Executes a SQL query and returns the result as a DataFrame with additional columns.
@@ -41,23 +42,20 @@ def save_to_excel(dataframes, output_path):
 def generate_mapping(options):
     server = options.get('server')
     database = options.get('database')
+    print(server, database)
     conn_str = f"mssql+pyodbc://{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server"
-
     # Get the current working directory
     base_dir = os.path.dirname(__file__)
-    
     # Construct full paths using relative paths
     full_sql_dir = os.path.abspath(os.path.join(base_dir, sql_dir))
-    # full_output_dir = os.path.abspath(os.path.join(base_dir, output_dir))
-    
-    # Ensure output directory exists
-    # os.makedirs(full_output_dir, exist_ok=True)
-    
     # Create SQLAlchemy engine
     engine = create_engine(conn_str)
-    
     # Create a dictionary to store DataFrames for each query
     dataframes = {}
+
+    # Run script to create table CustomFieldUsage
+    custom_field_usage_path = os.path.abspath(os.path.join(base_dir, sql_dir, 'CreateCustomFieldUsage.sql'))
+    sql_runner(database=database, server=server, script_path=custom_field_usage_path)
     
     # Define additional columns for general data and party roles
     general_columns = {
@@ -76,8 +74,9 @@ def generate_mapping(options):
     }
     
     # Iterate over SQL files
+    # Skip CreateCustomFieldUsage.sql
     for filename in os.listdir(full_sql_dir):
-        if filename.endswith('.sql'):
+        if filename.endswith('.sql') and filename != 'CreateCustomFieldUsage.sql':
             full_file_path = os.path.join(full_sql_dir, filename)
             sheet_name = os.path.splitext(filename)[0]  # Use filename without extension as sheet name
             try:
@@ -101,12 +100,13 @@ def generate_mapping(options):
     for name in dataframes:
         print(f"DataFrame '{name}' shape: {dataframes[name].shape}")
     
-    parent_dir_name = os.path.basename(os.path.abspath(os.path.join(base_dir, os.pardir)))
+    parent_dir = os.path.abspath(os.path.join(base_dir, os.pardir))
+    parent_dir_name = os.path.basename(parent_dir)
 
     # Save all DataFrames to a single Excel file
     output_filename = f'{parent_dir_name} Mapping Template.xlsx'
-    output_path = os.path.join(base_dir, output_filename)
-    save_to_excel(dataframes, base_dir)
+    output_path = os.path.join(parent_dir, output_filename)
+    save_to_excel(dataframes, output_path)
     
     print(f'Saved results to {output_path}')
 

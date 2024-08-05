@@ -21,8 +21,9 @@ SA_DB = os.getenv('SA_DB')
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def map(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    # Run queries against the Needles_DB
+    server = args.srv or SERVER
+    database = args.db or NEEDLES_DB
     options = {
         'server': server,
         'database': database
@@ -31,8 +32,8 @@ def map(args):
     generate_mapping(options)
 
 def bu(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    server = args.srv or SERVER
+    database = args.db or SA_DB
     directory = args.directory or os.path.join(os.getcwd(),'backups')
     options = {
         'directory': directory,
@@ -44,8 +45,8 @@ def bu(args):
     backup_db(options)
 
 def exec(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    server = args.srv or SERVER
+    database = args.db or SA_DB
     options = {
         'server': server,
         'database': database,
@@ -56,8 +57,8 @@ def exec(args):
     exec_conv(options)
 
 def revert(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    server = args.srv or SERVER
+    database = args.db or SA_DB
     options = {
         'server': server,
         'database': database
@@ -67,8 +68,8 @@ def revert(args):
 
 def init(args):
     print(f'Initializing Needles database...')
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    server = args.srv or SERVER
+    database = args.db or SA_DB
     init_dir = os.path.join(BASE_DIR, 'sql-scripts', 'initialize-needles')
     sql_pattern = re.compile(r'^.*\.sql$', re.I)
     try:
@@ -176,6 +177,16 @@ def main():
     mapping_parser = subparsers.add_parser(
         'map',
         help='Generate Excel mapping template.'
+    )
+    mapping_parser.add_argument(
+        '-srv',
+        help='Server name.',
+        metavar=''
+    )
+    mapping_parser.add_argument(
+        '-db',
+        help='Database to backup.',
+        metavar=''
     )
     mapping_parser.set_defaults(func=map)
 
