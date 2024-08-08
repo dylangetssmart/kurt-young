@@ -1,10 +1,6 @@
-import os
 import subprocess
 import tkinter as tk
 from tkinter import filedialog
-from dotenv import load_dotenv
-
-load_dotenv()
 
 def select_bak_backup_file():
     root = tk.Tk()
@@ -12,19 +8,15 @@ def select_bak_backup_file():
     backup_file = filedialog.askopenfile(
         title="Select the .bak backup_file to restore",
         filetypes=[("SQL Backup backup_files", "*.bak")],
-        initialdir='C:\LocalConv'
+        initialdir='C:\\LocalConv'
     )
     if backup_file:
         return backup_file.name  # Return the path to the file
     return None
 
-def revert_db(options):
+def restore_db(options):
     server = options.get('server')
     database = options.get('database')
-
-    # print(server)
-    # print(database)
-    # print(backup_file)
 
     if not server:
         print("Missing server parameter.")

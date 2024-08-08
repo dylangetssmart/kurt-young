@@ -18,7 +18,7 @@ def backup_db(options):
         raise ValueError("Server environment variable is not set.")
 
     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M')
-    backup_path1 = os.path.join(directory, f'{database}-aftersequence-{sequence}_{timestamp}.bak')
+    backup_path1 = os.path.join(directory, f'{database}-afterSequence-{sequence}_{timestamp}.bak')
     # backup_path2 = os.path.join(directory, f'{database_name2}-after-{sequence}_{timestamp}.bak')
 
     # Ensure the backup directory exists
