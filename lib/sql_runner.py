@@ -28,7 +28,7 @@ def sql_runner(script_path: str, server: str, database: str):
         
         result_output = f'\n{result.stdout}' if result.stdout else ''
         log_script_result(script_name, result_output, success=True)
-        print(f'SUCCESS - {script_name}')
+        # print(f'SUCCESS - {script_name}')
     
     except subprocess.CalledProcessError as e:
         error_output = e.stdout + e.stderr if e.stdout or e.stderr else str(e)
@@ -37,4 +37,4 @@ def sql_runner(script_path: str, server: str, database: str):
             output_file.write(error_output)
         
         log_script_result(script_name, f'Error Output:\n{error_output}', success=False)
-        print(f'FAIL - {script_name}')
+        # print(f'FAIL - {script_name}')

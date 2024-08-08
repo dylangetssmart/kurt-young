@@ -7,70 +7,71 @@ from dotenv import load_dotenv
 # Lib
 from lib.backup_db import backup_db
 from lib.exec_conv import exec_conv
-from lib.revert_db import revert_db
+from lib.restore_db import restore_db
 from lib.sql_runner import sql_runner
 from lib.mapping import generate_mapping
+from lib.initialize import initialize
+# from lib.create_db import create_database
 
 # Load environment variables
 load_dotenv()
 SERVER = os.getenv('SERVER')
 NEEDLES_DB = os.getenv('SOURCE_DATABASE')
-SA_DB = os.getenv('SA_DB')
+SA_DB = os.getenv('TARGET_DB')
 
 # Constants
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def map(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
     options = {
-        'server': server,
-        'database': database
+        'server': args.srv or SERVER,
+        'database': args.db or SA_DB
     }
 
     generate_mapping(options)
 
 def bu(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
-    directory = args.directory or os.path.join(os.getcwd(),'backups')
     options = {
-        'directory': directory,
-        'step': args.step,
-        'database': database,
-        'server': server
+        'server': args.srv or SERVER,
+        'database': args.db or SA_DB,
+        'directory': args.dir or os.path.join(os.getcwd(),'backups'),
+        'sequence': args.seq
     }
     
     backup_db(options)
 
 def exec(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
     options = {
-        'server': server,
-        'database': database,
-        'sequence': args.sequence,
-        'backup': args.backup
+        'server': args.srv or SERVER,
+        'database': args.db or SA_DB,
+        'sequence': args.seq,
+        'backup': args.bu
     }
 
     exec_conv(options)
 
-def revert(args):
-    server = args.server or SERVER
-    database = args.database or SA_DB
+def restore(args):
     options = {
-        'server': server,
-        'database': database
+        'server': args.srv or SERVER,
+        'database': args.db or SA_DB
     }
 
-    revert_db(options)
+    restore_db(options)
 
 def init(args):
-    print(f'Initializing Needles database...')
-    server = args.server or SERVER
-    database = args.database or SA_DB
+    # options = {
+    #     'server': args.srv or SERVER,
+    #     'database': args.db or SA_DB,
+    #     'system': args.system
+    # }
+
+    # initialize(options)
+    server = args.srv or SERVER
+    database = args.db or NEEDLES_DB
     init_dir = os.path.join(BASE_DIR, 'sql-scripts', 'initialize-needles')
     sql_pattern = re.compile(r'^.*\.sql$', re.I)
+
+    print(f'Initializing Needles database {server}.{database}...')
     try:
         # List all files in the initialization directory
         all_files = os.listdir(init_dir)
@@ -87,6 +88,14 @@ def init(args):
     except Exception as e:
         print(f'Error reading directory {init_dir}\n{str(e)}')
 
+def create_db(args):
+    options = {
+        'server': args.srv or SERVER,
+        'database_name': args.name
+    }
+
+    # create_database(options)
+
 def main():
     # Main entry point for the CLI.
     parser = argparse.ArgumentParser(description='Needles Conversion CLI.')
@@ -97,88 +106,42 @@ def main():
 
     # Backup DB
     backup_parser = subparsers.add_parser('bu', help='Create database backups.')
-    backup_parser.add_argument(
-        '-dir',
-        help='Backup directory.',
-        metavar=''
-    )
-    backup_parser.add_argument(
-        '-srv',
-        help='Server name.',
-        metavar=''
-    )
-    backup_parser.add_argument(
-        '-db',
-        help='Database to backup.',
-        metavar=''
-    )
-    backup_parser.add_argument(
-        '-seq',
-        required=True,
-        help='Backup sequence description.',
-        metavar=''
-    )
+    backup_parser.add_argument('seq', help='Sequence to stamp on .bak file.')
+    backup_parser.add_argument('-dir', help='Backup directory.', metavar='')
+    backup_parser.add_argument('-srv', help='Server name.', metavar='')
+    backup_parser.add_argument('-db', help='Database to backup.', metavar='')
     backup_parser.set_defaults(func=bu)
 
     # Execute conversion
     exec_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
-    exec_parser.add_argument(
-        '-seq',
-        help='Script sequence to execute.',
-        choices=['0','1','2','3','4','5','a','p','q'],
-        metavar=''
-    )
-    exec_parser.add_argument(
-        '-bu',
-        action='store_true',
-        help='Backup SA database after script execution.'
-    )
-    exec_parser.add_argument(
-        '-srv',
-        help='Server name.',
-        metavar=''
-    )
-    exec_parser.add_argument(
-        '-db',
-        help='Database to backup.',
-        metavar=''
-    )
+    exec_parser.add_argument('seq', help='Script sequence to execute.', choices=[0,1,2,3,4,5], type=int)
+    # exec_parser.add_argument('seq', help='Script sequence to execute.', choices=['0','1','2','3','4','5','a','p','q'])
+    exec_parser.add_argument('-bu', action='store_true', help='Backup SA database after script execution.')
+    exec_parser.add_argument('-srv', help='Server name.', metavar='')
+    exec_parser.add_argument('-db', help='Database to execute against.', metavar='')
     exec_parser.set_defaults(func=exec)
 
-
-    # Revert DB
-    revert_db_parser = subparsers.add_parser('revert', help='Revert a database from a backup file.')
-    revert_db_parser.add_argument(
-        '-srv',
-        help='Server name.',
-        metavar=''
-    )
-    revert_db_parser.add_argument(
-        '-db',
-        help='Database to backup.',
-        metavar=''
-    )
-    revert_db_parser.set_defaults(func=revert)
-
-    # hello_parser = subparsers.add_parser('hello', help='test')
-    # hello_parser.add_argument('name', type=str, help="enter name")
+    # Restore DB
+    restore_db_parser = subparsers.add_parser('restore', help='Restore a database from a backup file.')
+    restore_db_parser.add_argument('-srv', help='Server name.', metavar='')
+    restore_db_parser.add_argument('-db', help='Database to restore. Defaults to SA_DB', metavar='')
+    restore_db_parser.set_defaults(func=restore)
 
     # Initiliaze Needles DB
     initialize_needles_parser = subparsers.add_parser('init', help='Initialize Needles database with functions and indexes.')
-    initialize_needles_parser.add_argument(
-        '-srv',
-        help='Server name.',
-        metavar=''
-    )
+    initialize_needles_parser.add_argument('-srv', help='Server name.', metavar='')
+    initialize_needles_parser.add_argument('-db', help='Needles database to initialize.', metavar='')
     initialize_needles_parser.set_defaults(func=init)
 
     # Generate Mapping Template
-    mapping_parser = subparsers.add_parser(
-        'map',
-        help='Generate Excel mapping template.'
-    )
+    mapping_parser = subparsers.add_parser('map', help='Generate Excel mapping template.')
     mapping_parser.set_defaults(func=map)
 
+    # Create DB
+    # create_db_parser = subparsers.add_parser('create-db', help='Create a SQL Server database.')
+    # create_db_parser.add_argument('-srv', help='Server name.', metavar='')
+    # create_db_parser.add_argument('name', help='Database name.', metavar='name')
+    # create_db_parser.set_defaults(func=create_db)
 
     args = parser.parse_args()
 
@@ -186,17 +149,6 @@ def main():
         parser.print_help()
     else:
         args.func(args)
-
-    # if args.command == 'bu':
-    #     bu(args)
-    # elif args.command == 'exec':
-    #     exec(args)
-    # elif args.command == 'revert':
-    #     revert(args)
-    # elif args.command == 'init':
-    #     revert(args)
-    # else:
-    #     parser.print_help()
 
 if __name__ == "__main__":
     main()

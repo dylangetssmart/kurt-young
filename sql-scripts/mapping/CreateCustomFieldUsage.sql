@@ -102,12 +102,12 @@ DECLARE @sampleDataSql NVARCHAR(MAX);
 
 -- Step 3: Create a temporary table to store the results
 -- Step 3: Drop the temporary table if it exists
-IF OBJECT_ID('tempdb..#CustomFieldSampleData') IS NOT NULL
+IF OBJECT_ID('dbo.CustomFieldSampleData') IS NOT NULL
 BEGIN
-    DROP TABLE #CustomFieldSampleData;
+    DROP TABLE dbo.CustomFieldSampleData;
 END
 
-CREATE TABLE #CustomFieldSampleData (
+CREATE TABLE dbo.CustomFieldSampleData (
     column_name NVARCHAR(255),
     tablename NVARCHAR(255),
     field_value NVARCHAR(MAX)
@@ -161,7 +161,7 @@ DEALLOCATE customFieldCursor;
 	 ,CFSD.field_value AS [Sample Data]
 FROM 
     CustomFieldUsage CFU
-	LEFT JOIN #CustomFieldSampleData CFSD
+	LEFT JOIN CustomFieldSampleData CFSD
 		ON CFU.column_name = CFSD.column_name
 		AND CFU.tablename = CFSD.tablename
 order by CFU.tablename, CFU.field_num
