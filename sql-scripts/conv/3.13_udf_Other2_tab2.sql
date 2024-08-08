@@ -1,41 +1,67 @@
-use SANeedlesKMY
-go
-
-
-/*
-Pivot Table
+/* ########################################################
+This script populates UDF Other2 with all columns from user_tab2_data
 */
+
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'Other2UDF' AND type = 'U')
 BEGIN
     DROP TABLE Other2UDF
 END
 
-SELECT casncaseid, casnorgcasetypeID, fieldTitle, FieldVal
+-- Create temporary table for columns to exclude
+IF OBJECT_ID('tempdb..#ExcludedColumns') IS NOT NULL
+    DROP TABLE #ExcludedColumns;
+
+CREATE TABLE #ExcludedColumns (
+    column_name VARCHAR(128)
+);
+
+
+-- Insert columns to exclude
+INSERT INTO #ExcludedColumns (column_name)
+VALUES
+('case_id'),
+('tab_id_location'),
+('modified_timestamp'),
+('show_on_status_tab'),
+('case_status_attn'),
+('case_status_client');
+
+
+-- Dynamically get all columns from NeedlesSLF..user_tab2_data for unpivoting
+DECLARE @sql NVARCHAR(MAX) = N'';
+SELECT @sql = STRING_AGG(CONVERT(VARCHAR(MAX), 
+    N'CONVERT(VARCHAR(MAX), ' + QUOTENAME(column_name) + N') AS ' + QUOTENAME(column_name)
+), ', ')
+FROM NeedlesSLF.INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'user_tab2_data'
+AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
+
+
+-- Dynamically create the UNPIVOT list
+DECLARE @unpivot_list NVARCHAR(MAX) = N'';
+SELECT @unpivot_list = STRING_AGG(QUOTENAME(column_name), ', ')
+FROM NeedlesSLF.INFORMATION_SCHEMA.COLUMNS
+WHERE table_name = 'user_tab2_data'
+AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
+
+
+-- Generate the dynamic SQL for creating the pivot table
+SET @sql = N'
+SELECT casnCaseID, casnOrgCaseTypeID, FieldTitle, FieldVal
 INTO Other2UDF
 FROM ( 
-    SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
-        convert(varchar(max), [PPThis_Claim]) as [PP-This Claim],
-        convert(varchar(max), [Comp_Type]) as [Comp Type],
-        convert(varchar(max), [Amount]) as [Amount],
-        convert(varchar(max), [Paid_From]) as [Paid From],
-        convert(varchar(max), [Paid_To]) as [Paid To],
-        convert(varchar(max), [Date_Awarded]) as [Date Awarded],
-        convert(varchar(max), [PPD_rate]) as [PPD rate],
-        convert(varchar(max), [Comp_Rate]) as [Comp Rate?],
-        convert(varchar(max), [Type_of_Record]) as [Type of Record],
-        convert(varchar(max), [Ordered_by]) as [Ordered by],
-        convert(varchar(max), [Date_Requested]) as [Date Requested],
-        convert(varchar(max), [Provider_Name]) as [Provider Name],
-        convert(varchar(max), [No_Records_Exist]) as [No Records Exist]
-    FROM NeedlesKMY..user_tab2_data ud
-    JOIN NeedlesKMY..cases_Indexed c ON c.casenum = ud.case_id
+    SELECT 
+        cas.casnCaseID, 
+        cas.casnOrgCaseTypeID, ' + @sql + N'
+    FROM NeedlesSLF..user_tab2_data ud
+    JOIN NeedlesSLF..cases_Indexed c ON c.casenum = ud.case_id
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 ) pv
-UNPIVOT (FieldVal FOR FieldTitle IN (
-    [PP-This Claim], [Comp Type], [Amount], [Paid From], [Paid To], [Date Awarded], [PPD rate], [Comp Rate?], [Type of Record], 
-    [Ordered by], [Date Requested], [Provider Name], [No Records Exist]
-)) AS unpvt;
+UNPIVOT (FieldVal FOR FieldTitle IN (' + @unpivot_list + N')) AS unpvt;';
 
+EXEC sp_executesql @sql;
+select * from Other2udf
+select * from NeedlesSLF..user_tab2_data
 
 ----------------------------
 --UDF DEFINITION
@@ -43,14 +69,9 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 alter table [sma_MST_UDFDefinition] disable trigger all
 GO
 
--- ds 07-10-2024 // update udfsNewValues max length to support data
-alter table sma_mst_udfdefinition  
-alter column udfsNewValues varchar(2500)  
-GO
-
 INSERT INTO [sma_MST_UDFDefinition]
 (
-    [udfsUDFCtg]
+   [udfsUDFCtg]
 	,[udfnRelatedPK]
 	,[udfsUDFName]
 	,[udfsScreenName]
@@ -62,20 +83,20 @@ INSERT INTO [sma_MST_UDFDefinition]
 	,[udfnSortOrder]
 )
 SELECT DISTINCT 
-    'C'													as [udfsUDFCtg]
+   'C'													as [udfsUDFCtg]
 	,CST.cstnCaseTypeID									as [udfnRelatedPK]
 	,M.field_title										as [udfsUDFName]
 	,'Other2'											as [udfsScreenName]
 	,ucf.UDFType										as [udfsType]
 	,ucf.field_len										as [udfsLength]
 	,1													as [udfbIsActive]
-	,'user_tab2_' + ucf.column_name						as [udfshortName]
+	,'user_tab2_data' + ucf.column_name					as [udfshortName]
 	,ucf.dropdownValues									as [udfsNewValues]
 	,DENSE_RANK() OVER (ORDER BY M.field_title)			as udfnSortOrder
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [NeedlesKMY].[dbo].[user_tab2_matter] M
+	JOIN [NeedlesSLF].[dbo].[user_tab2_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -83,11 +104,11 @@ FROM [sma_MST_CaseType] CST
 				FROM Other2UDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SANeedlesKMY].[dbo].[NeedlesUserFields] ucf
+	JOIN [SANeedlesSLF].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	LEFT JOIN	(
 					SELECT DISTINCT table_Name, column_name
-					FROM [NeedlesKMY].[dbo].[document_merge_params]
+					FROM [NeedlesSLF].[dbo].[document_merge_params]
 					WHERE table_Name = 'user_tab2_data'
 				) dmp
 		ON dmp.column_name = ucf.field_Title
@@ -96,17 +117,17 @@ FROM [sma_MST_CaseType] CST
 		AND def.[udfsUDFName] = M.field_title
 		AND def.[udfsScreenName] = 'Other2'
 		AND def.[udfsType] = ucf.UDFType
--- WHERE M.Field_Title <> 'Location'
 AND def.udfnUDFID IS NULL
---AND mix.matcode IN ('MVA','PRE')
 ORDER BY M.field_title
+
+
 
 ALTER TABLE sma_trn_udfvalues DISABLE TRIGGER ALL
 GO
 
 INSERT INTO [sma_TRN_UDFValues]
 (
-    [udvnUDFID]
+   [udvnUDFID]
 	,[udvsScreenName]
 	,[udvsUDFCtg]
 	,[udvnRelatedID]
@@ -119,7 +140,7 @@ INSERT INTO [sma_TRN_UDFValues]
 	,[udvnLevelNo]
 )
 SELECT 
-    def.udfnUDFID		as [udvnUDFID],
+   def.udfnUDFID		as [udvnUDFID],
 	'Other2'				as [udvsScreenName],
 	'C'					as [udvsUDFCtg],
 	casnCaseID			as [udvnRelatedID],
