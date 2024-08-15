@@ -1,6 +1,6 @@
 
- USE SANeedlesSLF
-GO
+--USE SANeedlesSLF
+--GO
 /*
 alter table [sma_MST_IndvContacts] disable trigger all
 delete from [sma_MST_IndvContacts] 
