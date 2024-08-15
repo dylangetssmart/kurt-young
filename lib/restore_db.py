@@ -1,3 +1,4 @@
+import os
 import subprocess
 import tkinter as tk
 from tkinter import filedialog
@@ -5,10 +6,11 @@ from tkinter import filedialog
 def select_bak_backup_file():
     root = tk.Tk()
     root.withdraw()
+    initial_dir = os.path.join(os.getcwd(), 'backups')
     backup_file = filedialog.askopenfile(
         title="Select the .bak backup_file to restore",
         filetypes=[("SQL Backup backup_files", "*.bak")],
-        initialdir='C:\\LocalConv'
+        initialdir=initial_dir
     )
     if backup_file:
         return backup_file.name  # Return the path to the file

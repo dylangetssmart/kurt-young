@@ -843,8 +843,8 @@ INSERT INTO Account_UsersInRoles ( user_id,role_id)
 SELECT usrnUserID as user_id,2 as role_id 
 FROM sma_MST_Users
 
--- update sma_MST_Users set usrbActiveState=1
--- where usrsLoginID='aadmin'
+update sma_MST_Users set usrbActiveState=1
+where usrsLoginID='aadmin'
 
 UPDATE Account_UsersInRoles 
 SET role_id=1 
