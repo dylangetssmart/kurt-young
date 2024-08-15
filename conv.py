@@ -53,7 +53,8 @@ def exec(args):
 def restore(args):
     options = {
         'server': args.srv or SERVER,
-        'database': args.db or SA_DB
+        'database': args.db or SA_DB,
+        'virgin': args.v
     }
 
     restore_db(options)
@@ -125,6 +126,7 @@ def main():
     restore_db_parser = subparsers.add_parser('restore', help='Restore a database from a backup file.')
     restore_db_parser.add_argument('-srv', help='Server name.', metavar='')
     restore_db_parser.add_argument('-db', help='Database to restore. Defaults to SA_DB', metavar='')
+    restore_db_parser.add_argument('-v', '--virgin', action='store_true', help='Restore to virgin state.', metavar='')
     restore_db_parser.set_defaults(func=restore)
 
     # Initiliaze Needles DB
