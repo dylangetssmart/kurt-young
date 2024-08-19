@@ -5,18 +5,15 @@ import re
 from dotenv import load_dotenv
 
 # Lib
-from lib.backup_db import backup_db
 from lib.exec_conv import exec_conv
-from lib.restore_db import restore_db
 from lib.sql_runner import sql_runner
 from lib.mapping import generate_mapping
-from lib.initialize import initialize
-# from lib.create_db import create_database
+from lib.db_utils import restore_db, backup_db, create_db
 
 # Load environment variables
 load_dotenv()
 SERVER = os.getenv('SERVER')
-NEEDLES_DB = os.getenv('SOURCE_DATABASE')
+SOURCE_DB = os.getenv('SOURCE_DB')
 SA_DB = os.getenv('TARGET_DB')
 
 # Constants
@@ -27,17 +24,15 @@ def map(args):
         'server': args.srv or SERVER,
         'database': args.db or SA_DB
     }
-
     generate_mapping(options)
 
-def bu(args):
+def backup(args):
     options = {
         'server': args.srv or SERVER,
         'database': args.db or SA_DB,
         'directory': args.dir or os.path.join(os.getcwd(),'backups'),
         'sequence': args.seq
     }
-    
     backup_db(options)
 
 def exec(args):
@@ -45,18 +40,17 @@ def exec(args):
         'server': args.srv or SERVER,
         'database': args.db or SA_DB,
         'sequence': args.seq,
-        'backup': args.bu
+        'backup': args.bu,
+        'run_all': args.all
     }
-
     exec_conv(options)
 
 def restore(args):
     options = {
         'server': args.srv or SERVER,
         'database': args.db or SA_DB,
-        'virgin': args.v
+        'virgin': args.virgin
     }
-
     restore_db(options)
 
 def init(args):
@@ -68,7 +62,7 @@ def init(args):
 
     # initialize(options)
     server = args.srv or SERVER
-    database = args.db or NEEDLES_DB
+    database = args.db or SOURCE_DB
     init_dir = os.path.join(BASE_DIR, 'sql-scripts', 'initialize-needles')
     sql_pattern = re.compile(r'^.*\.sql$', re.I)
 
@@ -89,13 +83,12 @@ def init(args):
     except Exception as e:
         print(f'Error reading directory {init_dir}\n{str(e)}')
 
-def create_db(args):
+def create(args):
     options = {
-        'server': args.srv or SERVER,
-        'database_name': args.name
+        'server': args.server or SERVER,
+        'name': args.name
     }
-
-    # create_database(options)
+    create_db(options)
 
 def main():
     # Main entry point for the CLI.
@@ -106,27 +99,28 @@ def main():
     )
 
     # Backup DB
-    backup_parser = subparsers.add_parser('bu', help='Create database backups.')
+    backup_parser = subparsers.add_parser('backup', help='Create database backups.')
     backup_parser.add_argument('seq', help='Sequence to stamp on .bak file.')
     backup_parser.add_argument('-dir', help='Backup directory.', metavar='')
     backup_parser.add_argument('-srv', help='Server name.', metavar='')
     backup_parser.add_argument('-db', help='Database to backup.', metavar='')
-    backup_parser.set_defaults(func=bu)
+    backup_parser.set_defaults(func=backup)
 
     # Execute conversion
     exec_parser = subparsers.add_parser('exec', help='Run SQL scripts.')
-    exec_parser.add_argument('seq', help='Script sequence to execute.', choices=[0,1,2,3,4,5], type=int)
+    exec_parser.add_argument('seq', nargs='?',help='SQL Script sequence to execute.', choices=range(0,10), type=int)
     # exec_parser.add_argument('seq', help='Script sequence to execute.', choices=['0','1','2','3','4','5','a','p','q'])
     exec_parser.add_argument('-bu', action='store_true', help='Backup SA database after script execution.')
     exec_parser.add_argument('-srv', help='Server name.', metavar='')
     exec_parser.add_argument('-db', help='Database to execute against.', metavar='')
+    exec_parser.add_argument('-a', '--all', action='store_true', help='Execute all sql scripts.')
     exec_parser.set_defaults(func=exec)
 
     # Restore DB
     restore_db_parser = subparsers.add_parser('restore', help='Restore a database from a backup file.')
     restore_db_parser.add_argument('-srv', help='Server name.', metavar='')
     restore_db_parser.add_argument('-db', help='Database to restore. Defaults to SA_DB', metavar='')
-    restore_db_parser.add_argument('-v', '--virgin', action='store_true', help='Restore to virgin state.', metavar='')
+    restore_db_parser.add_argument('-v', '--virgin', action='store_true', help='Restore to virgin state.')
     restore_db_parser.set_defaults(func=restore)
 
     # Initiliaze Needles DB
@@ -140,10 +134,10 @@ def main():
     mapping_parser.set_defaults(func=map)
 
     # Create DB
-    # create_db_parser = subparsers.add_parser('create-db', help='Create a SQL Server database.')
-    # create_db_parser.add_argument('-srv', help='Server name.', metavar='')
-    # create_db_parser.add_argument('name', help='Database name.', metavar='name')
-    # create_db_parser.set_defaults(func=create_db)
+    create_db_parser = subparsers.add_parser('create', help='Create a SQL Server database.')
+    create_db_parser.add_argument('-s', '--server', help='Server name.', metavar='')
+    create_db_parser.add_argument('name', help='Database name.', metavar='name')
+    create_db_parser.set_defaults(func=create)
 
     args = parser.parse_args()
 
@@ -151,6 +145,15 @@ def main():
         parser.print_help()
     else:
         args.func(args)
+    # if 'func' not in args:
+    #     parser.print_help()
+    # else:
+    #     if args.func == exec and args.all:
+    #         # If --all is used, sequence is not required
+    #         args.seq = None
+    #     elif args.func == exec and args.seq is None:
+    #         # If sequence is not provided and --all is not used
+    #         parser.error("The 'exec' command requires the 'seq' argument unless '--all' is specified.")
 
 if __name__ == "__main__":
     main()
