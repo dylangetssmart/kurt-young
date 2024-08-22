@@ -103,11 +103,7 @@ INSERT INTO [sma_TRN_SOLs]
 )
 SELECT DISTINCT
     D.defnCaseID		   as [solnCaseID],
-    (
-		select sldnSOLDetID
-		from sma_MST_SOLDetails
-		where sldnSOLTypeID = 16 and sldnCaseTypeID = -1 and sldsDorP = 'D'
-	),			--[solnSOLTypeID],
+    null				as [solnSOLTypeID],
     case
 		when (C.[lim_date] not between '1900-01-01' and '2079-12-31')
 			then null
