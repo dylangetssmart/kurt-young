@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+-- use SATestClientNeedles
 go
 /*
 alter table [sma_TRN_PlaintiffAttorney] disable trigger all
@@ -22,7 +22,7 @@ alter table [sma_TRN_LawFirmAttorneys] enable trigger all
 --INSERT ATTORNEY TYPES
 -----------------------------------------------------------------------------------
 INSERT INTO sma_MST_AttorneyTypes (atnsAtorneyDscrptn)
-SELECT Distinct Type_OF_Attorney From NeedlesSLF..user_counsel_data where isnull(Type_of_attorney,'')<>''
+SELECT Distinct Type_OF_Attorney From TestClientNeedles..user_counsel_data where isnull(Type_of_attorney,'')<>''
 EXCEPT
 SELECT atnsAtorneydscrptn from sma_MST_AttorneyTypes
 */
@@ -103,8 +103,8 @@ SELECT DISTINCT
     isnull('comments : ' + nullif(convert(varchar(max),C.comments) ,'') + CHAR(13),'') +
     isnull('Attorney for party : ' + nullif(convert(varchar(max),IOCP.name) ,'') + CHAR(13),'') +
     ''						  as [plasComments]
-  FROM NeedlesSLF..[counsel_Indexed] C
-  LEFT JOIN NeedlesSLF.[dbo].[user_counsel_data] UD
+  FROM TestClientNeedles..[counsel_Indexed] C
+  LEFT JOIN TestClientNeedles.[dbo].[user_counsel_data] UD
 	on UD.counsel_id=C.counsel_id
 	and C.case_num=UD.casenum  
   JOIN [sma_TRN_Cases] CAS
@@ -172,8 +172,8 @@ SELECT DISTINCT
 	isnull('comments : ' + nullif(convert(varchar(max),C.comments) ,'') + CHAR(13),'') +
 	isnull('Attorney for party : ' + nullif(convert(varchar(max),IOCD.name) ,'') + CHAR(13),'') +
     ''			    					as [lwfsComments]
-  FROM NeedlesSLF.[dbo].[counsel_Indexed] C 
-  LEFT JOIN NeedlesSLF.[dbo].[user_counsel_data] UD on UD.counsel_id=C.counsel_id and C.case_num=UD.casenum
+  FROM TestClientNeedles.[dbo].[counsel_Indexed] C 
+  LEFT JOIN TestClientNeedles.[dbo].[user_counsel_data] UD on UD.counsel_id=C.counsel_id and C.case_num=UD.casenum
   JOIN [sma_TRN_Cases] CAS
 	on CAS.cassCaseNumber = C.case_num
   JOIN IndvOrgContacts_Indexed IOC
@@ -231,7 +231,7 @@ GO
 -- 		end								as [lwfnAttorneyAddressID]
 --     ,(
 -- 		select atnnAtorneyTypeID
--- 		FROM SANeedlesSLF..[sma_MST_AttorneyTypes]
+-- 		FROM SATestClientNeedles..[sma_MST_AttorneyTypes]
 -- 		where atnsAtorneyDscrptn='Defense Attorney'
 -- 	)									as [lwfnAttorneyTypeID]
 --     ,null								as [lwfsFileNumber]
@@ -244,28 +244,28 @@ GO
 -- 	,null			    				as [lwfnLevelNo]
 --     ,null			    				as [lwfnAdjusterID]
 -- 	,null								as [lwfsComments]
--- FROM NeedlesSLF.[dbo].[user_party_data] ud
+-- FROM TestClientNeedles.[dbo].[user_party_data] ud
 -- 	-- case data
--- 	JOIN NeedlesSLF.[dbo].[cases] C
+-- 	JOIN TestClientNeedles.[dbo].[cases] C
 -- 		on C.casenum = convert(varchar,ud.case_id)
--- 	join SANeedlesSLF..sma_TRN_Cases cas
+-- 	join SATestClientNeedles..sma_TRN_Cases cas
 -- 		on cas.cassCaseNumber = c.casenum
 -- 	-- field link
--- 	JOIN NeedlesSLF.[dbo].[user_party_name] N 
+-- 	JOIN TestClientNeedles.[dbo].[user_party_name] N 
 -- 		on N.case_id = ud.case_id
 -- 		and N.party_id = ud.party_id
 -- 		and N.[user_name] <> 0 
--- 	JOIN NeedlesSLF.[dbo].[user_party_matter] M
+-- 	JOIN TestClientNeedles.[dbo].[user_party_matter] M
 -- 		on M.ref_num = N.ref_num
 -- 		and M.mattercode = C.matcode
 -- 		and M.field_title = 'Defense Atty'
 -- 	-- contact card for the law firm
--- 	join NeedlesSLF.[dbo].names
+-- 	join TestClientNeedles.[dbo].names
 -- 		on names.names_id = N.user_name
--- 	join SANeedlesSLF..IndvOrgContacts_Indexed ioc
+-- 	join SATestClientNeedles..IndvOrgContacts_Indexed ioc
 -- 		on ioc.SAGA = names.names_id
 -- 	-- contact card for the defendant
--- 	join SANeedlesSLF..sma_TRN_Defendants d
+-- 	join SATestClientNeedles..sma_TRN_Defendants d
 -- 		on d.defnCaseID = cas.casnCaseID
 -- 		and d.defbIsPrimary = 1
 -- where isnull(ud.Defense_Atty,'') <> ''
@@ -318,8 +318,8 @@ UPDATE sma_MST_IndvContacts
 SET cinnContactTypeID=(select octnOrigContactTypeID FROM [sma_MST_OriginalContactTypes] where octsDscrptn='Attorney' and octnContactCtgID=1)
 FROM (
   SELECT I.cinnContactID as ID
-  FROM NeedlesSLF.[dbo].[counsel] C 
-  JOIN NeedlesSLF.[dbo].[names] L on C.counsel_id = L.names_id
+  FROM TestClientNeedles.[dbo].[counsel] C 
+  JOIN TestClientNeedles.[dbo].[names] L on C.counsel_id = L.names_id
   JOIN [dbo].[sma_MST_IndvContacts] I on saga = L.names_id
   WHERE L.person='Y'
   ) A

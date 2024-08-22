@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 -- GO
 
 --
@@ -112,7 +112,7 @@ SELECT DISTINCT
 	,''									as [saga]
 	,''									as [cinsSpouse]
 	,P.officer							as [cinsGrade]			-- Used in Investigations_PoliceReport.sql
-FROM [NeedlesSLF].[dbo].[police] P 
+FROM [TestClientNeedles].[dbo].[police] P 
 WHERE ISNULL(officer, '') <> ''
 GO
 

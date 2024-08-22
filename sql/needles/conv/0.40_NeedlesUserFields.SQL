@@ -1,4 +1,4 @@
--- Use SANeedlesSLF
+-- Use SATestClientNeedles
 -- GO
 
 IF EXISTS (Select * From sys.tables where name = 'NeedlesUserFields' and type = 'U')
@@ -49,7 +49,7 @@ SELECT field_num, field_title, column_name,  field_type,
 		else field_type
 	end
 --Select *
-FROM NeedlesSLF..[user_case_fields]
+FROM TestClientNeedles..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -70,8 +70,8 @@ BEGIN
 
 	SELECT identity(int,1,1) as Number, gd.code
 	INTO #values
-	FROM NeedlesSLF..mini_general_dir gd
-	JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
+	FROM TestClientNeedles..mini_general_dir gd
+	JOIN TestClientNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 	WHERE dir_name = @miniDir  
 
 
@@ -103,7 +103,7 @@ DEALLOCATE userFields_Cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from NeedlesSLF..mini_general_dir gd
-JOIN NeedlesSLF..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from TestClientNeedles..mini_general_dir gd
+JOIN TestClientNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

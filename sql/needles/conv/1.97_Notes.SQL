@@ -1,4 +1,4 @@
--- use [SANeedlesSLF]
+-- use [SATestClientNeedles]
 go
 /*
 alter table [sma_TRN_Notes] disable trigger all
@@ -49,7 +49,7 @@ SELECT
     getdate()		    as notdDtCreated,
     NULL			    as notnModifyUserID,
     NULL			    as notdDtModified
-FROM NeedlesSLF.[dbo].[party] P
+FROM TestClientNeedles.[dbo].[party] P
 JOIN sma_MST_IndvContacts I on I.saga=P.party_id 
 
 ----(2)----
@@ -87,7 +87,7 @@ SELECT
     getdate()		    as notdDtCreated,
     NULL			    as notnModifyUserID,
     NULL			    as notdDtModified
-FROM NeedlesSLF.[dbo].[party] P
+FROM TestClientNeedles.[dbo].[party] P
 JOIN sma_MST_IndvContacts I on I.saga=P.party_id 
 
 
@@ -120,7 +120,7 @@ SELECT
     getdate()		as notdDtCreated,
     NULL			as notnModifyUserID,
     NULL			as notdDtModified
-FROM NeedlesSLF.[dbo].[provider_notes] PN
+FROM TestClientNeedles.[dbo].[provider_notes] PN
 JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA=PN.name_id
 
 ---

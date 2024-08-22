@@ -1,4 +1,4 @@
--- USE [SANeedlesSLF]
+-- USE [SATestClientNeedles]
 GO
 /*
 update sma_MST_IndvContacts set cinsComments = NULL
@@ -21,7 +21,7 @@ GO
 --    when P.Marital_Status='Significant Other' then (select mtsnMaritalStatusID FROM [SA].[dbo].[sma_MST_MaritalStatus] where mtssDscrptn = 'Other')
 --    else (select mtsnMaritalStatusID FROM [SA].[dbo].[sma_MST_MaritalStatus] where mtssDscrptn = P.Marital_Status)
 --end	   as StatusID
---FROM NeedlesSLF.[dbo].[user_party_data] P
+--FROM TestClientNeedles.[dbo].[user_party_data] P
 --where isnull(P.Marital_Status,'')<>''
 --) A
 --where A.PartyID  = saga
@@ -35,7 +35,7 @@ FROM
 (	SELECT
 		P.party_id as PartyID,    
 		P.Spouse as Spouse_Name
-	FROM NeedlesSLF.[dbo].[user_party_data] P
+	FROM TestClientNeedles.[dbo].[user_party_data] P
 	WHERE isnull(P.Spouse,'')<>''
 ) A
 WHERE A.PartyID  = saga
@@ -57,12 +57,12 @@ from
 select  
     P.party_id as PartyID,    
     P.Employment_Status as Employment_Status
-FROM NeedlesSLF.[dbo].[user_party_data] P
+FROM TestClientNeedles.[dbo].[user_party_data] P
 where isnull(P.Employment_Status,'')<>''
 ) A
 where A.PartyID=saga 
 
-select * FROM NeedlesSLF.[dbo].[user_party_data] P
+select * FROM TestClientNeedles.[dbo].[user_party_data] P
 */
 
 /*
@@ -74,7 +74,7 @@ select
     P.party_id as PartyID,    
     P.Length_of_Employment as Length_of_Employment
 select *
-FROM NeedlesSLF.[dbo].[user_party_data] P
+FROM TestClientNeedles.[dbo].[user_party_data] P
 where isnull(P.Length_of_Employment,'')<>''
 ) A
 where A.PartyID=saga 
@@ -88,7 +88,7 @@ from
 select  
     P.party_id as PartyID,    
     P.Payroll_Contact as Payroll_Contact
-FROM NeedlesSLF.[dbo].[user_party_data] P
+FROM TestClientNeedles.[dbo].[user_party_data] P
 where isnull(P.Payroll_Contact,'')<>''
 ) A
 where A.PartyID=saga 
@@ -102,7 +102,7 @@ from
 select  
     P.party_id as PartyID,    
     P.Job_Duties as Job_Duties
-FROM NeedlesSLF.[dbo].[user_party_data] P
+FROM TestClientNeedles.[dbo].[user_party_data] P
 where isnull(P.Job_Duties,'')<>''
 ) A
 where A.PartyID=saga 
@@ -117,7 +117,7 @@ from
 select  
     P.party_id as PartyID,    
     P.Treatment_Since_Injury as Treatment_Since_Injury
-FROM NeedlesSLF.[dbo].[user_party_data] P
+FROM TestClientNeedles.[dbo].[user_party_data] P
 where isnull(P.Treatment_Since_Injury,'')<>''
 ) A
 where A.PartyID=saga 

@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+-- use SATestClientNeedles
 GO
 
 TRUNCATE TABLE sma_TRN_RoleCaseStuffMainRoles

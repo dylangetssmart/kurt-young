@@ -1,4 +1,4 @@
--- use [SANeedlesSLF]
+-- use [SATestClientNeedles]
 go
 /*
 alter table [sma_TRN_CriticalDeadlines] disable trigger all
@@ -48,47 +48,47 @@ insert into [sma_MST_CriticalDeadlineTypes] (
 	,cdtbActive
 	) (
 	select distinct dbo.GMACaseDate(M.case_date_1)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_1), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_1), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_2)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_2), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_2), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_3)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_3), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_3), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_4)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_4), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_4), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_5)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_5), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_5), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_6)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_6), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_6), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_7)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_7), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_7), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_8)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_8), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_8), '') <> ''
 
 union
 	
 	select distinct dbo.GMACaseDate(M.case_date_9)
-	,1 from NeedlesSLF.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_9), '') <> ''
+	,1 from TestClientNeedles.[dbo].[Matter] M where isnull(dbo.GMACaseDate(M.case_date_9), '') <> ''
 )
 
 except
@@ -175,8 +175,8 @@ BEGIN
             FROM criticalDeadline_Helper MAP
             WHERE MAP.casnCaseID = CAS.casnCaseID
         ) as [ResponderUID]
-    FROM NeedlesSLF.[dbo].[cases] C
-    JOIN NeedlesSLF.[dbo].[matter] M
+    FROM TestClientNeedles.[dbo].[cases] C
+    JOIN TestClientNeedles.[dbo].[matter] M
         ON M.matcode = C.matcode
     JOIN [sma_TRN_cases] CAS
         ON CAS.cassCaseNumber = casenum
@@ -214,7 +214,7 @@ END
 -- 		end										as [crddDueDate]
 -- 	,null										as [crdsRequestFrom]
 -- 	,null										as [ResponderUID]
--- from NeedlesSLF..user_case_data ud
+-- from TestClientNeedles..user_case_data ud
 -- 	join [sma_TRN_cases] CAS
 -- 		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
 -- where isnull(ud.Date_Application_Filed, '') <> ''
@@ -244,7 +244,7 @@ END
 -- 		end										as [crddDueDate]
 -- 	,null										as [crdsRequestFrom]
 -- 	,null										as [ResponderUID]
--- from NeedlesSLF..user_case_data ud
+-- from TestClientNeedles..user_case_data ud
 -- 	join [sma_TRN_cases] CAS
 -- 		on CAS.cassCaseNumber = convert(varchar,ud.casenum)
 -- where isnull(ud.Date_Application_Denied, '') <> ''

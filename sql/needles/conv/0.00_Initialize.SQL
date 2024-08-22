@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 -- GO
 
 /**************************************************

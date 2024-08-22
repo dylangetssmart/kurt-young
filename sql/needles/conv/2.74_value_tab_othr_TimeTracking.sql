@@ -8,8 +8,8 @@ GO
 INSERT INTO sma_MST_ActivityCodes ( ActivityCodeDescription )
 (
 	SELECT DISTINCT VC.[description] 
-	FROM [NeedlesSLF].[dbo].[value] V
-	JOIN [NeedlesSLF].[dbo].[value_code] VC on VC.code=V.code 
+	FROM [TestClientNeedles].[dbo].[value] V
+	JOIN [TestClientNeedles].[dbo].[value_code] VC on VC.code=V.code 
 	WHERE isnull(V.code,'') in ( 'T/B' ) 
 EXCEPT 
 SELECT ActivityCodeDescription FROM sma_MST_ActivityCodes
@@ -19,8 +19,8 @@ GO
 ---(0)---
 INSERT INTO sma_MST_CaseTypeActivityCodeRelationship ( CaseTypeID,ActivityCodeID )
 SELECT DISTINCT 0, (SELECT ActivityCodeID FROM sma_MST_ActivityCodes WHERE ActivityCodeDescription=vc.[description])
-FROM [NeedlesSLF].[dbo].[value] V
-JOIN [NeedlesSLF].[dbo].[value_code] VC on VC.code=V.code 
+FROM [TestClientNeedles].[dbo].[value] V
+JOIN [TestClientNeedles].[dbo].[value_code] VC on VC.code=V.code 
 WHERE isnull(V.code,'') in ( 'T/B' ) 
 EXCEPT SELECT CaseTypeID,ActivityCodeID FROM sma_MST_CaseTypeActivityCodeRelationship 
 GO
@@ -73,10 +73,10 @@ SELECT
 	   0				    as cutnAddTime,
 	   T.plnnPlaintiffID	as cutnPlaintiffID
 --select *
-FROM [NeedlesSLF].[dbo].[value] V
-JOIN [NeedlesSLF].[dbo].[value_code] VC on VC.code=V.code 
+FROM [TestClientNeedles].[dbo].[value] V
+JOIN [TestClientNeedles].[dbo].[value_code] VC on VC.code=V.code 
 JOIN [sma_TRN_Cases] CAS on CAS.cassCaseNumber = v.case_id  
-LEFT JOIN [NeedlesSLF].[dbo].[party_Indexed] P on P.party_id=V.party_id and P.case_id=v.case_id
+LEFT JOIN [TestClientNeedles].[dbo].[party_Indexed] P on P.party_id=V.party_id and P.case_id=v.case_id
 LEFT JOIN [sma_TRN_Plaintiff] T on T.[saga_party]=P.TableIndex
 WHERE v.code = 'T/B'
 GO

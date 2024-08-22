@@ -1,10 +1,10 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 go
 
 --Plaintiffs
 /*
 select name_id, first_name, last_name, name_id_2, First_Name_Party_2, Last_Name_Party_2
-From NeedlesSLF..case_intake
+From TestClientNeedles..case_intake
 where isnull(name_id,0)<>0
 */
 
@@ -68,7 +68,7 @@ SELECT DISTINCT
 	1						as [plnnPrimaryContact],
 	null					as [saga_party]
 --select *
-FROM NeedlesSLF..case_intake c
+FROM TestClientNeedles..case_intake c
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.saga = c.ROW_ID 
 	JOIN IndvOrgContacts_Indexed CIO
