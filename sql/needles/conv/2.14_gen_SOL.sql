@@ -1,5 +1,5 @@
 -- use SATestClientNeedles
-GO
+-- GO
 
 /*
 alter table [sma_TRN_SOLs] disable trigger all
@@ -12,35 +12,6 @@ delete [sma_MST_SOLDetails]
 DBCC CHECKIDENT ('[sma_MST_SOLDetails]', RESEED, 0);
 alter table [sma_MST_SOLDetails] enable trigger all
 */
-
----------------------------------------------------------------------------------
---INSERT SOL 000 FOR CONVERSION ONLY - DO NOT ADD FOR EVERY SINGLE CASE TYPE
----------------------------------------------------------------------------------
-IF NOT EXISTS (select * from [sma_MST_SOLDetails] where sldnSOLTypeID = 16 and sldnCaseTypeID = -1 and sldsDorP= 'D')
-BEGIN
-	INSERT INTO [dbo].[sma_MST_SOLDetails]
-			   ([sldnSOLTypeID]
-			   ,[sldnCaseTypeID]
-			   ,[sldnDefRole]
-			   ,[sldnStateID]
-			   ,[sldnYears]
-			   ,[sldnMonths]
-			   ,[sldnDays]
-			   ,[sldnSOLDays]
-			   ,[sldnRecUserID]
-			   ,[slddDtCreated]
-			   ,[sldnModifyUserID]
-			   ,[slddDtModified]
-			   ,[sldnLevelNo]
-			   ,[sldsDorP]
-			   ,[sldsSOLName]
-			   ,[sldbIsIncidDtEffect]
-			   ,[sldbDefualt]
-			   ,[sldnFromIncident])
-	SELECT 16,-1,-1,-1,0,0,0,null,368,getdate(),null,null,null,'D','SOL',0,0,0
-END
-GO
-
 
 /*
 ----(1)-----
