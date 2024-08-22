@@ -21,13 +21,12 @@ Thumbs.db
 *.swp
 
 # Ignore database backup files
-backups/   
+backups/*
 *.bak
 *.backup
 
 # Directories to ignore
-trans/
-logs/
+trans/*
 
 # Python cache files
 **__pycache__/
