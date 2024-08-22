@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 -- GO
 
 IF NOT EXISTS
@@ -52,5 +52,5 @@ END
 --		getdate()					as [condDtCreated],
 --		-1							as [saga]
 ----select Distinct hearing_Location
---from NeedlesSLF..user_tab4_data
+--from TestClientNeedles..user_tab4_data
 --where isnull(hearing_Location,'')<>''

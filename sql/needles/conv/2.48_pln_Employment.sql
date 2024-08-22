@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 GO
 /*
 alter table [dbo].[sma_TRN_Employment] disable trigger all
@@ -115,9 +115,9 @@ SELECT
 	,null									as [empnStatusId]		--status  sma_MST_EmploymentStatuses.ID
 	,null									as [empnWorkSiteId]
 
-FROM NeedlesSLF..user_party_data ud
+FROM TestClientNeedles..user_party_data ud
 
-	inner join SANeedlesSLF..Employer_Address_Helper help
+	inner join SATestClientNeedles..Employer_Address_Helper help
 		on help.case_id = ud.case_id
 		and help.party_id = ud.party_id
 
@@ -134,29 +134,29 @@ FROM NeedlesSLF..user_party_data ud
 	
 	-- Link to SA Contact Card via:
 	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
-	-- join NeedlesSLF.dbo.user_tab_name utn
+	-- join TestClientNeedles.dbo.user_tab_name utn
 	-- 	on ud.tab_id = utn.tab_id
-	-- join NeedlesSLF.dbo.names n
+	-- join TestClientNeedles.dbo.names n
 	-- 	on utn.user_name = n.names_id
 	
 
-	join SANeedlesSLF..sma_MST_Address A
+	join SATestClientNeedles..sma_MST_Address A
 		on A.addnContactID = org.connContactID
 		and a.addnContactCtgID = org.connContactCtg
 
 
-	-- from NeedlesSLF..user_party_data upd
+	-- from TestClientNeedles..user_party_data upd
 	-- join sma_MST_OrgContacts org
 	-- 	on org.saga = upd.case_id
 	-- 	and org.saga_ref = 'upd_employer'
 
 	-- -- Indv
-	-- left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioci
+	-- left join SATestClientNeedles.dbo.IndvOrgContacts_Indexed ioci
 	-- 	on n.names_id = ioci.saga
 	-- 	and ioci.CTG = 1
 
 	-- -- Org
-	-- left join SANeedlesSLF.dbo.IndvOrgContacts_Indexed ioco
+	-- left join SATestClientNeedles.dbo.IndvOrgContacts_Indexed ioco
 	-- 	on n.names_id = ioco.saga
 	-- 	and ioco.CTG = 2
 
@@ -225,7 +225,7 @@ SELECT DISTINCT
 		,NULL					as [ltwdDtModified]
 		,null					as [ltwnLevelNo]
 -- employment record id: case > plaintiff > employment (value has caseid)
-from NeedlesSLF..value_indexed v
+from TestClientNeedles..value_indexed v
 JOIN sma_trn_Cases cas
 	on cas.cassCaseNumber = v.case_id
 JOIN sma_trn_plaintiff p
@@ -235,7 +235,7 @@ inner join sma_TRN_Employment e
 	on e.empnPlaintiffID = p.plnnPlaintiffID
 where v.code = 'LWG'
 
--- FROM NeedlesSLF..user_tab4_data ud
+-- FROM TestClientNeedles..user_tab4_data ud
 -- JOIN EmployerTemp et on et.employer = ud.employer and et.employer_address = ud.Employer_Address
 -- JOIN IndvOrgContacts_Indexed ioc on ioc.SAGA = et.empID and ioc.[Name] = et.employer
 -- JOIN [sma_TRN_Employment] e on  e.empnPlaintiffID = p.plnnPlaintiffID and empnEmployerID = ioc.CID

@@ -33,3 +33,6 @@ logs/
 **__pycache__/
 lib/__pycache__/
 *.pyc
+
+# Ignore python virtual environment
+venv/

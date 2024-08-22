@@ -1,4 +1,4 @@
--- use [SANeedlesSLF]
+-- use [SATestClientNeedles]
 GO
 
 /*
@@ -11,7 +11,7 @@ alter table [sma_TRN_TaskNew] disable trigger all
 ----(0)----
 --INSERT INTO [sma_MST_TaskCategory] (tskCtgDescription)
 --SELECT DISTINCT Type_Of_Record 
---FROM NeedlesSLF..user_tab2_data 
+--FROM TestClientNeedles..user_tab2_data 
 --WHERE Type_of_Record in ('Accident Report', 'Criminal', 'Death Cert', 'Dec Page', 'DMV Record', 'Education', 
 --					'Employment', 'Expert Opinion', 'Funeral', 'Photograph', 'Tax', 'Court Transcript', 'Police Notes', 
 --					'Depo Trans.', 'FCE', 'IME', 'SDT by Employer', 'Lost Wages', 'Questionnaire')
@@ -86,7 +86,7 @@ SELECT
 		where StatusType = 'Not Started'
 	)																					as [tskCompleted]
     ,null																				as [saga]
-FROM NeedlesSLF.[dbo].[user_tab8_data] D
+FROM TestClientNeedles.[dbo].[user_tab8_data] D
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = D.case_id
 where Date_Due is not null

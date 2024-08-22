@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+-- use SATestClientNeedles
 
 /* ####################################
 1.0 -- Create PlaintiffInjury records
@@ -40,14 +40,14 @@ select
      ,GETDATE()								as [plidDtCreated]
      ,null									as [plinModifyUserID]
      ,null									as [plidDtModified]
-FROM NeedlesSLF..user_case_data ucd
+FROM TestClientNeedles..user_case_data ucd
 	JOIN sma_trn_Cases cas
 		on cas.cassCaseNumber = convert(varchar,ucd.casenum)
 	-- Link to SA Contact Card via:
 	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
-	--join NeedlesSLF.dbo.user_case_name ucn
+	--join TestClientNeedles.dbo.user_case_name ucn
 	--	on ucd.casenum = ucn.casenum
-	--join NeedlesSLF.dbo.names n
+	--join TestClientNeedles.dbo.names n
 	--	on ucn.user_name = n.names_id
 	--left join IndvOrgContacts_Indexed ioci
 	--	on n.names_id = ioci.saga
@@ -129,14 +129,14 @@ GO
 --     ,null							as [injsOrigICDs]
 --     ,null							as [injnMergeableDescription]
 --     ,null							as [injsInjuryNameIDS]
--- FROM NeedlesSLF..user_case_data ucd
+-- FROM TestClientNeedles..user_case_data ucd
 -- 	JOIN sma_trn_Cases cas
 -- 		on cas.cassCaseNumber = convert(varchar,ucd.casenum)
 -- 	-- Link to SA Contact Card via:
 -- 	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
--- 	--join NeedlesSLF.dbo.user_case_name ucn
+-- 	--join TestClientNeedles.dbo.user_case_name ucn
 -- 	--	on ucd.casenum = ucn.casenum
--- 	--join NeedlesSLF.dbo.names n
+-- 	--join TestClientNeedles.dbo.names n
 -- 	--	on ucn.user_name = n.names_id
 -- 	--left join IndvOrgContacts_Indexed ioci
 -- 	--	on n.names_id = ioci.saga

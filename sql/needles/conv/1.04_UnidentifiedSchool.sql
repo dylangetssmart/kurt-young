@@ -1,4 +1,4 @@
--- USE [SANeedlesSLF]
+-- USE [SATestClientNeedles]
 -- GO
 /*
 alter table [sma_MST_ContactNumbers] disable trigger all
@@ -97,7 +97,7 @@ SELECT
 	,getdate()						as cnndDtModified
 	,null							as cnnnLevelNo
 	,null							as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C
 	on C.saga = N.names_id
 JOIN [sma_MST_Address] A
@@ -147,7 +147,7 @@ SELECT
 	,getdate()							as cnndDtModified
 	,null								as cnnnLevelNo
 	,null								as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_IndvContacts] C
 		on C.saga = N.names_id
 	JOIN [sma_MST_Address] A
@@ -197,7 +197,7 @@ SELECT
 	,getdate()							as cnndDtModified
 	,null								as cnnnLevelNo
 	,null								as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_IndvContacts] C
 		on C.saga = N.names_id
 	JOIN [sma_MST_Address] A
@@ -247,7 +247,7 @@ SELECT
 	,getdate()							as cnndDtModified
 	,null								as cnnnLevelNo
 	,null								as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_IndvContacts] C
 		on C.saga = N.names_id
 	JOIN [sma_MST_Address] A
@@ -297,7 +297,7 @@ SELECT
 	,getdate()					    	as cnndDtModified
 	,null								as cnnnLevelNo
 	,null								as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_IndvContacts] C
 		on C.saga = N.names_id
 	JOIN [sma_MST_Address] A
@@ -350,7 +350,7 @@ SELECT
 	,getdate()							as cnndDtModified
 	,null								as cnnnLevelNo
 	,null 								as caseNo
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_OrgContacts] C
 		on C.saga = N.names_id
 	JOIN [sma_MST_Address] A
@@ -380,7 +380,7 @@ SELECT
 		368							as cnnnModifyUserID,
 		getdate()					as cnndDtModified,
 		null,null
-FROM [NeedlesSLF]..[names] N
+FROM [TestClientNeedles]..[names] N
 	JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 	JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(work_phone,'') <> ''
@@ -406,7 +406,7 @@ SELECT
 		368							as cnnnModifyUserID,
 		getdate()					as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 	JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(car_phone,'') <> ''
@@ -432,7 +432,7 @@ SELECT
 		368							as cnnnModifyUserID,
 		getdate()					as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 	JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(fax_number,'') <> ''
@@ -458,7 +458,7 @@ SELECT
 		368								as cnnnModifyUserID,
 		getdate()					    as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 	JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 	JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 where isnull(beeper_number,'') <> ''
@@ -516,7 +516,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN[sma_MST_IndvContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
  where isnull(N.other_phone1,'') <> ''
@@ -543,7 +543,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
 WHERE isnull(N.other_phone2,'') <> ''
@@ -569,7 +569,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
 WHERE isnull(N.other_phone3,'') <> ''
@@ -596,7 +596,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
 WHERE isnull(N.other_phone4,'') <> ''
@@ -623,7 +623,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.cinnContactID and A.addnContactCtgID=C.cinnContactCtg and A.addbPrimary=1 
 WHERE isnull(N.other_phone5,'') <> ''
@@ -652,7 +652,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(other_phone1,'') <> ''
@@ -678,7 +678,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(other_phone2,'') <> ''
@@ -704,7 +704,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(other_phone3,'') <> ''
@@ -730,7 +730,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(other_phone4,'') <> ''
@@ -757,7 +757,7 @@ SELECT
 		368						as cnnnModifyUserID,
 		getdate()				as cnndDtModified,
 		null,null
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C on C.saga = N.names_id
 JOIN [sma_MST_Address] A on A.addnContactID=C.connContactID and A.addnContactCtgID=C.connContactCtg and A.addbPrimary=1
 WHERE isnull(other_phone5,'') <> ''

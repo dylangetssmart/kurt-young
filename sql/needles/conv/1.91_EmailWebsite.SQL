@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 -- GO
 
 /* ########################################################
@@ -47,8 +47,8 @@ select
 			then right(Employers_Address,10) 
 		else ''
 		end							as Zip
-FROM needlesslf..user_party_data d
-LEFT JOIN SANeedlesSLF..sma_MST_States s
+FROM TestClientNeedles..user_party_data d
+LEFT JOIN SATestClientNeedles..sma_MST_States s
 	on Employers_Address like '% '+ s.sttsCode +' %' or Employers_Address like '%,'+ s.sttsCode +' %'
 WHERE isnull(Employer,'') <> ''
 
@@ -86,7 +86,7 @@ SELECT
 	,getdate()						as [condDtCreated]
 	,upd.case_id					as [saga]
     ,'upd_employer'                 as [saga_ref]
-from NeedlesSLF..user_party_data upd
+from TestClientNeedles..user_party_data upd
 where isnull(upd.Employer,'') <> ''
 
 
@@ -165,7 +165,7 @@ select
 	,null as addbDeleted
 	,null as addsZipExtn
 	,null as saga
-from NeedlesSLF..user_party_data upd
+from TestClientNeedles..user_party_data upd
 	join sma_MST_OrgContacts org
 		on org.saga = upd.case_id
 		and org.saga_ref = 'upd_employer'

@@ -1,4 +1,4 @@
--- use [SANeedlesSLF]
+-- use [SATestClientNeedles]
 go
 /*
 update sma_MST_IndvContacts set cinsComments = NULL
@@ -18,8 +18,8 @@ SELECT
     P.party_id											   as PartyID,
     DATEPART(yyyy,getdate()) - DATEPART(yyyy,N.date_of_birth) - 1   as Age
 
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE N.date_of_birth is not null
 ) A
 WHERE A.PartyID=saga 
@@ -33,9 +33,9 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     DATEPART(yyyy,C.date_of_incident) - DATEPART(yyyy,N.date_of_birth) - 1   as DOI
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
-JOIN NeedlesSLF.[dbo].[cases] C on C.casenum=P.case_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
+JOIN TestClientNeedles.[dbo].[cases] C on C.casenum=P.case_id
 WHERE C.date_of_incident is not null 
 and N.date_of_birth is not null
 ) A
@@ -50,8 +50,8 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     N.Deceased											   as Deceased
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE N.Deceased is not null
 ) A
 WHERE A.PartyID=saga 
@@ -65,8 +65,8 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     DATEPART(yyyy,N.date_of_death)							   as DOD
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE N.date_of_death is not null
 ) A
 WHERE A.PartyID=saga 
@@ -81,8 +81,8 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     P.incapacitated										   as incapacitated
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE isnull(incapacitated,'')<>''
 ) A
 WHERE A.PartyID=saga 
@@ -96,8 +96,8 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     P.incapacity										   as Incapacity
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE isnull(incapacity,'')<>''
 ) A
 WHERE A.PartyID=saga 
@@ -112,8 +112,8 @@ SELECT
     P.case_id											   as CaseID, 
     P.party_id											   as PartyID,
     P.responsibility									   as Responsibility
-FROM NeedlesSLF.[dbo].[party_Indexed] P 
-JOIN NeedlesSLF.[dbo].[names] N on N.names_id=P.party_id
+FROM TestClientNeedles.[dbo].[party_Indexed] P 
+JOIN TestClientNeedles.[dbo].[names] N on N.names_id=P.party_id
 WHERE isnull(P.responsibility,'')<>''
 ) A
 WHERE A.PartyID=saga 

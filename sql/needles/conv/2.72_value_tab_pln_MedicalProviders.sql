@@ -96,7 +96,7 @@ SELECT
     IOC.AID		    as ProviderAID,
     CAS.casnCaseID	as casnCaseID,
     null			as PlaintiffID
-FROM [NeedlesSLF].[dbo].[value_Indexed] V
+FROM [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
@@ -122,7 +122,7 @@ SELECT
     V.value_id		    as vid,
     T.plnnPlaintiffID
 INTO value_tab_Multi_Party_Helper_Temp   
-FROM [NeedlesSLF].[dbo].[value_Indexed] V
+FROM [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
@@ -144,7 +144,7 @@ select
     V.value_id		    as vid,
     ( select plnnPlaintiffID from [SA].[dbo].[sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
@@ -200,7 +200,7 @@ select -- (Note: make sure no duplicate provider per case )
     MAP.ProviderCID,
     MAP.ProviderCTG,
     MAP.ProviderAID
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 inner join value_tab_MedicalProvider_Helper MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
 ) A where A.RowNumber=1 ---Note: No merging. got to be the first script to populate Medical Provider
 GO
@@ -252,7 +252,7 @@ select
     ,0					                as spdbLienConfirmed
     ,0					                as spdbDocAttached
     ,V.value_id			                as saga_bill_id  -- one bill one value
-from [NeedlesSLF].[dbo].[value_Indexed] V  
+from [TestClientNeedles].[dbo].[value_Indexed] V  
 JOIN value_tab_MedicalProvider_Helper MAP
     on MAP.case_id = V.case_id
     and MAP.value_id = V.value_id
@@ -304,13 +304,13 @@ select
     ,isnull('paid by:' + nullif(VP.paid_by,'') + CHAR(13),'')
         + isnull('paid to:' + nullif(VP.paid_to,'') + CHAR(13),'')
         + ''				as [AmountPaidComments]
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN value_tab_MedicalProvider_Helper MAP
     on MAP.case_id = V.case_id
     and MAP.value_id = V.value_id
 JOIN [sma_TRN_SpDamages] SPD
     on SPD.saga_bill_id = V.value_id
-JOIN [NeedlesSLF].[dbo].[value_payment] VP
+JOIN [TestClientNeedles].[dbo].[value_payment] VP
     on VP.value_id = V.value_id -- multiple payment per value_id
 GO
 

@@ -1,4 +1,4 @@
--- USE SANeedlesSLF
+-- USE SATestClientNeedles
 GO
 /*
 delete from [sma_TRN_PlaintiffDeath] 

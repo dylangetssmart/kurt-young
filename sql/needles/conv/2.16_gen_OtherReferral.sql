@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+-- use SATestClientNeedles
 go
 /*
 alter table [sma_TRN_OtherReferral] disable trigger all
@@ -29,7 +29,7 @@ SELECT
     null			as [otrsComments],
     368			    as [otrnUserID], 
     getdate()		as [otrdDtCreated] 
-FROM NeedlesSLF.[dbo].[cases_indexed] C
+FROM TestClientNeedles.[dbo].[cases_indexed] C
 JOIN [sma_TRN_cases] CAS
 	on CAS.cassCaseNumber = C.casenum
 JOIN [IndvOrgContacts_Indexed] IOC

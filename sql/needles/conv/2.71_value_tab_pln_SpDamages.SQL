@@ -59,7 +59,7 @@ select
     ,vc.[description]
     ,getdate()
     ,368
-from NeedlesSLF..value_code vc
+from TestClientNeedles..value_code vc
 where code in (SELECT code FROM #SpDmgValueCodes)
 
 
@@ -114,7 +114,7 @@ select
     IOC.AID		    as ProviderAID,
     CAS.casnCaseID	as casnCaseID,
     null			as PlaintiffID  
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
@@ -141,7 +141,7 @@ select
     V.value_id		    as vid,
     T.plnnPlaintiffID
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC
@@ -173,7 +173,7 @@ select
         where plnnCaseID = CAS.casnCaseID and plnbIsPrimary = 1
     )                  as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [TestClientNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC
@@ -247,8 +247,8 @@ select distinct
         + SDH.[ProviderName]
         + char(13)
         + v.memo	                        as spdsComments
-FROM [NeedlesSLF].[dbo].[value_Indexed] V
-JOIN [NeedlesSLF].[dbo].[value_Code] VC
+FROM [TestClientNeedles].[dbo].[value_Indexed] V
+JOIN [TestClientNeedles].[dbo].[value_Code] VC
     on v.code = vc.code
 JOIN [value_tab_spDamages_Helper] SDH
     on v.value_id = sdh.value_id

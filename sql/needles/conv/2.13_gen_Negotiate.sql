@@ -1,4 +1,4 @@
--- use [SANeedlesSLF]
+-- use [SATestClientNeedles]
 go
 /*
 
@@ -87,12 +87,12 @@ SELECT
 			then NEG.amount
 		else null 
 		end															as [SettlementAmount]
-FROM NeedlesSLF.[dbo].[negotiation] NEG
-LEFT JOIN NeedlesSLF.[dbo].[insurance_Indexed] INS
+FROM TestClientNeedles.[dbo].[negotiation] NEG
+LEFT JOIN TestClientNeedles.[dbo].[insurance_Indexed] INS
 	on INS.insurance_id=NEG.insurance_id
 JOIN [sma_TRN_cases] CAS
 	on CAS.cassCaseNumber = NEG.case_id
-LEFT JOIN [SANeedlesSLF].[dbo].[Insurance_Contacts_Helper] MAP
+LEFT JOIN [SATestClientNeedles].[dbo].[Insurance_Contacts_Helper] MAP
 	on INS.insurance_id=MAP.insurance_id 
 
 -----------------

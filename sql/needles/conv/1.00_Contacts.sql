@@ -1,5 +1,5 @@
 
---USE SANeedlesSLF
+--USE SATestClientNeedles
 --GO
 /*
 alter table [sma_MST_IndvContacts] disable trigger all
@@ -28,7 +28,7 @@ ALTER TABLE [sma_MST_OrgContacts]
 --(0)---
 /*
 INSERT INTO [sma_MST_Languages] ([lngsLanguageName])
-SELECT race_name FROM [NeedlesSLF].[dbo].[race] WHERE isnull(race_name,'')<>''
+SELECT race_name FROM [TestClientNeedles].[dbo].[race] WHERE isnull(race_name,'')<>''
 EXCEPT
 SELECT [lngsLanguageName] FROM [sma_MST_Languages]
 GO
@@ -39,7 +39,7 @@ GO
 --INSERT RACE
 ---------------------------
 INSERT INTO sma_mst_contactRace (RaceDesc)
-SELECT distinct Race_Name from NeedlesSLF..Race 
+SELECT distinct Race_Name from TestClientNeedles..Race 
 EXCEPT SELECT RaceDesc From sma_Mst_ContactRace
 
 --(0) construct [sma_MST_IndvContacts] special contacts
@@ -435,7 +435,7 @@ SELECT
 		-- if incapacitated = "Y" on the [party_Indexed] table, then grab the contactSubCategoryID for "Incompetent"
 		when exists (
 			select *
-			from [NeedlesSLF].[dbo].[party_Indexed] P
+			from [TestClientNeedles].[dbo].[party_Indexed] P
 			where P.party_id=N.names_id and P.incapacitated='Y'
 		) then (
 			select cscnContactSubCtgID
@@ -446,7 +446,7 @@ SELECT
 		-- otherwise, grab the contactSubCategoryID for "Adult"
 		when exists (
 			select *
-			from [NeedlesSLF].[dbo].[party_Indexed] P
+			from [TestClientNeedles].[dbo].[party_Indexed] P
 			where P.party_id=N.names_id and P.minor='Y'
 		) then (
 			select cscnContactSubCtgID
@@ -476,8 +476,8 @@ SELECT
 		else NULL
 		end										as cinnrace,
 	N.[names_id]								as saga  
-FROM [NeedlesSLF].[dbo].[names] N
-LEFT JOIN [NeedlesSLF].[dbo].[Race] r on r.race_ID = n.race
+FROM [TestClientNeedles].[dbo].[names] N
+LEFT JOIN [TestClientNeedles].[dbo].[Race] r on r.race_ID = n.race
 WHERE N.[person]='Y'
 
 
@@ -512,14 +512,14 @@ SELECT
     2											as [connContactCtg],
     (
 		select octnOrigContactTypeID
-		FROM [SANeedlesSLF].[dbo].[sma_MST_OriginalContactTypes]
+		FROM [SATestClientNeedles].[dbo].[sma_MST_OriginalContactTypes]
 		where octsDscrptn='General' and octnContactCtgID=2
 	)											as [connContactTypeID],
     368											as [connRecUserID],
     getdate()									as [condDtCreated],
     1											as [conbStatus],	-- Hardcode Status as ACTIVE
     N.[names_id]								as [saga]			-- remember the [names].[names_id] number
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 WHERE N.[person] <> 'Y'
 
 ---------------------------------------
@@ -585,7 +585,7 @@ SELECT
 --Select *
 FROM [implementation_users] iu
 LEFT JOIN [sma_MST_IndvContacts] ind on iu.StaffCode = ind.cinsgrade
-LEFT JOIN NeedlesSLF..[staff] s on s.staff_code = iu.staffcode
+LEFT JOIN TestClientNeedles..[staff] s on s.staff_code = iu.staffcode
 WHERE cinncontactid IS NULL
 and SALoginID <> 'aadmin'
 
@@ -607,7 +607,7 @@ SELECT
 		null,
 		1					as saga -- indicate email
 FROM implementation_users iu
-JOIN NeedlesSLF..staff s on s.staff_code = iu.staffcode
+JOIN TestClientNeedles..staff s on s.staff_code = iu.staffcode
 JOIN [sma_MST_IndvContacts] C on C.cinsgrade = iu.staffcode
 WHERE isnull(email,'') <> ''
 

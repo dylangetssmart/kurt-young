@@ -1,4 +1,4 @@
--- USE [SANeedlesSLF]
+-- USE [SATestClientNeedles]
 -- GO
 /*
 alter table [sma_MST_EmailWebsite] disable trigger all
@@ -41,7 +41,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,1						as saga -- indicate email
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C
 	on C.saga = N.names_id
 WHERE isnull(email,'') <> ''
@@ -74,7 +74,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,2						as saga -- indicate email_work
- FROM [NeedlesSLF].[dbo].[names] N
+ FROM [TestClientNeedles].[dbo].[names] N
  JOIN [sma_MST_IndvContacts] C
  	on C.saga = N.names_id
  WHERE isnull(email_work,'') <> ''
@@ -107,7 +107,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,3						as saga -- indicate other_email
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C
 	on C.saga = N.names_id
 WHERE isnull(other_email,'') <> ''
@@ -140,7 +140,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,4						as saga -- indicate website
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_IndvContacts] C
 	on C.saga = N.names_id
 WHERE isnull(website,'') <> ''
@@ -176,7 +176,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,1						as saga -- indicate email
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C
 	on C.saga = N.names_id
 WHERE isnull(email,'') <> ''
@@ -208,7 +208,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,2						as saga -- indicate email_work
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C
 	on C.saga = N.names_id
 WHERE isnull(email_work,'') <> ''
@@ -240,7 +240,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,3						as saga -- indicate other_email
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C
 	on C.saga = N.names_id
 WHERE isnull(other_email,'') <> ''
@@ -272,7 +272,7 @@ SELECT
 	,getdate()				as cewdDtModified
 	,null					as cewnLevelNo
 	,4						as saga -- indicate website
-FROM [NeedlesSLF].[dbo].[names] N
+FROM [TestClientNeedles].[dbo].[names] N
 JOIN [sma_MST_OrgContacts] C
 	on C.saga = N.names_id
 WHERE isnull(website,'') <> ''

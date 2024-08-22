@@ -1,4 +1,4 @@
--- use SANeedlesSLF
+-- use SATestClientNeedles
 GO
 
 ------
@@ -91,7 +91,7 @@ WHERE lwfnLawFirmContactID is not null
 ----(4)----
 UPDATE [sma_MST_IndvContacts] SET cinnContactTypeID=(SELECT octnOrigContactTypeID FROM [sma_MST_OriginalContactTypes] WHERE octsDscrptn='Judge')
 FROM
-( SELECT DISTINCT judge_link FROM NeedlesSLF.[dbo].[cases] ) A
+( SELECT DISTINCT judge_link FROM TestClientNeedles.[dbo].[cases] ) A
 WHERE A.judge_link=saga and isnull(saga,0)<>0 
 
 
