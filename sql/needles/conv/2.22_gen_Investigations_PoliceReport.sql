@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 go
 /*
 alter table [sma_TRN_PoliceReports] disable trigger all
@@ -38,7 +38,7 @@ SELECT DISTINCT
 	I.cinnContactCtg	   as OfficerCTG,
 	A.addnAddressID	   as OfficerAID, 
 	I.cinsGrade
-FROM TestClientNeedles.[dbo].[police] P
+FROM TestNeedles.[dbo].[police] P
 JOIN [sma_MST_IndvContacts] I on I.cinsGrade=P.officer and I.cinsPrefix='Officer' 
 JOIN [sma_MST_Address] A on A.addnContactID=I.cinnContactID and A.addnContactCtgID=I.cinnContactCtg and A.addbPrimary=1 
 
@@ -90,7 +90,7 @@ SELECT
 	CAS.casnCaseID	    as casnCaseID,
 	( select H.OfficerCID from Officer_Helper H where H.cinsGrade =P.officer ) as officerCID,
 	( select H.OfficerAID from Officer_Helper H where H.cinsGrade =P.officer )	as officerAID
-FROM TestClientNeedles.[dbo].[police] P
+FROM TestNeedles.[dbo].[police] P
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber=P.case_num
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA=P.police_id
 GO
@@ -122,7 +122,7 @@ SELECT
     ,MAP.PoliceCID			as [pornPOContactID]
     ,MAP.PoliceCTG			as [pornPOCtgID]
     ,MAP.PoliceAID			as [pornPOAddressID]
-FROM TestClientNeedles.[dbo].[police] P
+FROM TestNeedles.[dbo].[police] P
 JOIN Police_Helper MAP
 	on MAP.police_id=P.police_id
 		and MAP.case_num=P.case_num

@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 -- GO
 
 --
@@ -107,7 +107,7 @@ SELECT DISTINCT
 	,''							as [saga]
 	,''							as [cinsSpouse]
 	,-1							as [cinsGrade]
-FROM [TestClientNeedles].[dbo].[insurance] INS
+FROM [TestNeedles].[dbo].[insurance] INS
 WHERE isnull(insured, '') <> ''
 GO
 

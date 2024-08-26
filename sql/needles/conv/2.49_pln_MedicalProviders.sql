@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 --GO
 --/*
 --alter table [sma_TRN_Hospitals] disable trigger all
@@ -17,7 +17,7 @@
 --alter table [sma_TRN_SpecialDamageAmountPaid] enable trigger all
 --*/
 
-----select distinct code, description from TestClientNeedles.[dbo].[value] order by code
+----select distinct code, description from TestNeedles.[dbo].[value] order by code
 -------------
 
 --alter table [sma_TRN_Hospitals] disable trigger all
@@ -77,22 +77,22 @@ select
     null						as [hosnModifyUserID],
     null						as [hosdDtModified],
     n.names_id					as [saga]
-from TestClientNeedles..user_case_data ud
+from TestNeedles..user_case_data ud
 	-- case
-	join TestClientNeedles..cases c
+	join TestNeedles..cases c
 		on c.casenum = convert(varchar, ud.casenum)
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = convert(varchar, ud.casenum)
 	-- Doctor contact card
-	join TestClientNeedles..user_case_name un
+	join TestNeedles..user_case_name un
 		on un.casenum = ud.casenum
-	join TestClientNeedles..user_case_matter um
+	join TestNeedles..user_case_matter um
 		on um.ref_num = un.ref_num
 		and um.mattercode = c.matcode
 		and um.field_title = 'Attending Physician'
-	join TestClientNeedles..names n
+	join TestNeedles..names n
 		on n.names_id = un.user_name
-	join SATestClientNeedles..IndvOrgContacts_Indexed ioc
+	join TestNeedles..IndvOrgContacts_Indexed ioc
 		on ioc.SAGA = n.names_id
 	-- get Plaintiff
 	join sma_TRN_Plaintiff p
@@ -100,14 +100,14 @@ from TestClientNeedles..user_case_data ud
 
 where isnull(ud.Attending_Physician,'') <> ''
 
---FROM TestClientNeedles..user_case_data ucd
+--FROM TestNeedles..user_case_data ucd
 --	JOIN sma_trn_Cases cas
 --		on cas.cassCaseNumber = convert(varchar,ucd.casenum)
 --	-- Link to SA Contact Card via:
 --	-- user_tab_data -> user_tab_name -> names -> IndvOrgContacts_Indexed
---	join TestClientNeedles.dbo.user_case_name ucn
+--	join TestNeedles.dbo.user_case_name ucn
 --		on ucd.casenum = ucn.casenum
---	join TestClientNeedles.dbo.names n
+--	join TestNeedles.dbo.names n
 --		on ucn.user_name = n.names_id
 --	left join IndvOrgContacts_Indexed ioci
 --		on n.names_id = ioci.saga

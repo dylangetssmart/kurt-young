@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 --go
 /*
 alter table [sma_TRN_Cases] disable trigger all
@@ -294,7 +294,7 @@ SELECT DISTINCT
 	,1								as cstbUseIncident1
 	,'Incident 1'					as cstsIncidentLabel1
 	,'SLFCaseType'					as VenderCaseType
-FROM [TestClientNeedles]..user_case_data d
+FROM [TestNeedles]..user_case_data d
 LEFT JOIN [sma_MST_CaseType] ct
 	ON d.Type_of_Case = ct.cstsType
 WHERE ct.cstsType IS NULL and isnull(d.Type_of_Case,'') <> ''
@@ -308,7 +308,7 @@ INSERT INTO [dbo].[sma_MST_CaseSubTypeCode]
 	stcsDscrptn 
 )
 SELECT DISTINCT d.Type_of_Accident
-from [TestClientNeedles]..user_case_data d
+from [TestNeedles]..user_case_data d
 where isnull(d.Type_of_Accident,'') <> ''
 EXCEPT
 SELECT
@@ -354,7 +354,7 @@ SELECT distinct
 		from [sma_MST_CaseSubTypeCode]
 		where stcsDscrptn = d.Type_of_Accident
 	)									as [cstnTypeCode] 
-from [TestClientNeedles]..user_case_data d
+from [TestNeedles]..user_case_data d
 where isnull(d.Type_of_Accident,'') <> ''
 
 
@@ -686,8 +686,8 @@ SELECT
 	,null 							as [ngage]
 	,null 							as [casnClientRecoveredDt]
     ,0								as CloseReason
-FROM [TestClientNeedles].[dbo].[cases_Indexed] C
-LEFT JOIN [TestClientNeedles].[dbo].[user_case_data] U
+FROM [TestNeedles].[dbo].[cases_Indexed] C
+LEFT JOIN [TestNeedles].[dbo].[user_case_data] U
 	on U.casenum=C.casenum
 JOIN caseTypeMixture mix
 	on mix.matcode = c.matcode

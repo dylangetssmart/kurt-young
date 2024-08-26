@@ -1,5 +1,5 @@
 
--- USE [SATestClientNeedles]
+-- USE [TestNeedles]
 GO
 ---(1)--- Phone number uniqueness
 

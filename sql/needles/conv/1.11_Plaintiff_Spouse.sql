@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 --GO
 
 IF NOT EXISTS

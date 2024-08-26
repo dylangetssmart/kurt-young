@@ -1,4 +1,4 @@
-use SATestClientNeedles
+use TestNeedles
 go
 
 IF EXISTS (SELECT * FROM sys.tables WHERE name = 'CaseUDF' AND type = 'U')
@@ -52,7 +52,7 @@ FROM (
         convert(varchar(max), [Ticket_Type]) as [Ticket Type], 
         convert(varchar(max), [ERInitial_Doctors_Bills]) as [ER/Initial Doctors Bills], 
         convert(varchar(max), [Attorney_Fee_Received]) as [Attorney Fee Received]
-    FROM TestClientNeedles..user_case_data ud
+    FROM TestNeedles..user_case_data ud
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -105,8 +105,8 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --         convert(varchar(max), [Are_You_a_US_Citizen]) as [Are You a US Citizen?], 
 --         convert(varchar(max), [Specific_Bequest]) as [Specific Bequest], 
 --         convert(varchar(max), [Employment]) as [Employment]
---     FROM TestClientNeedles..user_party_data ud
---     --JOIN TestClientNeedles..cases_Indexed c ON c.casenum = ud.case_id
+--     FROM TestNeedles..user_party_data ud
+--     --JOIN TestNeedles..cases_Indexed c ON c.casenum = ud.case_id
 --     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 -- ) pv
 -- UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -135,8 +135,8 @@ UNPIVOT (FieldVal FOR FieldTitle IN (
 --         convert(varchar(max), [FPT_Employment]) as [F/PT Employment?], 
 --         convert(varchar(max), [Hours_Worked_per_week]) as [Hours Worked per week], 
 --         convert(varchar(max), [Current_Medication]) as [Current Medication]
---     FROM TestClientNeedles..user_tab_data ud
---     --JOIN TestClientNeedles..cases_Indexed c ON c.casenum = ud.case_id
+--     FROM TestNeedles..user_tab_data ud
+--     --JOIN TestNeedles..cases_Indexed c ON c.casenum = ud.case_id
 --     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 -- ) pv
 -- UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -181,7 +181,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [TestClientNeedles].[dbo].[user_case_matter] M
+	JOIN [TestNeedles].[dbo].[user_case_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -189,11 +189,11 @@ FROM [sma_MST_CaseType] CST
 				FROM CaseUDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	--LEFT JOIN	(
 	--				SELECT DISTINCT table_Name, column_name
-	--				FROM [TestClientNeedles].[dbo].[document_merge_params]
+	--				FROM [TestNeedles].[dbo].[document_merge_params]
 	--				WHERE table_Name = 'user_case_data'
 	--			) dmp
 	--	ON dmp.column_name = ucf.field_Title
@@ -221,7 +221,7 @@ FROM [sma_MST_CaseType] CST
 -- FROM [sma_MST_CaseType] CST
 -- 	JOIN CaseTypeMixture mix
 -- 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
--- 	JOIN [TestClientNeedles].[dbo].[user_tab_matter] M
+-- 	JOIN [TestNeedles].[dbo].[user_tab_matter] M
 -- 		ON M.mattercode = mix.matcode
 -- 		AND M.field_type <> 'label'
 -- 	JOIN	(
@@ -229,7 +229,7 @@ FROM [sma_MST_CaseType] CST
 -- 				FROM CaseUDF
 -- 			) vd
 -- 		ON vd.FieldTitle = M.field_title
--- 	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+-- 	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 -- 		ON ucf.field_num = M.ref_num
 -- 	LEFT JOIN [sma_MST_UDFDefinition] def
 -- 		ON def.[udfnRelatedPK] = cst.cstnCaseTypeID
@@ -255,7 +255,7 @@ FROM [sma_MST_CaseType] CST
 -- FROM [sma_MST_CaseType] CST
 -- 	JOIN CaseTypeMixture mix
 -- 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
--- 	JOIN [TestClientNeedles].[dbo].[user_party_matter] M
+-- 	JOIN [TestNeedles].[dbo].[user_party_matter] M
 -- 		ON M.mattercode = mix.matcode
 -- 		AND M.field_type <> 'label'
 -- 	JOIN	(
@@ -263,7 +263,7 @@ FROM [sma_MST_CaseType] CST
 -- 				FROM CaseUDF
 -- 			) vd
 -- 		ON vd.FieldTitle = M.field_title
--- 	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+-- 	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 -- 		ON ucf.field_num = M.ref_num
 -- 	LEFT JOIN [sma_MST_UDFDefinition] def
 -- 		ON def.[udfnRelatedPK] = cst.cstnCaseTypeID

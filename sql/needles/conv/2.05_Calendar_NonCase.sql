@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 GO
 
 SET QUOTED_IDENTIFIER ON;
@@ -31,7 +31,7 @@ FROM
 	(
 		SELECT DISTINCT
 			appointment_type as ActivityType
-		FROM TestClientNeedles.[dbo].[calendar] CAL
+		FROM TestNeedles.[dbo].[calendar] CAL
 		where isnull(CAL.appointment_type,'') <> ''
 			and isnull(CAL.casenum,0) = 0 
 EXCEPT
@@ -105,7 +105,7 @@ SELECT
 		end					  as [ToDate]
 	,(
 		select ID
-		FROM [SATestClientNeedles].[dbo].[sma_MST_CalendarAppointmentType]
+		FROM [TestNeedles].[dbo].[sma_MST_CalendarAppointmentType]
 		where AppointmentType = 'Non-Case related Office'
 	)							as [AppointmentTypeID]
 	,case -- ActivityTypeID
@@ -199,7 +199,7 @@ SELECT
 	,null
 	,null
 	,'Non-Case:' + convert(varchar,CAL.calendar_id)	  as [SAGA]
-FROM TestClientNeedles.[dbo].[calendar] CAL
+FROM TestNeedles.[dbo].[calendar] CAL
 where isnull(CAL.casenum,0) = 0
 
 ------(2)-----
@@ -210,7 +210,7 @@ INSERT INTO [sma_trn_AppointmentStaff]
 )
 SELECT APP.AppointmentID,I.cinnContactID
 FROM [sma_TRN_CalendarAppointments] APP
-JOIN TestClientNeedles.[dbo].[calendar] CAL
+JOIN TestNeedles.[dbo].[calendar] CAL
 	on APP.saga = 'Non-Case:' + convert(varchar,CAL.calendar_id)
 JOIN [sma_MST_IndvContacts] I
 	on I.cinsGrade = CAL.staff_id

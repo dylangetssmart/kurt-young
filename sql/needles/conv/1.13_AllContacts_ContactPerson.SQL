@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 GO
 
 --
@@ -114,7 +114,7 @@ SELECT
     ,''                               as [saga]
     ,''                               as [cinsSpouse]
     ,-1                               as [cinsGrade]
-FROM [TestClientNeedles].[dbo].[user_party_data] up
+FROM [TestNeedles].[dbo].[user_party_data] up
 WHERE ISNULL(Contact_Person, '') <> ''
 GO
 

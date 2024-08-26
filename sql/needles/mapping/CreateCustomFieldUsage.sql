@@ -1,4 +1,4 @@
-use NeedlesSLF
+use TestNeedles
 
 -- Drop the CustomFieldUsage table if it exists
 IF OBJECT_ID('dbo.CustomFieldUsage', 'U') IS NOT NULL

@@ -51,8 +51,8 @@ INSERT INTO [sma_MST_DisbursmentType]
 	SELECT DISTINCT
     'CONVERSION'
     ,VC.[description]
-	FROM [TestClientNeedles].[dbo].[value] V
-	    JOIN [TestClientNeedles].[dbo].[value_code] VC
+	FROM [TestNeedles].[dbo].[value] V
+	    JOIN [TestNeedles].[dbo].[value_code] VC
             on VC.code=V.code 
 	WHERE isnull(V.code,'') in (SELECT code FROM #DisbursementValueCodes)
 )
@@ -118,7 +118,7 @@ select
     IOC.UNQCID		    as ProviderUID,
     CAS.casnCaseID	    as casnCaseID,
     null			    as PlaintiffID
-from [TestClientNeedles].[dbo].[value_Indexed] V
+from [TestNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
@@ -143,7 +143,7 @@ SELECT
     ,V.value_id		    as vid
     ,T.plnnPlaintiffID
 INTO value_tab_Multi_Party_Helper_Temp   
-FROM [TestClientNeedles].[dbo].[value_Indexed] V
+FROM [TestNeedles].[dbo].[value_Indexed] V
     JOIN [sma_TRN_cases] CAS
         on CAS.cassCaseNumber = V.case_id
     JOIN IndvOrgContacts_Indexed IOC
@@ -174,7 +174,7 @@ SELECT
         where plnnCaseID = CAS.casnCaseID and plnbIsPrimary = 1
     )                   as plnnPlaintiffID 
 into value_tab_Multi_Party_Helper_Temp
-FROM [TestClientNeedles].[dbo].[value_Indexed] V
+FROM [TestNeedles].[dbo].[value_Indexed] V
     JOIN [sma_TRN_cases] CAS
         on CAS.cassCaseNumber = V.case_id
     JOIN [IndvOrgContacts_Indexed] IOC
@@ -229,7 +229,7 @@ select
         from [sma_MST_DisbursmentType]
         where dissTypeName = (
                                 select [description]
-                                FROM [TestClientNeedles].[dbo].[value_code]
+                                FROM [TestNeedles].[dbo].[value_code]
                                 where [code]=V.code
                             )
     )                                       as dissDisbursementType
@@ -290,11 +290,11 @@ select
         else 1 
         end		                            as disnRecoverable
     ,V.value_id			                    as saga
-FROM [TestClientNeedles].[dbo].[value_Indexed] V
+FROM [TestNeedles].[dbo].[value_Indexed] V
 JOIN value_tab_Disbursement_Helper MAP
     on MAP.case_id = V.case_id 
     and MAP.value_id = V.value_id
-join TestClientNeedles..user_tab2_data u
+join TestNeedles..user_tab2_data u
     on u.case_id = v.case_id
 GO
 ---

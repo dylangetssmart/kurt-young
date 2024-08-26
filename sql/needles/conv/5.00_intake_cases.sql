@@ -1,8 +1,8 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 GO
 
 
---select * From TestClientNeedles..case_intake order by intake_taken
+--select * From TestNeedles..case_intake order by intake_taken
 --sp_help sma_trn_Cases
 
 ALTER TABLE sma_trn_Cases
@@ -174,7 +174,7 @@ SELECT DISTINCT
     ,NULL                                                         AS [ngage]
     ,NULL                                                         AS [casnClientRecoveredDt]
     ,0                                                            AS [CloseReason]
-FROM TestClientNeedles.[dbo].[Case_intake] C
+FROM TestNeedles.[dbo].[Case_intake] C
     LEFT JOIN [CaseTypeMixture] MIX
         ON MIX.matcode = REPLACE(C.matcode, ' ', '')
     LEFT JOIN sma_MST_CaseType CST
@@ -182,7 +182,7 @@ FROM TestClientNeedles.[dbo].[Case_intake] C
 WHERE ISNULL(name_ID, '') <> ''
 
 
---select * FROM TestClientNeedles.[dbo].[Case_intake] C
+--select * FROM TestNeedles.[dbo].[Case_intake] C
 
 ------------------------------------------
 --INTAKE STATUS
@@ -220,7 +220,7 @@ SELECT
     GETDATE(),
     null,null,null,null 
 FROM [sma_trn_cases] CAS
-JOIN TestClientNeedles..case_intake C on C.ROW_ID = CAS.saga
+JOIN TestNeedles..case_intake C on C.ROW_ID = CAS.saga
 GO
 
 ------------------------------
@@ -261,7 +261,7 @@ GO
 -- 		null				 as [ModifyUserID],
 -- 		null				 as [DtModified]
 -- --Select *
--- FROM TestClientNeedles..case_intake C
+-- FROM TestNeedles..case_intake C
 -- JOIN [sma_TRN_cases] CAS on C.ROW_ID = CAS.saga 
 
 
@@ -357,5 +357,5 @@ GO
 --    null					  as [udvdDtModified],
 --    null					  as [udvnLevelNo]
 --FROM [sma_TRN_Cases] CAS
---JOIN TestClientNeedles..case_intake C on C.ROW_ID = CAS.saga 
+--JOIN TestNeedles..case_intake C on C.ROW_ID = CAS.saga 
 --WHERE isnull(convert(varchar(max),c.Location_Case),'')<>''

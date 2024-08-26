@@ -1,4 +1,4 @@
-use SATestClientNeedles
+use TestNeedles
 go
 
 
@@ -25,7 +25,7 @@ FROM (
         convert(varchar(max), [Eyewitness]) as [Eyewitness?], 
         convert(varchar(max), [Vantage_Point]) as [Vantage Point],
         convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
-    FROM TestClientNeedles..user_party_data ud
+    FROM TestNeedles..user_party_data ud
     JOIN sma_TRN_Cases cas ON cas.casnCaseID = ud.case_id
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -41,8 +41,8 @@ FROM (
     SELECT cas.casnCaseID, cas.CasnOrgCaseTypeID, 
         convert(varchar(max), [Location]) as [Location],
 		convert(varchar(max), [Caller_Phone_#_not_P]) as [Caller Phone # (not P)]
-    FROM TestClientNeedles..user_case_data ud
-    JOIN TestClientNeedles..cases_Indexed c ON c.casenum = ud.casenum
+    FROM TestNeedles..user_case_data ud
+    JOIN TestNeedles..cases_Indexed c ON c.casenum = ud.casenum
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -79,7 +79,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		on mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN TestClientNeedles.[dbo].[user_case_matter] M
+	JOIN TestNeedles.[dbo].[user_case_matter] M
 		on M.mattercode=mix.matcode and M.field_type <> 'label'
 	JOIN (
 			select DISTINCT fieldTitle

@@ -1,4 +1,4 @@
--- use SATestClientNeedles
+-- use TestNeedles
 go
 
 /* ####################################
@@ -25,7 +25,7 @@ FROM (
         convert(varchar(max), [No_Show]) as [No Show],
         convert(varchar(max), [JURY]) as [JURY],
         convert(varchar(max), [NON_JURY]) as [NON JURY]
-    FROM TestClientNeedles..user_case_data ud
+    FROM TestNeedles..user_case_data ud
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.casenum)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -50,8 +50,8 @@ FROM (
         convert(varchar(max), [Visitation_Details]) as [Visitation Details],
         convert(varchar(max), [Visitation_Requested_by]) as [Visitation Requested by],
         convert(varchar(max), [Lives_with_Whom]) as [Lives with Whom]
-    FROM TestClientNeedles..user_tab_data ud
-    JOIN TestClientNeedles..cases_Indexed c ON c.casenum = ud.case_id
+    FROM TestNeedles..user_tab_data ud
+    JOIN TestNeedles..cases_Indexed c ON c.casenum = ud.case_id
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (
@@ -95,7 +95,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [TestClientNeedles].[dbo].[user_case_matter] M
+	JOIN [TestNeedles].[dbo].[user_case_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -103,11 +103,11 @@ FROM [sma_MST_CaseType] CST
 				FROM PlaintiffUDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	--LEFT JOIN	(
 	--				SELECT DISTINCT table_Name, column_name
-	--				FROM [TestClientNeedles].[dbo].[document_merge_params]
+	--				FROM [TestNeedles].[dbo].[document_merge_params]
 	--				WHERE table_Name = 'user_case_data'
 	--			) dmp
 		--ON dmp.column_name = ucf.field_Title
@@ -165,7 +165,7 @@ FROM PlaintiffUDF udf
 		on pln.plnnCaseID = udf.casnCaseID
 
 	-- get caseID for [udvnRelatedID]
-	--join [TestClientNeedles].[dbo].user_case_data cd
+	--join [TestNeedles].[dbo].user_case_data cd
 	--	on udf.party_id = pd.party_id
 	--join sma_TRN_Cases cas
 	--	on convert(varchar, pd.case_id) = cas.cassCaseNumber
@@ -218,7 +218,7 @@ GO
 --	JOIN CaseTypeMixture mix
 --		ON mix.[SmartAdvocate Case Type] = cst.cstsType
 
---	JOIN [TestClientNeedles].[dbo].[user_party_matter] M
+--	JOIN [TestNeedles].[dbo].[user_party_matter] M
 --		ON M.mattercode = mix.matcode
 --		AND M.field_type <> 'label'
 
@@ -231,7 +231,7 @@ GO
 --			) vd
 --		ON vd.FieldTitle = M.field_title
 
---	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+--	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 --		ON ucf.field_num = M.ref_num
 
 --	LEFT JOIN [sma_MST_UDFDefinition] def
@@ -285,7 +285,7 @@ GO
 --		on ioc.SAGA = dfn.saga_party
 
 --	-- get caseID for [udvnRelatedID]
---	join [TestClientNeedles].[dbo].user_party_data pd
+--	join [TestNeedles].[dbo].user_party_data pd
 --		on udf.party_id = pd.party_id
 --	join sma_TRN_Cases cas
 --		on convert(varchar, pd.case_id) = cas.cassCaseNumber

@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 GO
 /*
 alter table [sma_TRN_Defendants] disable trigger all
@@ -110,7 +110,7 @@ SELECT CAS.casnCaseID AS [plnnCaseID]
 	,1 AS [plnnPrimaryContact]
 	,P.TableIndex AS [saga_party]
 --SELECT cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
-FROM TestClientNeedles.[dbo].[party_indexed] P
+FROM TestNeedles.[dbo].[party_indexed] P
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = P.case_id  
 	JOIN IndvOrgContacts_Indexed CIO
@@ -223,7 +223,7 @@ SELECT
 	,null				AS [saga_party]
 	-- ,P.TableIndex AS [saga_party]
 --SELECT cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
-FROM TestClientNeedles.[dbo].[user_party_data] P
+FROM TestNeedles.[dbo].[user_party_data] P
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = P.case_id  
 	JOIN IndvOrgContacts_Indexed CIO
@@ -257,7 +257,7 @@ WHILE @@FETCH_STATUS = 0
 BEGIN
 
     update [SA].[dbo].[sma_TRN_Plaintiff] set plnnRole=S.sbrnSubRoleId
-    from TestClientNeedles.[dbo].[party_indexed] P 
+    from TestNeedles.[dbo].[party_indexed] P 
     inner join [SA].[dbo].[sma_TRN_Cases] CAS on CAS.cassCaseNumber = P.case_id  
     inner join [SA].[dbo].[sma_MST_SubRole] S on CAS.casnOrgCaseTypeID = S.sbrnCaseTypeID and S.sbrnRoleID=4 and S.sbrsDscrptn=@sa_role
     inner join IndvOrgContacts_Indexed CIO on CIO.SAGA = P.party_id
@@ -328,7 +328,7 @@ select casnCaseID								as [defnCaseID]
 	,null
 	,null
 	,P.TableIndex								as [saga_party]
-from TestClientNeedles.[dbo].[party_indexed] P
+from TestNeedles.[dbo].[party_indexed] P
 	join [sma_TRN_Cases] CAS
 		on CAS.cassCaseNumber = P.case_id
 	join IndvOrgContacts_Indexed ACIO
@@ -344,7 +344,7 @@ go
 
 
 /*
-from TestClientNeedles.[dbo].[party_indexed] P 
+from TestNeedles.[dbo].[party_indexed] P 
 inner join [SA].[dbo].[sma_TRN_Cases] C on C.cassCaseNumber = P.case_id  
 inner join [SA].[dbo].[sma_MST_SubRole] S on C.casnOrgCaseTypeID = S.sbrnCaseTypeID
 inner join IndvOrgContacts_Indexed ACIO on ACIO.SAGA = P.party_id
@@ -365,7 +365,7 @@ BEGIN
 
 
     update [SA].[dbo].[sma_TRN_Defendants] set defnSubRole=S.sbrnSubRoleId
-    from TestClientNeedles.[dbo].[party_indexed] P 
+    from TestNeedles.[dbo].[party_indexed] P 
     inner join [SA].[dbo].[sma_TRN_Cases] C on C.cassCaseNumber = P.case_id  
     inner join [SA].[dbo].[sma_MST_SubRole] S on C.casnOrgCaseTypeID = S.sbrnCaseTypeID and S.sbrnRoleID=5 and S.sbrsDscrptn=@sa_role
     inner join IndvOrgContacts_Indexed ACIO on ACIO.SAGA = P.party_id
@@ -485,7 +485,7 @@ SELECT DISTINCT
 	   T.plnnCaseID, ROW_NUMBER() OVER (Partition BY T.plnnCaseID order by P.record_num) as RowNumber,
 	   T.plnnPlaintiffID as ID  
     FROM sma_TRN_Plaintiff T
-    LEFT JOIN TestClientNeedles.[dbo].[party_indexed] P on P.TableIndex=T.saga_party
+    LEFT JOIN TestNeedles.[dbo].[party_indexed] P on P.TableIndex=T.saga_party
 ) A
 WHERE A.RowNumber=1
 and plnnPlaintiffID = A.ID
@@ -567,7 +567,7 @@ FROM (
 		ROW_NUMBER() OVER (Partition BY D.defnCaseID order by P.record_num) as RowNumber,
 		D.defnDefendentID as ID  
     FROM sma_TRN_Defendants D
-    LEFT JOIN TestClientNeedles.[dbo].[party_indexed] P on P.TableIndex=D.saga_party
+    LEFT JOIN TestNeedles.[dbo].[party_indexed] P on P.TableIndex=D.saga_party
 ) A
 WHERE A.RowNumber=1
 and defnDefendentID = A.ID

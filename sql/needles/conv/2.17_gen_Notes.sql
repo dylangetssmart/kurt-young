@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 GO
 
 /*
@@ -19,7 +19,7 @@ INSERT INTO [sma_MST_NoteTypes] ( nttsDscrptn, nttsNoteText )
 SELECT DISTINCT 
     topic as nttsDscrptn,
     topic as nttsNoteText
-FROM TestClientNeedles.[dbo].[case_notes_Indexed]
+FROM TestNeedles.[dbo].[case_notes_Indexed]
     EXCEPT
 SELECT nttsDscrptn, nttsNoteText FROM [sma_MST_NoteTypes]
 GO
@@ -78,7 +78,7 @@ SELECT
     ,null		 						as [WorkPlanItemId]
     ,null		 						as [notnSubject]
 	,note_key							as SAGA
-FROM TestClientNeedles.[dbo].[case_notes_Indexed] N
+FROM TestNeedles.[dbo].[case_notes_Indexed] N
 	JOIN [sma_TRN_Cases] C
 		on C.cassCaseNumber = N.case_num
 	LEFT JOIN [sma_MST_Users] U

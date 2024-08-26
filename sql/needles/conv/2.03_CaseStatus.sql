@@ -1,4 +1,4 @@
--- use SATestClientNeedles
+-- use TestNeedles
 GO
 
 /*
@@ -19,13 +19,13 @@ SELECT
 FROM
 	(
 		/*
-		Retrieves distinct descriptions from the TestClientNeedles.dbo.class table,
-		joining with the TestClientNeedles.dbo.cases table
+		Retrieves distinct descriptions from the TestNeedles.dbo.class table,
+		joining with the TestNeedles.dbo.cases table
 		to filter the classes that are associated with cases.
 		*/
 		SELECT DISTINCT [description] as [name]
-		FROM TestClientNeedles.[dbo].[class]
-		JOIN TestClientNeedles.[dbo].[cases] C
+		FROM TestNeedles.[dbo].[class]
+		JOIN TestNeedles.[dbo].[cases] C
 			on C.class=classcode
 
 		/*
@@ -120,9 +120,9 @@ SELECT
 	,null
 	,null 
 FROM [sma_trn_cases] CAS
-JOIN TestClientNeedles.[dbo].[cases_Indexed] C
+JOIN TestNeedles.[dbo].[cases_Indexed] C
 	on convert(varchar,C.casenum)=CAS.cassCaseNumber
-LEFT JOIN TestClientNeedles.[dbo].[class] CL
+LEFT JOIN TestNeedles.[dbo].[class] CL
 	on C.class=CL.classcode
 GO
 

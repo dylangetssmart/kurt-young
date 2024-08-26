@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 GO
 
 ALTER TABLE sma_trn_Casevalue DISABLE TRIGGER ALL
@@ -30,7 +30,7 @@ SELECT DISTINCT
 	minimum_amount			as csvnMinSettlementValue,
 	null					as csvnExpectedResolutionDate,
 	null					as csvnMaxSettlementValue
-FROM TestClientNeedles..insurance_Indexed ii
+FROM TestNeedles..insurance_Indexed ii
 JOIN sma_trn_Cases cas
 	on cas.cassCaseNumber = convert(varchar,ii.case_num)
 WHERE isnull(minimum_amount,0) <> 0

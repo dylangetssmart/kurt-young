@@ -1,4 +1,4 @@
--- use [SATestClientNeedles]
+-- use [TestNeedles]
 go
 
 /*
@@ -53,8 +53,8 @@ SELECT
     null		 as [notdDtInserted],
     null		 as [WorkPlanItemId],
     null		 as [notnSubject]
-FROM TestClientNeedles.[dbo].[value_notes] N
-JOIN TestClientNeedles.[dbo].[value_Indexed] V on V.value_id=N.value_num
+FROM TestNeedles.[dbo].[value_notes] N
+JOIN TestNeedles.[dbo].[value_Indexed] V on V.value_id=N.value_num
 JOIN [sma_TRN_Cases] C on C.cassCaseNumber = V.case_id
 JOIN [sma_MST_Users] U on U.saga=N.staff_id 
 GO
@@ -70,8 +70,8 @@ GO
 INSERT INTO sma_TRN_NoteContacts (NoteID, UniqueContactID)
 SELECT DISTINCT note.notnNoteID, ioc.UNQCID
 --select v.provider, ioc.*, n.note, note.*
-FROM TestClientNeedles..[value_notes] N
-JOIN TestClientNeedles..value_Indexed V on V.value_id=N.value_num
+FROM TestNeedles..[value_notes] N
+JOIN TestNeedles..value_Indexed V on V.value_id=N.value_num
 JOIN sma_trn_Cases cas on cas.cassCaseNumber = v.case_id
 JOIN IndvOrgContacts_Indexed ioc on ioc.saga = v.[provider]
 JOIN [sma_TRN_Notes] note on note.saga = n.note_key

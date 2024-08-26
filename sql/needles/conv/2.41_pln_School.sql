@@ -1,4 +1,4 @@
--- use SATestClientNeedles
+-- use TestNeedles
 
 /* ####################################
 1.0 -- School/OtherActivities
@@ -26,11 +26,11 @@ select distinct
 	,null				as [grdnModifyUserID]
 	,null				as [grddDtModified]
 	,null				as [grdnLevelNo]
-FROM [TestClientNeedles].[dbo].[user_party_data] ud
+FROM [TestNeedles].[dbo].[user_party_data] ud
 WHERE isnull(ud.Education,'') <> ''
 	AND NOT EXISTS (
 		SELECT 1
-		FROM [SATestClientNeedles].[dbo].[sma_MST_Grades] g
+		FROM [TestNeedles].[dbo].[sma_MST_Grades] g
 		WHERE g.grdsDescription = ud.education
 );
 ALTER TABLE [sma_MST_Grades] ENABLE TRIGGER ALL
@@ -119,7 +119,7 @@ select
 	,1							as [schnLevelNo]
 	,0							as [schnauthtodefcoun]
 	,null						as [schnauthtodefcounDt]
-from TestClientNeedles..user_party_data ud
+from TestNeedles..user_party_data ud
 join sma_TRN_Cases cas
 	on cas.cassCaseNumber = ud.case_id
 left join sma_TRN_Plaintiff pln

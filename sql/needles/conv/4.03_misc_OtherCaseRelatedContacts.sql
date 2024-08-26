@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 GO
 
 DECLARE @FileId int;
@@ -20,7 +20,7 @@ SELECT DISTINCT
 	   when P.[role] = 'Witness' then 'Witness ' + isnull(': ' + nullif(P.relationship,''),'')
 	   else null
     end
-FROM TestClientNeedles.[dbo].[party_Indexed] P 
+FROM TestNeedles.[dbo].[party_Indexed] P 
 JOIN [sma_TRN_Cases] CAS on CAS.cassCaseNumber=P.case_id
 JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA = P.party_id
 WHERE P.role in

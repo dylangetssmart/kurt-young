@@ -27,12 +27,12 @@ VALUES
 ('case_status_client');
 
 
--- Dynamically get all columns from TestClientNeedles..user_tab7_data for unpivoting
+-- Dynamically get all columns from TestNeedles..user_tab7_data for unpivoting
 DECLARE @sql NVARCHAR(MAX) = N'';
 SELECT @sql = STRING_AGG(CONVERT(VARCHAR(MAX), 
     N'CONVERT(VARCHAR(MAX), ' + QUOTENAME(column_name) + N') AS ' + QUOTENAME(column_name)
 ), ', ')
-FROM TestClientNeedles.INFORMATION_SCHEMA.COLUMNS
+FROM TestNeedles.INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'user_tab7_data'
 AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
 
@@ -40,7 +40,7 @@ AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
 -- Dynamically create the UNPIVOT list
 DECLARE @unpivot_list NVARCHAR(MAX) = N'';
 SELECT @unpivot_list = STRING_AGG(QUOTENAME(column_name), ', ')
-FROM TestClientNeedles.INFORMATION_SCHEMA.COLUMNS
+FROM TestNeedles.INFORMATION_SCHEMA.COLUMNS
 WHERE table_name = 'user_tab7_data'
 AND column_name NOT IN (SELECT column_name FROM #ExcludedColumns);
 
@@ -53,15 +53,15 @@ FROM (
     SELECT 
         cas.casnCaseID, 
         cas.casnOrgCaseTypeID, ' + @sql + N'
-    FROM TestClientNeedles..user_tab7_data ud
-    JOIN TestClientNeedles..cases_Indexed c ON c.casenum = ud.case_id
+    FROM TestNeedles..user_tab7_data ud
+    JOIN TestNeedles..cases_Indexed c ON c.casenum = ud.case_id
     JOIN sma_TRN_Cases cas ON cas.cassCaseNumber = CONVERT(VARCHAR, ud.case_id)
 ) pv
 UNPIVOT (FieldVal FOR FieldTitle IN (' + @unpivot_list + N')) AS unpvt;';
 
 EXEC sp_executesql @sql;
 select * from Other7udf
-select * from TestClientNeedles..user_tab7_data
+select * from TestNeedles..user_tab7_data
 
 ----------------------------
 --UDF DEFINITION
@@ -96,7 +96,7 @@ SELECT DISTINCT
 FROM [sma_MST_CaseType] CST
 	JOIN CaseTypeMixture mix
 		ON mix.[SmartAdvocate Case Type] = cst.cstsType
-	JOIN [TestClientNeedles].[dbo].[user_tab7_matter] M
+	JOIN [TestNeedles].[dbo].[user_tab7_matter] M
 		ON M.mattercode = mix.matcode
 		AND M.field_type <> 'label'
 	JOIN	(
@@ -104,11 +104,11 @@ FROM [sma_MST_CaseType] CST
 				FROM Other7UDF
 			) vd
 		ON vd.FieldTitle = M.field_title
-	JOIN [SATestClientNeedles].[dbo].[NeedlesUserFields] ucf
+	JOIN [TestNeedles].[dbo].[NeedlesUserFields] ucf
 		ON ucf.field_num = M.ref_num
 	LEFT JOIN	(
 					SELECT DISTINCT table_Name, column_name
-					FROM [TestClientNeedles].[dbo].[document_merge_params]
+					FROM [TestNeedles].[dbo].[document_merge_params]
 					WHERE table_Name = 'user_tab7_data'
 				) dmp
 		ON dmp.column_name = ucf.field_Title

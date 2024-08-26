@@ -1,23 +1,5 @@
-
---USE SATestClientNeedles
---GO
-/*
-alter table [sma_MST_IndvContacts] disable trigger all
-delete from [sma_MST_IndvContacts] 
-DBCC CHECKIDENT ('[dbo].[sma_MST_IndvContacts]', RESEED, 0);
-alter table [sma_MST_IndvContacts] enable trigger all
-
-alter table [sma_MST_users] disable trigger all
-delete from [sma_MST_users] 
-DBCC CHECKIDENT ('[sma_MST_users]', RESEED, 0);
-alter table [sma_MST_users] enable trigger all
-
-alter table [sma_MST_OrgContacts] disable trigger all
-delete from [sma_MST_OrgContacts] 
-DBCC CHECKIDENT ('[sma_MST_OrgContacts]', RESEED, 0);
-alter table [sma_MST_OrgContacts] enable trigger all
-*/
-
+USE SATest
+GO
 
 --(0) saga field for needles names_id ---
 ALTER TABLE [sma_MST_IndvContacts]
@@ -25,42 +7,27 @@ ALTER TABLE [sma_MST_IndvContacts]
 ALTER TABLE [sma_MST_OrgContacts]
  ALTER COLUMN saga int
 
---(0)---
-/*
-INSERT INTO [sma_MST_Languages] ([lngsLanguageName])
-SELECT race_name FROM [TestClientNeedles].[dbo].[race] WHERE isnull(race_name,'')<>''
-EXCEPT
-SELECT [lngsLanguageName] FROM [sma_MST_Languages]
-GO
-*/
-
 
 ---------------------------
 --INSERT RACE
 ---------------------------
 INSERT INTO sma_mst_contactRace (RaceDesc)
-SELECT distinct Race_Name from TestClientNeedles..Race 
+SELECT distinct Race_Name from TestNeedles..Race 
 EXCEPT SELECT RaceDesc From sma_Mst_ContactRace
 
---(0) construct [sma_MST_IndvContacts] special contacts
- --select * from [sma_MST_IndvContacts]
---SET IDENTITY_INSERT [sma_MST_IndvContacts] ON 
---GO
 
-/* ########################################################
-Construct special contacts
-cinncontactid = 8 -> Unassigned Staff
-cinncontactid = 9 -> Unidentified Individual
-cinncontactid = 10 -> Unidentified Plaintiff
-cinncontactid = 11 -> Unidentified Defendant
-*/
+/* ###################################################################################
+INSERT PLACEHOLDER INDV CONTACTS
 
-SET IDENTITY_INSERT [sma_MST_IndvContacts] ON
+1. Unassigned Staff
+2. Unidentified Individual
+3. Unidentified Plaintiff
+4. Unidentified Defendant
+*/ 
 
 INSERT INTO [sma_MST_IndvContacts]
 (
-	[cinncontactid]
-	,[cinbPrimary]
+	[cinbPrimary]
 	,[cinnContactTypeID]
 	,[cinnContactSubCtgID]
 	,[cinsPrefix]
@@ -110,24 +77,9 @@ INSERT INTO [sma_MST_IndvContacts]
 	,[cinsSpouse]
 	,[cinsGrade]
 ) 
---SELECT DISTINCT 8,1,10,null,'Mr.','Staff','','Unassigned',null,null,1,null,
---null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','',-1,'',null
---UNION
---SELECT DISTINCT 9,1,10,null,'Mr.','Individual','','Unidentified',null,null,1,null,
---null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','',0,'',null
---UNION
-
---SELECT DISTINCT 1,10,null,null,'Plaintiff','','Unidentified',null,null,1,null,
---null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
---UNION
---SELECT DISTINCT 1,10,null,null,'Defendant','','Unidentified',null,null,1,null,
---null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
-
-
--- 1: Unassigned Staff (cinncontactid = 8)
+-- 1: Unassigned Staff
 SELECT DISTINCT 
-	8						as cinncontactid
-    ,1                      as [cinbPrimary]
+    1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -177,10 +129,9 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 UNION
--- 2: Unidentified Individual (cinncontactid = 9)
+-- 2: Unidentified Individual
 SELECT DISTINCT 
-    9						as cinncontactid
-	,1                      as [cinbPrimary]
+	1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -230,10 +181,9 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 UNION
--- 3: Unidentified Plaintiff (cinncontactid = 10)
+-- 3: Unidentified Plaintiff
 SELECT DISTINCT 
-    10						as cinncontactid
-	,1                      as [cinbPrimary]
+	1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -283,10 +233,9 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 UNION
--- 4: Unidentified Defendant (cinncontactid = 11)
+-- 4: Unidentified Defendant
 SELECT DISTINCT 
-    11						as cinncontactid
-	,1                      as [cinbPrimary]
+	1                      as [cinbPrimary]
     ,10                     as [cinnContactTypeID]
     ,null                   as [cinnContactSubCtgID]
     ,null                   as [cinsPrefix]
@@ -336,30 +285,6 @@ SELECT DISTINCT
     ,''                     as [cinsSpouse]
     ,null                   as [cinsGrade]
 
-SET IDENTITY_INSERT [sma_MST_IndvContacts] OFF
---GO
- 
- /*
- INSERT INTO [sma_MST_IndvContacts]
-([cinbPrimary],[cinnContactTypeID],[cinnContactSubCtgID],[cinsPrefix],[cinsFirstName],[cinsMiddleName],[cinsLastName],[cinsSuffix],[cinsNickName],[cinbStatus],[cinsSSNNo],[cindBirthDate],
-[cinsComments],[cinnContactCtg],[cinnRefByCtgID],[cinnReferredBy],[cindDateOfDeath],[cinsCVLink],[cinnMaritalStatusID],[cinnGender],[cinsBirthPlace],[cinnCountyID],[cinsCountyOfResidence],
-[cinbFlagForPhoto],[cinsPrimaryContactNo],[cinsHomePhone],[cinsWorkPhone],[cinsMobile],[cinbPreventMailing],[cinnRecUserID],[cindDtCreated],[cinnModifyUserID],[cindDtModified],[cinnLevelNo],
-[cinsPrimaryLanguage],[cinsOtherLanguage],[cinbDeathFlag],[cinsCitizenship],[cinsHeight],[cinnWeight],[cinsReligion],[cindMarriageDate],[cinsMarriageLoc],[cinsDeathPlace],[cinsMaidenName],
-[cinsOccupation],[saga],[cinsSpouse],[cinsGrade]) 
-   
-SELECT distinct 1,10,null,'Mr.','Staff','','Unassigned',null,null,1,null,
-null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','',-1,'',null
-union
-SELECT distinct 1,10,null,'Mr.','Individual','','Unidentified',null,null,1,null,
-null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','',0,'',null
-union
-SELECT distinct 1,10,null,null,'Plaintiff','','Unidentified',null,null,1,null,
-null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
-union
-SELECT distinct 1,10,null,null,'Defendant','','Unidentified',null,null,1,null,
-null,null,1,'','',null,'','',1,'',1,1,null,null,'','',null,0,368,GETDATE(),'',null,0,'','','','',null+null,null,'',Null,'','','','','','',null
-
-*/
 
 ---------------------------------------
 -- Construct [sma_MST_IndvContacts]
@@ -435,7 +360,7 @@ SELECT
 		-- if incapacitated = "Y" on the [party_Indexed] table, then grab the contactSubCategoryID for "Incompetent"
 		when exists (
 			select *
-			from [TestClientNeedles].[dbo].[party_Indexed] P
+			from [TestNeedles].[dbo].[party_Indexed] P
 			where P.party_id=N.names_id and P.incapacitated='Y'
 		) then (
 			select cscnContactSubCtgID
@@ -446,7 +371,7 @@ SELECT
 		-- otherwise, grab the contactSubCategoryID for "Adult"
 		when exists (
 			select *
-			from [TestClientNeedles].[dbo].[party_Indexed] P
+			from [TestNeedles].[dbo].[party_Indexed] P
 			where P.party_id=N.names_id and P.minor='Y'
 		) then (
 			select cscnContactSubCtgID
@@ -476,8 +401,8 @@ SELECT
 		else NULL
 		end										as cinnrace,
 	N.[names_id]								as saga  
-FROM [TestClientNeedles].[dbo].[names] N
-LEFT JOIN [TestClientNeedles].[dbo].[Race] r on r.race_ID = n.race
+FROM [TestNeedles].[dbo].[names] N
+LEFT JOIN [TestNeedles].[dbo].[Race] r on r.race_ID = n.race
 WHERE N.[person]='Y'
 
 
@@ -512,14 +437,14 @@ SELECT
     2											as [connContactCtg],
     (
 		select octnOrigContactTypeID
-		FROM [SATestClientNeedles].[dbo].[sma_MST_OriginalContactTypes]
+		FROM .[sma_MST_OriginalContactTypes]
 		where octsDscrptn='General' and octnContactCtgID=2
 	)											as [connContactTypeID],
     368											as [connRecUserID],
     getdate()									as [condDtCreated],
     1											as [conbStatus],	-- Hardcode Status as ACTIVE
     N.[names_id]								as [saga]			-- remember the [names].[names_id] number
-FROM [TestClientNeedles].[dbo].[names] N
+FROM [TestNeedles].[dbo].[names] N
 WHERE N.[person] <> 'Y'
 
 ---------------------------------------
@@ -585,7 +510,7 @@ SELECT
 --Select *
 FROM [implementation_users] iu
 LEFT JOIN [sma_MST_IndvContacts] ind on iu.StaffCode = ind.cinsgrade
-LEFT JOIN TestClientNeedles..[staff] s on s.staff_code = iu.staffcode
+LEFT JOIN TestNeedles..[staff] s on s.staff_code = iu.staffcode
 WHERE cinncontactid IS NULL
 and SALoginID <> 'aadmin'
 
@@ -607,7 +532,7 @@ SELECT
 		null,
 		1					as saga -- indicate email
 FROM implementation_users iu
-JOIN TestClientNeedles..staff s on s.staff_code = iu.staffcode
+JOIN TestNeedles..staff s on s.staff_code = iu.staffcode
 JOIN [sma_MST_IndvContacts] C on C.cinsgrade = iu.staffcode
 WHERE isnull(email,'') <> ''
 
@@ -655,7 +580,16 @@ BEGIN
 	)
 	SELECT DISTINCT
 		368							as usrnuserid
-		,8							as usrnContactID
+		,(
+			SELECT
+				TOP 1
+				cinnContactID
+			FROM
+				dbo.sma_MST_IndvContacts
+			WHERE
+				cinslastname = 'Unassigned'
+				AND cinsfirstname = 'Staff'
+		)							as usrnContactID
 		,'aadmin'					as usrsLoginID
 		,'2/'				 as usrsPassword
 		,null						as [usrsBackColor]
@@ -697,15 +631,6 @@ GO
 ---------------------
 -- INSERT USERS
 ---------------------
---INSERT INTO [sma_MST_Users] (
---[usrnContactID],[usrsLoginID],[usrsPassword],[usrsBackColor],[usrsReadBackColor],[usrsEvenBackColor],[usrsOddBackColor],[usrnRoleID],[usrdLoginDate],[usrdLogOffDate],[usrnUserLevel],[usrsWorkstation],[usrnPortno],[usrbLoggedIn],
---[usrbCaseLevelRights],[usrbCaseLevelFilters],[usrnUnsuccesfulLoginCount],[usrnRecUserID],[usrdDtCreated],[usrnModifyUserID],[usrdDtModified],[usrnLevelNo],[usrsCaseCloseColor],[usrnDocAssembly],[usrnAdmin],[usrnIsLocked],[saga], usrbActiveState, usrbIsShowInSystem)     
-
---SELECT cinncontactid, SALoginID,'#',null,null,null,null,33,null,null,null,null,null,null,null,null,null,1,GETDATE(),null,null,null,null,null,null,null,convert(varchar(20),staffcode), stf.Active, stf.visible
---FROM implementation_users STF
---JOIN sma_MST_IndvContacts INDV on INDV.cinsGrade = STF.staffcode
---LEFT JOIN [sma_MST_Users] u ON u.saga = convert(varchar(20),staffcode)
---WHERE u.usrsLoginID IS NULL
 
 -- Insert data into sma_MST_Users table from implementation_users table
 INSERT INTO [sma_MST_Users] (
@@ -777,8 +702,7 @@ LEFT JOIN [sma_MST_Users] u
 WHERE u.usrsLoginID IS NULL
 GO
 
-
------------------------------------------------------------
+-----------------------------------------------END ADD USERS-----------------------------------------------
 
 DECLARE @UserID int
 

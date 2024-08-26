@@ -1,4 +1,4 @@
--- use SATestClientNeedles
+-- use TestNeedles
 -- GO
 
 /*
@@ -39,8 +39,8 @@ select
 	A.SubRole			   as [sldnDefRole],
 	A.StateID			   as [sldnStateID],
 	case
-	   when exists (select repeat_days from TestClientNeedles.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode) 
-		  then ( select max( floor(( repeat_days + 360 ) / 365 )) FROM TestClientNeedles.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode)
+	   when exists (select repeat_days from TestNeedles.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode) 
+		  then ( select max( floor(( repeat_days + 360 ) / 365 )) FROM TestNeedles.[dbo].[checklist_dir] where lim='Y' and matcode=A.cstsCode)
 	   else 
 		  (select 1)
 	end				   as [sldnYears],
@@ -120,7 +120,7 @@ SELECT DISTINCT
     null				   as [soldToProcessServerDt],
     null				   as [soldRcvdDate],
     'D'				   as [solsType]
-FROM TestClientNeedles.[dbo].[cases_Indexed] C 
+FROM TestNeedles.[dbo].[cases_Indexed] C 
 JOIN [sma_TRN_Cases] CAS on CAS.cassCaseNumber = C.casenum 
 JOIN [sma_TRN_Defendants] D on D.defnCaseID=CAS.casnCaseID 
 WHERE C.lim_date is not null

@@ -1,5 +1,5 @@
 
-use [SATestClientNeedles]
+use [TestNeedles]
 GO
 
 /* ##############################################
@@ -23,7 +23,7 @@ DBCC CHECKIDENT ('[sma_TRN_Settlements]', RESEED, 1);
 alter table [sma_TRN_Settlements] enable trigger all
 */
 
---select distinct code, description from [TestClientNeedles].[dbo].[value] order by code
+--select distinct code, description from [TestNeedles].[dbo].[value] order by code
 ---(0)---
 if not exists (SELECT * FROM sys.columns WHERE Name = N'saga' AND Object_ID = Object_ID(N'sma_TRN_Settlements'))
 begin
@@ -95,7 +95,7 @@ select
     IOC.AID		    as ProviderAID,
     CAS.casnCaseID	as casnCaseID,
     null			as PlaintiffID
-from [TestClientNeedles].[dbo].[value_Indexed] V
+from [TestNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
@@ -120,7 +120,7 @@ select
     V.value_id		    as vid,
     T.plnnPlaintiffID
 INTO value_tab_Multi_Party_Helper_Temp   
-FROM [TestClientNeedles].[dbo].[value_Indexed] V
+FROM [TestNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
@@ -143,7 +143,7 @@ select
     V.value_id		    as vid,
     ( select plnnPlaintiffID from [sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [TestClientNeedles].[dbo].[value_Indexed] V
+from [TestNeedles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
 JOIN [sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
@@ -209,7 +209,7 @@ select
 	   else null
        end                          as stldSettlementDate
     ,V.value_id						as saga
-FROM [TestClientNeedles].[dbo].[value_Indexed] V
+FROM [TestNeedles].[dbo].[value_Indexed] V
 JOIN value_tab_Settlement_Helper MAP
     on MAP.case_id = V.case_id
     and MAP.value_id = V.value_id

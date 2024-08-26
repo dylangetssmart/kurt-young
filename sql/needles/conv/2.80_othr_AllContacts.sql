@@ -1,4 +1,4 @@
-use SATestClientNeedles
+use TestNeedles
 
 /* ####################################
 1.0 -- Add Contact to case
@@ -29,10 +29,10 @@ SELECT
 	,getdate()					as [OtherCasesContactCreatedDt]
 	,null						as [OtherCasesModifyUserID]
 	,null						as [OtherCasesContactModifieddt]
-FROM TestClientNeedles.[dbo].user_party_data ud
+FROM TestNeedles.[dbo].user_party_data ud
 join sma_TRN_Cases cas
 	on cas.cassCaseNumber = ud.case_id
-join TestClientNeedles..names n
+join TestNeedles..names n
 	on n.names_id = ud.party_id
 join IndvOrgContacts_Indexed ioc
 	on ioc.SAGA = n.names_id
@@ -70,10 +70,10 @@ GO
 -- 	,getdate()		as [CaseContactCreateddt]
 -- 	,null			as [caseContactModifyBy]
 -- 	,null			as [CaseContactModifiedDt]
--- FROM TestClientNeedles.[dbo].user_party_data ud
+-- FROM TestNeedles.[dbo].user_party_data ud
 -- join sma_TRN_Cases cas
 -- 	on cas.cassCaseNumber = ud.case_id
--- join TestClientNeedles..names n
+-- join TestNeedles..names n
 -- 	on n.names_id = ud.party_id
 -- join IndvOrgContacts_Indexed ioc
 -- 	on ioc.SAGA = n.names_id

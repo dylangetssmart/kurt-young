@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 -- GO
 
 INSERT INTO [sma_TRN_OtherReferral]
@@ -22,7 +22,7 @@ SELECT
     368			    as [otrnUserID], 
     getdate()		as [otrdDtCreated] 
 --select referred_by, referred_by_id
-FROM TestClientNeedles..case_intake c
+FROM TestNeedles..case_intake c
 	JOIN [sma_TRN_cases] CAS
 		on CAS.saga = C.row_id
 	JOIN [IndvOrgContacts_Indexed] IOC

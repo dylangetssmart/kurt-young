@@ -62,13 +62,13 @@ CREATE TABLE #recordTypes (
 -- Insert the required record types into the temporary table
 INSERT INTO #recordTypes (Type_of_Record)
 SELECT DISTINCT code
-FROM  [TestClientNeedles].[dbo].[mini_general_dir]
+FROM  [TestNeedles].[dbo].[mini_general_dir]
 WHERE num_assigned = 41; -- update this value accordingly
 
 -- Insert into sma_MST_Request_RecordTypes from the temporary table
 INSERT INTO [sma_MST_Request_RecordTypes] (RecordType)
 SELECT DISTINCT Type_of_Record
-FROM  [TestClientNeedles].[dbo].[user_tab2_data] D
+FROM  [TestNeedles].[dbo].[user_tab2_data] D
 WHERE D.Type_of_Record IN (SELECT Type_of_Record FROM #recordTypes)
 EXCEPT 
 SELECT RecordType 
@@ -79,13 +79,13 @@ FROM [sma_MST_Request_RecordTypes];
 
 -- INSERT INTO @recordTypes (Type_of_Record)
 -- SELECT DISTINCT code
--- FROM [TestClientNeedles].[dbo].[mini_general_dir]
+-- FROM [TestNeedles].[dbo].[mini_general_dir]
 -- WHERE num_assigned = 41; -- update this value
 
 -- -- Insert into sma_MST_Request_RecordTypes
 -- INSERT INTO sma_MST_Request_RecordTypes (RecordType)
 -- SELECT DISTINCT Type_of_Record
--- FROM [TestClientNeedles].[dbo].[user_tab2_data] D
+-- FROM [TestNeedles].[dbo].[user_tab2_data] D
 -- WHERE d.Type_of_Record IN (SELECT Type_of_Record FROM @recordTypes)
 -- EXCEPT 
 -- SELECT RecordType 
@@ -97,7 +97,7 @@ FROM [sma_MST_Request_RecordTypes];
 -- )
 -- (
 -- 	SELECT DISTINCT Type_of_Record
--- 	from [TestClientNeedles].[dbo].[user_tab2_data] D
+-- 	from [TestNeedles].[dbo].[user_tab2_data] D
 -- 	WHERE d.Type_of_Record in ('Ambulance Bill', 'Ambulance Record', 'Anesthesiologist', 'Autopsy', 'Dental Bill', 'Dental Record', 'ER Bill', 'ER Record', 
 -- 						'ER Physician Bill', 'Hospital Bill', 'Hospital Record', 'Hospital Bil&Rec', 'Medical Bill', 'Medical Record', 'Med Bill & Rec', 
 -- 						'Narrative', 'Pharmacy', 'PT Bill/Rec', 'Radiology', 'Affidavit', '714 Req bill', 'Prior Records', '714 Unpaid ltr', '714 Bill carrier ltr', 
@@ -165,13 +165,13 @@ SELECT
     IOC.CTG				   as ProviderCTG,
     IOC.AID				   as ProviderAID,
     CAS.casnCaseID		   as casnCaseID  
-FROM [TestClientNeedles].[dbo].[user_tab2_data] D
-JOIN [TestClientNeedles].[dbo].[user_tab2_name] N
+FROM [TestNeedles].[dbo].[user_tab2_data] D
+JOIN [TestNeedles].[dbo].[user_tab2_name] N
 	on N.tab_id = D.tab_id
 	and N.user_name <> 0
 	and N.ref_num = (
 						SELECT TOP 1 M.ref_num
-						FROM [TestClientNeedles].[dbo].[user_tab2_matter] M
+						FROM [TestNeedles].[dbo].[user_tab2_matter] M
 						WHERE M.field_title='Provider'
 					)
 JOIN [IndvOrgContacts_Indexed] IOC
@@ -246,7 +246,7 @@ SELECT DISTINCT
     ,null					as [hosdDtModified]
     ,'tab2'					as [saga]
 	--'tab2:'+convert(varchar,UD.tab_id)	as [saga]
-FROM [TestClientNeedles].[dbo].[user_tab2_data] D
+FROM [TestNeedles].[dbo].[user_tab2_data] D
 JOIN user_tab2_MedicalProvider_Helper MAP
 	on MAP.case_id = D.case_id
 	and MAP.tab_id=D.tab_id
@@ -262,7 +262,7 @@ WHERE H.hosnHospitalID is null	--only add the hospital if it does not already ex
 --------------------------
 -- UPDATE sma_TRN_Hospitals
 -- SET hosnTreatementEnded  = 0
--- FROM [TestClientNeedles].[dbo].[user_tab2_data] D
+-- FROM [TestNeedles].[dbo].[user_tab2_data] D
 -- JOIN user_tab2_MedicalProvider_Helper MAP on MAP.case_id=D.case_id and MAP.tab_id=D.tab_id
 -- JOIN [sma_TRN_Hospitals] H on H.hosnCaseID=MAP.casnCaseID and H.hosnContactID=MAP.ProviderCID and H.hosnContactCtg=MAP.ProviderCTG and H.hosnAddressID=MAP.ProviderAID 
 -- WHERE d.Still_Treating = 'N'
@@ -277,12 +277,12 @@ WHERE H.hosnHospitalID is null	--only add the hospital if it does not already ex
 	   MAP.ProviderCID,
 	   MAP.ProviderCTG,
 	   MAP.ProviderAID
-    FROM [TestClientNeedles].[dbo].[user_tab2_data] D
+    FROM [TestNeedles].[dbo].[user_tab2_data] D
     JOIN user_tab2_MedicalProvider_Helper MAP on MAP.case_id=D.case_id and MAP.tab_id=D.tab_id
     LEFT JOIN [sma_TRN_Hospitals] H on H.hosnCaseID=MAP.casnCaseID and H.hosnContactID=MAP.ProviderCID and H.hosnContactCtg=MAP.ProviderCTG and H.hosnAddressID=MAP.ProviderAID 
     where H.hosnHospitalID is null --- Note: In case there are more than 1 needle TAB being mapped to Hospital, we want unique hospital
 ) A 
-inner join [TestClientNeedles].[dbo].[user_tab2_data] UD on UD.tab_id=A.tab_id
+inner join [TestNeedles].[dbo].[user_tab2_data] UD on UD.tab_id=A.tab_id
 where A.RowNumber=1
 */
 --select * From user_tab2_MedicalProvider_Helper
@@ -408,7 +408,7 @@ SELECT
 	,isnull('Notes to Lexitas - ARC: ' + NULLIF(convert(varchar(max),UD.Lexitas_ARC_FollowUp_Note),'') + CHAR(13),'')
 	+ ''											as FollowUpNotes	--Retreival Provider Notes
 	,'tab2: '+ convert(varchar,UD.tab_id)			as SAGA
-FROM [TestClientNeedles].[dbo].[user_tab2_data] UD
+FROM [TestNeedles].[dbo].[user_tab2_data] UD
 JOIN user_tab2_MedicalProvider_Helper MAP
 	on MAP.case_id = UD.case_id
 	and MAP.tab_id = UD.tab_id
@@ -455,7 +455,7 @@ select
     NULL				   as [visdDtModified],
     D.Treatment_Received		   as [vissTreatmentPlan],
     null				   as [vissComments]
-from [TestClientNeedles].[dbo].[user_tab2_data] D
+from [TestNeedles].[dbo].[user_tab2_data] D
 inner join user_tab2_MedicalProvider_Helper MAP on MAP.tab_ID=D.tab_id
 inner join [SA].[dbo].[sma_TRN_Hospitals] H on H.hosnCaseID=MAP.casnCaseID and H.hosnContactID=MAP.ProviderCID and H.hosnContactCtg=MAP.ProviderCTG and H.hosnAddressID=MAP.ProviderAID 
 WHERE isnull(Treatment_Received,'')<> '' or
@@ -516,7 +516,7 @@ select
     0						as spdbDocAttached,
     'tab2:' + convert(varchar,D.tab_id)	
 							as saga_bill_id  -- one bill one value
-from [TestClientNeedles].[dbo].[user_tab2_data] D
+from [TestNeedles].[dbo].[user_tab2_data] D
 inner join user_tab2_MedicalProvider_Helper MAP on MAP.tab_id=D.tab_id
 inner join [SA].[dbo].[sma_TRN_Hospitals] H on H.hosnCaseID=MAP.casnCaseID and H.hosnContactID=MAP.ProviderCID and H.hosnContactCtg=MAP.ProviderCTG and H.hosnAddressID=MAP.ProviderAID 
 

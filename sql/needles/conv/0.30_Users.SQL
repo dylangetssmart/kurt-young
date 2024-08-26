@@ -1,4 +1,4 @@
--- USE SATestClientNeedles
+-- USE TestNeedles
 
 if exists (select * from sys.objects where name='implementation_users' and type='U')
 begin
@@ -41,7 +41,7 @@ SELECT
     ,''                                 as SAMiddle
     ,dbo.get_lastword(s.full_name)      as SALast
     ,suffix                             as suffix
-FROM [TestClientNeedles].[dbo].[staff] s
+FROM [TestNeedles].[dbo].[staff] s
 GO
 
 --SELECT '@PORTAL', '@PORTAL', '', 'Mary', '', 'McCabe', '', 'N', 'Y' UNION

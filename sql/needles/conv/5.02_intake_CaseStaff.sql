@@ -34,7 +34,7 @@ select
 	,null					    as [cssnModifyUserID]
 	,null					    as [cssdDtModified]
 	,0					        as cssnLevelNo
-FROM TestClientNeedles.[dbo].case_intake N
+FROM TestNeedles.[dbo].case_intake N
 JOIN [sma_TRN_Cases] C
     on C.saga = N.ROW_ID
 inner join [sma_MST_Users] U

@@ -1,4 +1,4 @@
--- use SATestClientNeedles
+-- use TestNeedles
 
 /* ####################################
 1.0 -- Prior/Subsequent Injuries
@@ -49,7 +49,7 @@ SELECT
 	,0												as [prlbFirmCase]
 	,null											as [prlsPrCaseNo]
 	,'Prior Injuries:' + ud.prior_injuries			as [prlsInjury]
-from TestClientNeedles..user_case_data ud
+from TestNeedles..user_case_data ud
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = ud.casenum
 	join sma_TRN_Plaintiff pln
