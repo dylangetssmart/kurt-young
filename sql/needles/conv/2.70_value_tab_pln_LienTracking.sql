@@ -1,6 +1,6 @@
 
 -- use [TestNeedles]
-GO
+-- GO
 
 /* ##############################################
 Store applicable value codes
@@ -41,7 +41,12 @@ select * from [TestNeedles].[dbo].[value_payment] where value_id=65990
 
 
 ---(0)---
-if not exists (SELECT * FROM sys.columns WHERE Name = N'saga' AND Object_ID = Object_ID(N'sma_TRN_Lienors'))
+if not exists (
+    SELECT *
+    FROM sys.columns
+    WHERE Name = N'saga'
+    AND Object_ID = Object_ID(N'sma_TRN_Lienors')
+    )
 begin
     ALTER TABLE [sma_TRN_Lienors] ADD [saga] int NULL; 
 end
@@ -59,7 +64,7 @@ create table value_tab_Liencheckbox_Helper (
     value_id		    int,
 CONSTRAINT IOC_Clustered_Index_value_tab_Liencheckbox_Helper PRIMARY KEY CLUSTERED ( TableIndex )
 ) ON [PRIMARY] 
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [TestNeedles].[dbo].[value_tab_Liencheckbox_Helper] (value_id);   
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [TestSA].[dbo].[value_tab_Liencheckbox_Helper] (value_id);   
 GO
 
 ---(0)---
@@ -145,11 +150,11 @@ select
     null			    as PlaintiffID,
     null			    as Paid
 from [TestNeedles].[dbo].[value_Indexed] V
-inner join [TestNeedles].[dbo].[sma_TRN_cases] CAS
+inner join [TestSA].[dbo].[sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
-inner join [TestNeedles].[dbo].[IndvOrgContacts_Indexed] IOC
+inner join [TestSA].[dbo].[IndvOrgContacts_Indexed] IOC
     on IOC.SAGA = V.provider
-    and isnull(V.provider,0)<>0
+    and isnull(V.provider,0) <> 0
 where code in (SELECT code FROM #LienValueCodes)
 OR V.value_id in ( select value_id from value_tab_Liencheckbox_Helper ) 
 
@@ -168,20 +173,37 @@ end
 GO
 
 select 
-    V.case_id		    as cid,	
-    V.value_id		    as vid,
-    convert(varchar,((select sum(payment_amount) from [TestNeedles].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
-    T.plnnPlaintiffID
+    V.case_id		    as cid
+    ,V.value_id		    as vid
+    ,convert(varchar,(
+                        (
+                            select sum(payment_amount)
+                            from [TestNeedles].[dbo].[value_payment]
+                            where value_id = V.value_id
+                        )
+                    )
+    )                   as Paid
+    ,T.plnnPlaintiffID
     into value_tab_Multi_Party_Helper_Temp   
 from [TestNeedles].[dbo].[value_Indexed] V
-inner join [TestNeedles].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
-inner join [TestNeedles].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
-inner join [TestNeedles].[dbo].[sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
+inner join [TestSA].[dbo].[sma_TRN_cases] CAS
+    on CAS.cassCaseNumber = V.case_id
+inner join [TestSA].[dbo].[IndvOrgContacts_Indexed] IOC
+    on IOC.SAGA = V.party_id
+inner join [TestSA].[dbo].[sma_TRN_Plaintiff] T
+    on T.plnnContactID = IOC.CID
+    and T.plnnContactCtg = IOC.CTG
+    and T.plnnCaseID = CAS.casnCaseID
 GO
 
-update value_tab_Lien_Helper set PlaintiffID=A.plnnPlaintiffID,Paid=A.Paid
+
+update value_tab_Lien_Helper
+set
+    PlaintiffID = A.plnnPlaintiffID
+    ,Paid = A.Paid
 from value_tab_Multi_Party_Helper_Temp A
-where case_id=A.cid and value_id=A.vid
+where case_id = A.cid
+and value_id = A.vid
 GO
 
 
@@ -192,30 +214,52 @@ end
 GO
 
 select 
-    V.case_id		    as cid,	
-    V.value_id		    as vid,
-    convert(varchar,((select sum(payment_amount) from [TestNeedles].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
-    ( select plnnPlaintiffID from [TestNeedles].[dbo].[sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
+    V.case_id		    as cid
+    ,V.value_id		    as vid
+    ,convert(varchar,(
+                        (
+                            select sum(payment_amount)
+                            from [TestNeedles].[dbo].[value_payment]
+                            where value_id = V.value_id
+                        )
+                    )
+    )                   as Paid
+    ,(
+        select plnnPlaintiffID
+        from [TestSA].[dbo].[sma_TRN_Plaintiff]
+        where plnnCaseID = CAS.casnCaseID
+        and plnbIsPrimary = 1
+    )                   as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
 from [TestNeedles].[dbo].[value_Indexed] V
-inner join [TestNeedles].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
-inner join [TestNeedles].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
-inner join [TestNeedles].[dbo].[sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
+inner join [TestSA].[dbo].[sma_TRN_cases] CAS
+     on CAS.cassCaseNumber = V.case_id
+inner join [TestSA].[dbo].[IndvOrgContacts_Indexed] IOC
+     on IOC.SAGA = V.party_id
+inner join [TestSA].[dbo].[sma_TRN_Defendants] D
+     on D.defnContactID = IOC.CID
+     and D.defnContactCtgID = IOC.CTG
+     and D.defnCaseID = CAS.casnCaseID
 GO
 
-update value_tab_Lien_Helper set PlaintiffID=A.plnnPlaintiffID,Paid=A.Paid
+
+update value_tab_Lien_Helper
+set
+    PlaintiffID = A.plnnPlaintiffID
+    ,Paid = A.Paid
 from value_tab_Multi_Party_Helper_Temp A
-where case_id=A.cid and value_id=A.vid
+where case_id = A.cid
+and value_id = A.vid
 GO
 
 
 ---------------------------------------------------------------------------------------
-alter table [TestNeedles].[dbo].[sma_TRN_Lienors] disable trigger all
-alter table [TestNeedles].[dbo].[sma_TRN_LienDetails] disable trigger all
+alter table [TestSA].[dbo].[sma_TRN_Lienors] disable trigger all
+alter table [TestSA].[dbo].[sma_TRN_LienDetails] disable trigger all
 
 GO
 ---(1)---
-insert into [TestNeedles].[dbo].[sma_TRN_Lienors]
+insert into [dbo].[sma_TRN_Lienors]
 (
     [lnrnCaseID],
     [lnrnLienorTypeID],
@@ -257,10 +301,10 @@ insert into [TestNeedles].[dbo].[sma_TRN_Lienors]
     0					  as [lnrnFinal],
     V.value_id				  as [saga]
 from [TestNeedles].[dbo].[value_Indexed] V
-inner join [TestNeedles].[dbo].[value_tab_Lien_Helper] MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
+inner join [TestSA].[dbo].[value_tab_Lien_Helper] MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
 
 ---(2)---
-insert into [TestNeedles].[dbo].[sma_TRN_LienDetails]
+insert into [dbo].[sma_TRN_LienDetails]
 (
 	lndnLienorID,
 	lndnLienTypeID,
@@ -276,12 +320,12 @@ select
 	'sma_TRN_Lienors'		as lndsRefTable,
 	368					as lndnRecUserID,
 	getdate()				as lnddDtCreated
-from [TestNeedles].[dbo].[sma_TRN_Lienors]
+from [TestSA].[dbo].[sma_TRN_Lienors]
 
 
 ----
-alter table [TestNeedles].[dbo].[sma_TRN_Lienors] enable trigger all
-alter table [TestNeedles].[dbo].[sma_TRN_LienDetails] enable trigger all
+alter table [TestSA].[dbo].[sma_TRN_Lienors] enable trigger all
+alter table [TestSA].[dbo].[sma_TRN_LienDetails] enable trigger all
 
 GO
 
