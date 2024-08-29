@@ -11,7 +11,7 @@ node_modules/
 /build/
 /dist/
 
-/# Ignore OS generated files
+# Ignore OS generated files
 .DS_Store
 Thumbs.db
 
