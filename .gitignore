@@ -22,6 +22,7 @@ Thumbs.db
 
 # Ignore database backup files
 backups/*
+!backups/.gitkeep
 *.bak
 *.backup
 
