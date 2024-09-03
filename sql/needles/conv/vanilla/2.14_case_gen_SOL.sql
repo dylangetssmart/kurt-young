@@ -110,11 +110,7 @@ SELECT DISTINCT
 		else C.[lim_date]
 		end					as [soldSOLDate],
     null				   as [soldDateComplied],
-    case
-		when (C.[case_date_3] not between '1900-01-01' and '2079-12-31')
-			then null
-		else C.[case_date_3]
-		end					as [soldSnCFilingDate],
+    null					as [soldSnCFilingDate],
     null				   as [soldServiceDate],
     D.defnDefendentID	   as [solnDefendentID],
     null				   as [soldToProcessServerDt],

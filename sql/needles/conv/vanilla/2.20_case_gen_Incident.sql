@@ -12,9 +12,7 @@ DECLARE @StateCode NVARCHAR(2) = 'VA'
 
 ---
 ALTER TABLE [sma_TRN_Incidents] DISABLE TRIGGER ALL
-GO
 ALTER TABLE [sma_TRN_Cases] DISABLE TRIGGER ALL
-GO
 ---
 INSERT INTO [sma_TRN_Incidents]
 (

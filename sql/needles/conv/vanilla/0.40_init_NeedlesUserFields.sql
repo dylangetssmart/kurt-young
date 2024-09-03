@@ -48,7 +48,6 @@ SELECT field_num, field_title, column_name,  field_type,
 		when field_Type = 'Time' then 'Time'
 		else field_type
 	end
---Select *
 FROM TestNeedles..[user_case_fields]
 
 

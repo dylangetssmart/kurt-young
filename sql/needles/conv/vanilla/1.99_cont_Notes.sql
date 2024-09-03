@@ -1,5 +1,5 @@
 -- use [TestNeedles]
-go
+-- go
 /*
 alter table [sma_TRN_Notes] disable trigger all
 delete from [sma_TRN_Notes] 
