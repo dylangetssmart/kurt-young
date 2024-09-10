@@ -1,11 +1,40 @@
--- use [TestNeedles]
---go
+-- Author: Dylan Smith
+-- Date: 2024-09-09
+-- Description: Brief description of the script's purpose
+
 /*
-alter table [sma_TRN_Cases] disable trigger all
-delete from [sma_TRN_Cases] 
-DBCC CHECKIDENT ('[sma_TRN_Cases]', RESEED, 0); 
-alter table [sma_TRN_Cases] enable trigger all
+This script performs the following tasks:
+  - [Task 1]
+  - [Task 2]
+  - ...
+
+Notes:
+	- Because batch separators (GO) are required due to schema changes (adding columns),
+	we use a temporary table instead of variables, which are locally scoped
+	see: https://learn.microsoft.com/en-us/sql/t-sql/language-elements/variables-transact-sql?view=sql-server-ver16#variable-scope
+	see also: https://stackoverflow.com/a/56370223
+	- After making schema changes (e.g. adding a new column to an existing table) statements using the new schema must be compiled separately in a different batch.
+	- For example, you cannot ALTER a table to add a column, then select that column in the same batch - because while compiling the execution plan, that column does not exist for selecting.
 */
+
+-- use [JoelBieberNeedles]
+-- GO
+
+-- Create a temporary table to store variable values
+DROP TABLE IF EXISTS #TempVariables;
+
+CREATE TABLE #TempVariables (
+    OfficeName NVARCHAR(255),
+    StateName NVARCHAR(100),
+    PhoneNumber NVARCHAR(50),
+    CaseGroup NVARCHAR(100),
+    VenderCaseType NVARCHAR(25)
+);
+
+-- Insert values into the temporary table
+INSERT INTO #TempVariables (OfficeName, StateName, PhoneNumber, CaseGroup, VenderCaseType)
+VALUES ('Joel Bieber LLC', 'Virginia', '8048008000', 'Needles', 'JoelBieberCaseType');
+
 
 -- (0.1) sma_MST_CaseGroup -----------------------------------------------------
 -- Create a default case group for data that does not neatly fit elsewhere
@@ -13,7 +42,7 @@ IF NOT EXISTS
 ( 
 	select *
 	from [sma_MST_CaseGroup]
-	where [cgpsDscrptn] = 'Needles'
+	where [cgpsDscrptn] = (SELECT CaseGroup FROM #TempVariables)
 )
 BEGIN
 	INSERT INTO [sma_MST_CaseGroup]
@@ -30,7 +59,10 @@ BEGIN
 	)
 	SELECT 
 		'FORCONVERSION'			as [cgpsCode]
-		,'Needles'				as [cgpsDscrptn]
+		,(
+			SELECT CaseGroup
+			FROM #TempVariables
+		)						as [cgpsDscrptn]
 		,368					as [cgpnRecUserId]
 		,getdate()				as [cgpdDtCreated]
 		,null					as [cgpnModifyUserID]
@@ -52,7 +84,7 @@ IF NOT EXISTS
 (
 	select *
 	from [sma_mst_offices]
-	where office_name = 'Skolrood Law Firm'
+	where office_name = (SELECT OfficeName FROM #TempVariables)
 )
 BEGIN
 	INSERT INTO [sma_mst_offices]
@@ -71,11 +103,17 @@ BEGIN
 	)
 	SELECT 
 		1			    			as [office_status]
-		,'Skolrood Law Firm' 		as [office_name]
+		,(
+			SELECT OfficeName
+			FROM #TempVariables
+		)					 		as [office_name]
 		,(
 			select sttnStateID
 			from sma_MST_States
-			where sttsDescription = 'Virginia'
+			where sttsDescription = (
+									SELECT StateName
+									FROM #TempVariables
+									)
 		)							as [state_id]
 		,1			    			as [is_default]
 		,getdate()	    			as [date_created]
@@ -84,7 +122,10 @@ BEGIN
 		,'dbo'		    			as [user_modified]
 		,'LetterheadUt.docx' 		as [Letterhead]
 		,NULL						as [UniqueContactId]
-		,'4192447885'	    		as [PhoneNumber]
+		,(
+			SELECT PhoneNumber
+			FROM #TempVariables
+		)				    		as [PhoneNumber]
 END
 GO
 
@@ -144,24 +185,30 @@ SELECT
     ,(
 		select cgpnCaseGroupID
 		from sma_MST_caseGroup
-		where cgpsDscrptn='Needles'
+		where cgpsDscrptn = (
+							SELECT CaseGroup
+							FROM #TempVariables
+							)
 	)								as cstnGroupID
     ,null							as cstnGovtMunType
     ,null							as cstnIsMassTort
 	,(
 		select cssnStatusID
 		FROM [sma_MST_CaseStatus]
-		where csssDescription='Presign - Not Scheduled For Sign Up'
+		where csssDescription = 'Presign - Not Scheduled For Sign Up'
 	)								as cstnStatusID
 	,(
 		select stpnStatusTypeID
 		FROM [sma_MST_CaseStatusType]
-		where stpsStatusType='Status'
+		where stpsStatusType = 'Status'
 	)								as cstnStatusTypeID
 	,1								as cstbActive
 	,1								as cstbUseIncident1
 	,'Incident 1'					as cstsIncidentLabel1
-	,'SLFCaseType'					as VenderCaseType
+	,(
+		SELECT VenderCaseType
+		FROM #TempVariables
+	)								as VenderCaseType
 FROM [CaseTypeMixture] MIX 
 LEFT JOIN [sma_MST_CaseType] ct
 	on ct.cststype = mix.[SmartAdvocate Case Type]
@@ -170,7 +217,7 @@ GO
 
 -- (1.3) - Add conversion flag to case types created above
 UPDATE [sma_MST_CaseType] 
-SET	VenderCaseType ='SLFCaseType'
+SET	VenderCaseType = (SELECT VenderCaseType FROM #TempVariables)
 FROM [CaseTypeMixture] MIX 
 JOIN [sma_MST_CaseType] ct
 	on ct.cststype = mix.[SmartAdvocate Case Type]
@@ -234,128 +281,6 @@ LEFT JOIN [sma_MST_CaseSubType] sub
 	and sub.[cstsDscrptn] = [SmartAdvocate Case Sub Type]
 WHERE sub.cstncasesubtypeID is null
 and isnull([SmartAdvocate Case Sub Type],'') <> ''
-
-/* ########################################################
-Create Case Types from user_case_data.type_of_case that don't already exist
-*/
-INSERT INTO [sma_MST_CaseType]
-(	   		
-	[cstsCode],
-	[cstsType],
-	[cstsSubType],
-	[cstnWorkflowTemplateID],
-	[cstnExpectedResolutionDays],
-	[cstnRecUserID],
-	[cstdDtCreated],
-	[cstnModifyUserID],
-	[cstdDtModified],
-	[cstnLevelNo],
-	[cstbTimeTracking],
-	[cstnGroupID],
-	[cstnGovtMunType],
-	[cstnIsMassTort],
-	[cstnStatusID],
-	[cstnStatusTypeID],
-	[cstbActive],
-	[cstbUseIncident1],
-	[cstsIncidentLabel1],
-	[VenderCaseType]
-)
-SELECT DISTINCT
-	NULL							as cstsCode
-	,d.Type_of_Case				   	as cstsType
-	,NULL							as cstsSubType
-	,NULL							as cstnWorkflowTemplateID
-	,720							as cstnExpectedResolutionDays 		-- ( Hardcode 2 years )
-	,368							as cstnRecUserID
-	,getdate()						as cstdDtCreated
-	,368							as cstnModifyUserID
-	,getdate()						as cstdDtModified
-	,0								as cstnLevelNo
-	,null							as cstbTimeTracking
-    ,(
-		select cgpnCaseGroupID
-		from sma_MST_caseGroup
-		where cgpsDscrptn = 'Needles'
-	)								as cstnGroupID
-    ,null							as cstnGovtMunType
-    ,null							as cstnIsMassTort
-	,(
-		select cssnStatusID
-		FROM [sma_MST_CaseStatus]
-		where csssDescription = 'Presign - Not Scheduled For Sign Up'
-	)								as cstnStatusID
-	,(
-		select stpnStatusTypeID
-		FROM [sma_MST_CaseStatusType]
-		where stpsStatusType = 'Status'
-	)								as cstnStatusTypeID
-	,1								as cstbActive
-	,1								as cstbUseIncident1
-	,'Incident 1'					as cstsIncidentLabel1
-	,'SLFCaseType'					as VenderCaseType
-FROM [TestNeedles]..user_case_data d
-LEFT JOIN [sma_MST_CaseType] ct
-	ON d.Type_of_Case = ct.cstsType
-WHERE ct.cstsType IS NULL and isnull(d.Type_of_Case,'') <> ''
-GO
-
-/* ########################################################
-Create SubTypeCodes 
-*/
-INSERT INTO [dbo].[sma_MST_CaseSubTypeCode]
-(
-	stcsDscrptn 
-)
-SELECT DISTINCT d.Type_of_Accident
-from [TestNeedles]..user_case_data d
-where isnull(d.Type_of_Accident,'') <> ''
-EXCEPT
-SELECT
-	stcsDscrptn
-	from [dbo].[sma_MST_CaseSubTypeCode]
-GO
-
-/* ########################################################
-Create SubTypes
-Add subtypes to case type "Auto Accident" with data from user_case_data.type_of_accident
-*/
-INSERT INTO [sma_MST_CaseSubType]
-(
-	[cstsCode], 
-	[cstnGroupID], 
-	[cstsDscrptn], 
-	[cstnRecUserId], 
-	[cstdDtCreated], 
-	[cstnModifyUserID], 
-	[cstdDtModified], 
-	[cstnLevelNo], 
-	[cstbDefualt], 
-	[saga], 
-	[cstnTypeCode]
-)
-SELECT distinct
-	null								as [cstsCode]
-	,(
-		select cstnCaseTypeID
-		from sma_MST_CaseType
-		where cstsType = 'Auto Accident'
-	)									as [cstnGroupID]
-	,d.Type_of_Accident					as [cstsDscrptn]
-	,368 								as [cstnRecUserId]
-	,getdate()							as [cstdDtCreated]
-	,null								as [cstnModifyUserID]
-	,null								as [cstdDtModified]
-	,null								as [cstnLevelNo]
-	,1									as [cstbDefualt]
-	,null								as [saga]
-	,(
-		select stcnCodeId
-		from [sma_MST_CaseSubTypeCode]
-		where stcsDscrptn = d.Type_of_Accident
-	)									as [cstnTypeCode] 
-from [TestNeedles]..user_case_data d
-where isnull(d.Type_of_Accident,'') <> ''
 
 
 /*
@@ -427,7 +352,7 @@ LEFT JOIN sma_mst_subrole S
 	on CST.cstnCaseTypeID = S.sbrnCaseTypeID or S.sbrnCaseTypeID = 1
 JOIN [CaseTypeMixture] MIX
 	on MIX.matcode = CST.cstsCode  
-WHERE VenderCaseType = 'SLFCaseType'
+WHERE VenderCaseType = (SELECT VenderCaseType FROM #TempVariables)
 and isnull(MIX.[SmartAdvocate Case Type],'') = ''
 
 -- (3.1) sma_MST_SubRole : use the sma_MST_SubRole.sbrsDscrptn value to set the sma_MST_SubRole.sbrnTypeCode field ---
@@ -446,7 +371,7 @@ FROM
 	FROM sma_MST_SubRole S
 	JOIN sma_MST_CaseType CST
 		on CST.cstnCaseTypeID = S.sbrnCaseTypeID
-		and CST.VenderCaseType = 'SLFCaseType'
+		and CST.VenderCaseType = (SELECT VenderCaseType FROM #TempVariables)
 ) A
 WHERE A.SubRoleId = sbrnSubRoleId
 
@@ -484,12 +409,22 @@ FROM [sma_MST_SubRoleCode]
 
 
 -- (4.1) Not already in sma_MST_SubRole-----
-INSERT INTO sma_MST_SubRole ( sbrnRoleID,sbrsDscrptn,sbrnCaseTypeID,sbrnTypeCode)
-
-SELECT T.sbrnRoleID,T.sbrsDscrptn,T.sbrnCaseTypeID,T.sbrnTypeCode
+INSERT INTO sma_MST_SubRole
+(
+	sbrnRoleID
+	,sbrsDscrptn
+	,sbrnCaseTypeID
+	,sbrnTypeCode
+)
+SELECT
+	T.sbrnRoleID
+	,T.sbrsDscrptn
+	,T.sbrnCaseTypeID
+	,T.sbrnTypeCode
 FROM 
-(	SELECT 
-		R.PorD			    as sbrnRoleID,
+(
+	SELECT 
+		R.PorD			   		as sbrnRoleID,
 		R.[role]			    as sbrsDscrptn,
 		CST.cstnCaseTypeID	    as sbrnCaseTypeID,
 		(select srcnCodeId from sma_MST_SubRoleCode where srcsDscrptn = R.role and srcnRoleID = R.PorD) as sbrnTypeCode
@@ -504,7 +439,7 @@ CROSS JOIN
 		UNION ALL
 	SELECT [SA Roles]  as role, 5 as PorD from [PartyRoles] where [SA Party]='Defendant'
 ) R
-WHERE CST.VenderCaseType='SLFCaseType'
+WHERE CST.VenderCaseType = (SELECT VenderCaseType FROM #TempVariables)
 ) T
 EXCEPT SELECT sbrnRoleID,sbrsDscrptn,sbrnCaseTypeID,sbrnTypeCode FROM sma_MST_SubRole
 
@@ -599,7 +534,10 @@ SELECT
     ,(
 		select [sttnStateID]
 		from [sma_MST_States]
-		where [sttsDescription] = 'Virginia'
+		where [sttsDescription] = (
+									SELECT StateName
+									FROM #TempVariables
+								)
 	)								as casnState
     ,GETDATE()						as casdStatusFromDt
     ,(
@@ -647,7 +585,10 @@ SELECT
     ,(
 		select [sttnStateID]
 		from [sma_MST_States]
-		where [sttsDescription]='Virginia'
+		where [sttsDescription] = (
+									SELECT StateName
+									FROM #TempVariables
+								)
 	)								as [casnStateID]
     ,null 							as [casnLastModifiedBy]
 	,null 							as [casdLastModifiedDate]
@@ -674,7 +615,10 @@ SELECT
     ,(
 		select office_id
 		from sma_MST_Offices
-		where office_name = 'Skolrood Law Firm'
+		where office_name = (
+								SELECT OfficeName
+								FROM #TempVariables
+							)
 	)								as office_id
     ,''								as [saga]
 	,null 							as [LIP]
@@ -686,14 +630,14 @@ SELECT
 	,null 							as [ngage]
 	,null 							as [casnClientRecoveredDt]
     ,0								as CloseReason
-FROM [TestNeedles].[dbo].[cases_Indexed] C
-LEFT JOIN [TestNeedles].[dbo].[user_case_data] U
-	on U.casenum=C.casenum
+FROM [JoelBieberNeedles].[dbo].[cases_Indexed] C
+LEFT JOIN [JoelBieberNeedles].[dbo].[user_case_data] U
+	on U.casenum = C.casenum
 JOIN caseTypeMixture mix
 	on mix.matcode = c.matcode
 LEFT JOIN sma_MST_CaseType CST
 	on CST.cststype = mix.[smartadvocate Case Type]
-	and VenderCaseType='SLFCaseType'
+	and VenderCaseType = (SELECT VenderCaseType FROM #TempVariables)
 ORDER BY C.casenum
 GO
 
