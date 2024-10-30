@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# SQL Server Management Studio Solution File, Format Version 20.00
+VisualStudioVersion = 15.0.28307.421
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "conversion-boilerplate", "conversion-boilerplate.ssmssqlproj", "{50F5906A-C606-4A75-B83E-39A61FB1FA87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|Default = Default|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{50F5906A-C606-4A75-B83E-39A61FB1FA87}.Default|Default.ActiveCfg = Default
+		{7B4F4C86-2E34-4802-B84A-E14CD62F19D5}.Default|Default.ActiveCfg = Default
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0722998F-0036-4EC0-B472-E518B7748592}
+	EndGlobalSection
+EndGlobal
