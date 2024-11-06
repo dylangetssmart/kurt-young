@@ -117,7 +117,7 @@ BEGIN
 		)							as [state_id]
 		,1			    			as [is_default]
 		,getdate()	    			as [date_created]
-		,'dsmith'					as [user_created]
+		,'rdoshi'					as [user_created]
 		,getdate()	    			as [date_modified]
 		,'dbo'		    			as [user_modified]
 		,'LetterheadUt.docx' 		as [Letterhead]
