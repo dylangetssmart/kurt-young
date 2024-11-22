@@ -39,3 +39,12 @@ lib/__pycache__/
 
 # Ignore python virtual environment
 venv/
+
+vsworkspacestate.json
+.ssms_suo
+slnx.sqlite
+
+/.vs
+/.vs/*
+/.vs/VSWorkspaceState.json
+/JoelBieber/
