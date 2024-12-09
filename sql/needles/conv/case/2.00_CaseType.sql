@@ -620,7 +620,7 @@ SELECT
 								FROM #TempVariables
 							)
 	)								as office_id
-    ,''								as [saga]
+    ,c.casenum						as [saga]
 	,null 							as [LIP]
 	,null 							as [casnSeriousInj]
 	,null 							as [casnCorpDefn]
