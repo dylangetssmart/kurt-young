@@ -3,16 +3,16 @@ Author: Dylan Smith | dylans@smartadvocate.com
 Date: 2024-09-12
 Description: Create placeholder organization contacts used as fallback when contact records do not exist
 
-1.0 - Unidentified Medical Provider
-1.1 - Unidentified Insurance
-1.2 - Unidentified Court
-1.3 - Unidentified Lienor
-1.4 - Unidentified School
+1 - Unidentified Medical Provider
+2 - Unidentified Insurance
+3 - Unidentified Court
+4 - Unidentified Lienor
+5 - Unidentified School
 
 #########################################################################################################################
 */
 
-USE ShinerSA
+USE [SA]
 GO
 
 --sp_help '[sma_MST_OrgContacts]'
@@ -22,7 +22,7 @@ ALTER TABLE [sma_MST_OrgContacts]
 ALTER COLUMN saga VARCHAR(100);
 
 ---------------------------------------------------
--- [1.0] - Unidentified Medical Provider
+-- [1] - Unidentified Medical Provider
 ---------------------------------------------------
 IF NOT EXISTS (
 		SELECT
@@ -33,12 +33,7 @@ IF NOT EXISTS (
 BEGIN
 	INSERT INTO [sma_MST_OrgContacts]
 		(
-		[consName]
-	   ,[connContactCtg]
-	   ,[connContactTypeID]
-	   ,[connRecUserID]
-	   ,[condDtCreated]
-	   ,[saga]
+		[consName], [connContactCtg], [connContactTypeID], [connRecUserID], [condDtCreated], [saga]
 		)
 		SELECT
 			'Unidentified Medical Provider' AS [consName]
@@ -53,12 +48,13 @@ BEGIN
 			AS [connContactTypeID]
 		   ,368								AS [connRecUserID]
 		   ,GETDATE()						AS [condDtCreated]
-		   ,'unidentifiedHospital'			AS [saga]
+			--,'unidentifiedHospital'			AS [saga]
+		   ,-1								AS [saga]
 END
 GO
 
 ---------------------------------------------------
--- [1.1] - Unidentified Insurance
+-- [2] - Unidentified Insurance
 ---------------------------------------------------
 IF NOT EXISTS (
 		SELECT
@@ -69,12 +65,7 @@ IF NOT EXISTS (
 BEGIN
 	INSERT INTO [sma_MST_OrgContacts]
 		(
-		[consName]
-	   ,[connContactCtg]
-	   ,[connContactTypeID]
-	   ,[connRecUserID]
-	   ,[condDtCreated]
-	   ,[saga]
+		[consName], [connContactCtg], [connContactTypeID], [connRecUserID], [condDtCreated], [saga]
 		)
 		SELECT
 			'Unidentified Insurance' AS [consName]
@@ -89,12 +80,13 @@ BEGIN
 			AS [connContactTypeID]
 		   ,368						 AS [connRecUserID]
 		   ,GETDATE()				 AS [condDtCreated]
-		   ,'unidentifiedInsurance'	 AS [saga]
+			--,'unidentifiedInsurance'	 AS [saga]
+		   ,-1						 AS [saga]
 END
 GO
 
 ---------------------------------------------------
--- [1.2] - Unidentified Court
+-- [3] - Unidentified Court
 ---------------------------------------------------
 IF NOT EXISTS (
 		SELECT
@@ -105,12 +97,7 @@ IF NOT EXISTS (
 BEGIN
 	INSERT INTO [sma_MST_OrgContacts]
 		(
-		[consName]
-	   ,[connContactCtg]
-	   ,[connContactTypeID]
-	   ,[connRecUserID]
-	   ,[condDtCreated]
-	   ,[saga]
+		[consName], [connContactCtg], [connContactTypeID], [connRecUserID], [condDtCreated], [saga]
 		)
 		SELECT
 			'Unidentified Court' AS [consName]
@@ -125,13 +112,13 @@ BEGIN
 			AS [connContactTypeID]
 		   ,368					 AS [connRecUserID]
 		   ,GETDATE()			 AS [condDtCreated]
-		   ,'unidentifiedCourt'	 AS [saga]
+			--,'unidentifiedCourt'	 AS [saga]
+		   ,-1					 AS [saga]
 END
 GO
 
--- ds 2024-09-25
 ---------------------------------------------------
--- [1.3] - Unidentified Lienor
+-- [4] - Unidentified Lienor
 ---------------------------------------------------
 IF NOT EXISTS (
 		SELECT
@@ -142,33 +129,28 @@ IF NOT EXISTS (
 BEGIN
 	INSERT INTO [sma_MST_OrgContacts]
 		(
-		[consName]
-	   ,[connContactCtg]
-	   ,[connContactTypeID]
-	   ,[connRecUserID]
-	   ,[condDtCreated]
-	   ,[saga]
+		[consName], [connContactCtg], [connContactTypeID], [connRecUserID], [condDtCreated], [saga]
 		)
 		SELECT
 			'Unidentified Lienor' AS [consName]
-		   ,2					 AS [connContactCtg]
+		   ,2					  AS [connContactCtg]
 		   ,(
 				SELECT
 					octnOrigContactTypeID
-			FROM [sma_MST_OriginalContactTypes]
+				FROM [sma_MST_OriginalContactTypes]
 				WHERE octnContactCtgID = 2
 					AND octsDscrptn = 'General'
-			)					 
+			)					  
 			AS [connContactTypeID]
-		   ,368					 AS [connRecUserID]
-		   ,GETDATE()			 AS [condDtCreated]
-		   ,'unidentifiedLienor'	 AS [saga]
+		   ,368					  AS [connRecUserID]
+		   ,GETDATE()			  AS [condDtCreated]
+			--,'unidentifiedLienor'	 AS [saga]
+		   ,-1					  AS [saga]
 END
 GO
 
--- ds 2024-10-28
 ---------------------------------------------------
--- [1.4] - Unidentified School
+-- [5] - Unidentified School
 ---------------------------------------------------
 IF NOT EXISTS (
 		SELECT
@@ -179,26 +161,22 @@ IF NOT EXISTS (
 BEGIN
 	INSERT INTO [sma_MST_OrgContacts]
 		(
-		[consName]
-	   ,[connContactCtg]
-	   ,[connContactTypeID]
-	   ,[connRecUserID]
-	   ,[condDtCreated]
-	   ,[saga]
+		[consName], [connContactCtg], [connContactTypeID], [connRecUserID], [condDtCreated], [saga]
 		)
 		SELECT
 			'Unidentified School' AS [consName]
-		   ,2					 AS [connContactCtg]
+		   ,2					  AS [connContactCtg]
 		   ,(
 				SELECT
 					octnOrigContactTypeID
-			FROM [sma_MST_OriginalContactTypes]
+				FROM [sma_MST_OriginalContactTypes]
 				WHERE octnContactCtgID = 2
 					AND octsDscrptn = 'General'
-			)					 
+			)					  
 			AS [connContactTypeID]
-		   ,368					 AS [connRecUserID]
-		   ,GETDATE()			 AS [condDtCreated]
-		   ,'unidentifiedSchool'	 AS [saga]
+		   ,368					  AS [connRecUserID]
+		   ,GETDATE()			  AS [condDtCreated]
+			--,'unidentifiedSchool'	 AS [saga]
+		   ,-1					  AS [saga]
 END
 GO
