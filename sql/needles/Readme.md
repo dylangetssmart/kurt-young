@@ -5,7 +5,17 @@
 - user = custom for client, related to user mapping
 - value = related to value codes
 
-# `\helpers`
+# `\init`
+
+Initialize the Needles database with helper tables and functions.
+
+# `\map`
+
+Query several Needles tables to create field mapping spreadsheet.
+
+# `\conv`
+
+## helpers
 
 Initialize the SA database with helper tables and functions.
 
@@ -18,11 +28,9 @@ Script|Purpose|Notes
 0.40_NeedlesUserFields.sql|Creates table NeedlesUserFields|
 0.50_PartyRole.sql|Creates table PartyRoles used to cross reference party roles|Harcoded for initial conversion
 
-# `\conv`
-
-## Contacts
-Script|Target|Source
-:---|:---|:---
+## contact
+Script|Target|Source|Dependency
+:---|:---|:---|:---
 1.00_std_UnidentifiedIndvContacts.sql|`[sma_MST_IndvContacts]`|hardcode
 1.01_std_UnidentifiedOrgContacts.sql|`[sma_MST_OrgContacts]`|hardcode
 1.02_std_Contacts.sql|`[sma_MST_IndvContacts]`, `[sma_MST_Users]`|
@@ -30,14 +38,14 @@ Script|Target|Source
 1.04_std_police.sql|`[sma_MST_IndvContacts]`|`[needles]..[police]`|
 1.10_std_email.sql|`[sma_MST_EmailWebsite]`|
 1.11_std_phone.SQL|`[sma_MST_ContactNumbers]`|`[needles]..[names]`
-1.40_std_Address.SQL|`[sma_MST_Address]`|`[needles]..[multi_addresses]`
+1.40_std_Address.SQL|`[sma_MST_Address]`|`[needles]..[multi_addresses]`|`[sma_MST_IndvContacts]`,`[sma_MST_OrgContacts]`
 1.89_std_Uniqueness.sql||
 1.90_std_AllContactInfo.sql|`[sma_MST_AllContactInfo]`|`[sma_MST_IndvContacts]`,`[sma_MST_Address]`,`[sma_MST_ContactNumbers]`,`[sma_MST_EmailWebsite]`
 1.91_std_Comment.SQL||
 1.91_std_IndvOrgContacts.sql|`[sma_MST_IndvOrg_Indexed]`|`[sma_MST_AllContactInfo]`|
 1.92_std_Notes.SQL|`[sma_TRN_Notes]`|`[needles]..[provider_notes]`, `[needles]..[party]`
 
-## Cases
+## case
 Script|Target|Source
 :---|:---|:---
 2.00_std_CaseType.SQL|`[sma_MST_CaseGroup]`,`[sma_MST_offices]`,`[sma_MST_CaseType]`,`[sma_MST_CaseSubTypeCode]`,`[sma_MST_CaseSubType]`,`[sma_MST_CaseSubType]`,`[sma_MST_SubRole]`,`[sma_MST_SubRoleCode]`,`[sma_TRN_Cases]`|
