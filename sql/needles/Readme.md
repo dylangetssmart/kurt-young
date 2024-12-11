@@ -5,7 +5,7 @@
 - user = custom for client, related to user mapping
 - value = related to value codes
 
-# `\init`
+# `\helpers`
 
 Initialize the SA database with helper tables and functions.
 
