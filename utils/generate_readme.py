@@ -50,10 +50,10 @@ def process_subdirectories(current_dir):
 
             # For first-level subdirectories (e.g., "conv"), use ## heading
             if depth == 0:
-                content += f"## {relative_path.replace(os.sep, '\\').lower()}\n\n"
+                content += f"## {relative_path.replace(os.sep, '/').lower()}\n\n"
             # For deeper subfolders (e.g., "conv/case"), use ### heading
             elif depth == 1:
-                content += f"### {relative_path.replace(os.sep, '\\').lower()}\n\n"
+                content += f"### {relative_path.replace(os.sep, '/').lower()}\n\n"
 
             # Add a table for the scripts inside this folder
             content += "| Script Name |\n"
