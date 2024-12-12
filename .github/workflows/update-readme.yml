@@ -34,6 +34,9 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add ./sql/needles/Readme.md
+          git add ./sql/needles/Readme.md 
+          git add ./sql/clio/Readme.md
+          git add ./sql/litify/Readme.md
+          git add ./sql/grow_path/Readme.md
           git commit -m "Update README with SQL scripts" || echo "No changes to commit"
           git push
