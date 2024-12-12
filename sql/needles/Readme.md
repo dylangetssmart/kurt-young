@@ -143,8 +143,6 @@
 | 06_memo_insurance.SQL |
 | 07_memo_party.SQL |
 | 08_memo_value.SQL |
-| test5.sql |
-| test6.sql |
 
 ## map
 
@@ -158,6 +156,4 @@
 | 06_party_role.sql |
 | 07_value_code.sql |
 | 08_case_staff.sql |
-| test7.sql |
-| test8.sql |
 
