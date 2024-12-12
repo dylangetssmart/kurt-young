@@ -3,7 +3,7 @@ name: Update README
 on:
   push:
     paths:
-      - './sql/**'  # Trigger on changes to the 'sql' directory and its subdirectories
+      - 'sql/**'  # Trigger on changes to the 'sql' directory and its subdirectories
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 jobs:
