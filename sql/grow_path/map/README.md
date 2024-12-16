@@ -1,5 +1,5 @@
 # Grow_Path Map
 
-| Script Name |
-|-------------|
-| 0_mapping.sql |
+| Script Name | Description | Author | Date |
+|-------------|-------------|--------|------|
+| 0_mapping.sql | Not provided | Not provided | Not provided |
