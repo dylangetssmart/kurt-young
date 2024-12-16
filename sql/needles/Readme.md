@@ -156,4 +156,6 @@
 | 06_party_role.sql |
 | 07_value_code.sql |
 | 08_case_staff.sql |
+| CaseIntakeUserTableFieldUsage.sql |
+| staff.sql |
 
