@@ -1,5 +1,13 @@
--- USE [TestNeedles]
--- GO
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Insert addresses
+
+##########################################################################################################################
+*/
+
+USE [SA]
+GO
 /*
 alter table [sma_MST_Address] disable trigger all
 delete from [sma_MST_Address] 

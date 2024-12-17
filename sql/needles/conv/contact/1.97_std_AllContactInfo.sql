@@ -1,5 +1,20 @@
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Update contact email addresses
+
+##########################################################################################################################
+*/
+
+use [SA]
+Go
+
 SET ANSI_PADDING ON
 GO
+
+set QUOTED_IDENTIFIER ON
+GO
+
 alter table [dbo].[sma_MST_AllContactInfo] disable trigger all
 delete from [dbo].[sma_MST_AllContactInfo] 
 DBCC CHECKIDENT ('[dbo].[sma_MST_AllContactInfo]', RESEED, 0);

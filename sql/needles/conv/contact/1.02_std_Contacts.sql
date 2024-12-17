@@ -1,4 +1,12 @@
-USE TestSA
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-09-12
+Description: Create users and contacts
+
+##########################################################################################################################
+*/
+
+USE [SA]
 GO
 
 --(0) saga field for needles names_id ---

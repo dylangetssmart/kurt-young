@@ -1,5 +1,13 @@
--- use [TestNeedles]
--- go
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Update contact email addresses
+
+##########################################################################################################################
+*/
+
+use [SA]
+go
 /*
 alter table [sma_TRN_Notes] disable trigger all
 delete from [sma_TRN_Notes] 

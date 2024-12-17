@@ -11,7 +11,7 @@ Description: Create placeholder individual contacts used as fallback when contac
 ##########################################################################################################################
 */
 
-USE ShinerSA
+USE [SA]
 GO
 
 ALTER TABLE sma_MST_IndvContacts DISABLE TRIGGER ALL

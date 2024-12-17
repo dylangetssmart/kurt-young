@@ -1,5 +1,13 @@
 
--- USE [TestNeedles]
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Update contact email addresses
+
+##########################################################################################################################
+*/
+
+USE [SA]
 GO
 ---(1)--- Phone number uniqueness
 

@@ -1,4 +1,12 @@
--- use [TestNeedles]
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Update contact email addresses
+
+##########################################################################################################################
+*/
+
+use [SA]
 go
 /*
 update sma_MST_IndvContacts set cinsComments = NULL

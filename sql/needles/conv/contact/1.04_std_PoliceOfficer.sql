@@ -1,3 +1,13 @@
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-12-17
+Description: Create police officer contacts from needles..police
+
+- [cinsGrade] holds officer name
+
+##########################################################################################################################
+*/
+
 USE [SA]
 GO
 
