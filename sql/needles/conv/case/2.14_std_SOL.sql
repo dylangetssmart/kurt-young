@@ -1,5 +1,17 @@
--- use TestNeedles
--- GO
+/* ###################################################################################
+Author: Dylan Smith | dylans@smartadvocate.com
+Date: 2024-09-12
+Description: Create users and contacts
+
+replace:
+'OfficeName'
+'StateDescription'
+'VenderCaseType'
+##########################################################################################################################
+*/
+
+use [SA]
+GO
 
 /*
 alter table [sma_TRN_SOLs] disable trigger all
