@@ -23,7 +23,9 @@ jobs:
 
       # Install dependencies (if needed)
       - name: Install dependencies
-        run: pip install -r requirements.txt || true  # Add a requirements file if needed
+        run: |
+          pip install --upgrade pip
+          pip install pyyaml  # Hardcode the installation of pyyaml
 
       # Run the Python script
       - name: Generate README
@@ -34,9 +36,6 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add ./sql/needles/Readme.md 
-          git add ./sql/clio/Readme.md
-          git add ./sql/litify/Readme.md
-          git add ./sql/grow_path/Readme.md
+          git add -A
           git commit -m "Update README with SQL scripts" || echo "No changes to commit"
           git push
