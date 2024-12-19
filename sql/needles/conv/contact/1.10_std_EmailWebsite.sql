@@ -1,9 +1,19 @@
 /* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-12-17
-Description: Update contact email addresses
+description: update contact email addresses
 
-##########################################################################################################################
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+
+######################################################################################
 */
 
 USE [SA]

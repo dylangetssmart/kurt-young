@@ -1,3 +1,23 @@
+/* ######################################################################################
+description: Outputs CustomFieldUsage with CustomFieldSampleData
+
+steps:
+	- 
+
+usage_instructions:
+	- update database reference
+
+dependencies:
+	- 
+
+notes:
+	- 
+#########################################################################################
+*/
+
+use [Needles]
+go
+
 SELECT 
 	[field_num]
      ,[field_num_location]

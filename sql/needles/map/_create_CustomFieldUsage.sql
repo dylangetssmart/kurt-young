@@ -1,10 +1,33 @@
-use TestNeedles
+/* ######################################################################################
+description: Creates table [CustomFieldUsage] and seeds it with all fields from the needles user tabs. Includes sample data.
 
--- Drop the CustomFieldUsage table if it exists
+steps:
+	- Create CustomFieldUsage
+	- Seed CustomFieldUsage
+	- Create CustomFieldSampleData
+	- Output results
+
+usage_instructions:
+	- update hardcoded values in #TempVariables
+
+dependencies:
+	- 
+
+notes:
+	- 
+#########################################################################################
+*/
+
+use JohnSalazar_Needles
+GO
+
+/*
+1. Create [CustomFieldUsage]
+*/
+
 IF OBJECT_ID('dbo.CustomFieldUsage', 'U') IS NOT NULL
     DROP TABLE dbo.CustomFieldUsage;
 
- ---needles custom fields---
 select A.*, 0 as ValueCount
 INTO CustomFieldUsage
 FROM (
@@ -137,10 +160,11 @@ FROM (
 order by
 	A.tablename
 	,A.field_num
+GO
 
---select * From CustomFieldUsage
-
---CURSOR
+/*
+2. Seed CustomFieldUsage
+*/
 DECLARE @table varchar(100), 
 		@Field varchar(100),
 		@caseid varchar(20),
@@ -207,17 +231,16 @@ END
 CLOSE FieldUsage_Cursor;
 DEALLOCATE FieldUsage_Cursor;
 
+GO
 
--- Step 1: Declare a cursor to iterate through the CustomFieldUsage table
-DECLARE @column_name NVARCHAR(255), @tablename NVARCHAR(255);
-DECLARE customFieldCursor CURSOR FOR
-SELECT column_name, tablename FROM CustomFieldUsage;
 
--- Step 2: Declare a variable to hold the dynamic SQL
-DECLARE @sampleDataSql NVARCHAR(MAX);
+/*
+3. Create CustomFieldSampleData
+	3.1 - Create a cursor to iterate through all fields in [CustomFieldUsage]
+	3.2 - Grab first non-null record for each field and insert into [CustomFieldSampleData]
+*/
 
--- Step 3: Create a temporary table to store the results
--- Step 3: Drop the temporary table if it exists
+-- 3.1 CustomFieldSampleData
 IF OBJECT_ID('dbo.CustomFieldSampleData') IS NOT NULL
 BEGIN
     DROP TABLE dbo.CustomFieldSampleData;
@@ -229,37 +252,38 @@ CREATE TABLE dbo.CustomFieldSampleData (
     field_value NVARCHAR(MAX)
 );
 
--- Open the cursor
+-- 3.2 CustomFieldUsage cursor
+DECLARE @column_name NVARCHAR(255), @tablename NVARCHAR(255);
+DECLARE customFieldCursor CURSOR FOR
+SELECT column_name, tablename FROM CustomFieldUsage;
+
+DECLARE @sampleDataSql NVARCHAR(MAX);
+
 OPEN customFieldCursor;
 
--- Fetch the first record
 FETCH NEXT FROM customFieldCursor INTO @column_name, @tablename;
 
--- Step 4: Loop through the records
 WHILE @@FETCH_STATUS = 0
 BEGIN
-    -- Step 5: Generate the dynamic SQL for the current record
-SET @sampleDataSql = 'INSERT INTO #CustomFieldSampleData (column_name, tablename, field_value) ' +
+SET @sampleDataSql = 'INSERT INTO CustomFieldSampleData (column_name, tablename, field_value) ' +
                'SELECT TOP 1 ''' + @column_name + ''', ''' + @tablename + ''', TRY_CAST([' + @column_name + '] AS NVARCHAR(MAX)) ' +
                'FROM ' + @tablename +
                ' WHERE TRY_CAST([' + @column_name + '] AS NVARCHAR(MAX)) IS NOT NULL AND TRY_CAST([' + @column_name + '] AS NVARCHAR(MAX)) <> ''''';
 
-    -- Print the generated SQL for debugging purposes (optional)
     PRINT @sampleDataSql;
 
-    -- Step 6: Execute the dynamic SQL
     EXEC sp_executesql @sampleDataSql;
 
-    -- Fetch the next record
     FETCH NEXT FROM customFieldCursor INTO @column_name, @tablename;
 END;
 
--- Close and deallocate the cursor
 CLOSE customFieldCursor;
 DEALLOCATE customFieldCursor;
 
--- Step 7: Select the results from the temporary table
--- SELECT * FROM #CustomFieldSampleData;
+
+/* -------------------------------------------------------------------------------------------------
+4. Output Results
+*/
 
  SELECT 
 	[field_num]

@@ -1,15 +1,22 @@
 /* #######################################################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create placeholder organization contacts used as fallback when contact records do not exist
+description: Create placeholder organization contacts used as fallback when contact records do not exist
 
-1 - Unidentified Medical Provider
-2 - Unidentified Insurance
-3 - Unidentified Court
-4 - Unidentified Lienor
-5 - Unidentified School
+steps:
+	- Unidentified Medical Provider
+	- Unidentified Insurance
+	- Unidentified Court
+	- Unidentified Lienor
+	- Unidentified School
 
-#########################################################################################################################
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
 */
 
 USE [SA]

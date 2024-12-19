@@ -1,16 +1,22 @@
 /* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create placeholder individual contacts used as fallback when contact records do not exist
+description: Create placeholder individual contacts used as fallback when contact records do not exist
 
-1 - Unassigned Staff
-2 - Unidentified Individual
-3 - Unidentified Plaintiff
-4 - Unidentified Defendant
+steps:
+	- Unassigned Staff
+	- Unidentified Individual
+	- Unidentified Plaintiff
+	- Unidentified Defendant
 
-##########################################################################################################################
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
 */
-
 USE [SA]
 GO
 
