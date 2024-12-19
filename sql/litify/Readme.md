@@ -2,4 +2,4 @@
 
 | Script Name | Description |
 |-------------|-------------|
-| LitifyMapping.sql | Not provided |
+| LitifyMapping.sql | No metadata found |
