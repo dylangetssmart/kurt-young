@@ -1,10 +1,10 @@
-# Needles Conv Helpers
+# Needles Conv Init
 
 | Script Name | Description |
 |-------------|-------------|
-| 0.00_init_Initialize.sql | Not provided |
-| 0.10_init_CaseTypeMixture.sql | Not provided |
-| 0.20_init_CaseValueMapping.sql | Not provided |
-| 0.30_ImplementationUsers.sql | Not provided |
-| 0.40_NeedlesUserFields.sql | Not provided |
-| 0.50_PartyRole.sql | Not provided |
+| 0.00_std_Initialize.sql | No metadata found |
+| 0.10_std_CaseTypeMixture.sql | No metadata found |
+| 0.20_std_CaseValueMapping.sql | No metadata found |
+| 0.30_std_ImplementationUsers.sql | No metadata found |
+| 0.40_std_NeedlesUserFields.sql | No metadata found |
+| 0.50_std_PartyRole.sql | No metadata found |

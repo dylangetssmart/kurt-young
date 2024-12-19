@@ -2,10 +2,10 @@
 
 | Script Name | Description |
 |-------------|-------------|
-| 001 IndividualContacts.sql | Not provided |
-| 001 OrganizationContacts.sql | Not provided |
-| 003 CaseTypeCreation.sql | Not provided |
-| 004 CaseGeneration.sql | Not provided |
-| 005 DocLinking.sql | Not provided |
-| DocumentData.sql | Not provided |
-| LeonardDocCreated.sql | Not provided |
+| 001 IndividualContacts.sql | No metadata found |
+| 001 OrganizationContacts.sql | No metadata found |
+| 003 CaseTypeCreation.sql | No metadata found |
+| 004 CaseGeneration.sql | No metadata found |
+| 005 DocLinking.sql | No metadata found |
+| DocumentData.sql | No metadata found |
+| LeonardDocCreated.sql | No metadata found |

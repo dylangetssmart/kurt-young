@@ -1,5 +1,5 @@
-# Grow_Path Map
+# Litify
 
 | Script Name | Description |
 |-------------|-------------|
-| 0_mapping.sql | No metadata found |
+| LitifyMapping.sql | No metadata found |
