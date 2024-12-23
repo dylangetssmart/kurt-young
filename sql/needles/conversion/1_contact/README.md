@@ -1,4 +1,4 @@
-# Needles Conversion 1_Contact
+# Conversion 1_Contact
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
@@ -6,7 +6,7 @@
 | 1.01_std_UnidentifiedOrgContacts.sql | Create placeholder organization contacts used as fallback when contact records do not exist | [None] |
 | 1.02_std_Contacts.sql |  |  |
 | 1.03_std_Insured.sql | Create contacts from needles..insurance | [None] |
-| 1.04_std_PoliceOfficer.sql | No metadata found | No metadata found |
+| 1.04_std_PoliceOfficer.sql | Create police officer contacts from needles..police | [None] |
 | 1.90_std_EmailWebsite.sql | update contact email addresses | [None] |
 | 1.91_std_PhoneNumbers.sql | Update contact phone numbers | [None] |
 | 1.92_std_Address.sql | Insert addresses | [None] |

@@ -1,19 +1,15 @@
 /* ######################################################################################
 description: Create placeholder organization contacts used as fallback when contact records do not exist
-
 steps:
 	- Unidentified Medical Provider
 	- Unidentified Insurance
 	- Unidentified Court
 	- Unidentified Lienor
 	- Unidentified School
-
 usage_instructions:
 	-
-
 dependencies:
 	- 
-
 notes:
 	-
 #########################################################################################

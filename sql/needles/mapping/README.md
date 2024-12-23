@@ -1,4 +1,4 @@
-# Needles Mapping
+# Mapping
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|

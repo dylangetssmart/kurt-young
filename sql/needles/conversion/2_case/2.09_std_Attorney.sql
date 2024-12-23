@@ -1,13 +1,20 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
+/* ######################################################################################
+description: Create CaseTypeMixture, used to cross reference case types
+steps:
+	- insert plaintiff attorneys
+	- insert defense attorneys
+	- insert plaintiff attorney list
+	- insert defense attorney list
+usage_instructions:
+dependencies:
+notes:
+requires_mapping:
+	- Party Roles
+tables:
+	- [sma_TRN_PlaintiffAttorney]
+	- [sma_TRN_LawFirms] 
+	- [sma_TRN_LawFirmAttorneys]
+#########################################################################################
 */
 
 USE [SA]
@@ -34,7 +41,7 @@ alter table [sma_TRN_LawFirmAttorneys] enable trigger all
 --INSERT ATTORNEY TYPES
 -----------------------------------------------------------------------------------
 INSERT INTO sma_MST_AttorneyTypes (atnsAtorneyDscrptn)
-SELECT Distinct Type_OF_Attorney From TestNeedles..user_counsel_data where isnull(Type_of_attorney,'')<>''
+SELECT Distinct Type_OF_Attorney From [Needles]..user_counsel_data where isnull(Type_of_attorney,'')<>''
 EXCEPT
 SELECT atnsAtorneydscrptn from sma_MST_AttorneyTypes
 */
@@ -106,8 +113,8 @@ INSERT INTO [sma_TRN_PlaintiffAttorney]
 	   ,ISNULL('comments : ' + NULLIF(CONVERT(VARCHAR(MAX), C.comments), '') + CHAR(13), '') +
 		ISNULL('Attorney for party : ' + NULLIF(CONVERT(VARCHAR(MAX), IOCP.name), '') + CHAR(13), '') +
 		''				  AS [plasComments]
-	FROM TestNeedles..[counsel_Indexed] C
-	LEFT JOIN TestNeedles.[dbo].[user_counsel_data] UD
+	FROM [Needles]..[counsel_Indexed] C
+	LEFT JOIN [Needles].[dbo].[user_counsel_data] UD
 		ON UD.counsel_id = C.counsel_id
 			AND C.case_num = UD.casenum
 	JOIN [sma_TRN_Cases] CAS
@@ -171,8 +178,8 @@ INSERT INTO [sma_TRN_LawFirms]
 	   ,ISNULL('comments : ' + NULLIF(CONVERT(VARCHAR(MAX), C.comments), '') + CHAR(13), '') +
 		ISNULL('Attorney for party : ' + NULLIF(CONVERT(VARCHAR(MAX), IOCD.name), '') + CHAR(13), '') +
 		''				  AS [lwfsComments]
-	FROM TestNeedles.[dbo].[counsel_Indexed] C
-	LEFT JOIN TestNeedles.[dbo].[user_counsel_data] UD
+	FROM [Needles].[dbo].[counsel_Indexed] C
+	LEFT JOIN [Needles].[dbo].[user_counsel_data] UD
 		ON UD.counsel_id = C.counsel_id
 			AND C.case_num = UD.casenum
 	JOIN [sma_TRN_Cases] CAS
@@ -259,8 +266,8 @@ SET cinnContactTypeID = (
 FROM (
 	SELECT
 		I.cinnContactID AS ID
-	FROM TestNeedles.[dbo].[counsel] C
-	JOIN TestNeedles.[dbo].[names] L
+	FROM [Needles].[dbo].[counsel] C
+	JOIN [Needles].[dbo].[names] L
 		ON C.counsel_id = L.names_id
 	JOIN [dbo].[sma_MST_IndvContacts] I
 		ON saga = L.names_id

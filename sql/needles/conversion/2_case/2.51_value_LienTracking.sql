@@ -1,13 +1,27 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
+/* ######################################################################################
+description: Create lien tracking records
+steps:
+	- create value_tab_Liencheckbox_Helper
+	- create value_tab_Lien_Helper
+	- create value_tab_Multi_Party_Helper_Temp
+	- insert into sma_MST_LienType
+    - insert into value_tab_Liencheckbox_Helper
+    - insert into value_tab_Lien_Helper
+    - insert into value_tab_Multi_Party_Helper_Temp
+    - update value_tab_Lien_Helper
+    - insert into sma_TRN_Lienors
+    - insert into sma_TRN_LienDetails
+usage_instructions:
+    - "update #LieValueCodes with the appropriate lien codes"
+dependencies:
+notes:
+requires_mapping:
+	- Value Codes
+tables:
+	- [sma_TRN_Lienors]
+	- [sma_TRN_LienDetails] 
+	- [sma_TRN_LawFirmAttorneys]
+#########################################################################################
 */
 
 use [SA]
@@ -25,27 +39,27 @@ VALUES
 
 
 /*
-alter table [SANeedlesSLF].[dbo].[sma_TRN_Lienors] disable trigger all
-delete from [SANeedlesSLF].[dbo].[sma_TRN_Lienors] 
-DBCC CHECKIDENT ('[SANeedlesSLF].[dbo].[sma_TRN_Lienors]', RESEED, 0);
-alter table [SANeedlesSLF].[dbo].[sma_TRN_Lienors] enable trigger all
+alter table [SA].[dbo].[sma_TRN_Lienors] disable trigger all
+delete from [SA].[dbo].[sma_TRN_Lienors] 
+DBCC CHECKIDENT ('[SA].[dbo].[sma_TRN_Lienors]', RESEED, 0);
+alter table [SA].[dbo].[sma_TRN_Lienors] enable trigger all
 
-alter table [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] disable trigger all
-delete from [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] 
-DBCC CHECKIDENT ('[SANeedlesSLF].[dbo].[sma_TRN_LienDetails]', RESEED, 0);
-alter table [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] enable trigger all
-
-
-alter table [SANeedlesSLF].[dbo].[sma_TRN_Lienors] disable trigger all
-
-alter table [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] disable trigger all
+alter table [SA].[dbo].[sma_TRN_LienDetails] disable trigger all
+delete from [SA].[dbo].[sma_TRN_LienDetails] 
+DBCC CHECKIDENT ('[SA].[dbo].[sma_TRN_LienDetails]', RESEED, 0);
+alter table [SA].[dbo].[sma_TRN_LienDetails] enable trigger all
 
 
-select count(*) from [SANeedlesSLF].[dbo].[sma_TRN_Lienors]
+alter table [SA].[dbo].[sma_TRN_Lienors] disable trigger all
+
+alter table [SA].[dbo].[sma_TRN_LienDetails] disable trigger all
+
+
+select count(*) from [SA].[dbo].[sma_TRN_Lienors]
 
 select * from value_tab_Liencheckbox_Helper 
 
-select * from [NeedlesSLF].[dbo].[value_payment] where value_id=65990
+select * from [Needles].[dbo].[value_payment] where value_id=65990
 
 */
 
@@ -70,7 +84,7 @@ create table value_tab_Liencheckbox_Helper (
     value_id		    int,
 CONSTRAINT IOC_Clustered_Index_value_tab_Liencheckbox_Helper PRIMARY KEY CLUSTERED ( TableIndex )
 ) ON [PRIMARY] 
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [SANeedlesSLF].[dbo].[value_tab_Liencheckbox_Helper] (value_id);   
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [SA].[dbo].[value_tab_Liencheckbox_Helper] (value_id);   
 GO
 
 ---(0)---
@@ -79,10 +93,10 @@ insert into value_tab_Liencheckbox_Helper
     value_id 
 )
 select VP1.value_id
-from [NeedlesSLF].[dbo].[value_payment] VP1 
+from [Needles].[dbo].[value_payment] VP1 
     left join (
                 select distinct value_id
-                from [NeedlesSLF].[dbo].[value_payment]
+                from [Needles].[dbo].[value_payment]
                 where lien='Y'
                 ) VP2 
         on VP1.value_id = VP2.value_id
@@ -96,20 +110,20 @@ GO
 
 
 ---(0)---
-insert into [SANeedlesSLF].[dbo].[sma_MST_LienType]
+insert into [SA].[dbo].[sma_MST_LienType]
 (
     [lntsCode]
     ,[lntsDscrptn]
 )
 (
     select distinct 'CONVERSION',VC.[description]
-    from [NeedlesSLF].[dbo].[value] V
-    inner join [NeedlesSLF].[dbo].[value_code] VC
+    from [Needles].[dbo].[value] V
+    inner join [Needles].[dbo].[value_code] VC
         on VC.code = V.code 
     where isnull(V.code,'') in (SELECT code FROM #LienValueCodes)
 )
 except
-select [lntsCode],[lntsDscrptn] from [SANeedlesSLF].[dbo].[sma_MST_LienType] 
+select [lntsCode],[lntsDscrptn] from [SA].[dbo].[sma_MST_LienType] 
 GO
 
 
@@ -137,9 +151,9 @@ CONSTRAINT IOC_Clustered_Index_value_tab_Lien_Helper PRIMARY KEY CLUSTERED ( Tab
 ) ON [PRIMARY] 
 GO
 
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_case_id ON [SANeedlesSLF].[dbo].[value_tab_Lien_Helper] (case_id);   
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_value_id ON [SANeedlesSLF].[dbo].[value_tab_Lien_Helper] (value_id);   
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_ProviderNameId ON [SANeedlesSLF].[dbo].[value_tab_Lien_Helper] (ProviderNameId);   
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_case_id ON [SA].[dbo].[value_tab_Lien_Helper] (case_id);   
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_value_id ON [SA].[dbo].[value_tab_Lien_Helper] (value_id);   
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_ProviderNameId ON [SA].[dbo].[value_tab_Lien_Helper] (ProviderNameId);   
 GO
 
 ---(0)---
@@ -155,10 +169,10 @@ select
     CAS.casnCaseID	    as casnCaseID,
     null			    as PlaintiffID,
     null			    as Paid
-from [NeedlesSLF].[dbo].[value_Indexed] V
-inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS
+from [Needles].[dbo].[value_Indexed] V
+inner join [SA].[dbo].[sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
-inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC
+inner join [SA].[dbo].[IndvOrgContacts_Indexed] IOC
     on IOC.SAGA = V.provider
     and isnull(V.provider,0)<>0
 where code in (SELECT code FROM #LienValueCodes)
@@ -181,13 +195,13 @@ GO
 select 
     V.case_id		    as cid,	
     V.value_id		    as vid,
-    convert(varchar,((select sum(payment_amount) from [NeedlesSLF].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
+    convert(varchar,((select sum(payment_amount) from [Needles].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
     T.plnnPlaintiffID
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
-inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
-inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
-inner join [SANeedlesSLF].[dbo].[sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
+from [Needles].[dbo].[value_Indexed] V
+inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
+inner join [SA].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
+inner join [SA].[dbo].[sma_TRN_Plaintiff] T on T.plnnContactID=IOC.CID and T.plnnContactCtg=IOC.CTG and T.plnnCaseID=CAS.casnCaseID
 GO
 
 update value_tab_Lien_Helper set PlaintiffID=A.plnnPlaintiffID,Paid=A.Paid
@@ -205,13 +219,13 @@ GO
 select 
     V.case_id		    as cid,	
     V.value_id		    as vid,
-    convert(varchar,((select sum(payment_amount) from [NeedlesSLF].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
-    ( select plnnPlaintiffID from [SANeedlesSLF].[dbo].[sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
+    convert(varchar,((select sum(payment_amount) from [Needles].[dbo].[value_payment] where value_id=V.value_id))) as Paid,
+    ( select plnnPlaintiffID from [SA].[dbo].[sma_TRN_Plaintiff] where plnnCaseID=CAS.casnCaseID and plnbIsPrimary=1) as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
-inner join [SANeedlesSLF].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
-inner join [SANeedlesSLF].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
-inner join [SANeedlesSLF].[dbo].[sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
+from [Needles].[dbo].[value_Indexed] V
+inner join [SA].[dbo].[sma_TRN_cases] CAS on CAS.cassCaseNumber = V.case_id
+inner join [SA].[dbo].[IndvOrgContacts_Indexed] IOC on IOC.SAGA = V.party_id
+inner join [SA].[dbo].[sma_TRN_Defendants] D on D.defnContactID=IOC.CID and D.defnContactCtgID=IOC.CTG and D.defnCaseID=CAS.casnCaseID
 GO
 
 update value_tab_Lien_Helper set PlaintiffID=A.plnnPlaintiffID,Paid=A.Paid
@@ -221,12 +235,12 @@ GO
 
 
 ---------------------------------------------------------------------------------------
-alter table [SANeedlesSLF].[dbo].[sma_TRN_Lienors] disable trigger all
-alter table [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] disable trigger all
+alter table [SA].[dbo].[sma_TRN_Lienors] disable trigger all
+alter table [SA].[dbo].[sma_TRN_LienDetails] disable trigger all
 
 GO
 ---(1)---
-insert into [SANeedlesSLF].[dbo].[sma_TRN_Lienors]
+insert into [SA].[dbo].[sma_TRN_Lienors]
 (
     [lnrnCaseID],
     [lnrnLienorTypeID],
@@ -246,8 +260,8 @@ insert into [SANeedlesSLF].[dbo].[sma_TRN_Lienors]
 
   select 
     MAP.casnCaseID			  as [lnrnCaseID],
-    ( select top 1 lntnLienTypeID FROM [SANeedlesSLF].[dbo].[sma_MST_LienType] where lntsDscrptn=
-	   (select [description] FROM [NeedlesSLF].[dbo].[value_code] where [code]=V.code)) 
+    ( select top 1 lntnLienTypeID FROM [SA].[dbo].[sma_MST_LienType] where lntsDscrptn=
+	   (select [description] FROM [Needles].[dbo].[value_code] where [code]=V.code)) 
 						  as [lnrnLienorTypeID],				   
     MAP.ProviderCTG			  as [lnrnLienorContactCtgID],
     MAP.ProviderCID			  as [lnrnLienorContactID],
@@ -267,11 +281,11 @@ insert into [SANeedlesSLF].[dbo].[sma_TRN_Lienors]
     getdate()				  as [lnrdDtCreated],
     0					  as [lnrnFinal],
     V.value_id				  as [saga]
-from [NeedlesSLF].[dbo].[value_Indexed] V
-inner join [SANeedlesSLF].[dbo].[value_tab_Lien_Helper] MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
+from [Needles].[dbo].[value_Indexed] V
+inner join [SA].[dbo].[value_tab_Lien_Helper] MAP on MAP.case_id=V.case_id and MAP.value_id=V.value_id
 
 ---(2)---
-insert into [SANeedlesSLF].[dbo].[sma_TRN_LienDetails]
+insert into [SA].[dbo].[sma_TRN_LienDetails]
 (
 	lndnLienorID,
 	lndnLienTypeID,
@@ -287,12 +301,12 @@ select
 	'sma_TRN_Lienors'		as lndsRefTable,
 	368					as lndnRecUserID,
 	getdate()				as lnddDtCreated
-from [SANeedlesSLF].[dbo].[sma_TRN_Lienors]
+from [SA].[dbo].[sma_TRN_Lienors]
 
 
 ----
-alter table [SANeedlesSLF].[dbo].[sma_TRN_Lienors] enable trigger all
-alter table [SANeedlesSLF].[dbo].[sma_TRN_LienDetails] enable trigger all
+alter table [SA].[dbo].[sma_TRN_Lienors] enable trigger all
+alter table [SA].[dbo].[sma_TRN_LienDetails] enable trigger all
 
 GO
 

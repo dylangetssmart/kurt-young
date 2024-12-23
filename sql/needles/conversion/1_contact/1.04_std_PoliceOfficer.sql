@@ -1,18 +1,13 @@
 /* ######################################################################################
 description: Create police officer contacts from needles..police
-
 steps:
 	-
-
 usage_instructions:
 	-
-
 dependencies:
 	- 
-
 notes:
-	- [cinsGrade] holds officer name
-
+	- "[cinsGrade] holds officer name"
 ######################################################################################
 */
 

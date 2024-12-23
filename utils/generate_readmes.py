@@ -1,5 +1,13 @@
 import os
 import yaml
+import chardet
+
+def detect_encoding(file_path):
+    """Detect the encoding of a file using chardet."""
+    with open(file_path, 'rb') as file:
+        raw_data = file.read()
+        result = chardet.detect(raw_data)
+    return result['encoding']
 
 def extract_yaml_metadata(sql_file):
     """
@@ -12,7 +20,7 @@ def extract_yaml_metadata(sql_file):
         dict: Parsed YAML metadata as a dictionary, or None if no metadata is found.
     """
     try:
-        with open(sql_file, 'r', encoding='utf-8') as file:
+        with open(sql_file, 'r', encoding=detect_encoding(sql_file)) as file:
             lines = file.readlines()
 
         yaml_content = []

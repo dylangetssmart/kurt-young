@@ -1,13 +1,26 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
+/* ######################################################################################
+description: Create Special Damage records
+steps:
+	- Create #SpDmgValueCodes
+    - Create value_tab_spDamages_Helper
+    - Create value_tab_Multi_Party_Helper_Temp
+    - Insert data into value_tab_spDamages_Helper
+    - Insert data into value_tab_Multi_Party_Helper_Temp
+    - Insert Special Damage Type "Other" if it doesn't exist
+    - Insert Special Damage Sub Types from value_code under Type "Other"
+    - Insert data into sma_TRN_SpDamages
+usage_instructions:
+    - "update #SpDmgValueCodes with the appropriate lien codes"
+    - "update the insert to sma_MST_SettlementType with the appropriate settlement types"
+dependencies:
+notes:
+requires_mapping:
+	- Value Codes
+tables:
+	- [sma_TRN_SpDamages]
+	- [sma_MST_SpecialDamageType]
+    - [sma_MST_SpecialDamageSubType]
+#########################################################################################
 */
 
 use [SA]
@@ -126,7 +139,7 @@ select
     IOC.AID		    as ProviderAID,
     CAS.casnCaseID	as casnCaseID,
     null			as PlaintiffID  
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [Needles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN IndvOrgContacts_Indexed IOC
@@ -153,7 +166,7 @@ select
     V.value_id		    as vid,
     T.plnnPlaintiffID
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [Needles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC
@@ -185,7 +198,7 @@ select
         where plnnCaseID = CAS.casnCaseID and plnbIsPrimary = 1
     )                  as plnnPlaintiffID 
     into value_tab_Multi_Party_Helper_Temp   
-from [NeedlesSLF].[dbo].[value_Indexed] V
+from [Needles].[dbo].[value_Indexed] V
 JOIN [sma_TRN_cases] CAS
     on CAS.cassCaseNumber = V.case_id
 JOIN [IndvOrgContacts_Indexed] IOC
@@ -259,8 +272,8 @@ select distinct
         + SDH.[ProviderName]
         + char(13)
         + v.memo	                        as spdsComments
-FROM [NeedlesSLF].[dbo].[value_Indexed] V
-JOIN [NeedlesSLF].[dbo].[value_Code] VC
+FROM [Needles].[dbo].[value_Indexed] V
+JOIN [Needles].[dbo].[value_Code] VC
     on v.code = vc.code
 JOIN [value_tab_spDamages_Helper] SDH
     on v.value_id = sdh.value_id

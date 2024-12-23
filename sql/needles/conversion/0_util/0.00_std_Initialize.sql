@@ -1,6 +1,5 @@
 /* ######################################################################################
 description: Create utility functions
-
 functions:
 	- dbo.myvarchar
 	- dbo.get_firstword
@@ -16,7 +15,7 @@ functions:
 	- dbo.LastName_FromText
 	- dbo.Dworkin_FirstName_FromText
 	- dbo.Dworkin_LastName_FromText
-	
+dependencies:	
 #########################################################################################
 */
 

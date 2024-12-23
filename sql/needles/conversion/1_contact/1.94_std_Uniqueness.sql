@@ -1,18 +1,13 @@
 /* ######################################################################################
-description: 
-
+description: "Ensures the uniqueness of phone numbers in the [sma_MST_ContactNumbers] table"
 steps:
 	-
-
 usage_instructions:
 	-
-
 dependencies:
 	- 
-
 notes:
 	-
-
 ######################################################################################
 */
 
