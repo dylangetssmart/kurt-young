@@ -1,3 +1,22 @@
+/* ######################################################################################
+description: Creates implementatio_users
+
+steps:
+	-
+
+usage_instructions:
+	- 
+
+dependencies:
+	- 
+
+notes:
+	- 
+
+#########################################################################################
+*/
+
+
 /*
 This script manages the population of the `implementation_users` table for the JoelBieberSA_Needles project.
 It consists of two main phases, controlled by the `@Phase` variable:
@@ -21,7 +40,7 @@ Requirements:
 
 */
 
-USE JoelBieberSA_Needles;
+USE [SA];
 
 IF OBJECT_ID('implementation_users', 'U') IS NOT NULL
 BEGIN
@@ -76,7 +95,7 @@ BEGIN
 		   ,''							   AS SAMiddle
 		   ,dbo.get_lastword(s.full_name)  AS SALast
 		   ,suffix						   AS Suffix
-		FROM [JoelBieberNeedles].[dbo].[staff] s;
+		FROM [Needles].[dbo].[staff] s;
 END
 ELSE
 IF @Phase = 2
@@ -112,9 +131,9 @@ BEGIN
 		   ,u.usrbActiveState		   AS Active
 		   ,u.usrbIsShowInSystem	   AS Visible
 		--select * 
-		FROM [JoelBieber_Imp_2024-10-28]..sma_mst_users u
-		JOIN [JoelBieber_Imp_2024-10-28]..sma_MST_IndvContacts smic
+		FROM [SA]..sma_mst_users u
+		JOIN [SA]..sma_MST_IndvContacts smic
 			ON smic.cinnContactID = u.usrnContactID
-		LEFT JOIN JoelBieberNeedles..staff s
+		LEFT JOIN [Needles]..staff s
 			ON s.full_name = smic.cinsFirstName + ' ' + smic.cinsLastName
 END;

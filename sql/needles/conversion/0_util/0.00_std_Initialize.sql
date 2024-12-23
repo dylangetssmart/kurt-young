@@ -1,23 +1,27 @@
--- USE TestNeedles
--- GO
+/* ######################################################################################
+description: Create utility functions
 
-/**************************************************
- * Functions:
- *	dbo.myvarchar
- *	dbo.get_firstword
- *	dbo.get_lastword
- *	dbo.GetContactCtg
- *	dbo.MoneyToDecimal
- *	dbo.my_smalldatetime
- *	dbo.Integer2Date
- *	dbo.fn_ConvertToDateTime
- *	dbo.LeftWord
- *	dbo.FirstName_FromText
- *	dbo.MiddleName_FromText
- *	dbo.LastName_FromText
- *	dbo.Dworkin_FirstName_FromText
- *	dbo.Dworkin_LastName_FromText
- **************************************************/
+functions:
+	- dbo.myvarchar
+	- dbo.get_firstword
+	- dbo.get_lastword
+	- dbo.GetContactCtg
+	- dbo.MoneyToDecimal
+	- dbo.my_smalldatetime
+	- dbo.Integer2Date
+	- dbo.fn_ConvertToDateTime
+	- dbo.LeftWord
+	- dbo.FirstName_FromText
+	- dbo.MiddleName_FromText
+	- dbo.LastName_FromText
+	- dbo.Dworkin_FirstName_FromText
+	- dbo.Dworkin_LastName_FromText
+	
+#########################################################################################
+*/
+
+USE [SA]
+GO
 
 -----
 ALTER TABLE [sma_MST_OrgContacts] ALTER COLUMN [saga] varchar(100)
