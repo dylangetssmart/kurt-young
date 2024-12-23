@@ -1,50 +1,49 @@
 # Needles Conv Case
 
-| Script Name | Description |
-|-------------|-------------|
-| 2.00_std_CaseGroupsAndTypes.sql | No metadata found |
-| 2.01_std_SubRole.sql | No metadata found |
-| 2.02_std_Cases.sql | No metadata found |
-| 2.03_std_Status.sql | No metadata found |
-| 2.04_std_Staff.sql | No metadata found |
-| 2.05_std_Defendant.sql | No metadata found |
-| 2.05_std_Plaintiff.sql | No metadata found |
-| 2.06_std_Insurance.sql | No metadata found |
-| 2.08_std_Values.sql | No metadata found |
-| 2.09_std_Attorney.sql | No metadata found |
-| 2.09_std_PlaintiffDeath.sql | No metadata found |
-| 2.10_std_Court.sql | No metadata found |
-| 2.11_std_CriticalComments.sql | No metadata found |
-| 2.12_std_CriticalDeadLines.sql | No metadata found |
-| 2.13_std_Negotiate.sql | No metadata found |
-| 2.14_std_SOL.sql | No metadata found |
-| 2.15_std_ReferOut.sql | No metadata found |
-| 2.16_std_OtherReferral.sql | No metadata found |
-| 2.17_std_Notes.sql | No metadata found |
-| 2.19_std_Calendar.sql | No metadata found |
-| 2.20_std_Incident.sql | No metadata found |
-| 2.22_std_PoliceReport.sql | No metadata found |
-| 2.25_std_SOLChecklist.sql | No metadata found |
-| 2.30_user_AllContacts.sql | No metadata found |
-| 2.31_user_CaseStatus.sql | No metadata found |
-| 2.32_user_CaseValues.sql | No metadata found |
-| 2.33_user_CaseType.sql | No metadata found |
-| 2.34_user_Disbursement.sql | No metadata found |
-| 2.35_user_MedicalRecord.sql | No metadata found |
-| 2.36_user_Employment.sql | No metadata found |
-| 2.37_user_School.sql | No metadata found |
-| 2.38_user_PriorInjury.sql | No metadata found |
-| 2.39_user_Injury copy.sql | No metadata found |
-| 2.39_user_Injury.sql | No metadata found |
-| 2.40_user_Investigations-Witness.sql | No metadata found |
-| 2.41_user_Settlements.sql | No metadata found |
-| 2.42_user_Plaintiff_SpDamages.sql | No metadata found |
-| 2.43_user_Negotiation.sql | No metadata found |
-| 2.44_user_Tasks.sql | No metadata found |
-| 2.50_value_Notes.sql | No metadata found |
-| 2.51_value_LienTracking.sql | No metadata found |
-| 2.52_value_Settlements.sql | No metadata found |
-| 2.53_value_SpecialDamages.sql | No metadata found |
-| 2.54_value_MedicalProviders.sql | No metadata found |
-| 2.55_value_Disbursement.sql | No metadata found |
-| 2.56_value_Employment.sql | No metadata found |
+| Script Name | Description | Dependencies |
+|-------------|-------------|-------------|
+| 2.00_std_CaseGroupsAndTypes.sql | No metadata found | No metadata found |
+| 2.01_std_SubRole.sql | No metadata found | No metadata found |
+| 2.02_std_Cases.sql | No metadata found | No metadata found |
+| 2.03_std_Status.sql | No metadata found | No metadata found |
+| 2.04_std_Staff.sql | No metadata found | No metadata found |
+| 2.05_std_Defendant.sql | No metadata found | No metadata found |
+| 2.05_std_Plaintiff.sql | No metadata found | No metadata found |
+| 2.06_std_Insurance.sql | No metadata found | No metadata found |
+| 2.08_std_Values.sql | No metadata found | No metadata found |
+| 2.09_std_Attorney.sql | No metadata found | No metadata found |
+| 2.09_std_PlaintiffDeath.sql | No metadata found | No metadata found |
+| 2.10_std_Court.sql | No metadata found | No metadata found |
+| 2.11_std_CriticalComments.sql | No metadata found | No metadata found |
+| 2.12_std_CriticalDeadLines.sql | No metadata found | No metadata found |
+| 2.13_std_Negotiate.sql | No metadata found | No metadata found |
+| 2.14_std_SOL.sql | No metadata found | No metadata found |
+| 2.15_std_ReferOut.sql | No metadata found | No metadata found |
+| 2.16_std_OtherReferral.sql | No metadata found | No metadata found |
+| 2.17_std_Notes.sql | No metadata found | No metadata found |
+| 2.19_std_Calendar.sql | No metadata found | No metadata found |
+| 2.20_std_Incident.sql | No metadata found | No metadata found |
+| 2.22_std_PoliceReport.sql | No metadata found | No metadata found |
+| 2.25_std_SOLChecklist.sql | No metadata found | No metadata found |
+| 2.30_user_AllContacts.sql | No metadata found | No metadata found |
+| 2.31_user_CaseStatus.sql | No metadata found | No metadata found |
+| 2.32_user_CaseValues.sql | No metadata found | No metadata found |
+| 2.33_user_CaseType.sql | No metadata found | No metadata found |
+| 2.34_user_Disbursement.sql | No metadata found | No metadata found |
+| 2.35_user_MedicalRecord.sql | No metadata found | No metadata found |
+| 2.36_user_Employment.sql | No metadata found | No metadata found |
+| 2.37_user_School.sql | No metadata found | No metadata found |
+| 2.38_user_PriorInjury.sql | No metadata found | No metadata found |
+| 2.39_user_Injury.sql | No metadata found | No metadata found |
+| 2.40_user_Investigations-Witness.sql | No metadata found | No metadata found |
+| 2.41_user_Settlements.sql | No metadata found | No metadata found |
+| 2.42_user_Plaintiff_SpDamages.sql | No metadata found | No metadata found |
+| 2.43_user_Negotiation.sql | No metadata found | No metadata found |
+| 2.44_user_Tasks.sql | No metadata found | No metadata found |
+| 2.50_value_Notes.sql | No metadata found | No metadata found |
+| 2.51_value_LienTracking.sql | No metadata found | No metadata found |
+| 2.52_value_Settlements.sql | No metadata found | No metadata found |
+| 2.53_value_SpecialDamages.sql | No metadata found | No metadata found |
+| 2.54_value_MedicalProviders.sql | No metadata found | No metadata found |
+| 2.55_value_Disbursement.sql | No metadata found | No metadata found |
+| 2.56_value_Employment.sql | No metadata found | No metadata found |

@@ -8,7 +8,7 @@ usage_instructions:
 	-
 
 dependencies:
-	- 
+	- IndvOrgContacts_Indexed
 
 notes:
 	-

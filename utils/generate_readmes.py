@@ -57,13 +57,14 @@ def generate_readmes_for_sql_files(sql_dir):
 
             # Generate content for the README.md file
             content = f"# {relative_path.replace(os.sep, ' ').title()}\n\n"
-            content += "| Script Name | Description |\n"
-            content += "|-------------|-------------|\n"
+            content += "| Script Name | Description | Dependencies |\n"
+            content += "|-------------|-------------|-------------|\n"
             for sql_file in sorted(sql_files):
                 file_path = os.path.join(dirpath, sql_file)
                 metadata = extract_yaml_metadata(file_path)
-                description = metadata.get("description", "No description provided") if metadata else "No metadata found"
-                content += f"| {sql_file} | {description} |\n"
+                description = metadata.get("description", "") if metadata else "No metadata found"
+                dependencies = metadata.get("dependencies", "") if metadata else "No metadata found"
+                content += f"| {sql_file} | {description} | {dependencies} |\n"
 
             # Write the content to the README.md file
             with open(readme_path, "w", encoding="utf-8") as readme_file:

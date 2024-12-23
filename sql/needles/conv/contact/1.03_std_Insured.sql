@@ -1,14 +1,19 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create contacts from needles..insurance
+/* ######################################################################################
+description: Create contacts from needles..insurance
 
-1 - Unassigned Staff
-2 - Unidentified Individual
-3 - Unidentified Plaintiff
-4 - Unidentified Defendant
+steps:
+	-
 
-##########################################################################################################################
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+
+#######################################################################################
 */
 
 USE [SA]

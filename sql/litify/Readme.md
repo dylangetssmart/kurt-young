@@ -1,5 +1,5 @@
 # Litify
 
-| Script Name | Description |
-|-------------|-------------|
-| LitifyMapping.sql | No metadata found |
+| Script Name | Description | Dependencies |
+|-------------|-------------|-------------|
+| LitifyMapping.sql | No metadata found | No metadata found |

@@ -1,4 +1,4 @@
-/* ###################################################################################
+/* ######################################################################################
 description: Create placeholder individual contacts used as fallback when contact records do not exist
 
 steps:
