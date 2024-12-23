@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..counsel
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='counsel_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[counsel_Indexed]

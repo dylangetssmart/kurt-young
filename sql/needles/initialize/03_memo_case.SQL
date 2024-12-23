@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..cases
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='cases_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[cases_Indexed]

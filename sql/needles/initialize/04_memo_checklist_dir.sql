@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..checklist_dir
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='checklist_dir_indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[checklist_dir_indexed]

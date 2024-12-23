@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..insurance
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='insurance_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[insurance_Indexed]

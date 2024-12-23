@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..value
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='value_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[value_Indexed]

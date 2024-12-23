@@ -1,3 +1,20 @@
+/* ######################################################################################
+description: Creates an indexed version of needles..party
+
+steps:
+	-
+
+usage_instructions:
+	-
+
+dependencies:
+	- 
+
+notes:
+	-
+#########################################################################################
+*/
+
 IF EXISTS (select * from sys.objects where name='party_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[party_Indexed]
