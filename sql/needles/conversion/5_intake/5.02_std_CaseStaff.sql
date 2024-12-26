@@ -1,3 +1,18 @@
+/* ######################################################################################
+description:
+steps:
+	-
+usage_instructions:
+dependencies:
+notes:
+requires_mapping:
+	- 
+#########################################################################################
+*/
+
+USE [SA]
+GO
+
 ALTER TABLE [sma_TRN_caseStaff] DISABLE TRIGGER ALL
 GO
 

@@ -1,4 +1,16 @@
--- use [TestNeedles]
+/* ######################################################################################
+description:
+steps:
+	-
+usage_instructions:
+dependencies:
+notes:
+requires_mapping:
+	- 
+#########################################################################################
+*/
+
+USE [SA]
 GO
 
 /*
@@ -50,7 +62,7 @@ SELECT
 	,getdate()						as [DtCreated]
 	,null							as [ModifyUserID]
 	,null							as [DtModified]
-FROM TestNeedles.[dbo].case_intake N
+FROM [Needles].[dbo].case_intake N
 JOIN [sma_TRN_Cases] C on C.saga = N.ROW_ID
 where ISNULL(N.synopsis, '') <> '' OR ISNULL(N.date_of_incident, '') <> ''
                 

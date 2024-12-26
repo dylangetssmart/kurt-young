@@ -1,10 +1,22 @@
--- USE TestNeedles
-go
+/* ######################################################################################
+description:
+steps:
+	-
+usage_instructions:
+dependencies:
+notes:
+requires_mapping:
+	- 
+#########################################################################################
+*/
+
+USE [SA]
+GO
 
 --Plaintiffs
 /*
 select name_id, first_name, last_name, name_id_2, First_Name_Party_2, Last_Name_Party_2
-From TestNeedles..case_intake
+From [Needles]..case_intake
 where isnull(name_id,0)<>0
 */
 
@@ -68,7 +80,7 @@ SELECT DISTINCT
 	1						as [plnnPrimaryContact],
 	null					as [saga_party]
 --select *
-FROM TestNeedles..case_intake c
+FROM [Needles]..case_intake c
 	JOIN [sma_TRN_Cases] CAS
 		on CAS.saga = c.ROW_ID 
 	JOIN IndvOrgContacts_Indexed CIO
