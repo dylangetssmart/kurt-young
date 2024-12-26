@@ -1,11 +1,11 @@
-# Conversion 4_Misc
+# Needles Conversion 4_Misc
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
-| 2.05_CalendarNonCase.sql | No metadata found | No metadata found |
-| 4.00_misc_DefaultDefendant.sql | No metadata found | No metadata found |
-| 4.01_misc_User-Contact.sql | No metadata found | No metadata found |
-| 4.02_misc_CaseNames.sql | No metadata found | No metadata found |
-| 4.03_misc_OtherCaseRelatedContacts.sql | No metadata found | No metadata found |
-| 4.04_misc_ContactTypes.sql | No metadata found | No metadata found |
-| 4.05_misc_Miscellany.sql | No metadata found | No metadata found |
+| 4.00_std_Calendar.sql | None | None |
+| 4.00_std_DefaultDefendant.sql | None | None |
+| 4.01_std_User-Contact.sql | None | None |
+| 4.02_std_CaseNames.sql | None | None |
+| 4.03_std_OtherCaseRelatedContacts.sql | None | None |
+| 4.04_std_ContactTypes.sql | None | None |
+| 4.05_std_Miscellany.sql | None | None |
