@@ -25,7 +25,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pyyaml  # Hardcode the installation of pyyaml
+          pip install pyyaml  
+          pip install chardet 
 
       # Run the Python script
       - name: Generate README
