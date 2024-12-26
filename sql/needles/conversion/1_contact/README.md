@@ -1,4 +1,4 @@
-# Conversion 1_Contact
+# Needles Conversion 1_Contact
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
@@ -10,7 +10,7 @@
 | 1.90_std_EmailWebsite.sql | update contact email addresses | [None] |
 | 1.91_std_PhoneNumbers.sql | Update contact phone numbers | [None] |
 | 1.92_std_Address.sql | Insert addresses | [None] |
-| 1.94_std_Uniqueness.sql | None | [None] |
+| 1.94_std_Uniqueness.sql | Ensures the uniqueness of phone numbers in the [sma_MST_ContactNumbers] table | [None] |
 | 1.95_std_Comment.sql | None | [None] |
 | 1.97_std_AllContactInfo.sql | Create sma_MST_AllContactInfo | [['sma_MST_AllContactInfo'], ['sma_MST_IndvContacts'], ['sma_MST_Address'], ['sma_MST_ContactNumbers'], ['sma_MST_EmailWebsite']] |
 | 1.98_std_IndvOrgContacts_Indexed.sql | None | ['sma_MST_AllContactInfo'] |

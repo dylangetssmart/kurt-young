@@ -1,4 +1,4 @@
-# Conversion 2_Case
+# Needles Conversion 2_Case
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
@@ -11,7 +11,7 @@
 | 2.05_std_Plaintiff.sql | No metadata found | No metadata found |
 | 2.06_std_Insurance.sql | No metadata found | No metadata found |
 | 2.08_std_Values.sql | No metadata found | No metadata found |
-| 2.09_std_Attorney.sql | No metadata found | No metadata found |
+| 2.09_std_Attorney.sql | Create CaseTypeMixture, used to cross reference case types | None |
 | 2.09_std_PlaintiffDeath.sql | No metadata found | No metadata found |
 | 2.10_std_Court.sql | No metadata found | No metadata found |
 | 2.11_std_CriticalComments.sql | No metadata found | No metadata found |
@@ -41,9 +41,9 @@
 | 2.43_user_Negotiation.sql | No metadata found | No metadata found |
 | 2.44_user_Tasks.sql | No metadata found | No metadata found |
 | 2.50_value_Notes.sql | No metadata found | No metadata found |
-| 2.51_value_LienTracking.sql | No metadata found | No metadata found |
-| 2.52_value_Settlements.sql | No metadata found | No metadata found |
-| 2.53_value_SpecialDamages.sql | No metadata found | No metadata found |
+| 2.51_value_LienTracking.sql | Create lien tracking records | None |
+| 2.52_value_Settlements.sql | Create Negotiation/Settlement records | None |
+| 2.53_value_SpecialDamages.sql | Create Special Damage records | None |
 | 2.54_value_MedicalProviders.sql | No metadata found | No metadata found |
 | 2.55_value_Disbursement.sql | No metadata found | No metadata found |
 | 2.56_value_Employment.sql | No metadata found | No metadata found |
