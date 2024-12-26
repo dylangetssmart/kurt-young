@@ -1,19 +1,8 @@
 # Ignore all .out files
 *.out
 
-# Ignore node_modules directory
-node_modules/
-
 # Ignore log files
 *.log
-
-# Ignore build directories
-/build/
-/dist/
-
-# Ignore OS generated files
-.DS_Store
-Thumbs.db
 
 # Ignore IDE specific files
 .vscode/
@@ -47,4 +36,3 @@ slnx.sqlite
 /.vs
 /.vs/*
 /.vs/VSWorkspaceState.json
-/JoelBieber/
