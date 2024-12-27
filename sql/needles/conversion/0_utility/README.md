@@ -2,7 +2,7 @@
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
-| 0.00_std_Initialize.sql | Create utility functions | None |
+| 0.00_std_UtilityFunctions.sql | Create utility functions | None |
 | 0.10_std_CaseTypeMixture.sql | Create CaseTypeMixture, used to cross reference case types | None |
 | 0.20_std_CaseValueMapping.sql | Create CaseValueMapping | [None] |
 | 0.30_std_ImplementationUsers.sql | Creates implementatio_users | [None] |
