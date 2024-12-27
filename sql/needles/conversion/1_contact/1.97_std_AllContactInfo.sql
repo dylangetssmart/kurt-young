@@ -1,22 +1,17 @@
 /* ######################################################################################
 description: Create sma_MST_AllContactInfo
-
 steps:
 	-
-
 usage_instructions:
 	-
-
 dependencies:
 	- [sma_MST_AllContactInfo]
     - [sma_MST_IndvContacts]
     - [sma_MST_Address]
     - [sma_MST_ContactNumbers]
     - [sma_MST_EmailWebsite]
-
 notes:
 	-
-
 ######################################################################################
 */
 
