@@ -1,4 +1,4 @@
-# Needles Conversion 1_Contact
+# Perfect_Practice Conversion 1_Contact
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
@@ -16,3 +16,18 @@
 | 1.97_std_AllContactInfo.sql | Create sma_MST_AllContactInfo | [['sma_MST_AllContactInfo'], ['sma_MST_IndvContacts'], ['sma_MST_Address'], ['sma_MST_ContactNumbers'], ['sma_MST_EmailWebsite']] |
 | 1.98_std_IndvOrgContacts_Indexed.sql | None | ['sma_MST_AllContactInfo'] |
 | 1.99_std_Notes.sql | No metadata found | No metadata found |
+| Step_1.0_Contacts.sql | No metadata found | No metadata found |
+| Step_1.1_Contacts_Supplement.sql | No metadata found | No metadata found |
+| Step_2.0_Supporting_Default_Contacts.sql | No metadata found | No metadata found |
+| Step_2.3_Supporting_Court_Contact.SQL | No metadata found | No metadata found |
+| Step_2.4_Supporting_Default_Insurance.SQL | No metadata found | No metadata found |
+| Step_2.6_Supporting_Adjustor_Insurance.SQL | No metadata found | No metadata found |
+| Step_2.7_Supporting_ReferringSource_Contacts.SQL | No metadata found | No metadata found |
+| Step_2.8_Supporting_Judge_Contacts.sql | No metadata found | No metadata found |
+| Step_4.0_Address.SQL | No metadata found | No metadata found |
+| Step_4.1_EmailWebsite.SQL | No metadata found | No metadata found |
+| Step_4.2_ContactNumber.SQL | No metadata found | No metadata found |
+| Step_4.3_StaffPhoneEmail.SQL | No metadata found | No metadata found |
+| Step_4.5_Uniqueness.SQL | No metadata found | No metadata found |
+| Step_5.0_AllContactInfo.SQL | No metadata found | No metadata found |
+| Step_5.1_IndvOrgContacts.SQL | No metadata found | No metadata found |
