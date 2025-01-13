@@ -8,3 +8,4 @@
 | 0.30_std_ImplementationUsers.sql | Creates implementatio_users | [None] |
 | 0.40_std_NeedlesUserFields.sql | Creates NeedlesUserFields | [None] |
 | 0.50_std_PartyRole.sql | Create [PartyRoles] | [None] |
+| 0.60_std_ConversionBridge.sql | No metadata found | No metadata found |
