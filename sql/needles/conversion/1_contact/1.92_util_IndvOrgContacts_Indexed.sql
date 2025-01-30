@@ -1,17 +1,4 @@
-/* ######################################################################################
-description:
-steps:
-	-
-usage_instructions:
-	-
-dependencies:
-	- sma_MST_AllContactInfo
-notes:
-	-
-######################################################################################
-*/
-
-USE [SA]
+USE JoelBieberSA_Needles
 GO
 
 IF EXISTS (

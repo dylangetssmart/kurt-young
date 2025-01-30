@@ -1,17 +1,4 @@
-/* ######################################################################################
-description: "Ensures the uniqueness of phone numbers in the [sma_MST_ContactNumbers] table"
-steps:
-	-
-usage_instructions:
-	-
-dependencies:
-	- 
-notes:
-	-
-######################################################################################
-*/
-
-USE [SA]
+USE [JoelBieberSA_Needles]
 GO
 ---(1)--- Phone number uniqueness
 
