@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-use [SA]
+use [JoelBieberSA_Needles]
 GO
 /*
 alter table [sma_TRN_SOLs] disable trigger all
@@ -81,12 +81,12 @@ FROM [sma_TRN_Defendants] D
 		on S.sldnCaseTypeID=CAS.casnOrgCaseTypeID
 		and S.sldnStateID=CAS.casnStateID
 		and S.sldnDefRole=D.defnSubRole
-	JOIN TestNeedles.[dbo].[case_checklist] CKL
+	JOIN JoelBieberNeedles.[dbo].[case_checklist] CKL
 		on CKL.case_id=CAS.cassCaseNumber
 WHERE CKL.due_date between '1900-01-01' and '2079-06-06'
 and (
 		select lim
-		FROM TestNeedles.[dbo].[checklist_dir]
+		FROM JoelBieberNeedles.[dbo].[checklist_dir]
 		where code = CKL.code and matcode=CKL.matcode
 	) = 'Y'
 --and CKL.[status]='Done' ---> Jay want this
@@ -98,16 +98,16 @@ alter table [sma_TRN_SOLs] enable trigger all
 /*
 ---------------------
 select count(*)
-  from [SA].[dbo].[sma_TRN_Defendants] D
+  from [JoelBieberSA_Needles].[dbo].[sma_TRN_Defendants] D
   inner join [sma_TRN_Cases] CAS on CAS.casnCaseID = D.defnCaseID and D.defbIsPrimary=1
   inner join [sma_MST_SOLDetails] S on S.sldnCaseTypeID=CAS.casnOrgCaseTypeID and S.sldnStateID=CAS.casnStateID and S.sldnDefRole=D.defnSubRole
-  inner join TestNeedles.[dbo].[case_checklist] CKL on CKL.case_id=CAS.cassCaseNumber
-  inner join TestNeedles.[dbo].[checklist_dir] DIR on DIR.matcode=CKL.matcode and DIR.code=CKL.code and DIR.lim='Y'
+  inner join JoelBieberNeedles.[dbo].[case_checklist] CKL on CKL.case_id=CAS.cassCaseNumber
+  inner join JoelBieberNeedles.[dbo].[checklist_dir] DIR on DIR.matcode=CKL.matcode and DIR.code=CKL.code and DIR.lim='Y'
   where CKL.due_date between '1900-01-01' and '2079-06-06'
 
 
 
-use TestNeedles
+use JoelBieberNeedles
 
 select A.*
 from 
@@ -134,7 +134,7 @@ from [dbo].[checklist_dir] DIR
 where DIR.lim='Y'
 
 
-use TestNeedles
+use JoelBieberNeedles
 select C.lim_date,CKL.due_date,CKL.case_id,CKL.*
 from [dbo].[case_checklist] CKL
 inner join [dbo].[cases] C on C.casenum=CKL.case_id

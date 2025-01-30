@@ -1,93 +1,138 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
+/* ######################################################################################
+description: Create note records from needles..value_notes
 
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
+steps:
+	- create note types from distinct instances of value_notes.topic
+	- insert trn_notes
+
+dependencies:
+	- sma_TRN_Cases
+	- sma_MST_users
+
+notes:
+	- value_notes appears to contain comments about specific value transactions using key value_num
+	- value transactions may be mapped to disbursements, lien tracking, etc
+	- each of those locations may or may not have a comment/description field large enough to hold the data from value_notes
+	- therefore it is cleaner & easier to import these as TRN_Notes instead
+	- but it technically should be possible/feasible to use value_notes to update a comment or description field for the associated value transaction
+
+#########################################################################################
 */
 
-use [SA]
+use [JoelBieberSA_Needles]
 go
 
-/*
+-- Create note types that don't yet exist
+insert into [sma_MST_NoteTypes]
+	(
+	nttsDscrptn,
+	nttsNoteText
+	)
+	select distinct
+		vn.topic,
+		vn.topic
+	from JoelBieberNeedles..value_notes vn
+	except
+	select
+		nttsDscrptn,
+		nttsNoteText
+	from [sma_MST_NoteTypes]
+
+
+---
 alter table [sma_TRN_Notes] disable trigger all
-delete from [sma_TRN_Notes] 
-DBCC CHECKIDENT ('[sma_TRN_Notes]', RESEED, 0);
-alter table [sma_TRN_Notes] enable trigger all
-*/
-
-----(0)----
-INSERT INTO [sma_MST_NoteTypes] (
-    nttsDscrptn,
-    nttsNoteText
-)
-SELECT 
-    'Balance Verify'			 as nttsDscrptn,
-    'Verify Outstanding Balances'	 as nttsNoteText
-EXCEPT
-SELECT  
-    nttsDscrptn,
-    nttsNoteText
-FROM [sma_MST_NoteTypes]
+go
 
 ---
-ALTER TABLE [sma_TRN_Notes] DISABLE TRIGGER ALL
-GO
----
+--SELECT nttsDscrptn, count(*)
+--FROM [sma_MST_NoteTypes]
+--group by nttsDscrptn
+--having count(*) > 1
 
 ----(1)----
-INSERT INTO [sma_TRN_Notes] (
-      [notnCaseID],[notnNoteTypeID],[notmDescription],[notmPlainText],[notnContactCtgID],[notnContactId],[notsPriority],[notnFormID],[notnRecUserID],
-      [notdDtCreated],[notnModifyUserID],[notdDtModified],[notnLevelNo],[notdDtInserted],[WorkPlanItemId],[notnSubject]
-)
-SELECT 
-    casnCaseID	 as [notnCaseID],
-    (select nttnNoteTypeID from [sma_MST_NoteTypes] where nttsDscrptn='Balance Verify') as [notnNoteTypeID],
-    note		 as [notmDescription],
-    note		 as [notmPlainText],
-    0			 as [notnContactCtgID],
-    null		 as [notnContactId],
-    null		 as [notsPriority],
-    null		 as [notnFormID],
-    U.usrnUserID as [notnRecUserID],
-    case
-	   when N.note_date between '1900-01-01' and '2079-06-06' and convert(time,isnull(N.note_time,'00:00:00')) <> convert(time,'00:00:00')  
-		  then CAST(CAST(N.note_date AS DATE) AS DATETIME) + CAST(CAST(N.note_time AS TIME) AS DATETIME)
-	   else null
-    end			 as notdDtCreated,
-    null		 as [notnModifyUserID],
-    null		 as notdDtModified,
-    null		 as [notnLevelNo],
-    null		 as [notdDtInserted],
-    null		 as [WorkPlanItemId],
-    null		 as [notnSubject]
-FROM TestNeedles.[dbo].[value_notes] N
-JOIN TestNeedles.[dbo].[value_Indexed] V on V.value_id=N.value_num
-JOIN [sma_TRN_Cases] C on C.cassCaseNumber = V.case_id
-JOIN [sma_MST_Users] U on U.saga=N.staff_id 
-GO
+insert into [sma_TRN_Notes]
+	(
+	[notnCaseID],
+	[notnNoteTypeID],
+	[notmDescription],
+	[notmPlainText],
+	[notnContactCtgID],
+	[notnContactId],
+	[notsPriority],
+	[notnFormID],
+	[notnRecUserID],
+	[notdDtCreated],
+	[notnModifyUserID],
+	[notdDtModified],
+	[notnLevelNo],
+	[notdDtInserted],
+	[WorkPlanItemId],
+	[notnSubject]
+	)
+	select
+		casnCaseID	 as [notncaseid],
+		(
+			select top 1
+				nttnNoteTypeID
+			from [sma_MST_NoteTypes]
+			where nttsDscrptn = n.topic
+		)			 as [notnnotetypeid],
+		note		 as [notmdescription],
+		note		 as [notmplaintext],
+		0			 as [notncontactctgid],
+		null		 as [notncontactid],
+		null		 as [notspriority],
+		null		 as [notnformid],
+		u.usrnUserID as [notnrecuserid],
+		case
+			when n.note_date between '1900-01-01' and '2079-06-06' and
+				CONVERT(TIME, ISNULL(n.note_time, '00:00:00')) <> CONVERT(TIME, '00:00:00')
+				then CAST(CAST(n.note_date as DATE) as DATETIME) + CAST(CAST(n.note_time as TIME) as DATETIME)
+			else null
+		end			 as notddtcreated,
+		null		 as [notnmodifyuserid],
+		null		 as notddtmodified,
+		null		 as [notnlevelno],
+		null		 as [notddtinserted],
+		null		 as [workplanitemid],
+		null		 as [notnsubject]
+	from JoelBieberNeedles.[dbo].[value_notes] n
+	join JoelBieberNeedles.[dbo].[value_Indexed] v
+		on v.value_id = n.value_num
+	join [sma_TRN_Cases] c
+		on c.cassCaseNumber = v.case_id
+	join [sma_MST_Users] u
+		on u.source_id = n.staff_id
+go
 
 ---
-ALTER TABLE [sma_TRN_Notes] ENABLE TRIGGER ALL
-GO
----
+alter table [sma_TRN_Notes] enable trigger all
+go
 
 -----------------------------------------
 --INSERT RELATED TO FIELD FOR NOTES
 -----------------------------------------
-INSERT INTO sma_TRN_NoteContacts (NoteID, UniqueContactID)
-SELECT DISTINCT note.notnNoteID, ioc.UNQCID
---select v.provider, ioc.*, n.note, note.*
-FROM TestNeedles..[value_notes] N
-JOIN TestNeedles..value_Indexed V on V.value_id=N.value_num
-JOIN sma_trn_Cases cas on cas.cassCaseNumber = v.case_id
-JOIN IndvOrgContacts_Indexed ioc on ioc.saga = v.[provider]
-JOIN [sma_TRN_Notes] note on note.saga = n.note_key
-					and note.[notnNoteTypeID] = (select nttnNoteTypeID from [sma_MST_NoteTypes] where nttsDscrptn='Balance Verify')
-
-
-
+insert into sma_TRN_NoteContacts
+	(
+	NoteID,
+	UniqueContactID
+	)
+	select distinct
+		note.notnNoteID,
+		ioc.UNQCID
+	--select v.provider, ioc.*, n.note, note.*
+	from JoelBieberNeedles..[value_notes] n
+	join JoelBieberNeedles..value_Indexed v
+		on v.value_id = n.value_num
+	join sma_trn_Cases cas
+		on cas.cassCaseNumber = v.case_id
+	join IndvOrgContacts_Indexed ioc
+		on ioc.saga = v.[provider]
+	join [sma_TRN_Notes] note
+		on note.saga = n.note_key
+			and note.[notnNoteTypeID] = (
+				select top 1
+					nttnNoteTypeID
+				from [sma_MST_NoteTypes]
+				where nttsDscrptn = n.topic
+			)

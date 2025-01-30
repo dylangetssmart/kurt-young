@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-USE [SA]
+USE [JoelBieberSA_Needles]
 GO
 /*
 
@@ -72,7 +72,7 @@ INSERT INTO [sma_TRN_Negotiations]
 			SELECT
 				usrnContactiD
 			FROM sma_MST_Users
-			WHERE saga = NEG.staff
+			WHERE source_id = NEG.staff
 		)			   
 		AS [negnStaffID]
 	   ,-1			   AS [negnPlaintiffID]
@@ -108,12 +108,12 @@ INSERT INTO [sma_TRN_Negotiations]
 				THEN NEG.amount
 			ELSE NULL
 		END			   AS [SettlementAmount]
-	FROM TestNeedles.[dbo].[negotiation] NEG
-	LEFT JOIN TestNeedles.[dbo].[insurance_Indexed] INS
+	FROM JoelBieberNeedles.[dbo].[negotiation] NEG
+	LEFT JOIN JoelBieberNeedles.[dbo].[insurance_Indexed] INS
 		ON INS.insurance_id = NEG.insurance_id
 	JOIN [sma_TRN_cases] CAS
 		ON CAS.cassCaseNumber = NEG.case_id
-	LEFT JOIN [TestNeedles].[dbo].[Insurance_Contacts_Helper] MAP
+	LEFT JOIN [JoelBieberSA_Needles].[conversion].[Insurance_Contacts_Helper] MAP
 		ON INS.insurance_id = MAP.insurance_id
 
 -----------------
