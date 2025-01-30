@@ -1,17 +1,5 @@
-/* ######################################################################################
-description: Creates NeedlesUserFields
-steps:
-	- 
-usage_instructions:
-	- 
-dependencies:
-	- 
-notes:
-	-
-#########################################################################################
-*/
-
-use [SA]
+Use JoelBieberSA_Needles
+GO
 
 IF EXISTS (Select * From sys.tables where name = 'NeedlesUserFields' and type = 'U')
 BEGIN
@@ -60,7 +48,7 @@ SELECT field_num, field_title, column_name,  field_type,
 		when field_Type = 'Time' then 'Time'
 		else field_type
 	end
-FROM [Needles]..[user_case_fields]
+FROM JoelBieberNeedles..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -81,8 +69,8 @@ BEGIN
 
 	SELECT identity(int,1,1) as Number, gd.code
 	INTO #values
-	FROM [Needles]..mini_general_dir gd
-	JOIN [Needles]..mini_dir_list dl on gd.num_assigned = dl.dir_key
+	FROM JoelBieberNeedles..mini_general_dir gd
+	JOIN JoelBieberNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 	WHERE dir_name = @miniDir  
 
 
@@ -114,7 +102,7 @@ DEALLOCATE userFields_Cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from [Needles]..mini_general_dir gd
-JOIN [Needles]..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from JoelBieberNeedles..mini_general_dir gd
+JOIN JoelBieberNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

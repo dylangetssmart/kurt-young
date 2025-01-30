@@ -1,17 +1,3 @@
-/* ######################################################################################
-description: Creates implementatio_users
-steps:
-	-
-usage_instructions:
-	- 
-dependencies:
-	- 
-notes:
-	- 
-#########################################################################################
-*/
-
-
 /*
 This script manages the population of the `implementation_users` table for the JoelBieberSA_Needles project.
 It consists of two main phases, controlled by the `@Phase` variable:
@@ -35,7 +21,7 @@ Requirements:
 
 */
 
-USE [SA];
+USE JoelBieberSA_Needles;
 
 IF OBJECT_ID('implementation_users', 'U') IS NOT NULL
 BEGIN
@@ -60,7 +46,7 @@ CREATE TABLE implementation_users (
 GO
 
 -- Declare a variable to control the execution phase
-DECLARE @Phase INT = 1;  -- Set to 1 for Phase 1, 2 for Phase 2
+DECLARE @Phase INT = 2;  -- Set to 1 for Phase 1, 2 for Phase 2
 
 IF @Phase = 1
 BEGIN
@@ -90,13 +76,13 @@ BEGIN
 		   ,''							   AS SAMiddle
 		   ,dbo.get_lastword(s.full_name)  AS SALast
 		   ,suffix						   AS Suffix
-		FROM [Needles].[dbo].[staff] s;
+		FROM [JoelBieberNeedles].[dbo].[staff] s;
 END
 ELSE
 IF @Phase = 2
 BEGIN
 	-- Phase 2: Use implementation database as starting point and add staff_code from JoelBieberNeedles..staff
-
+	-- at this point, the user table contains legit users entered by the client
 	INSERT INTO implementation_users
 		(
 		SAContactID
@@ -126,9 +112,11 @@ BEGIN
 		   ,u.usrbActiveState		   AS Active
 		   ,u.usrbIsShowInSystem	   AS Visible
 		--select * 
-		FROM [SA]..sma_mst_users u
-		JOIN [SA]..sma_MST_IndvContacts smic
+		--FROM [JoelBieber_Imp_2024-10-28]..sma_mst_users u
+		--JOIN [JoelBieber_Imp_2024-10-28]..sma_MST_IndvContacts smic
+		FROM [JoelBieberSA_Needles]..sma_mst_users u
+		JOIN [JoelBieberSA_Needles]..sma_MST_IndvContacts smic
 			ON smic.cinnContactID = u.usrnContactID
-		LEFT JOIN [Needles]..staff s
+		LEFT JOIN JoelBieberNeedles..staff s
 			ON s.full_name = smic.cinsFirstName + ' ' + smic.cinsLastName
 END;
