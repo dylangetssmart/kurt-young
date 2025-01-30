@@ -1,4 +1,4 @@
-# Needles Conversion 2_Case
+# Perfect_Practice Conversion 2_Case
 
 | Script Name | Description | Dependencies |
 |-------------|-------------|-------------|
@@ -47,3 +47,35 @@
 | 2.54_value_MedicalProviders.sql | No metadata found | No metadata found |
 | 2.55_value_Disbursement.sql | No metadata found | No metadata found |
 | 2.56_value_Employment.sql | No metadata found | No metadata found |
+| Step_10.10_OtherRefer.SQL | No metadata found | No metadata found |
+| Step_10.11_Expert.SQL | No metadata found | No metadata found |
+| Step_10.12_Police.SQL | No metadata found | No metadata found |
+| Step_10.13_Injury.SQL | No metadata found | No metadata found |
+| Step_10.14_Employer.SQL | No metadata found | No metadata found |
+| Step_10.15_Investigator.SQL | No metadata found | No metadata found |
+| Step_10.15_Witness.SQL | No metadata found | No metadata found |
+| Step_10.16_Settlement.SQL | No metadata found | No metadata found |
+| Step_10.17_MedicalProvider.SQL | No metadata found | No metadata found |
+| Step_10.18_OtherAllContacts.SQL | No metadata found | No metadata found |
+| Step_10.1_Insurance.SQL | No metadata found | No metadata found |
+| Step_10.2_Attorney.SQL | No metadata found | No metadata found |
+| Step_10.3_Court.SQL | No metadata found | No metadata found |
+| Step_10.5_SOL.SQL | No metadata found | No metadata found |
+| Step_10.8_SpecialDamage.SQL | No metadata found | No metadata found |
+| Step_10.9_LienTraking.SQL | No metadata found | No metadata found |
+| Step_1000.2_Disbursement.SQL | No metadata found | No metadata found |
+| Step_1000.5_Notes.SQL | No metadata found | No metadata found |
+| Step_1000.6_Task.SQL | No metadata found | No metadata found |
+| Step_1000.8_Calendar.SQL | No metadata found | No metadata found |
+| Step_11.0_Notes.SQL | No metadata found | No metadata found |
+| Step_11.1_Calendar.SQL | No metadata found | No metadata found |
+| Step_11.3_Task.SQL | No metadata found | No metadata found |
+| Step_12.1_ContactNotes.SQL | No metadata found | No metadata found |
+| Step_13.0_ContactTypes.SQL | No metadata found | No metadata found |
+| Step_6.0_CaseType.SQL | No metadata found | No metadata found |
+| Step_6.2_CaseType_Emroch.SQL | No metadata found | No metadata found |
+| Step_7.0_Incident.SQL | No metadata found | No metadata found |
+| Step_7.0_Incident_Old.SQL | No metadata found | No metadata found |
+| Step_7.1_CaseStaff.SQL | No metadata found | No metadata found |
+| Step_7.2_CaseStatus.SQL | No metadata found | No metadata found |
+| Step_8.0_Plaintiff_Defendant.SQL | No metadata found | No metadata found |
