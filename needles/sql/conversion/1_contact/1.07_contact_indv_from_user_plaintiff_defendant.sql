@@ -1,3 +1,17 @@
+/* ###################################################################################
+description: Create individual contacts from user_case_data.plaintiff
+steps:
+	- insert from staff
+usage_instructions:
+	-
+dependencies:
+	- 
+notes:
+	-
+source: [staff]
+target: [sma_MST_IndvContacts]
+saga: saga_char
+*/
 
 
 
@@ -25,6 +39,8 @@
 --	where ISNULL(ucd.DEFENDANT, '') <> ''
 --)
 
+use JoelBieberSA_Needles
+go
 
 --drop table conversion.user_case_plaintiff_defendant
 
@@ -62,9 +78,6 @@ insert into conversion.user_case_plaintiff_defendant
 
 
 alter table [sma_MST_IndvContacts] disable trigger all
-go
-
-alter table [sma_MST_Address] disable trigger all
 go
 
 -------------------------------------------------------------------
@@ -201,7 +214,4 @@ go
 
 
 alter table [sma_MST_IndvContacts] enable trigger all
-go
-
-alter table [sma_MST_Address] enable trigger all
 go
