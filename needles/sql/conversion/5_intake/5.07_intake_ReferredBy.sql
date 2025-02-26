@@ -1,16 +1,4 @@
-/* ######################################################################################
-description:
-steps:
-	-
-usage_instructions:
-dependencies:
-notes:
-requires_mapping:
-	- 
-#########################################################################################
-*/
-
-USE [SA]
+USE JoelBieberSA_Needles
 GO
 
 INSERT INTO [sma_TRN_OtherReferral]
@@ -33,7 +21,8 @@ SELECT
     null			as [otrsComments],
     368			    as [otrnUserID], 
     getdate()		as [otrdDtCreated] 
-FROM [Needles]..case_intake c
+--select referred_by, referred_by_id
+FROM JoelBieberNeedles..case_intake c
 	JOIN [sma_TRN_cases] CAS
 		on CAS.saga = C.row_id
 	JOIN [IndvOrgContacts_Indexed] IOC
