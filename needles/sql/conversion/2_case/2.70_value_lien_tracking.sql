@@ -1,4 +1,4 @@
-USE JoelBieberSA_Needles
+USE KurtYoung_SA
 GO
 
 /* ##############################################
@@ -22,27 +22,27 @@ VALUES (
 
 
 /*
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_Lienors] disable trigger all
-delete from [JoelBieberNeedles].[dbo].[sma_TRN_Lienors] 
-DBCC CHECKIDENT ('[JoelBieberNeedles].[dbo].[sma_TRN_Lienors]', RESEED, 0);
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_Lienors] enable trigger all
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_Lienors] disable trigger all
+delete from [KurtYoung_Needles].[dbo].[sma_TRN_Lienors] 
+DBCC CHECKIDENT ('[KurtYoung_Needles].[dbo].[sma_TRN_Lienors]', RESEED, 0);
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_Lienors] enable trigger all
 
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_LienDetails] disable trigger all
-delete from [JoelBieberNeedles].[dbo].[sma_TRN_LienDetails] 
-DBCC CHECKIDENT ('[JoelBieberNeedles].[dbo].[sma_TRN_LienDetails]', RESEED, 0);
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_LienDetails] enable trigger all
-
-
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_Lienors] disable trigger all
-
-alter table [JoelBieberNeedles].[dbo].[sma_TRN_LienDetails] disable trigger all
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_LienDetails] disable trigger all
+delete from [KurtYoung_Needles].[dbo].[sma_TRN_LienDetails] 
+DBCC CHECKIDENT ('[KurtYoung_Needles].[dbo].[sma_TRN_LienDetails]', RESEED, 0);
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_LienDetails] enable trigger all
 
 
-select count(*) from [JoelBieberNeedles].[dbo].[sma_TRN_Lienors]
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_Lienors] disable trigger all
+
+alter table [KurtYoung_Needles].[dbo].[sma_TRN_LienDetails] disable trigger all
+
+
+select count(*) from [KurtYoung_Needles].[dbo].[sma_TRN_Lienors]
 
 select * from value_tab_Liencheckbox_Helper 
 
-select * from [JoelBieberNeedles].[dbo].[value_payment] where value_id=65990
+select * from [KurtYoung_Needles].[dbo].[value_payment] where value_id=65990
 
 */
 
@@ -79,7 +79,7 @@ CREATE TABLE value_tab_Liencheckbox_Helper (
    ,value_id INT
    ,CONSTRAINT IOC_Clustered_Index_value_tab_Liencheckbox_Helper PRIMARY KEY CLUSTERED (TableIndex)
 ) ON [PRIMARY]
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [JoelBieberSA_Needles].[dbo].[value_tab_Liencheckbox_Helper] (value_id);
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id ON [KurtYoung_SA].[dbo].[value_tab_Liencheckbox_Helper] (value_id);
 GO
 
 ---(0)---
@@ -89,11 +89,11 @@ INSERT INTO value_tab_Liencheckbox_Helper
 	)
 	SELECT
 		VP1.value_id
-	FROM [JoelBieberNeedles].[dbo].[value_payment] VP1
+	FROM [KurtYoung_Needles].[dbo].[value_payment] VP1
 	LEFT JOIN (
 		SELECT DISTINCT
 			value_id
-		FROM [JoelBieberNeedles].[dbo].[value_payment]
+		FROM [KurtYoung_Needles].[dbo].[value_payment]
 		WHERE lien = 'Y'
 	) VP2
 		ON VP1.value_id = VP2.value_id
@@ -107,7 +107,7 @@ GO
 
 
 ---(0)---
-INSERT INTO [JoelBieberSA_Needles].[dbo].[sma_MST_LienType]
+INSERT INTO [KurtYoung_SA].[dbo].[sma_MST_LienType]
 	(
 	[lntsCode]
    ,[lntsDscrptn]
@@ -116,8 +116,8 @@ INSERT INTO [JoelBieberSA_Needles].[dbo].[sma_MST_LienType]
 	SELECT DISTINCT
 		'CONVERSION'
 	   ,VC.[description]
-	FROM [JoelBieberNeedles].[dbo].[value] V
-	INNER JOIN [JoelBieberNeedles].[dbo].[value_code] VC
+	FROM [KurtYoung_Needles].[dbo].[value] V
+	INNER JOIN [KurtYoung_Needles].[dbo].[value_code] VC
 		ON VC.code = V.code
 	WHERE ISNULL(V.code, '') IN (
 			SELECT
@@ -129,7 +129,7 @@ INSERT INTO [JoelBieberSA_Needles].[dbo].[sma_MST_LienType]
 	SELECT
 		[lntsCode]
 	   ,[lntsDscrptn]
-	FROM [JoelBieberSA_Needles].[dbo].[sma_MST_LienType]
+	FROM [KurtYoung_SA].[dbo].[sma_MST_LienType]
 GO
 
 
@@ -163,9 +163,9 @@ CREATE TABLE value_tab_Lien_Helper (
 ) ON [PRIMARY]
 GO
 
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_case_id ON [JoelBieberSA_Needles].[dbo].[value_tab_Lien_Helper] (case_id);
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_value_id ON [JoelBieberSA_Needles].[dbo].[value_tab_Lien_Helper] (value_id);
-CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_ProviderNameId ON [JoelBieberSA_Needles].[dbo].[value_tab_Lien_Helper] (ProviderNameId);
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_case_id ON [KurtYoung_SA].[dbo].[value_tab_Lien_Helper] (case_id);
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_value_id ON [KurtYoung_SA].[dbo].[value_tab_Lien_Helper] (value_id);
+CREATE NONCLUSTERED INDEX IX_NonClustered_Index_value_tab_Lien_Helper_ProviderNameId ON [KurtYoung_SA].[dbo].[value_tab_Lien_Helper] (ProviderNameId);
 GO
 
 ---(0)---
@@ -195,10 +195,10 @@ INSERT INTO value_tab_Lien_Helper
 	   ,CAS.casnCaseID AS casnCaseID
 	   ,NULL		   AS PlaintiffID
 	   ,NULL		   AS Paid
-	FROM [JoelBieberNeedles].[dbo].[value_Indexed] V
-	INNER JOIN [JoelBieberSA_Needles].[dbo].[sma_TRN_cases] CAS
+	FROM [KurtYoung_Needles].[dbo].[value_Indexed] V
+	INNER JOIN [KurtYoung_SA].[dbo].[sma_TRN_cases] CAS
 		ON CAS.cassCaseNumber = V.case_id
-	INNER JOIN [JoelBieberSA_Needles].[dbo].[IndvOrgContacts_Indexed] IOC
+	INNER JOIN [KurtYoung_SA].[dbo].[IndvOrgContacts_Indexed] IOC
 		ON IOC.SAGA = V.provider
 			AND ISNULL(V.provider, 0) <> 0
 	WHERE code IN (
@@ -237,18 +237,18 @@ SELECT
    ,CONVERT(VARCHAR, ((
 		SELECT
 			SUM(payment_amount)
-		FROM [JoelBieberNeedles].[dbo].[value_payment]
+		FROM [KurtYoung_Needles].[dbo].[value_payment]
 		WHERE value_id = V.value_id
 	)
 	)
 	)		   AS Paid
    ,T.plnnPlaintiffID INTO value_tab_Multi_Party_Helper_Temp
-FROM [JoelBieberNeedles].[dbo].[value_Indexed] V
-INNER JOIN [JoelBieberSA_Needles].[dbo].[sma_TRN_cases] CAS
+FROM [KurtYoung_Needles].[dbo].[value_Indexed] V
+INNER JOIN [KurtYoung_SA].[dbo].[sma_TRN_cases] CAS
 	ON CAS.cassCaseNumber = V.case_id
-INNER JOIN [JoelBieberSA_Needles].[dbo].[IndvOrgContacts_Indexed] IOC
+INNER JOIN [KurtYoung_SA].[dbo].[IndvOrgContacts_Indexed] IOC
 	ON IOC.SAGA = V.party_id
-INNER JOIN [JoelBieberSA_Needles].[dbo].[sma_TRN_Plaintiff] T
+INNER JOIN [KurtYoung_SA].[dbo].[sma_TRN_Plaintiff] T
 	ON T.plnnContactID = IOC.cid
 		AND T.plnnContactCtg = IOC.CTG
 		AND T.plnnCaseID = CAS.casnCaseID
@@ -281,7 +281,7 @@ SELECT
    ,CONVERT(VARCHAR, ((
 		SELECT
 			SUM(payment_amount)
-		FROM [JoelBieberNeedles].[dbo].[value_payment]
+		FROM [KurtYoung_Needles].[dbo].[value_payment]
 		WHERE value_id = V.value_id
 	)
 	)
@@ -289,17 +289,17 @@ SELECT
    ,(
 		SELECT
 			plnnPlaintiffID
-		FROM [JoelBieberSA_Needles].[dbo].[sma_TRN_Plaintiff]
+		FROM [KurtYoung_SA].[dbo].[sma_TRN_Plaintiff]
 		WHERE plnnCaseID = CAS.casnCaseID
 			AND plnbIsPrimary = 1
 	)		   
 	AS plnnPlaintiffID INTO value_tab_Multi_Party_Helper_Temp
-FROM [JoelBieberNeedles].[dbo].[value_Indexed] V
-INNER JOIN [JoelBieberSA_Needles].[dbo].[sma_TRN_cases] CAS
+FROM [KurtYoung_Needles].[dbo].[value_Indexed] V
+INNER JOIN [KurtYoung_SA].[dbo].[sma_TRN_cases] CAS
 	ON CAS.cassCaseNumber = V.case_id
-INNER JOIN [JoelBieberSA_Needles].[dbo].[IndvOrgContacts_Indexed] IOC
+INNER JOIN [KurtYoung_SA].[dbo].[IndvOrgContacts_Indexed] IOC
 	ON IOC.SAGA = V.party_id
-INNER JOIN [JoelBieberSA_Needles].[dbo].[sma_TRN_Defendants] D
+INNER JOIN [KurtYoung_SA].[dbo].[sma_TRN_Defendants] D
 	ON D.defnContactID = IOC.cid
 		AND D.defnContactCtgID = IOC.CTG
 		AND D.defnCaseID = CAS.casnCaseID
@@ -316,8 +316,8 @@ GO
 
 
 ---------------------------------------------------------------------------------------
-ALTER TABLE [JoelBieberSA_Needles].[dbo].[sma_TRN_Lienors] DISABLE TRIGGER ALL
-ALTER TABLE [JoelBieberSA_Needles].[dbo].[sma_TRN_LienDetails] DISABLE TRIGGER ALL
+ALTER TABLE [KurtYoung_SA].[dbo].[sma_TRN_Lienors] DISABLE TRIGGER ALL
+ALTER TABLE [KurtYoung_SA].[dbo].[sma_TRN_LienDetails] DISABLE TRIGGER ALL
 
 GO
 ---(1)---
@@ -344,11 +344,11 @@ INSERT INTO [dbo].[sma_TRN_Lienors]
 	   ,(
 			SELECT TOP 1
 				lntnLienTypeID
-			FROM [JoelBieberSA_Needles].[dbo].[sma_MST_LienType]
+			FROM [KurtYoung_SA].[dbo].[sma_MST_LienType]
 			WHERE lntsDscrptn = (
 					SELECT TOP 1
 						[description]
-					FROM [JoelBieberNeedles].[dbo].[value_code]
+					FROM [KurtYoung_Needles].[dbo].[value_code]
 					WHERE [code] = V.code
 				)
 		)						 
@@ -371,8 +371,8 @@ INSERT INTO [dbo].[sma_TRN_Lienors]
 	   ,GETDATE()				 AS [lnrdDtCreated]
 	   ,0						 AS [lnrnFinal]
 	   ,V.value_id				 AS [saga]
-	FROM [JoelBieberNeedles].[dbo].[value_Indexed] V
-	INNER JOIN [JoelBieberSA_Needles].[dbo].[value_tab_Lien_Helper] MAP
+	FROM [KurtYoung_Needles].[dbo].[value_Indexed] V
+	INNER JOIN [KurtYoung_SA].[dbo].[value_tab_Lien_Helper] MAP
 		ON MAP.case_id = V.case_id
 			AND MAP.value_id = V.value_id
 
@@ -394,12 +394,12 @@ INSERT INTO [dbo].[sma_TRN_LienDetails]
 	   ,'sma_TRN_Lienors'	 AS lndsRefTable
 	   ,368					 AS lndnRecUserID
 	   ,GETDATE()			 AS lnddDtCreated
-	FROM [JoelBieberSA_Needles].[dbo].[sma_TRN_Lienors]
+	FROM [KurtYoung_SA].[dbo].[sma_TRN_Lienors]
 
 
 ----
-ALTER TABLE [JoelBieberSA_Needles].[dbo].[sma_TRN_Lienors] ENABLE TRIGGER ALL
-ALTER TABLE [JoelBieberSA_Needles].[dbo].[sma_TRN_LienDetails] ENABLE TRIGGER ALL
+ALTER TABLE [KurtYoung_SA].[dbo].[sma_TRN_Lienors] ENABLE TRIGGER ALL
+ALTER TABLE [KurtYoung_SA].[dbo].[sma_TRN_LienDetails] ENABLE TRIGGER ALL
 
 GO
 

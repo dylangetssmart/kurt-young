@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-USE [JoelBieberSA_Needles]
+USE [KurtYoung_SA]
 GO
 /*
 
@@ -108,12 +108,12 @@ INSERT INTO [sma_TRN_Negotiations]
 				THEN NEG.amount
 			ELSE NULL
 		END			   AS [SettlementAmount]
-	FROM JoelBieberNeedles.[dbo].[negotiation] NEG
-	LEFT JOIN JoelBieberNeedles.[dbo].[insurance_Indexed] INS
+	FROM KurtYoung_Needles.[dbo].[negotiation] NEG
+	LEFT JOIN KurtYoung_Needles.[dbo].[insurance_Indexed] INS
 		ON INS.insurance_id = NEG.insurance_id
 	JOIN [sma_TRN_cases] CAS
 		ON CAS.cassCaseNumber = NEG.case_id
-	LEFT JOIN [JoelBieberSA_Needles].[conversion].[Insurance_Contacts_Helper] MAP
+	LEFT JOIN [KurtYoung_SA].[conversion].[Insurance_Contacts_Helper] MAP
 		ON INS.insurance_id = MAP.insurance_id
 
 -----------------

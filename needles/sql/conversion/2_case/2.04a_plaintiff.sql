@@ -11,7 +11,7 @@ notes:
 	-
 */
 
-use [JoelBieberSA_Needles]
+use [KurtYoung_SA]
 go
 
 if not exists (
@@ -145,7 +145,7 @@ insert into [sma_TRN_Plaintiff]
 		1				as [plnnprimarycontact],
 		p.TableIndex	as [saga_party]
 	--SELECT  * -- cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
-	from JoelBieberNeedles.[dbo].[party_indexed] p
+	from KurtYoung_Needles.[dbo].[party_indexed] p
 	join [sma_TRN_Cases] cas
 		on cas.cassCaseNumber = p.case_id
 	join IndvOrgContacts_Indexed cio
@@ -238,7 +238,7 @@ insert into [sma_TRN_Plaintiff]
 		1				as [plnnprimarycontact],
 		null as [saga_party]
 	--SELECT  * cas.casnOrgCaseTypeID -- cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
-	from JoelBieberNeedles..user_case_data ucd
+	from KurtYoung_Needles..user_case_data ucd
 	-- case
 	join sma_TRN_Cases cas
 		on cas.cassCaseNumber = convert(varchar,ucd.casenum)
@@ -262,7 +262,7 @@ insert into [sma_TRN_Plaintiff]
 	subrole records added by implementation
 		select * from sma_MST_SubRole where sbrnCaseTypeID in (1780,1685) order by sbrsDscrptn
 		SELECT * FROM sma_MST_Users smu
-		select * from JoelBieberSA_Needles.conversion.user_case_plaintiff_defendant ucpd
+		select * from KurtYoung_SA.conversion.user_case_plaintiff_defendant ucpd
 	--	select * from sma_MST_IndvContacts smic where smic.source_ref = 'cte_user_case_plaintiff_defendant:plaintiff'
 	*/
 go
@@ -377,7 +377,7 @@ from (
 		ROW_NUMBER() over (partition by t.plnnCaseID order by p.record_num) as rownumber,
 		t.plnnPlaintiffID as id
 	from sma_TRN_Plaintiff t
-	left join JoelBieberNeedles.[dbo].[party_indexed] p
+	left join KurtYoung_Needles.[dbo].[party_indexed] p
 		on p.TableIndex = t.saga_party
 ) a
 where a.rownumber = 1

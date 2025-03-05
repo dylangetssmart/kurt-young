@@ -1,4 +1,4 @@
-Use JoelBieberSA_Needles
+Use KurtYoung_SA
 GO
 
 IF EXISTS (Select * From sys.tables where name = 'NeedlesUserFields' and type = 'U')
@@ -48,7 +48,7 @@ SELECT field_num, field_title, column_name,  field_type,
 		when field_Type = 'Time' then 'Time'
 		else field_type
 	end
-FROM JoelBieberNeedles..[user_case_fields]
+FROM KurtYoung_Needles..[user_case_fields]
 
 
 -----------------------------------------------------
@@ -69,8 +69,8 @@ BEGIN
 
 	SELECT identity(int,1,1) as Number, gd.code
 	INTO #values
-	FROM JoelBieberNeedles..mini_general_dir gd
-	JOIN JoelBieberNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
+	FROM KurtYoung_Needles..mini_general_dir gd
+	JOIN KurtYoung_Needles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 	WHERE dir_name = @miniDir  
 
 
@@ -102,7 +102,7 @@ DEALLOCATE userFields_Cursor;
 
 /*
 select dl.dir_name, item_id, gd.code
-from JoelBieberNeedles..mini_general_dir gd
-JOIN JoelBieberNeedles..mini_dir_list dl on gd.num_assigned = dl.dir_key
+from KurtYoung_Needles..mini_general_dir gd
+JOIN KurtYoung_Needles..mini_dir_list dl on gd.num_assigned = dl.dir_key
 where dir_name = 'Living with'  --(Field_title)
 */

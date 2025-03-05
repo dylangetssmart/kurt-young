@@ -11,7 +11,7 @@ notes:
 #######################################################################################
 */
 
-use JoelBieberSA_Needles
+use KurtYoung_SA
 go
 
 /* --------------------------------------------------------------------------------------------------------------
@@ -251,7 +251,7 @@ insert into [sma_MST_Users]
 		'needles'		   as [source_db],
 		'staff'			   as [source_ref]
 	--select *
-	from JoelBieberNeedles..staff s
+	from KurtYoung_Needles..staff s
 	join sma_MST_IndvContacts indv
 		on indv.source_id = s.staff_code
 		and indv.source_ref = 'staff'

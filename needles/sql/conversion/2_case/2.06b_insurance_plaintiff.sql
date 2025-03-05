@@ -11,7 +11,7 @@ notes:
 	-
 */
 
-use [JoelBieberSA_Needles]
+use [KurtYoung_SA]
 go
 
 alter table [sma_TRN_InsuranceCoverage] disable trigger all
@@ -140,8 +140,8 @@ insert into [sma_TRN_InsuranceCoverage]
 		0						 as [incbprimary],
 		ins.insurance_id		 as [saga]
 	--select *
-	from JoelBieberNeedles.[dbo].[insurance_Indexed] ins
-	left join JoelBieberNeedles.[dbo].[user_insurance_data] ud
+	from KurtYoung_Needles.[dbo].[insurance_Indexed] ins
+	left join KurtYoung_Needles.[dbo].[user_insurance_data] ud
 		on ins.insurance_id = ud.insurance_id
 	--LEFT JOIN InsuranceLimMap LIM on LIM.case_num = ins.case_num and LIM.insurer_ID = ins.insurer_id
 	join conversion.insurance_contacts_helper map

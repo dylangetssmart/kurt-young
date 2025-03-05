@@ -14,7 +14,7 @@ replace:
 
 
 
-use [JoelBieberSA_Needles]
+use [KurtYoung_SA]
 go
 
 /*
@@ -46,7 +46,7 @@ insert into [sma_TRN_OtherReferral]
 		null		   as [otrscomments],
 		368			   as [otrnuserid],
 		GETDATE()	   as [otrddtcreated]
-	from JoelBieberNeedles.[dbo].[cases_indexed] c
+	from KurtYoung_Needles.[dbo].[cases_indexed] c
 	join [sma_TRN_cases] cas
 		on cas.cassCaseNumber = c.casenum
 	join [IndvOrgContacts_Indexed] ioc

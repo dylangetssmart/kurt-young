@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-use [JoelBieberSA_Needles]
+use [KurtYoung_SA]
 go
 
 /*
@@ -53,7 +53,7 @@ insert into [sma_TRN_CriticalComments]
 		null		   as [ctcddtmodified],
 		null		   as [ctcnlevelno],
 		null		   as [ctcscommenttype]
-	from JoelBieberNeedles.[dbo].[cases_Indexed] c
+	from KurtYoung_Needles.[dbo].[cases_Indexed] c
 	join [sma_trn_cases] cas
 		on cas.cassCaseNumber = c.casenum
 	where ISNULL(special_note, '') <> ''

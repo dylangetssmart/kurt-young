@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-use [JoelBieberSA_Needles]
+use [KurtYoung_SA]
 go
 
 /*
@@ -70,7 +70,7 @@ insert into [sma_TRN_ReferredOut]
 		1			   as rfonreferred,
 		0			   as rfoncocouncil,
 		0			   as rfonislawfirmupdatetosend
-	from JoelBieberNeedles.[dbo].[cases_indexed] c
+	from KurtYoung_Needles.[dbo].[cases_indexed] c
 	join [sma_TRN_cases] cas
 		on cas.cassCaseNumber = c.casenum
 	join [IndvOrgContacts_Indexed] ioc
