@@ -1,60 +1,61 @@
-use [KurtYoung_SA]
+use KurtYoung_SA
 go
 
--------------------------------------------------------------------------------
--- [#MedChargeCodes]
--------------------------------------------------------------------------------
---if OBJECT_ID('tempdb..#MedChargeCodes') is not null
---	drop table #MedChargeCodes;
+/* ##############################################
+Create temporary table to hold disbursement value codes
+*/
+if OBJECT_ID('tempdb..#SpDmgValueCodes') is not null
+	drop table #SpDmgValueCodes;
 
---create table #MedChargeCodes (
---	code VARCHAR(10)
---);
+create table #SpDmgValueCodes (
+	code VARCHAR(10)
+);
 
---insert into #MedChargeCodes
---	(
---		code
---	)
---	values
---	('MEDICAL')
+insert into #SpDmgValueCodes
+	(
+		code
+	)
+	values
+	('MISC SPCLS'),
+	('PROPERTY')
+
 
 ------------------------------------------------------------------------------------------------------
 -- utility table to store the applicable value codes
 ------------------------------------------------------------------------------------------------------
 begin
-	if OBJECT_ID('conversion.value_medicalProviders', 'U') is not null
+	if OBJECT_ID('conversion.value_specialDamage', 'U') is not null
 	begin
-		drop table conversion.value_medicalProviders
+		drop table conversion.value_specialDamage
 	end
 
-	create table conversion.value_medicalProviders (
+	create table conversion.value_specialDamage (
 		code VARCHAR(25)
 	);
-	insert into conversion.value_medicalProviders
+	insert into conversion.value_specialDamage
 		(
 			code
 		)
 		values
-		('MEDICAL');
+		('MISC SPCLS'),
+		('PROPERTY');
 end
 
--------------------------------------------------------------------------------
--- [value_tab_MedicalProvider_Helper]
--------------------------------------------------------------------------------
+---(0)---
 if exists (
 		select
 			*
 		from sys.objects
-		where name = 'value_tab_MedicalProvider_Helper'
+		where name = 'value_tab_spDamages_Helper'
 			and type = 'U'
 	)
 begin
-	drop table value_tab_MedicalProvider_Helper
+	drop table value_tab_spDamages_Helper
 end
 go
 
 ---(0)---
-create table value_tab_MedicalProvider_Helper (
+create table value_tab_spDamages_Helper (
 	TableIndex	   [INT] identity (1, 1) not null,
 	case_id		   INT,
 	value_id	   INT,
@@ -65,17 +66,17 @@ create table value_tab_MedicalProvider_Helper (
 	ProviderAID	   INT,
 	casnCaseID	   INT,
 	PlaintiffID	   INT,
-	constraint IOC_Clustered_Index_value_tab_MedicalProvider_Helper primary key clustered (TableIndex)
+	constraint IOC_Clustered_Index_value_tab_spDamages_Helper primary key clustered (TableIndex)
 ) on [PRIMARY]
 go
 
-create nonclustered index IX_NonClustered_Index_value_tab_MedicalProvider_Helper_case_id on [value_tab_MedicalProvider_Helper] (case_id);
-create nonclustered index IX_NonClustered_Index_value_tab_MedicalProvider_Helper_value_id on [value_tab_MedicalProvider_Helper] (value_id);
-create nonclustered index IX_NonClustered_Index_value_tab_MedicalProvider_Helper_ProviderNameId on [value_tab_MedicalProvider_Helper] (ProviderNameId);
+create nonclustered index IX_NonClustered_Index_value_tab_spDamages_Helper_case_id on [value_tab_spDamages_Helper] (case_id);
+create nonclustered index IX_NonClustered_Index_value_tab_spDamages_Helper_value_id on [value_tab_spDamages_Helper] (value_id);
+create nonclustered index IX_NonClustered_Index_value_tab_spDamages_Helper_ProviderNameId on [value_tab_spDamages_Helper] (ProviderNameId);
 go
 
 ---(0)---
-insert into value_tab_MedicalProvider_Helper
+insert into [value_tab_spDamages_Helper]
 	(
 		case_id,
 		value_id,
@@ -88,8 +89,8 @@ insert into value_tab_MedicalProvider_Helper
 		PlaintiffID
 	)
 	select
-		V.case_id	   as case_id,	-- needles case
-		V.value_id	   as tab_id,		-- needles records TAB item
+		V.case_id	   as case_id,	        -- needles case
+		V.value_id	   as tab_id,		    -- needles records TAB item
 		V.provider	   as ProviderNameId,
 		IOC.Name	   as ProviderName,
 		IOC.CID		   as ProviderCID,
@@ -99,7 +100,8 @@ insert into value_tab_MedicalProvider_Helper
 		null		   as PlaintiffID
 	from [KurtYoung_Needles].[dbo].[value_Indexed] V
 	join [sma_TRN_cases] CAS
-		on CAS.cassCaseNumber = V.case_id
+		on CAS.NeedlesCasenum = V.case_id
+	-- on CAS.cassCaseNumber = V.case_id
 	join IndvOrgContacts_Indexed IOC
 		on IOC.SAGA = V.provider
 			and ISNULL(V.provider, 0) <> 0
@@ -107,20 +109,17 @@ insert into value_tab_MedicalProvider_Helper
 		code in (
 			select
 				code
-			from conversion.value_medicalProviders
+			from conversion.value_specialDamage vd
 		)
-go
+
+
 
 ---(0)---
-dbcc dbreindex ('value_tab_MedicalProvider_Helper', ' ', 90) with no_infomsgs
+dbcc dbreindex ('value_tab_spDamages_Helper', ' ', 90) with no_infomsgs
 go
 
 
--------------------------------------------------------------------------------
--- [value_tab_Multi_Party_Helper_Temp]
--------------------------------------------------------------------------------
-
----(0)--- value_id may associate with secondary plaintiff
+---(0)---
 if exists (
 		select
 			*
@@ -139,22 +138,24 @@ select
 into value_tab_Multi_Party_Helper_Temp
 from [KurtYoung_Needles].[dbo].[value_Indexed] V
 join [sma_TRN_cases] CAS
-	on CAS.cassCaseNumber = V.case_id
-join IndvOrgContacts_Indexed IOC
+	on CAS.NeedlesCasenum = V.case_id
+-- on CAS.cassCaseNumber = V.case_id
+join [IndvOrgContacts_Indexed] IOC
 	on IOC.SAGA = V.party_id
 join [sma_TRN_Plaintiff] T
-	on T.plnnContactID = IOC.CID
+	on T.plnnContactID = IOC.cid
 		and T.plnnContactCtg = IOC.CTG
 		and T.plnnCaseID = CAS.casnCaseID
+go
 
-update value_tab_MedicalProvider_Helper
+update [value_tab_spDamages_Helper]
 set PlaintiffID = A.plnnPlaintiffID
 from value_tab_Multi_Party_Helper_Temp A
 where case_id = A.cid
 and value_id = A.vid
 go
 
----(0)--- value_id may associate with defendant. steve malman make it associates to primary plaintiff 
+
 if exists (
 		select
 			*
@@ -172,23 +173,24 @@ select
 	(
 		select
 			plnnPlaintiffID
-		from [KurtYoung_SA].[dbo].[sma_TRN_Plaintiff]
+		from [sma_TRN_Plaintiff]
 		where plnnCaseID = CAS.casnCaseID
 			and plnbIsPrimary = 1
 	)		   as plnnPlaintiffID
 into value_tab_Multi_Party_Helper_Temp
 from [KurtYoung_Needles].[dbo].[value_Indexed] V
 join [sma_TRN_cases] CAS
-	on CAS.cassCaseNumber = V.case_id
+	on CAS.NeedlesCasenum = V.case_id
+-- on CAS.cassCaseNumber = V.case_id
 join [IndvOrgContacts_Indexed] IOC
 	on IOC.SAGA = V.party_id
 join [sma_TRN_Defendants] D
-	on D.defnContactID = IOC.CID
+	on D.defnContactID = IOC.cid
 		and D.defnContactCtgID = IOC.CTG
 		and D.defnCaseID = CAS.casnCaseID
 go
 
-update value_tab_MedicalProvider_Helper
+update value_tab_spDamages_Helper
 set PlaintiffID = A.plnnPlaintiffID
 from value_tab_Multi_Party_Helper_Temp A
 where case_id = A.cid
