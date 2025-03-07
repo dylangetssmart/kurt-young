@@ -41,14 +41,6 @@ INSERT INTO [sma_MST_SubRoleCode]
 	SELECT
 		'Primary Attorney'
 	   ,10
-	UNION ALL
-	SELECT
-		'Negotiator'
-	   ,10
-	UNION ALL
-	SELECT
-		'Overseeing Attorney/Paralegal'
-	   ,10
 	)
 	EXCEPT
 	SELECT
@@ -123,7 +115,6 @@ Hardcode staff_1 through staff_10 with "Staff"
 --GO
 
 
--- ds 2024-11-07 only staff_1 through staff_4 are used
 
 ------------------------------------------------------------------------------
 -- Convert staff_1 ###########################################################

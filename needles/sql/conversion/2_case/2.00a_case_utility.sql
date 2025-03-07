@@ -34,7 +34,7 @@ begin
 end
 go
 
--- source_id_2
+-- source_db
 if not exists (
 		select
 			*
@@ -47,7 +47,7 @@ begin
 end
 go
 
--- source_id_3
+-- source_ref
 if not exists (
 		select
 			*
@@ -59,8 +59,6 @@ begin
 	alter table [sma_TRN_Cases] add [source_ref] VARCHAR(max) null;
 end
 go
-
-
 
 ------------------------------------------------------------------------------------------------------
 -- [0.0] Temporary table to store variable values
@@ -88,11 +86,11 @@ begin
 		VenderCaseType
 		)
 values (
-'Joel Bieber LLC',
-'Virginia',
-'8048008000',
+'Law Offices of Kurt M. Young, LLC',
+'Ohio',
+'4192447885',
 'Needles',
-'JoelBieberCaseType'
+'KMYCaseType'
 );
 end
 
