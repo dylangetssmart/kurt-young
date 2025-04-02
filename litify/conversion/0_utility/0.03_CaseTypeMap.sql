@@ -1,7 +1,3 @@
-/* 
-
-*/
-
 use ShinerSA
 go
 
