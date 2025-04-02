@@ -15,6 +15,6 @@ backups | | Database backups
 data | | Source data
 logs | | Log files
 
-## System Directories
+## Source System Directories
 litify
 needles
