@@ -1,12 +1,12 @@
 # Ignore backups due to the size of the files
-backups/
-!backups/.gitkeep
+_backups/*
+!_backups/.gitkeep
 
 # Ignore Python virtual environment
 _venv/
 
 # Ignore transfer directory
-_trans/
+_trans/*
 !_trans/.gitkeep
 
 # Ignore Python cache files
@@ -23,4 +23,5 @@ slnx.sqlite
 /.vs/VSWorkspaceState.json
 
 # Ignore source data directory
-data/*
+_data/*
+!_data/.gitkeep
