@@ -44,6 +44,7 @@ def extract_yaml_metadata(sql_file):
     except UnicodeDecodeError as e:
         print(f"Error reading file {sql_file}: {e}")
         return None
+
 def generate_readmes_for_sql_files(sql_dir):
     """
     Generate a README.md file in every directory that contains .sql files.
@@ -81,6 +82,16 @@ def generate_readmes_for_sql_files(sql_dir):
             print(f"Created {readme_path}")
 
 if __name__ == "__main__":
-    # Define the root SQL directory
-    sql_dir = "sql"  # Adjust this path if necessary
-    generate_readmes_for_sql_files(sql_dir)
+    # Define the root directories for SQL files
+    sql_dirs = [
+        r'litify\conversion',  # Path to the Litify conversion directory
+        r'needles\conversion'  # Path to the Needles conversion directory
+    ]
+
+    # Iterate over each directory and generate README.md files
+    for sql_dir in sql_dirs:
+        if os.path.exists(sql_dir):
+            print(f"Processing directory: {sql_dir}")
+            generate_readmes_for_sql_files(sql_dir)
+        else:
+            print(f"Directory does not exist: {sql_dir}")

@@ -32,8 +32,3 @@ def generate_runlist(folder_path, output_file="_runlist.txt"):
             runlist_file.write(f"{sql_file}\n")
 
     print(f"Runlist generated at: {runlist_path}")
-
-# if __name__ == "__main__":
-#     # Example usage
-#     folder_path = r"D:\skolrood\needles\conv\2_case"
-#     generate_runlist(folder_path)
