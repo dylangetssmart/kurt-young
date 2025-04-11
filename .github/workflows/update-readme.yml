@@ -1,4 +1,11 @@
-name: Update README
+# This workflow runs on changes to the `sql/` directory.
+# It auto-generates:
+# - README.md files for each directory containing SQL scripts
+# - _runlist.txt files for each SQL folder
+# 
+# Can also be triggered manually via workflow_dispatch.
+
+name: Generate README and _runlist
 
 on:
   push:
