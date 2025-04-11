@@ -30,7 +30,10 @@ jobs:
 
       # Run the Python script
       - name: Generate README
-        run: python utils/generate_readmes.py  # Adjust script path if needed
+        run: python _lib/generate_readmes.py
+
+      - name: Generate _runlist.txt
+        run: python _lib/handle_generate_runlist.py
 
       # Commit and push changes to README.md
       - name: Commit changes

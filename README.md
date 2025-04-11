@@ -1,6 +1,11 @@
 ﻿# SmartAdvocate Conversion Boilerplate
 Scripts are documented in each system directory's respective Readme
 
+
+## Methodology
+This repo uses a "runlist" approach to decouple script ordering from filenaming convention, which allows source control because I am checking in and out the same files. why am I manually numbering 100 files?
+
+
 ## Workspace Directories
 | Directory | Sub Directory | Purpose |
 | -- | -- | -- |
