@@ -1,6 +1,6 @@
 import os
 
-def generate_runlist(folder_path, output_file="_runlist2.txt"):
+def generate_runlist(folder_path, output_file="_runlist.txt"):
     """
     Generates a runlist file based on the .sql files in the specified folder.
 
@@ -33,7 +33,7 @@ def generate_runlist(folder_path, output_file="_runlist2.txt"):
 
     print(f"Runlist generated at: {runlist_path}")
 
-if __name__ == "__main__":
-    # Example usage
-    folder_path = r"D:\skolrood\needles\conv\2_case"
-    generate_runlist(folder_path)
+# if __name__ == "__main__":
+#     # Example usage
+#     folder_path = r"D:\skolrood\needles\conv\2_case"
+#     generate_runlist(folder_path)
