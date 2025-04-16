@@ -1,19 +1,11 @@
-use KurtYoung_SA
+use Skolrood_SA
 go
-
-/* ##############################################
-Store applicable value codes
-*/
---CREATE TABLE #LienValueCodes (code VARCHAR(10));
-
---INSERT INTO #LienValueCodes (code)
---VALUES
---('SUBRO')
 
 ------------------------------------------------------------------------------------------------------
 -- utility table to store the applicable value codes
 ------------------------------------------------------------------------------------------------------
 begin
+
 	if OBJECT_ID('conversion.value_lienTracking', 'U') is not null
 	begin
 		drop table conversion.value_lienTracking
@@ -27,23 +19,27 @@ begin
 			code
 		)
 		values
-		('SUBRO');
+		('LIEN'),
+		('LIEN WC');
 end
 
 
 -------------------------------------------------------------------------------
 -- [value_tab_Liencheckbox_Helper]
 -------------------------------------------------------------------------------
+
+---(0)---
 if exists (
 		select
 			*
 		from sys.objects
 		where name = 'value_tab_Liencheckbox_Helper'
-			and type = 'U'
+			and TYPE = 'U'
 	)
 begin
 	drop table value_tab_Liencheckbox_Helper
 end
+
 go
 
 ---(0)---
@@ -52,7 +48,7 @@ create table value_tab_Liencheckbox_Helper (
 	value_id   INT,
 	constraint IOC_Clustered_Index_value_tab_Liencheckbox_Helper primary key clustered (TableIndex)
 ) on [PRIMARY]
-create nonclustered index IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id on [value_tab_Liencheckbox_Helper] (value_id);
+create nonclustered index IX_NonClustered_Index_value_tab_Liencheckbox_Helper_value_id on [Skolrood_Needles].[dbo].[value_tab_Liencheckbox_Helper] (value_id);
 go
 
 ---(0)---
@@ -62,11 +58,11 @@ insert into value_tab_Liencheckbox_Helper
 	)
 	select
 		VP1.value_id
-	from [KurtYoung_Needles].[dbo].[value_payment] VP1
+	from [Skolrood_Needles].[dbo].[value_payment] VP1
 	left join (
 		select distinct
 			value_id
-		from [KurtYoung_Needles].[dbo].[value_payment]
+		from [Skolrood_Needles].[dbo].[value_payment]
 		where lien = 'Y'
 	) VP2
 		on VP1.value_id = VP2.value_id
@@ -79,19 +75,18 @@ go
 dbcc dbreindex ('value_tab_Liencheckbox_Helper', ' ', 90) with no_infomsgs
 go
 
-
-
 ---(0)---
 if exists (
 		select
 			*
 		from sys.objects
 		where name = 'value_tab_Lien_Helper'
-			and type = 'U'
+			and TYPE = 'U'
 	)
 begin
 	drop table value_tab_Lien_Helper
 end
+
 go
 
 ---(0)---
@@ -141,10 +136,9 @@ insert into value_tab_Lien_Helper
 		CAS.casnCaseID as casnCaseID,
 		null		   as PlaintiffID,
 		null		   as Paid
-	from [KurtYoung_Needles].[dbo].[value_Indexed] V
+	from [Skolrood_Needles].[dbo].[value_Indexed] V
 	inner join [sma_TRN_cases] CAS
-		on CAS.NeedlesCasenum = V.case_id
-	-- on CAS.cassCaseNumber = V.case_id
+		on CAS.cassCaseNumber = CONVERT(VARCHAR, V.case_id)
 	inner join [IndvOrgContacts_Indexed] IOC
 		on IOC.SAGA = V.provider
 			and ISNULL(V.provider, 0) <> 0
@@ -167,9 +161,8 @@ dbcc dbreindex ('value_tab_Lien_Helper', ' ', 90) with no_infomsgs
 go
 
 
--------------------------------------------------------------------------------
--- [value_tab_Multi_Party_Helper_Temp]
--------------------------------------------------------------------------------
+
+---(0)---
 if exists (
 		select
 			*
@@ -179,6 +172,7 @@ if exists (
 begin
 	drop table value_tab_Multi_Party_Helper_Temp
 end
+
 go
 
 select
@@ -187,22 +181,23 @@ select
 	CONVERT(VARCHAR, ((
 		select
 			SUM(payment_amount)
-		from [KurtYoung_Needles].[dbo].[value_payment]
+		from [Skolrood_Needles].[dbo].[value_payment]
 		where value_id = V.value_id
-	)))		   as Paid,
+	))
+	)		   as Paid,
 	T.plnnPlaintiffID
 into value_tab_Multi_Party_Helper_Temp
-from [KurtYoung_Needles].[dbo].[value_Indexed] V
+from [Skolrood_Needles].[dbo].[value_Indexed] V
 inner join [sma_TRN_cases] CAS
-	on CAS.NeedlesCasenum = V.case_id
--- on CAS.cassCaseNumber = V.case_id
+	on CAS.cassCaseNumber = CONVERT(VARCHAR, V.case_id)
 inner join [IndvOrgContacts_Indexed] IOC
 	on IOC.SAGA = V.party_id
 inner join [sma_TRN_Plaintiff] T
-	on T.plnnContactID = IOC.CID
+	on T.plnnContactID = IOC.cid
 		and T.plnnContactCtg = IOC.CTG
 		and T.plnnCaseID = CAS.casnCaseID
 go
+
 
 update value_tab_Lien_Helper
 set PlaintiffID = A.plnnPlaintiffID,
@@ -222,6 +217,7 @@ if exists (
 begin
 	drop table value_tab_Multi_Party_Helper_Temp
 end
+
 go
 
 select
@@ -230,9 +226,10 @@ select
 	CONVERT(VARCHAR, ((
 		select
 			SUM(payment_amount)
-		from [KurtYoung_Needles].[dbo].[value_payment]
+		from [Skolrood_Needles].[dbo].[value_payment]
 		where value_id = V.value_id
-	)))		   as Paid,
+	))
+	)		   as Paid,
 	(
 		select
 			plnnPlaintiffID
@@ -241,17 +238,17 @@ select
 			and plnbIsPrimary = 1
 	)		   as plnnPlaintiffID
 into value_tab_Multi_Party_Helper_Temp
-from [KurtYoung_Needles].[dbo].[value_Indexed] V
+from [Skolrood_Needles].[dbo].[value_Indexed] V
 inner join [sma_TRN_cases] CAS
-	on CAS.NeedlesCasenum = V.case_id
--- on CAS.cassCaseNumber = V.case_id
+	on CAS.cassCaseNumber = CONVERT(VARCHAR, V.case_id)
 inner join [IndvOrgContacts_Indexed] IOC
 	on IOC.SAGA = V.party_id
 inner join [sma_TRN_Defendants] D
-	on D.defnContactID = IOC.CID
+	on D.defnContactID = IOC.cid
 		and D.defnContactCtgID = IOC.CTG
 		and D.defnCaseID = CAS.casnCaseID
 go
+
 
 update value_tab_Lien_Helper
 set PlaintiffID = A.plnnPlaintiffID,

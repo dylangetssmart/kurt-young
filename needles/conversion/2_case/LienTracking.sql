@@ -1,9 +1,9 @@
-use KurtYoung_SA
+use Skolrood_SA
 go
 
--------------------------------------------------------------------------------
--- [sma_MST_LienType]
--------------------------------------------------------------------------------
+/* ------------------------------------------------------------------------------
+Create Lien Types
+*/
 insert into sma_MST_LienType
 	(
 		[lntsCode],
@@ -13,8 +13,8 @@ insert into sma_MST_LienType
 	select distinct
 		'CONVERSION',
 		VC.[description]
-	from [KurtYoung_Needles].[dbo].[value] V
-	inner join [KurtYoung_Needles].[dbo].[value_code] VC
+	from [Skolrood_Needles].[dbo].[value] V
+	inner join [Skolrood_Needles].[dbo].[value_code] VC
 		on VC.code = V.code
 	where ISNULL(V.code, '') in (
 			select
@@ -28,9 +28,9 @@ insert into sma_MST_LienType
 	from [sma_MST_LienType]
 go
 
--------------------------------------------------------------------------------
--- [sma_TRN_Lienors]
--------------------------------------------------------------------------------
+/* ------------------------------------------------------------------------------
+Lienors
+*/
 
 alter table [sma_TRN_Lienors] disable trigger all
 go
@@ -64,7 +64,7 @@ insert into [sma_TRN_Lienors]
 			where lntsDscrptn = (
 					select
 						[description]
-					from [KurtYoung_Needles].[dbo].[value_code]
+					from [Skolrood_Needles].[dbo].[value_code]
 					where [code] = V.code
 				)
 		)						 as [lnrnLienorTypeID],
@@ -89,10 +89,38 @@ insert into [sma_TRN_Lienors]
 		null					 as [source_id],
 		null					 as [source_db],
 		null					 as [source_ref]
-	from [KurtYoung_Needles].[dbo].[value_Indexed] V
+	from [Skolrood_Needles].[dbo].[value_Indexed] V
 	inner join [value_tab_Lien_Helper] MAP
 		on MAP.case_id = V.case_id
 			and MAP.value_id = V.value_id
 
-alter table [SAKurtYoung_Needles].[dbo].[sma_TRN_Lienors] enable trigger all
+alter table [sma_TRN_Lienors] enable trigger all
+go
+
+/* ------------------------------------------------------------------------------
+Lien Details
+*/
+
+alter table [sma_TRN_LienDetails] disable trigger all
+go
+
+insert into [sma_TRN_LienDetails]
+	(
+		lndnLienorID,
+		lndnLienTypeID,
+		lndnCnfrmdLienAmount,
+		lndsRefTable,
+		lndnRecUserID,
+		lnddDtCreated
+	)
+	select
+		lnrnLienorID		 as lndnLienorID, --> same as lndnRecordID
+		lnrnLienorTypeID	 as lndnLienTypeID,
+		lnrnCnfrmdLienAmount as lndnCnfrmdLienAmount,
+		'sma_TRN_Lienors'	 as lndsRefTable,
+		368					 as lndnRecUserID,
+		GETDATE()			 as lnddDtCreated
+	from [sma_TRN_Lienors]
+
+alter table [sma_TRN_LienDetails] enable trigger all
 go
