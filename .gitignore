@@ -1,10 +1,8 @@
 # Ignore default directories
-_logs/
-!_logs/.gitkeep
 _backups/
 !_backups/.gitkeep
-_venv/
-_trans/
+_venv/*
+_trans/*
 !_trans/.gitkeep
 
 # Ignore database backup files
@@ -12,10 +10,6 @@ backups/*
 !backups/.gitkeep
 *.bak
 *.backup
-
-# Directories to ignore
-trans/*
-_logs/*
 
 # Python cache files
 **__pycache__/
@@ -31,8 +25,4 @@ slnx.sqlite
 /.vs/VSWorkspaceState.json
 
 # Ignore data directories
-grow-path/data/*
-grow-path/backups/*
-
-needles/data/*
-needles/backups/*
+_data/*
