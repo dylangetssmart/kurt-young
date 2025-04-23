@@ -1,30 +1,5 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
-*/
-
-
-
-
-
-use [KurtYoung_SA]
+use [SA]
 go
-
-/*
-alter table [sma_TRN_OtherReferral] disable trigger all
-delete [sma_TRN_OtherReferral]
-DBCC CHECKIDENT ('[sma_TRN_OtherReferral]', RESEED, 0);
-alter table [sma_TRN_OtherReferral] enable trigger all
-*/
-
---(1)--
 
 insert into [sma_TRN_OtherReferral]
 	(
@@ -39,16 +14,16 @@ insert into [sma_TRN_OtherReferral]
 	)
 	select
 		cas.casnCaseID as [otrncaseid],
-		ioc.CTG		   as [otrnrefcontactctg],
-		ioc.CID		   as [otrnrefcontactid],
-		ioc.AID		   as [otrnrefaddressid],
+		ioci.CTG		   as [otrnrefcontactctg],
+		ioci.CID		   as [otrnrefcontactid],
+		ioci.AID		   as [otrnrefaddressid],
 		-1			   as [otrnplaintiffid],
 		null		   as [otrscomments],
 		368			   as [otrnuserid],
 		GETDATE()	   as [otrddtcreated]
 	from KurtYoung_Needles.[dbo].[cases_indexed] c
 	join [sma_TRN_cases] cas
-		on cas.cassCaseNumber = c.casenum
-	join [IndvOrgContacts_Indexed] ioc
-		on ioc.SAGA = c.referred_link
+		on cas.cassCaseNumber = convert(varchar,c.casenum)
+	join [IndvOrgContacts_Indexed] ioci
+		on ioci.SAGA = c.referred_link
 			and c.referred_link > 0
