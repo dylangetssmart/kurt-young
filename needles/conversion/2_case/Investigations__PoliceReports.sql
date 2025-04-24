@@ -1,25 +1,5 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
-*/
-
-use [KurtYoung_SA]
+use [SA]
 go
-
-/*
-alter table [sma_TRN_PoliceReports] disable trigger all
-delete from [sma_TRN_PoliceReports]
-DBCC CHECKIDENT ('[sma_TRN_PoliceReports]', RESEED, 0);
-alter table [sma_TRN_PoliceReports] enable trigger all
-
-*/
 
 ---
 alter table [sma_TRN_PoliceReports] disable trigger all
@@ -68,7 +48,7 @@ insert into conversion.officer_helper
 		a.addnAddressID	 as officeraid,
 		i.source_id		 as saga
 	--select *
-	from KurtYoung_Needles.[dbo].[police] p
+	from Needles.[dbo].[police] p
 	join [sma_MST_IndvContacts] i
 		--ON I.cinsGrade = P.officer
 		--	AND I.cinsPrefix = 'Officer'
@@ -147,7 +127,7 @@ insert into conversion.police_helper
 			--WHERE H.cinsGrade = P.officer
 			where h.saga = p.officer
 		)			   as officeraid
-	from KurtYoung_Needles.[dbo].[police] p
+	from Needles.[dbo].[police] p
 	join [sma_TRN_cases] cas
 		on cas.cassCaseNumber = p.case_num
 	join [IndvOrgContacts_Indexed] ioc
@@ -181,7 +161,7 @@ insert into [sma_TRN_PoliceReports]
 		map.PoliceCID		   as [pornpocontactid],
 		map.PoliceCTG		   as [pornpoctgid],
 		map.PoliceAID		   as [pornpoaddressid]
-	from KurtYoung_Needles.[dbo].[police] p
+	from Needles.[dbo].[police] p
 	join conversion.Police_Helper map
 		on map.police_id = p.police_id
 			and map.case_num = p.case_num

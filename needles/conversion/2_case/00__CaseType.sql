@@ -14,7 +14,7 @@ notes:
 */
 
 
-use KurtYoung_SA
+use [SA]
 go
 
 
@@ -230,4 +230,3 @@ insert into [sma_MST_CaseSubType]
 			and sub.[cstsdscrptn] = [SmartAdvocate Case Sub Type]
 	where sub.cstnCaseSubTypeID is null
 		and ISNULL([SmartAdvocate Case Sub Type], '') <> ''
-

@@ -1,56 +1,5 @@
-use [KurtYoung_SA]
+use [SA]
 go
-
-if not exists (
-		select
-			*
-		from sys.columns
-		where Name = N'saga_party'
-			and object_id = OBJECT_ID(N'sma_TRN_Plaintiff')
-	)
-begin
-	alter table [sma_TRN_Plaintiff] add [saga_party] INT null;
-end
-
--- source_id
-if not exists (
-		select
-			*
-		from sys.columns
-		where Name = N'source_id'
-			and Object_ID = OBJECT_ID(N'sma_TRN_Plaintiff')
-	)
-begin
-	alter table [sma_TRN_Plaintiff] add [source_id] VARCHAR(MAX) null;
-end
-go
-
--- source_db
-if not exists (
-		select
-			*
-		from sys.columns
-		where Name = N'source_db'
-			and Object_ID = OBJECT_ID(N'sma_TRN_Plaintiff')
-	)
-begin
-	alter table [sma_TRN_Plaintiff] add [source_db] VARCHAR(MAX) null;
-end
-go
-
--- source_ref
-if not exists (
-		select
-			*
-		from sys.columns
-		where Name = N'source_ref'
-			and Object_ID = OBJECT_ID(N'sma_TRN_Plaintiff')
-	)
-begin
-	alter table [sma_TRN_Plaintiff] add [source_ref] VARCHAR(MAX) null;
-end
-go
-
 
 alter table [sma_TRN_Plaintiff] disable trigger all
 go
@@ -132,7 +81,7 @@ insert into [sma_TRN_Plaintiff]
 		1				as [plnnprimarycontact],
 		p.TableIndex	as [saga_party]
 	--SELECT  * -- cas.casncaseid, p.role, p.party_ID, pr.[needles roles], pr.[sa roles], pr.[sa party], s.*
-	from KurtYoung_Needles.[dbo].[party_indexed] p
+	from Needles.[dbo].[party_indexed] p
 	join [sma_TRN_Cases] cas
 		on cas.cassCaseNumber = p.case_id
 	join IndvOrgContacts_Indexed cio
@@ -145,7 +94,6 @@ insert into [sma_TRN_Plaintiff]
 			and s.sbrnRoleID = 4
 	where
 		pr.[SA Party] = 'Plaintiff'
---and cas.casnCaseID = 22985
 go
 
 /*
@@ -259,7 +207,7 @@ from (
 		ROW_NUMBER() over (partition by t.plnnCaseID order by p.record_num) as rownumber,
 		t.plnnPlaintiffID													as id
 	from sma_TRN_Plaintiff t
-	left join KurtYoung_Needles.[dbo].[party_indexed] p
+	left join Needles.[dbo].[party_indexed] p
 		on p.TableIndex = t.saga_party
 ) a
 where a.rownumber = 1

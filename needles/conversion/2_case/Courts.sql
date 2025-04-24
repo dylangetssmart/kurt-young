@@ -10,7 +10,7 @@ replace:
 ##########################################################################################################################
 */
 
-use [KurtYoung_SA]
+use [SA]
 go
 
 
@@ -61,9 +61,9 @@ insert into [sma_TRN_Courts]
 			ioc.CID,
 			ioc.AID,
 			c.judge_link
-		from [KurtYoung_Needles].[dbo].[cases] c
+		from [Needles].[dbo].[cases] c
 		join [sma_TRN_cases] cas
-			on cas.cassCaseNumber = c.casenum
+			on cas.cassCaseNumber = convert(varchar,c.casenum)
 		join IndvOrgContacts_Indexed ioc
 			on ioc.SAGA = c.court_link
 		where ISNULL(court_link, 0) <> 0
@@ -75,9 +75,9 @@ insert into [sma_TRN_Courts]
 			ioc.CID,
 			ioc.AID,
 			c.judge_link
-		from [KurtYoung_Needles].[dbo].[cases] c
+		from [Needles].[dbo].[cases] c
 		join [sma_TRN_cases] cas
-			on cas.cassCaseNumber = c.casenum
+			on cas.cassCaseNumber = convert(varchar,c.casenum)
 		join IndvOrgContacts_Indexed ioc
 			on ioc.SAGA = -1
 			and ioc.[Name] = 'Unidentified Court'
@@ -122,8 +122,8 @@ insert into [sma_TRN_CourtDocket]
 	from [sma_TRN_Courts] crt
 	join [sma_TRN_cases] cas
 		on cas.casnCaseID = crt.crtnCaseID
-	join [KurtYoung_Needles].[dbo].[cases] c
-		on c.casenum = cas.cassCaseNumber
+	join [Needles].[dbo].[cases] c
+		on convert(varchar,c.casenum) = cas.cassCaseNumber
 go
 
 ---(3)---

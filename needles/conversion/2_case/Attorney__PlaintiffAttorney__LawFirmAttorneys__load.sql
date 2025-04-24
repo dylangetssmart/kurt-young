@@ -12,7 +12,7 @@ notes:
 */
 
 
-use [KurtYoung_SA]
+use [SA]
 go
 
 ---
@@ -86,12 +86,12 @@ insert into [sma_TRN_PlaintiffAttorney]
 		ISNULL('comments : ' + NULLIF(CONVERT(VARCHAR(MAX), c.comments), '') + CHAR(13), '') +
 		ISNULL('Attorney for party : ' + NULLIF(CONVERT(VARCHAR(MAX), iocp.name), '') + CHAR(13), '') +
 		''				  as [plascomments]
-	from KurtYoung_Needles..[counsel_Indexed] c
-	left join KurtYoung_Needles.[dbo].[user_counsel_data] ud
+	from Needles..[counsel_Indexed] c
+	left join Needles.[dbo].[user_counsel_data] ud
 		on ud.counsel_id = c.counsel_id
 			and c.case_num = ud.casenum
 	join [sma_TRN_Cases] cas
-		on cas.cassCaseNumber = c.case_num
+		on cas.cassCaseNumber = convert(varchar,c.case_num)
 	join IndvOrgContacts_Indexed ioc
 		on ioc.SAGA = c.counsel_id
 			and ISNULL(c.counsel_id, 0) <> 0
@@ -103,7 +103,7 @@ insert into [sma_TRN_PlaintiffAttorney]
 			and t.plnnContactCtg = iocp.CTG
 			and t.plnnCaseID = cas.casnCaseID
 go
---select * from KurtYoung_Needles..user_counsel_data ucd where casenum = 229701
+--select * from Needles..user_counsel_data ucd where casenum = 229701
 -------------------------------------------------------------------------------
 -- Plaintiff Attorney list
 -------------------------------------------------------------------------------

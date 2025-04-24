@@ -1,4 +1,5 @@
 ﻿# SmartAdvocate Conversion Boilerplate
+This repository serves as both the single source of truth for conversion scripts and a project boilerplate that includes all directories that sa-conversion-utils expects.
 Scripts are documented in each system directory's respective Readme
 
 

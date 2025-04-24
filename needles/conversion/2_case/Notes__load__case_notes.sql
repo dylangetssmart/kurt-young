@@ -1,24 +1,6 @@
-/* ###################################################################################
-Author: Dylan Smith | dylans@smartadvocate.com
-Date: 2024-09-12
-Description: Create users and contacts
-
-replace:
-'OfficeName'
-'StateDescription'
-'VenderCaseType'
-##########################################################################################################################
-*/
-
-use [KurtYoung_SA]
+use [SA]
 go
 
-/*
-alter table [sma_TRN_Notes] disable trigger all
-delete from [sma_TRN_Notes] 
-DBCC CHECKIDENT ('[sma_TRN_Notes]', RESEED, 0);
-alter table [sma_TRN_Notes] enable trigger all
-*/
 if not exists (
 		select
 			*

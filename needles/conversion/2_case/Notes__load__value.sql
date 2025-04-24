@@ -19,7 +19,7 @@ notes:
 #########################################################################################
 */
 
-use [KurtYoung_SA]
+use [SA]
 go
 
 -- Create note types that don't yet exist
@@ -30,7 +30,7 @@ insert into [sma_MST_NoteTypes]
 	select distinct
 		vn.topic,
 		vn.topic
-	from KurtYoung_Needles..value_notes vn
+	from Needles..value_notes vn
 	except
 	select
 		nttsDscrptn,
@@ -85,8 +85,8 @@ insert into [sma_TRN_Notes]
 		null		  as [source_id],
 		'needles'	  as [source_db],
 		'value_notes' as [source_ref]
-	from KurtYoung_Needles.[dbo].[value_notes] n
-	join KurtYoung_Needles.[dbo].[value_Indexed] v
+	from Needles.[dbo].[value_notes] n
+	join Needles.[dbo].[value_Indexed] v
 		on v.value_id = n.value_num
 	join [sma_TRN_Cases] c
 		on c.cassCaseNumber = v.case_id
@@ -109,8 +109,8 @@ insert into sma_TRN_NoteContacts
 		note.notnNoteID,
 		ioc.UNQCID
 	--select v.provider, ioc.*, n.note, note.*
-	from KurtYoung_Needles..[value_notes] n
-	join KurtYoung_Needles..value_Indexed v
+	from Needles..[value_notes] n
+	join Needles..value_Indexed v
 		on v.value_id = n.value_num
 	join sma_trn_Cases cas
 		on cas.cassCaseNumber = v.case_id
