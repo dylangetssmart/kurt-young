@@ -56,7 +56,12 @@ def generate_runlist(folder_path, output_file="_runlist.txt"):
     else:
         print("Runlist already up-to-date. No changes made.")
 
-# if __name__ == "__main__":
-#     # Example usage
-#     folder_path = r"D:\skolrood\needles\conv\2_case"
-#     generate_runlist(folder_path)
+if __name__ == "__main__":
+    import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: python generate_runlist.py <folder_path>")
+        sys.exit(1)
+
+    folder_path = sys.argv[1]
+    generate_runlist(folder_path)
