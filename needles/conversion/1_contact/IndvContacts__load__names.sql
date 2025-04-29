@@ -1,3 +1,9 @@
+/*---
+sequence: 2
+description: Inserts individual contacts
+data-source: ['names']
+---*/
+
 use [SA]
 go
 

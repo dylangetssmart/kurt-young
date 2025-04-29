@@ -1,3 +1,9 @@
+/*---
+sequence: 3
+description: Inserts individual contacts
+data-source: ['police']
+---*/
+
 use [SA]
 go
 

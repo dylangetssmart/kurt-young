@@ -1,14 +1,12 @@
+/*---
+sequence: 11
+description:
+data-source: ['multi_addresses']
+---*/
+
 use [SA]
 go
 
-/*
-alter table [sma_MST_Address] disable trigger all
-delete from [sma_MST_Address] 
-DBCC CHECKIDENT ('[sma_MST_Address]', RESEED, 0);
-alter table [sma_MST_Address] enable trigger all
-*/
--- select distinct addr_Type from  [Needles].[dbo].[multi_addresses]
--- select * from  [Needles].[dbo].[multi_addresses] where addr_type not in ('Home','business', 'other')
 
 alter table [sma_MST_Address] disable trigger all
 go

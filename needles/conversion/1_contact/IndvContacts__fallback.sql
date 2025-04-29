@@ -1,22 +1,11 @@
-/* ###################################################################################
+/*---
+sequence: 1
 description: Create unidentified contacts to be used as fallbacks where applicable
-steps:
-	- Insert [sma_MST_IndvContacts] fallback contacts
-		- Unassigned Staff
-		- Unidentified Individual
-		- Unidentified Plaintiff
-		- Unidentified Defendant
-usage_instructions:
-	-
-dependencies:
-	- 
-notes:
-	-
-*/
+data-source:
+---*/
 
 use [SA]
 go
-
 
 /* --------------------------------------------------------------------------------------------------------------
 [sma_MST_IndvContacts] Unidentified Contacts

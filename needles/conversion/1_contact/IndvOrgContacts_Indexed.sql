@@ -1,3 +1,9 @@
+/*---
+sequence: 92
+description: Insert address for organization contacts
+data-source:
+---*/
+
 use [SA]
 go
 

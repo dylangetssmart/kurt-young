@@ -1,3 +1,9 @@
+/*---
+sequence: 9
+description: Insert users
+data-source: ['staff']
+---*/
+
 use [SA]
 go
 

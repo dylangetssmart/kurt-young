@@ -1,7 +1,14 @@
+/*---
+sequence: 90
+description: Insert address for organization contacts
+data-source:
+---*/
+
 USE [SA]
 GO
----(1)--- Phone number uniqueness
 
+
+---(1)--- Phone number uniqueness
 UPDATE [dbo].[sma_MST_ContactNumbers] SET cnnbPrimary=0
 WHERE cnnnContactCtgID=1
 

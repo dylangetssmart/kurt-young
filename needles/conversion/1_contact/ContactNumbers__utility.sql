@@ -1,15 +1,8 @@
-/* ###################################################################################
-description: Update contact phone numbers
-steps:
-	- [sma_MST_ContactNoType]
-usage_instructions:
-	-
-dependencies:
-	- 
-notes:
-	-
-######################################################################################
-*/
+/*---
+sequence: 12
+description: Insert address for organization contacts
+data-source:
+---*/
 
 use [SA]
 go

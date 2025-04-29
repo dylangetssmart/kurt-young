@@ -1,26 +1,20 @@
-/* ###################################################################################
-description: Create unidentified contacts to be used as fallbacks where applicable
-steps:
-	- Insert [sma_MST_OrgContacts] fallback contacts
-		- Unidentified Medical Provider
-		- Unidentified Insurance
-		- Unidentified Court
-		- Unidentified Lienor
-		- Unidentified School
-		- Unidentified Employer
-usage_instructions:
-	-
-dependencies:
-	- 
-notes:
-	-
-*/
+/*---
+sequence: 7
+description: Create unidentified fallback organization contacts
+data-source:
+---*/
 
 use [SA]
 go
 
 /* --------------------------------------------------------------------------------------------------------------
 [sma_MST_OrgContacts] Unidentified Contacts
+  - Unidentified Medical Provider
+  - Unidentified Insurance
+  - Unidentified Court
+  - Unidentified Lienor
+  - Unidentified School
+  - Unidentified Employer
 */
 
 ---------------------------------------------------

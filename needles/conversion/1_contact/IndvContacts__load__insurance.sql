@@ -1,3 +1,9 @@
+/*---
+sequence: 4
+description: Inserts individual contacts
+data-source: ['insurance']
+---*/
+
 use [SA]
 go
 

@@ -1,3 +1,9 @@
+/*---
+sequence: 6
+description: Update sma_MST_IndvContacts.cinsComments
+data-source: ['party_indexed']
+---*/
+
 use [SA]
 go
 

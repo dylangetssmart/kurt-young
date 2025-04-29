@@ -1,30 +1,27 @@
+/*---
+sequence: 10
+description: Insert address for organization contacts
+data-source: ['multi_addresses']
+---*/
+
 use [SA]
 go
 
-/*
-alter table [sma_MST_Address] disable trigger all
-delete from [sma_MST_Address] 
-DBCC CHECKIDENT ('[sma_MST_Address]', RESEED, 0);
-alter table [sma_MST_Address] enable trigger all
-*/
--- select distinct addr_Type from  [Needles].[dbo].[multi_addresses]
--- select * from  [Needles].[dbo].[multi_addresses] where addr_type not in ('Home','business', 'other')
-
 alter table [sma_MST_Address] disable trigger all
 go
 
------------------------------------------------------------------------------
-----(1)--- CONSTRUCT SMA_MST_ADDRESS FROM EXISTING SMA_MST_INDVCONTACTS
------------------------------------------------------------------------------
+-------------------------------------------------------
+----(2)---- CONSTRUCT FROM SMA_MST_ORGCONTACTS
+-------------------------------------------------------
 
--- Home from IndvContacts
+-- Home from OrgContacts
 insert into [sma_MST_Address]
 	(
 	[addnContactCtgID], [addnContactID], [addnAddressTypeID], [addsAddressType], [addsAddTypeCode], [addsAddress1], [addsAddress2], [addsAddress3], [addsStateCode], [addsCity], [addnZipID], [addsZip], [addsCounty], [addsCountry], [addbIsResidence], [addbPrimary], [adddFromDate], [adddToDate], [addnCompanyID], [addsDepartment], [addsTitle], [addnContactPersonID], [addsComments], [addbIsCurrent], [addbIsMailing], [addnRecUserID], [adddDtCreated], [addnModifyUserID], [adddDtModified], [addnLevelNo], [caseno], [addbDeleted], [addsZipExtn], [saga], [source_id], [source_db], [source_ref]
 	)
 	select
-		i.cinnContactCtg	   as addncontactctgid,
-		i.cinnContactID		   as addncontactid,
+		o.connContactCtg	   as addncontactctgid,
+		o.connContactID		   as addncontactid,
 		t.addnAddTypeID		   as addnaddresstypeid,
 		t.addsDscrptn		   as addsaddresstype,
 		t.addsCode			   as addsaddtypecode,
@@ -71,11 +68,11 @@ insert into [sma_MST_Address]
 		'needles'			   as [source_db],
 		'multi_addresses.home' as [source_ref]
 	from [Needles].[dbo].[multi_addresses] a
-	join [sma_MST_Indvcontacts] i
-		on i.saga = a.names_id
+	join [sma_MST_Orgcontacts] o
+		on o.saga = a.names_id
 	join [sma_MST_AddressTypes] t
-		on t.addnContactCategoryID = i.cinnContactCtg
-			and t.addsCode = 'HM'
+		on t.addnContactCategoryID = o.connContactCtg
+			and t.addsCode = 'HO'
 	where (a.[addr_type] = 'Home'
 		and (ISNULL(a.[address], '') <> ''
 		or ISNULL(a.[address_2], '') <> ''
@@ -85,14 +82,14 @@ insert into [sma_MST_Address]
 		or ISNULL(a.[county], '') <> ''
 		or ISNULL(a.[country], '') <> ''))
 
--- Business from IndvContacts
+-- Business from OrgContacts
 insert into [sma_MST_Address]
 	(
 	[addnContactCtgID], [addnContactID], [addnAddressTypeID], [addsAddressType], [addsAddTypeCode], [addsAddress1], [addsAddress2], [addsAddress3], [addsStateCode], [addsCity], [addnZipID], [addsZip], [addsCounty], [addsCountry], [addbIsResidence], [addbPrimary], [adddFromDate], [adddToDate], [addnCompanyID], [addsDepartment], [addsTitle], [addnContactPersonID], [addsComments], [addbIsCurrent], [addbIsMailing], [addnRecUserID], [adddDtCreated], [addnModifyUserID], [adddDtModified], [addnLevelNo], [caseno], [addbDeleted], [addsZipExtn], [saga], [source_id], [source_db], [source_ref]
 	)
 	select
-		i.cinnContactCtg		   as addncontactctgid,
-		i.cinnContactID			   as addncontactid,
+		o.connContactCtg		   as addncontactctgid,
+		o.connContactID			   as addncontactid,
 		t.addnAddTypeID			   as addnaddresstypeid,
 		t.addsDscrptn			   as addsaddresstype,
 		t.addsCode				   as addsaddtypecode,
@@ -119,9 +116,7 @@ insert into [sma_MST_Address]
 		null,
 		case
 			when ISNULL(a.company, '') <> ''
-				then (
-					'Company : ' + CHAR(13) + a.company
-					)
+				then 'Company : ' + CHAR(13) + a.company
 			else ''
 		end						   as [addscomments],
 		null,
@@ -139,11 +134,11 @@ insert into [sma_MST_Address]
 		'needles'				   as [source_db],
 		'multi_addresses.business' as [source_ref]
 	from [Needles].[dbo].[multi_addresses] a
-	join [sma_MST_Indvcontacts] i
-		on i.saga = a.names_id
+	join [sma_MST_Orgcontacts] o
+		on o.saga = a.names_id
 	join [sma_MST_AddressTypes] t
-		on t.addnContactCategoryID = i.cinnContactCtg
-			and t.addsCode = 'WORK'
+		on t.addnContactCategoryID = o.connContactCtg
+			and t.addsCode = 'WRK'
 	where (a.[addr_type] = 'Business'
 		and (ISNULL(a.[address], '') <> ''
 		or ISNULL(a.[address_2], '') <> ''
@@ -153,14 +148,14 @@ insert into [sma_MST_Address]
 		or ISNULL(a.[county], '') <> ''
 		or ISNULL(a.[country], '') <> ''))
 
--- Other from IndvContacts
+-- Other from OrgContacts
 insert into [sma_MST_Address]
 	(
 	[addnContactCtgID], [addnContactID], [addnAddressTypeID], [addsAddressType], [addsAddTypeCode], [addsAddress1], [addsAddress2], [addsAddress3], [addsStateCode], [addsCity], [addnZipID], [addsZip], [addsCounty], [addsCountry], [addbIsResidence], [addbPrimary], [adddFromDate], [adddToDate], [addnCompanyID], [addsDepartment], [addsTitle], [addnContactPersonID], [addsComments], [addbIsCurrent], [addbIsMailing], [addnRecUserID], [adddDtCreated], [addnModifyUserID], [adddDtModified], [addnLevelNo], [caseno], [addbDeleted], [addsZipExtn], [saga], [source_id], [source_db], [source_ref]
 	)
 	select
-		i.cinnContactCtg		as addncontactctgid,
-		i.cinnContactID			as addncontactid,
+		o.connContactCtg		as addncontactctgid,
+		o.connContactID			as addncontactid,
 		t.addnAddTypeID			as addnaddresstypeid,
 		t.addsDscrptn			as addsaddresstype,
 		t.addsCode				as addsaddtypecode,
@@ -207,11 +202,11 @@ insert into [sma_MST_Address]
 		'needles'				as [source_db],
 		'multi_addresses.other' as [source_ref]
 	from [Needles].[dbo].[multi_addresses] a
-	join [sma_MST_Indvcontacts] i
-		on i.saga = a.names_id
+	join [sma_MST_Orgcontacts] o
+		on o.saga = a.names_id
 	join [sma_MST_AddressTypes] t
-		on t.addnContactCategoryID = i.cinnContactCtg
-			and t.addsCode = 'OTH'
+		on t.addnContactCategoryID = o.connContactCtg
+			and t.addsCode = 'BR'
 	where (a.[addr_type] = 'Other'
 		and (ISNULL(a.[address], '') <> ''
 		or ISNULL(a.[address_2], '') <> ''

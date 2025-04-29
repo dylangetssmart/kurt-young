@@ -1,3 +1,9 @@
+/*---
+sequence: 8
+description: Create organization contacts
+data-source: ['names']
+---*/
+
 use [SA]
 go
 
