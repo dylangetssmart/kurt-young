@@ -1,4 +1,4 @@
-USE [Skolrood_SA]
+USE [SA]
 GO
 ---(1)--- Phone number uniqueness
 

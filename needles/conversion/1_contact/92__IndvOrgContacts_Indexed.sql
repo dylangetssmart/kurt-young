@@ -1,4 +1,4 @@
-use Skolrood_SA
+use [SA]
 go
 
 if exists (

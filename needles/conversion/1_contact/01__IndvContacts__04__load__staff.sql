@@ -72,7 +72,7 @@ insert into [sma_MST_IndvContacts]
 		'needles'													 as [source_db],
 		'staff'														 as [source_ref]
 	--select *
-	from Needles..staff s
+	from [Needles]..staff s
 	left join conversion.imp_user_map m
 		on s.staff_code = m.StaffCode
 	left join [sma_MST_IndvContacts] ind
