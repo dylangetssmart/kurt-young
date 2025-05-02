@@ -4,7 +4,7 @@ order:
 description: Update contact types for attorneys
 ---*/
 
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 
@@ -159,7 +159,7 @@ select
 	(
 		select
 			plnnPlaintiffID
-		from [VanceLawFirm_SA].[dbo].[sma_TRN_Plaintiff]
+		from [SA].[dbo].[sma_TRN_Plaintiff]
 		where plnnCaseID = CAS.casnCaseID
 			and plnbIsPrimary = 1
 	)		   as plnnPlaintiffID

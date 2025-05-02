@@ -5,7 +5,7 @@ description: Create office record
 data-source:
 ---*/
 
-USE [VanceLawFirm_SA]
+USE [SA]
 GO
 
 ALTER TABLE sma_trn_Casevalue DISABLE TRIGGER ALL

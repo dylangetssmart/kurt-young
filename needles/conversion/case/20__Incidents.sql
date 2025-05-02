@@ -5,7 +5,7 @@ description: Create office record
 data-source:
 ---*/
 
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 ---

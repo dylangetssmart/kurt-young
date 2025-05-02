@@ -15,6 +15,9 @@ notes:
 #########################################################################################
 */
 
+USE [Needles]
+GO
+
 IF EXISTS (select * from sys.objects where name='counsel_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[counsel_Indexed]

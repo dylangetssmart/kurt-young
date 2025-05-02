@@ -4,7 +4,7 @@ order: 1
 description: Update contact types for attorneys
 ---*/
 
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 if not exists (

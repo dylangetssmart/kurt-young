@@ -4,7 +4,7 @@ order: 50
 description: Create Settlement records from [value]
 ---*/
 
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 
@@ -198,7 +198,7 @@ go
 Create missing Settlement Types from value_code.description
 */
 
---SELECT * FROM [VanceLawFirm_SA]..sma_MST_SettlementType smst
+--SELECT * FROM [SA]..sma_MST_SettlementType smst
 --SELECT * FROM [VanceLawFirm_Needles]..value_code vc
 
 insert into [sma_MST_SettlementType]

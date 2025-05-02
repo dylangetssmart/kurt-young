@@ -15,6 +15,9 @@ notes:
 #########################################################################################
 */
 
+USE [Needles]
+GO
+
 IF EXISTS (select * from sys.objects where name='value_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[value_Indexed]

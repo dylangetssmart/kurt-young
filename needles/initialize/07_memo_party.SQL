@@ -15,6 +15,9 @@ notes:
 #########################################################################################
 */
 
+USE [Needles]
+GO
+
 IF EXISTS (select * from sys.objects where name='party_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[party_Indexed]

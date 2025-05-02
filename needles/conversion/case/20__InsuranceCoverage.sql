@@ -5,41 +5,12 @@ description: Create office record
 data-source:
 ---*/
 
-/* ###################################################################################
-description: Insert defendants
-steps:
-	- Insert plantiff insurance > [sma_TRN_InsuranceCoverage]
-	
-usage_instructions:
-	- 
-dependencies:
-	- [conversion].[insurance_contacts_helper]
-notes:
-	-
-*/
-
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 /* ------------------------------------------------------------------------------
 Helper
 */
-
--------------------------------------------------------------------------------
--- Build conversion.insurance_contacts_helper
--------------------------------------------------------------------------------
---if exists (
---		select
---			*
---		from sys.objects
---		where name = 'insurance_contacts_helper'
---			and type = 'U'
---			and schema_id
---	)
---begin
---	drop table conversion.insurance_contacts_helper
---end
---go
 
 if OBJECT_ID('conversion.insurance_contacts_helper', 'U') is not null
 begin

@@ -4,7 +4,7 @@ order: 3
 description: Update contact types for attorneys
 ---*/
 
-use [VanceLawFirm_SA]
+use [SA]
 go
 
 alter table [sma_TRN_Defendants] disable trigger all
