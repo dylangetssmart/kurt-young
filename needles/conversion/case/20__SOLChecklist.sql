@@ -10,7 +10,11 @@ replace:
 ##########################################################################################################################
 */
 
+<<<<<<< HEAD
 use [KurtYoung_SA]
+=======
+use [SA]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 GO
 /*
 alter table [sma_TRN_SOLs] disable trigger all
@@ -98,7 +102,11 @@ alter table [sma_TRN_SOLs] enable trigger all
 /*
 ---------------------
 select count(*)
+<<<<<<< HEAD
   from [KurtYoung_SA].[dbo].[sma_TRN_Defendants] D
+=======
+  from [SA].[dbo].[sma_TRN_Defendants] D
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
   inner join [sma_TRN_Cases] CAS on CAS.casnCaseID = D.defnCaseID and D.defbIsPrimary=1
   inner join [sma_MST_SOLDetails] S on S.sldnCaseTypeID=CAS.casnOrgCaseTypeID and S.sldnStateID=CAS.casnStateID and S.sldnDefRole=D.defnSubRole
   inner join [KurtYoung_Needles].[dbo].[case_checklist] CKL on CKL.case_id=CAS.cassCaseNumber

@@ -4,7 +4,11 @@ order:
 description: Update contact types for attorneys
 ---*/
 
+<<<<<<< HEAD
 use [KurtYoung_SA]
+=======
+use [SA]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 go
 
 
@@ -159,7 +163,11 @@ select
 	(
 		select
 			plnnPlaintiffID
+<<<<<<< HEAD
 		from [KurtYoung_SA].[dbo].[sma_TRN_Plaintiff]
+=======
+		from [SA].[dbo].[sma_TRN_Plaintiff]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 		where plnnCaseID = CAS.casnCaseID
 			and plnbIsPrimary = 1
 	)		   as plnnPlaintiffID

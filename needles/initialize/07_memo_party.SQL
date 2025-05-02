@@ -15,8 +15,13 @@ notes:
 #########################################################################################
 */
 
+<<<<<<< HEAD
 use KurtYoung_Needles
 go
+=======
+USE [Needles]
+GO
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 
 IF EXISTS (select * from sys.objects where name='party_Indexed' and type='U')
 BEGIN

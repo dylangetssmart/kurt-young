@@ -10,7 +10,11 @@ replace:
 ##########################################################################################################################
 */
 
+<<<<<<< HEAD
 use [KurtYoung_SA]
+=======
+use [SA]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 go
 
 set quoted_identifier on;
@@ -348,9 +352,16 @@ insert into [sma_trn_AppointmentStaff]
 
 /*
 ----(3)-----
+<<<<<<< HEAD
 insert into [KurtYoung_SA].[dbo].[sma_trn_AppointmentStaff] ( [AppointmentId] ,[StaffContactId] ) 
 select APP.AppointmentID, MAP.Party_Contact
 from [KurtYoung_SA].[dbo].[sma_TRN_CalendarAppointments] APP
 inner join [KurtYoung_Needles].[dbo].[calendar] CAL on APP.saga='Case-related:'+convert(varchar,CAL.calendar_id)
+=======
+insert into [SA].[dbo].[sma_trn_AppointmentStaff] ( [AppointmentId] ,[StaffContactId] ) 
+select APP.AppointmentID, MAP.Party_Contact
+from [SA].[dbo].[sma_TRN_CalendarAppointments] APP
+inner join [VanceLawFirm_Needles].[dbo].[calendar] CAL on APP.saga='Case-related:'+convert(varchar,CAL.calendar_id)
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 inner join CalendarJudgeStaffCourt MAP on MAP.CalendarId=CAL.calendar_id
 */

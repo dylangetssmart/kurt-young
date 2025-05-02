@@ -5,7 +5,11 @@ description: Create office record
 data-source:
 ---*/
 
+<<<<<<< HEAD
 USE [KurtYoung_SA]
+=======
+USE [SA]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 GO
 
 ALTER TABLE sma_trn_Casevalue DISABLE TRIGGER ALL

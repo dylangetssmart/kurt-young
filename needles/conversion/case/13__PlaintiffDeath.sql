@@ -18,7 +18,11 @@ notes:
 */
 
 
+<<<<<<< HEAD
 USE [KurtYoung_SA]
+=======
+USE [SA]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 GO
 /*
 delete from [sma_TRN_PlaintiffDeath] 

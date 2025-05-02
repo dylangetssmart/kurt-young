@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ######################################################################################
 description: Outputs fields from [user_case_intake_matter]
 
@@ -16,6 +17,9 @@ notes:
 */
 
 USE [KurtYoung_Needles]
+=======
+USE [Needles]
+>>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 GO
 
 --drop table CustomFieldUsage_intake
