@@ -4,11 +4,7 @@ order:
 description: Update contact types for attorneys
 ---*/
 
-<<<<<<< HEAD
 use [KurtYoung_SA]
-=======
-use [SA]
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 go
 
 
