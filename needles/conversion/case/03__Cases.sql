@@ -4,7 +4,7 @@ order: 4
 description: Update contact types for attorneys
 ---*/
 
-use [VanceLawFirm_SA]
+use [KurtYoung_SA]
 go
 
 alter table [sma_TRN_Cases] disable trigger all
@@ -202,8 +202,8 @@ insert into [sma_TRN_Cases]
 		'needles'	   as [source_db],
 		null		   as [source_ref]
 	--select *
-	from [VanceLawFirm_Needles].[dbo].[cases_Indexed] c
-	--left join [VanceLawFirm_Needles].[dbo].[user_case_data] u
+	from [KurtYoung_Needles].[dbo].[cases_Indexed] c
+	--left join [KurtYoung_Needles].[dbo].[user_case_data] u
 	--	on u.casenum = c.casenum
 	join caseTypeMixture mix
 		on mix.matcode = c.matcode

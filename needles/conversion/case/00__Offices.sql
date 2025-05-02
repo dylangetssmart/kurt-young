@@ -4,7 +4,7 @@ order:
 description: Update contact types for attorneys
 ---*/
 
-use [VanceLawFirm_SA]
+use [KurtYoung_SA]
 go
 ------------------------------------------------------------------------------------------------------
 -- [0.0] Temporary table to store variable values
@@ -36,7 +36,7 @@ values (
 'Virginia',
 '4192447885',
 'Needles',
-'SkolroodCaseType'
+'KurtYoungCaseType'
 );
 end
 

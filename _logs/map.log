@@ -1,0 +1,14 @@
+2025-05-02 11:20:00,436 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_counsel_data.sql
+2025-05-02 11:20:00,442 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_insurance_data.sql
+2025-05-02 11:20:00,462 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab10_data.sql
+2025-05-02 11:20:00,519 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab9_data.sql
+2025-05-02 11:20:00,532 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_value_data.sql
+2025-05-02 11:20:01,030 - INFO - mapping.py - save_to_excel - 56 - Excel file saved successfully to: D:\kurt-young\kurt-young Data Mapping.xlsx
+2025-05-02 11:20:01,035 - INFO - mapping.py - main - 123 - Saved results to D:\kurt-young\kurt-young Data Mapping.xlsx
+2025-05-02 11:50:36,332 - WARNING - map.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_counsel_data.sql
+2025-05-02 11:50:36,338 - WARNING - map.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_insurance_data.sql
+2025-05-02 11:50:36,350 - WARNING - map.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab10_data.sql
+2025-05-02 11:50:36,425 - WARNING - map.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab9_data.sql
+2025-05-02 11:50:36,442 - WARNING - map.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_value_data.sql
+2025-05-02 11:50:36,912 - INFO - map.py - save_to_excel - 56 - Excel file saved successfully to: D:\kurt-young\kurt-young Data Mapping.xlsx
+2025-05-02 11:50:36,914 - INFO - map.py - main - 123 - Saved results to D:\kurt-young\kurt-young Data Mapping.xlsx

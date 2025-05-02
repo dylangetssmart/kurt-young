@@ -15,6 +15,9 @@ notes:
 #########################################################################################
 */
 
+use KurtYoung_Needles
+go
+
 IF EXISTS (select * from sys.objects where name='checklist_dir_indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[checklist_dir_indexed]

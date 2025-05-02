@@ -1,119 +1,78 @@
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 01__IndvContacts__01__load__names.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 01__IndvContacts__02__load__police.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 01__IndvContacts__03__load__insurance.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 01__IndvContacts__04__load__staff.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 01__IndvContacts__10__load__comments.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 02__OrgContacts__00__fallback.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 02__OrgContacts__01__load__names.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 03__Users__01__load.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 04__Address__01__load__IndvContacts.sql
-2025-04-29 14:28:39,567 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 04__Address__02__load__OrgContacts.sql
-2025-04-29 14:28:39,581 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 04__Address__03__appendix.sql
-2025-04-29 14:28:39,581 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 05__ContactNumbers__00__utility.sql
-2025-04-29 14:28:39,582 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 05__ContactNumbers__01__load__IndvContacts.sql
-2025-04-29 14:28:39,583 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 05__ContactNumbers__02__load__OrgContacts.sql
-2025-04-29 14:28:39,583 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 06__EmailWebsite__01__load__IndvContacts.sql
-2025-04-29 14:28:39,584 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 06__EmailWebsite__02__load__OrgContacts.sql
-2025-04-29 14:28:39,585 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 90__Uniqueness.sql
-2025-04-29 14:28:39,586 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 91__AllContactInfo.sql
-2025-04-29 14:28:39,587 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 92__IndvOrgContacts_Indexed.sql
-2025-04-29 14:28:39,588 - WARNING - run.py - get_scripts_with_metadata - 44 - No metadata found for file: 93__Notes__load__contacts.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 01__IndvContacts__01__load__names.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 01__IndvContacts__02__load__police.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 01__IndvContacts__03__load__insurance.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 01__IndvContacts__04__load__staff.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 01__IndvContacts__10__load__comments.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 02__OrgContacts__00__fallback.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 02__OrgContacts__01__load__names.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 03__Users__01__load.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 04__Address__01__load__IndvContacts.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 04__Address__02__load__OrgContacts.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 04__Address__03__appendix.sql
-2025-04-29 14:32:23,928 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 05__ContactNumbers__00__utility.sql
-2025-04-29 14:32:23,934 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 05__ContactNumbers__01__load__IndvContacts.sql
-2025-04-29 14:32:23,934 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 05__ContactNumbers__02__load__OrgContacts.sql
-2025-04-29 14:32:23,935 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 06__EmailWebsite__01__load__IndvContacts.sql
-2025-04-29 14:32:23,936 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 06__EmailWebsite__02__load__OrgContacts.sql
-2025-04-29 14:32:23,936 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 90__Uniqueness.sql
-2025-04-29 14:32:23,937 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 91__AllContactInfo.sql
-2025-04-29 14:32:23,937 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 92__IndvOrgContacts_Indexed.sql
-2025-04-29 14:32:23,937 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 93__Notes__load__contacts.sql
-2025-04-29 14:39:54,220 - WARNING - run.py - get_scripts_with_metadata - 45 - No metadata found for file: 05__ContactNumbers__01__load__IndvContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - run - 121 - Run started with options: {'server': 'test', 'database': 'test', 'input': 'C:\\LocalConv\\conversion-boilerplate\\needles\\conversion\\1_contact'}
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__00__fallback.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__01__load__names.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__02__load__police.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__03__load__insurance.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__04__load__staff.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__10__load__comments.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\02__OrgContacts__00__fallback.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\02__OrgContacts__01__load__names.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\03__Users__01__load.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__01__load__IndvContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__02__load__OrgContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__03__appendix.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__00__utility.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__01__load__IndvContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__02__load__OrgContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\06__EmailWebsite__01__load__IndvContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\06__EmailWebsite__02__load__OrgContacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\90__Uniqueness.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\91__AllContactInfo.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\92__IndvOrgContacts_Indexed.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\93__Notes__load__contacts.sql
-2025-04-29 14:40:43,595 - DEBUG - run.py - get_scripts_with_metadata - 48 - Scripts with metadata: [{'filename': '01__IndvContacts__00__fallback.sql', 'sequence': 1}, {'filename': '01__IndvContacts__01__load__names.sql', 'sequence': 2}, {'filename': '01__IndvContacts__02__load__police.sql', 'sequence': 3}, {'filename': '01__IndvContacts__03__load__insurance.sql', 'sequence': 4}, {'filename': '01__IndvContacts__04__load__staff.sql', 'sequence': 5}, {'filename': '01__IndvContacts__10__load__comments.sql', 'sequence': 6}, {'filename': '02__OrgContacts__00__fallback.sql', 'sequence': 7}, {'filename': '02__OrgContacts__01__load__names.sql', 'sequence': 8}, {'filename': '03__Users__01__load.sql', 'sequence': 9}, {'filename': '04__Address__01__load__IndvContacts.sql', 'sequence': 9}, {'filename': '04__Address__02__load__OrgContacts.sql', 'sequence': 10}, {'filename': '04__Address__03__appendix.sql', 'sequence': 11}, {'filename': '05__ContactNumbers__00__utility.sql', 'sequence': 12}, {'filename': '05__ContactNumbers__01__load__IndvContacts.sql', 'sequence': 13}, {'filename': '05__ContactNumbers__02__load__OrgContacts.sql', 'sequence': 14}, {'filename': '06__EmailWebsite__01__load__IndvContacts.sql', 'sequence': 15}, {'filename': '06__EmailWebsite__02__load__OrgContacts.sql', 'sequence': 16}, {'filename': '90__Uniqueness.sql', 'sequence': 90}, {'filename': '91__AllContactInfo.sql', 'sequence': 91}, {'filename': '92__IndvOrgContacts_Indexed.sql', 'sequence': 92}, {'filename': '93__Notes__load__contacts.sql', 'sequence': 93}]
-2025-04-29 14:40:43,595 - DEBUG - run.py - filter_scripts - 60 - Filtered scripts: 21 out of 21 (dev=False, vanilla=False)
-2025-04-29 14:40:44,885 - DEBUG - run.py - run - 142 - Execution skipped for C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact.
-2025-04-29 14:41:17,216 - DEBUG - run.py - run - 121 - Run started with options: {'server': 'test', 'database': 'test', 'input': 'C:\\LocalConv\\conversion-boilerplate\\needles\\conversion\\1_contact'}
-2025-04-29 14:41:17,216 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__00__fallback.sql
-2025-04-29 14:41:17,217 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__01__load__names.sql
-2025-04-29 14:41:17,217 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__02__load__police.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__03__load__insurance.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__04__load__staff.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\01__IndvContacts__10__load__comments.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\02__OrgContacts__00__fallback.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\02__OrgContacts__01__load__names.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\03__Users__01__load.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__01__load__IndvContacts.sql
-2025-04-29 14:41:17,218 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__02__load__OrgContacts.sql
-2025-04-29 14:41:17,222 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\04__Address__03__appendix.sql
-2025-04-29 14:41:17,222 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__00__utility.sql
-2025-04-29 14:41:17,223 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__01__load__IndvContacts.sql
-2025-04-29 14:41:17,223 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\05__ContactNumbers__02__load__OrgContacts.sql
-2025-04-29 14:41:17,224 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\06__EmailWebsite__01__load__IndvContacts.sql
-2025-04-29 14:41:17,224 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\06__EmailWebsite__02__load__OrgContacts.sql
-2025-04-29 14:41:17,225 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\90__Uniqueness.sql
-2025-04-29 14:41:17,225 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\91__AllContactInfo.sql
-2025-04-29 14:41:17,225 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\92__IndvOrgContacts_Indexed.sql
-2025-04-29 14:41:17,226 - DEBUG - run.py - get_scripts_with_metadata - 39 - Reading metadata from C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact\93__Notes__load__contacts.sql
-2025-04-29 14:41:17,226 - DEBUG - run.py - get_scripts_with_metadata - 48 - Scripts with metadata: [{'filename': '01__IndvContacts__00__fallback.sql', 'sequence': 1}, {'filename': '01__IndvContacts__01__load__names.sql', 'sequence': 2}, {'filename': '01__IndvContacts__02__load__police.sql', 'sequence': 3}, {'filename': '01__IndvContacts__03__load__insurance.sql', 'sequence': 4}, {'filename': '01__IndvContacts__04__load__staff.sql', 'sequence': 5}, {'filename': '01__IndvContacts__10__load__comments.sql', 'sequence': 6}, {'filename': '02__OrgContacts__00__fallback.sql', 'sequence': 7}, {'filename': '02__OrgContacts__01__load__names.sql', 'sequence': 8}, {'filename': '03__Users__01__load.sql', 'sequence': 9}, {'filename': '04__Address__01__load__IndvContacts.sql', 'sequence': 9}, {'filename': '04__Address__02__load__OrgContacts.sql', 'sequence': 10}, {'filename': '04__Address__03__appendix.sql', 'sequence': 11}, {'filename': '05__ContactNumbers__00__utility.sql', 'sequence': 12}, {'filename': '05__ContactNumbers__01__load__IndvContacts.sql', 'sequence': 13}, {'filename': '05__ContactNumbers__02__load__OrgContacts.sql', 'sequence': 14}, {'filename': '06__EmailWebsite__01__load__IndvContacts.sql', 'sequence': 15}, {'filename': '06__EmailWebsite__02__load__OrgContacts.sql', 'sequence': 16}, {'filename': '90__Uniqueness.sql', 'sequence': 90}, {'filename': '91__AllContactInfo.sql', 'sequence': 91}, {'filename': '92__IndvOrgContacts_Indexed.sql', 'sequence': 92}, {'filename': '93__Notes__load__contacts.sql', 'sequence': 93}]
-2025-04-29 14:41:17,226 - DEBUG - run.py - filter_scripts - 60 - Filtered scripts: 21 out of 21 (dev=False, vanilla=False)
-2025-04-29 14:41:48,466 - DEBUG - run.py - run - 142 - Execution skipped for C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact.
-2025-04-29 14:45:05,562 - DEBUG - run.py - run - 121 - Run started with options: {'server': 'test', 'database': 'test', 'input': 'C:\\LocalConv\\conversion-boilerplate\\needles\\conversion\\1_contact'}
-2025-04-29 14:45:05,584 - DEBUG - run.py - filter_scripts - 60 - Filtered scripts: 21 out of 21 (dev=False, vanilla=False)
-2025-04-29 14:45:22,314 - DEBUG - run.py - run - 142 - Execution skipped for C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact.
-2025-04-29 14:45:23,580 - DEBUG - run.py - run - 121 - Run started with options: {'server': 'test', 'database': 'test', 'input': 'C:\\LocalConv\\conversion-boilerplate\\needles\\conversion\\1_contact'}
-2025-04-29 14:45:23,580 - DEBUG - run.py - filter_scripts - 60 - Filtered scripts: 21 out of 21 (dev=False, vanilla=False)
-2025-04-29 14:45:23,580 - DEBUG - run.py - run - 141 - Scripts to be executed in order:
-- 01__IndvContacts__00__fallback.sql
-- 01__IndvContacts__01__load__names.sql
-- 01__IndvContacts__02__load__police.sql
-- 01__IndvContacts__03__load__insurance.sql
-- 01__IndvContacts__04__load__staff.sql
-- 01__IndvContacts__10__load__comments.sql
-- 02__OrgContacts__00__fallback.sql
-- 02__OrgContacts__01__load__names.sql
-- 03__Users__01__load.sql
-- 04__Address__01__load__IndvContacts.sql
-- 04__Address__02__load__OrgContacts.sql
-- 04__Address__03__appendix.sql
-- 05__ContactNumbers__00__utility.sql
-- 05__ContactNumbers__01__load__IndvContacts.sql
-- 05__ContactNumbers__02__load__OrgContacts.sql
-- 06__EmailWebsite__01__load__IndvContacts.sql
-- 06__EmailWebsite__02__load__OrgContacts.sql
-- 90__Uniqueness.sql
-- 91__AllContactInfo.sql
-- 92__IndvOrgContacts_Indexed.sql
-- 93__Notes__load__contacts.sql
-2025-04-29 14:46:25,854 - DEBUG - run.py - run - 144 - Execution skipped for C:\LocalConv\conversion-boilerplate\needles\conversion\1_contact.
+2025-05-02 10:58:55,549 - ERROR - mapping.py - execute_query - 42 - Error executing query: (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'Needles..cases'. (208) (SQLExecDirectW)")
+[SQL: SELECT DISTINCT
+	c.staff_1
+   ,c.staff_2
+   ,c.staff_3
+   ,c.staff_4
+   ,c.staff_5
+   ,c.staff_6
+   ,c.staff_7
+   ,c.staff_8
+   ,c.staff_9
+   ,c.staff_10
+FROM [Needles]..cases c]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-05-02 10:58:55,553 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: Case Staff.sql
+2025-05-02 10:58:55,556 - ERROR - mapping.py - execute_query - 42 - Error executing query: (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'Needles..matter'. (208) (SQLExecDirectW)")
+[SQL: SELECT
+    m.matcode AS case_type,
+    m.header,
+    m.description,
+    m.active,
+    c.[count] as case_count,
+    CASE WHEN show_value_tab = 'Y' THEN m.value_tab_title ELSE 'N/A' END AS Value_Tab,
+    CASE WHEN show_insurance_tab = 'Y' THEN m.insurance_tab_title ELSE 'N/A' END AS Insurance_Tab,
+    CASE WHEN show_negotiation_tab = 'Y' THEN m.negotiation_tab_title ELSE 'N/A' END AS Negotiation_Tab,
+    CASE WHEN show_counsel_tab = 'Y' THEN m.counsel_tab_title ELSE 'N/A' END AS Counsel_Tab,
+    CASE WHEN show_police_tab = 'Y' THEN m.police_tab_title ELSE 'N/A' END AS Police_Tab,
+    CASE WHEN show_document_tab = 'Y' THEN m.documents_tab_title ELSE 'N/A' END AS Documents_Tab,
+    CASE WHEN show_status_tab = 'Y' THEN m.status_title ELSE 'N/A' END AS Status_Tab,
+    CASE WHEN show_crm_tab = 'Y' THEN m.crm_title ELSE 'N/A' END AS CRM_Tab,
+    CASE WHEN show_time_tab = 'Y' then m.time_tab_title ELSE 'N/A' END AS Time_Tab,
+	CASE WHEN show_user_tab = 'Y' THEN tab_title ELSE 'N/A' END AS user_tab_1,
+    CASE WHEN show_user_tab2 = 'Y' THEN tab2_title ELSE 'N/A' END AS user_tab_2,
+    CASE WHEN show_user_tab3 = 'Y' THEN tab3_title  ELSE 'N/A' END AS user_tab_3,
+    CASE WHEN show_user_tab4 = 'Y' THEN tab4_title  ELSE 'N/A' END AS user_tab_4,
+    CASE WHEN show_user_tab5 = 'Y' THEN tab5_title  ELSE 'N/A' END AS user_tab_5,
+    CASE WHEN show_user_tab6 = 'Y' THEN tab6_title  ELSE 'N/A' END AS user_tab_6,
+    CASE WHEN show_user_tab7 = 'Y' THEN tab7_title  ELSE 'N/A' END AS user_tab_7,
+    CASE WHEN show_user_tab8 = 'Y' THEN tab8_title  ELSE 'N/A' END AS user_tab_8,
+    CASE WHEN show_user_tab9 = 'Y' THEN tab9_title  ELSE 'N/A' END AS user_tab_9,
+    CASE WHEN show_user_tab10 = 'Y' THEN tab10_title else 'N/A' END AS user_tab_10
+FROM [Needles]..matter m
+INNER JOIN (
+    SELECT
+        ci.matcode,
+        COUNT(*) AS [count]
+    FROM [Needles]..cases_indexed ci
+    GROUP BY ci.matcode
+) c
+    ON m.matcode = c.matcode
+ORDER BY m.matcode;]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-05-02 10:58:55,557 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: Case Types.sql
+2025-05-02 10:58:55,569 - ERROR - mapping.py - execute_query - 42 - Error executing query: (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'Needles..party_Indexed'. (208) (SQLExecDirectW)")
+[SQL: SELECT
+	[role]
+   ,COUNT(*) AS Count
+FROM [Needles]..party_Indexed
+WHERE ISNULL([role], '') <> ''
+GROUP BY [role]]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-05-02 10:58:55,569 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: Party Roles.sql
+2025-05-02 10:58:55,596 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_counsel_data.sql
+2025-05-02 10:58:55,602 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_insurance_data.sql
+2025-05-02 10:58:55,618 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab10_data.sql
+2025-05-02 10:58:55,703 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_tab9_data.sql
+2025-05-02 10:58:55,714 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: user_value_data.sql
+2025-05-02 10:58:55,724 - ERROR - mapping.py - execute_query - 42 - Error executing query: (pyodbc.ProgrammingError) ('42S02', "[42S02] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Invalid object name 'Needles..value_code'. (208) (SQLExecDirectW)")
+[SQL: SELECT
+	code,
+	description,
+	c_d,
+	dtf
+FROM [Needles]..value_code]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-05-02 10:58:55,725 - WARNING - mapping.py - process_sql_files - 80 - Empty DataFrame for SQL file: Value Codes.sql
+2025-05-02 10:58:56,649 - INFO - mapping.py - save_to_excel - 56 - Excel file saved successfully to: D:\kurt-young\kurt-young Data Mapping.xlsx
+2025-05-02 10:58:56,650 - INFO - mapping.py - main - 123 - Saved results to D:\kurt-young\kurt-young Data Mapping.xlsx

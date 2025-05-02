@@ -15,12 +15,14 @@ notes:
 #########################################################################################
 */
 
+use KurtYoung_Needles
+go
+
 IF EXISTS (select * from sys.objects where name='value_Indexed' and type='U')
 BEGIN
 	DROP TABLE [dbo].[value_Indexed]
 END
 GO
-
 
 CREATE TABLE [dbo].[value_Indexed](
     TableIndex [int] IDENTITY(1,1) NOT NULL,
