@@ -36,12 +36,7 @@ begin
 			code
 		)
 		values
-		('CASE CLOSE'),
-		('CASE OPEN'),
-		('COPIES'),
-		('DTF'),
-		('MISC'),
-		('POSTAGE');
+		('DTF');
 
 end
 

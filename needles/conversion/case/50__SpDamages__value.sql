@@ -22,9 +22,8 @@ begin
 			code
 		)
 		values
-		('LOSTWAGE'),
-		('MILEAGE'),
-		('PROPDAM');
+		('MISC SPCLS'),
+('PROPERTY');
 end
 
 --- [value_tab_spDamages_Helper]

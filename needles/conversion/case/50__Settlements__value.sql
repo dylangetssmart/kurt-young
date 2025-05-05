@@ -32,8 +32,7 @@ begin
 			code
 		)
 		values
-		('MP'),
-		('PTC'),
+		('FEE'),
 		('SET');
 end
 
@@ -198,13 +197,8 @@ go
 Create missing Settlement Types from value_code.description
 */
 
-<<<<<<< HEAD
 --SELECT * FROM [KurtYoung_SA]..sma_MST_SettlementType smst
 --SELECT * FROM [KurtYoung_Needles]..value_code vc
-=======
---SELECT * FROM [SA]..sma_MST_SettlementType smst
---SELECT * FROM [VanceLawFirm_Needles]..value_code vc
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
 
 insert into [sma_MST_SettlementType]
 	(
@@ -264,25 +258,19 @@ insert into [sma_TRN_Settlements]
 	select
 		map.casnCaseID  as stlnCaseID,
 		case
-			when v.code in ('SETTLEMENT', 'DEBTPAY', 'MEDPAY')
+			when v.code in ('SET')
 				then v.total_value
 		end				as stlnSetAmt,					-- Gross Settlement
 		null			as stlnNet,
-		case
-			when v.code in ('CLIENTADV')
-				then v.total_value
-		end				as stlnNetToClientAmt,			-- Net to client
+		null	as stlnNetToClientAmt,			-- Net to client
 		map.PlaintiffID as stlnPlaintiffID,
 		null			as stlnStaffID,					-- Settled By
 		null			as stlnLessDisbursement,
 		case
-			when v.code in ('ATTYFEE')
+			when v.code in ('FEE')
 				then v.total_value
 		end				as stlngrossattorneyfee,		-- Gross Fee
-		case
-			when v.code in ('REFERRAL')
-				then v.total_value
-		end				as stlnForwarder,				-- Referrer
+		null			as stlnForwarder,				-- Referrer
 		null			as stlnOther,
 		null			as InterestOnDisbursement,
 		ISNULL('memo:' + NULLIF(v.memo, '') + CHAR(13), '')
