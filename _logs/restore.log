@@ -1,0 +1,55 @@
+2025-05-12 10:34:19,520 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 10:38:38,997 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 10:38:39,003 - DEBUG - restore.py - find_backup_file - 27 - Searching for backup files in: D:\kurt-young\_backups
+2025-05-12 10:38:39,004 - DEBUG - restore.py - find_backup_file - 34 - Matching files: ['KurtYoung_SA_imp_2025-05-12.bak']
+2025-05-12 10:38:39,004 - DEBUG - restore.py - find_backup_file - 39 - Filtered files: []
+2025-05-12 10:38:39,004 - DEBUG - restore.py - find_backup_file - 47 - No matching backup file found for database: KurtYoung_SA with message: None
+2025-05-12 10:40:52,581 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 10:41:08,879 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 10:42:54,297 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:41:29,749 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:44:57,805 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:45:46,134 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:47:30,513 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:47:47,361 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:48:42,788 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:49:57,686 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:51:44,344 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:51:44,347 - DEBUG - restore.py - find_backup_file - 27 - Searching for backup files in: D:\kurt-young\_backups
+2025-05-12 11:51:44,347 - DEBUG - restore.py - find_backup_file - 34 - Matching files: ['KurtYoung_SA_imp_2025-05-12.bak']
+2025-05-12 11:51:44,347 - DEBUG - restore.py - find_backup_file - 39 - Filtered files: []
+2025-05-12 11:51:44,347 - DEBUG - restore.py - find_backup_file - 47 - No matching backup file found for database: KurtYoung_SA with message: None
+2025-05-12 11:52:33,381 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:52:53,649 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 11:53:03,451 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:03:05,593 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:03:05,593 - DEBUG - restore.py - find_backup_file - 27 - Searching for backup files in: D:\kurt-young\_backups
+2025-05-12 16:03:05,593 - DEBUG - restore.py - find_backup_file - 34 - Matching files: ['KurtYoung_SA_contact_2025-05-12.bak', 'KurtYoung_SA_imp_2025-05-12.bak']
+2025-05-12 16:03:05,593 - DEBUG - restore.py - find_backup_file - 39 - Filtered files: []
+2025-05-12 16:03:05,593 - DEBUG - restore.py - find_backup_file - 47 - No matching backup file found for database: KurtYoung_SA with message: None
+2025-05-12 16:06:14,511 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:06:26,303 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:09:32,835 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:20:21,603 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:20:21,615 - DEBUG - restore.py - find_backup_file - 27 - Searching for backup files in: D:\kurt-young\_backups
+2025-05-12 16:20:21,615 - DEBUG - restore.py - find_backup_file - 34 - Matching files: ['KurtYoung_SA_contact_2025-05-12.bak', 'KurtYoung_SA_imp_2025-05-12.bak']
+2025-05-12 16:20:21,615 - DEBUG - restore.py - find_backup_file - 39 - Filtered files: []
+2025-05-12 16:20:21,615 - DEBUG - restore.py - find_backup_file - 47 - No matching backup file found for database: KurtYoung_SA with message: None
+2025-05-12 16:21:40,300 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:32:32,975 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:32:55,759 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:33:30,073 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:34:15,923 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:34:15,923 - DEBUG - restore.py - find_backup_file - 27 - Searching for backup files in: D:\kurt-young\_backups
+2025-05-12 16:34:15,923 - DEBUG - restore.py - find_backup_file - 34 - Matching files: ['KurtYoung_SA_case_2025-05-12.bak', 'KurtYoung_SA_contact_2025-05-12.bak', 'KurtYoung_SA_imp_2025-05-12.bak']
+2025-05-12 16:34:15,923 - DEBUG - restore.py - find_backup_file - 39 - Filtered files: []
+2025-05-12 16:34:15,923 - DEBUG - restore.py - find_backup_file - 47 - No matching backup file found for database: KurtYoung_SA with message: None
+2025-05-12 16:35:23,070 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:35:34,398 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:36:54,401 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:38:05,407 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:38:24,696 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:38:37,611 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:40:24,707 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-12 16:40:55,981 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}
+2025-05-13 10:57:41,604 - DEBUG - restore.py - add_restore_parser - 152 - Loaded environment config: {'SERVER': 'DylanS\\MSSQLSERVER2022', 'TARGET_DB': 'KurtYoung_SA'}

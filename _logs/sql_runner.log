@@ -1,0 +1,1614 @@
+2025-05-12 11:45:00,727 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Address.sql
+2025-05-12 11:45:00,727 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Address.sql
+2025-05-12 11:45:00,727 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:00,733 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:01,294 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Address.sql in 0.57s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:01,294 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Cases.sql
+2025-05-12 11:45:01,304 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Cases.sql
+2025-05-12 11:45:01,304 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:01,304 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:01,424 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Cases.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:01,424 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__ContactNumbers.sql
+2025-05-12 11:45:01,424 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__ContactNumbers.sql
+2025-05-12 11:45:01,424 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:01,424 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:01,554 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__ContactNumbers.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:01,554 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Courts.sql
+2025-05-12 11:45:01,554 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Courts.sql
+2025-05-12 11:45:01,554 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:01,554 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:01,766 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Courts.sql in 0.21s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:01,766 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Defendants.sql
+2025-05-12 11:45:01,766 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Defendants.sql
+2025-05-12 11:45:01,766 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:01,766 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:01,893 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Defendants.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:01,894 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Disbursements.sql
+2025-05-12 11:45:01,894 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Disbursements.sql
+2025-05-12 11:45:01,894 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:01,894 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,015 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Disbursements.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,015 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__EmailWebsite.sql
+2025-05-12 11:45:02,015 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__EmailWebsite.sql
+2025-05-12 11:45:02,015 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,015 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,174 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__EmailWebsite.sql in 0.16s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,174 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__IndvContacts.sql
+2025-05-12 11:45:02,174 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__IndvContacts.sql
+2025-05-12 11:45:02,174 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,174 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,366 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__IndvContacts.sql in 0.19s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,366 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__InsuranceCoverage.sql
+2025-05-12 11:45:02,366 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__InsuranceCoverage.sql
+2025-05-12 11:45:02,366 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,366 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,505 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__InsuranceCoverage.sql in 0.14s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,505 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__LawFirms.sql
+2025-05-12 11:45:02,505 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__LawFirms.sql
+2025-05-12 11:45:02,505 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,505 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,653 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__LawFirms.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,653 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__LienTracking.sql
+2025-05-12 11:45:02,653 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__LienTracking.sql
+2025-05-12 11:45:02,653 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,653 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:02,825 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__LienTracking.sql in 0.17s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:02,825 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__MedicalProviders.sql
+2025-05-12 11:45:02,825 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__MedicalProviders.sql
+2025-05-12 11:45:02,825 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:02,825 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,024 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__MedicalProviders.sql in 0.20s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,024 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Notes.sql
+2025-05-12 11:45:03,024 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Notes.sql
+2025-05-12 11:45:03,024 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,024 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,174 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Notes.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,174 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__OrgContacts.sql
+2025-05-12 11:45:03,174 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__OrgContacts.sql
+2025-05-12 11:45:03,174 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,174 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,304 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__OrgContacts.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,304 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__PlaintiffAttorney.sql
+2025-05-12 11:45:03,304 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__PlaintiffAttorney.sql
+2025-05-12 11:45:03,304 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,304 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,424 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__PlaintiffAttorney.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,424 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Plaintiffs.sql
+2025-05-12 11:45:03,424 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Plaintiffs.sql
+2025-05-12 11:45:03,424 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,424 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,568 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Plaintiffs.sql in 0.14s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,568 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Settlements.sql
+2025-05-12 11:45:03,568 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Settlements.sql
+2025-05-12 11:45:03,568 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,568 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,695 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Settlements.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,695 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__SpDamages.sql
+2025-05-12 11:45:03,695 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__SpDamages.sql
+2025-05-12 11:45:03,695 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,695 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,785 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__SpDamages.sql in 0.09s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,785 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Users.sql
+2025-05-12 11:45:03,785 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Users.sql
+2025-05-12 11:45:03,785 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,785 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,907 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Users.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,907 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__create_conversion_schema.sql
+2025-05-12 11:45:03,907 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__create_conversion_schema.sql
+2025-05-12 11:45:03,907 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,907 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:03,995 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__create_conversion_schema.sql in 0.09s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:03,995 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 01__imp_user_map__create.sql
+2025-05-12 11:45:03,995 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\01__imp_user_map__create.sql
+2025-05-12 11:45:03,995 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:03,995 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:04,114 - ERROR - sql_runner.py - sql_runner - 58 - FAIL: 01__imp_user_map__create.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+Msg 208, Level 16, State 1, Server DylanS\MSSQLSERVER2022, Line 83
+Invalid object name 'Needles..staff'.
+2025-05-12 11:45:47,284 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Address.sql
+2025-05-12 11:45:47,284 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Address.sql
+2025-05-12 11:45:47,284 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:47,284 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:47,405 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Address.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:47,405 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Cases.sql
+2025-05-12 11:45:47,405 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Cases.sql
+2025-05-12 11:45:47,405 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:47,405 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:47,924 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Cases.sql in 0.52s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:47,924 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__ContactNumbers.sql
+2025-05-12 11:45:47,924 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__ContactNumbers.sql
+2025-05-12 11:45:47,924 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:47,924 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,050 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__ContactNumbers.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,050 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Courts.sql
+2025-05-12 11:45:48,050 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Courts.sql
+2025-05-12 11:45:48,050 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,050 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,184 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Courts.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,184 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Defendants.sql
+2025-05-12 11:45:48,184 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Defendants.sql
+2025-05-12 11:45:48,184 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,184 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,337 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Defendants.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,339 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Disbursements.sql
+2025-05-12 11:45:48,339 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Disbursements.sql
+2025-05-12 11:45:48,339 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,339 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,464 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Disbursements.sql in 0.13s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,464 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__EmailWebsite.sql
+2025-05-12 11:45:48,464 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__EmailWebsite.sql
+2025-05-12 11:45:48,464 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,464 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,574 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__EmailWebsite.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,574 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__IndvContacts.sql
+2025-05-12 11:45:48,574 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__IndvContacts.sql
+2025-05-12 11:45:48,574 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,574 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,690 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__IndvContacts.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,690 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__InsuranceCoverage.sql
+2025-05-12 11:45:48,690 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__InsuranceCoverage.sql
+2025-05-12 11:45:48,690 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,690 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,795 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__InsuranceCoverage.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,795 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__LawFirms.sql
+2025-05-12 11:45:48,795 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__LawFirms.sql
+2025-05-12 11:45:48,795 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,795 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:48,945 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__LawFirms.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:48,945 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__LienTracking.sql
+2025-05-12 11:45:48,945 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__LienTracking.sql
+2025-05-12 11:45:48,945 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:48,945 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,095 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__LienTracking.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,095 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__MedicalProviders.sql
+2025-05-12 11:45:49,095 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__MedicalProviders.sql
+2025-05-12 11:45:49,095 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,095 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,208 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__MedicalProviders.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,208 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Notes.sql
+2025-05-12 11:45:49,208 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Notes.sql
+2025-05-12 11:45:49,208 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,208 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,313 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Notes.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,314 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__OrgContacts.sql
+2025-05-12 11:45:49,314 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__OrgContacts.sql
+2025-05-12 11:45:49,314 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,314 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,425 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__OrgContacts.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,425 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__PlaintiffAttorney.sql
+2025-05-12 11:45:49,425 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__PlaintiffAttorney.sql
+2025-05-12 11:45:49,425 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,425 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,594 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__PlaintiffAttorney.sql in 0.17s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,594 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Plaintiffs.sql
+2025-05-12 11:45:49,594 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Plaintiffs.sql
+2025-05-12 11:45:49,594 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,594 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,695 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Plaintiffs.sql in 0.10s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,695 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Settlements.sql
+2025-05-12 11:45:49,695 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Settlements.sql
+2025-05-12 11:45:49,695 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,695 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,784 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Settlements.sql in 0.09s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,784 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__SpDamages.sql
+2025-05-12 11:45:49,784 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__SpDamages.sql
+2025-05-12 11:45:49,784 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,784 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:49,905 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__SpDamages.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:49,905 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__Users.sql
+2025-05-12 11:45:49,905 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__Users.sql
+2025-05-12 11:45:49,905 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:49,905 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,044 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__Users.sql in 0.14s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:50,044 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 00__schema__create_conversion_schema.sql
+2025-05-12 11:45:50,044 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\00__schema__create_conversion_schema.sql
+2025-05-12 11:45:50,044 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,044 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,137 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 00__schema__create_conversion_schema.sql in 0.09s
+Changed database context to 'KurtYoung_SA'.
+2025-05-12 11:45:50,137 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 01__imp_user_map__create.sql
+2025-05-12 11:45:50,137 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\01__imp_user_map__create.sql
+2025-05-12 11:45:50,137 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,137 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,283 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 01__imp_user_map__create.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.
+
+(4 rows affected)
+
+(0 rows affected)
+2025-05-12 11:45:50,284 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: 02__update_implementation_users.sql
+2025-05-12 11:45:50,284 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\02__update_implementation_users.sql
+2025-05-12 11:45:50,284 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,284 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,444 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: 02__update_implementation_users.sql in 0.16s
+Changed database context to 'KurtYoung_SA'.
+
+(4 rows affected)
+
+(4 rows affected)
+
+(4 rows affected)
+2025-05-12 11:45:50,444 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: CaseTypeMixture__create.sql
+2025-05-12 11:45:50,444 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\CaseTypeMixture__create.sql
+2025-05-12 11:45:50,444 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,444 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,554 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: CaseTypeMixture__create.sql in 0.11s
+Changed database context to 'KurtYoung_SA'.
+
+(20 rows affected)
+2025-05-12 11:45:50,554 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: CaseValueMapping__create.sql
+2025-05-12 11:45:50,554 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\CaseValueMapping__create.sql
+2025-05-12 11:45:50,554 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,554 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:50,765 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: CaseValueMapping__create.sql in 0.21s
+Changed database context to 'KurtYoung_SA'.
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+2025-05-12 11:45:50,765 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: NeedlesUserFields__create.sql
+2025-05-12 11:45:50,765 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\NeedlesUserFields__create.sql
+2025-05-12 11:45:50,765 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:50,765 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:52,145 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: NeedlesUserFields__create.sql in 1.38s
+Changed database context to 'KurtYoung_SA'.
+
+(469 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(7 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(26 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(15 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(15 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(23 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(12 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(10 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(165 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(9 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(12 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(9 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(0 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(5 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(7 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(5 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(7 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(39 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(39 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(8 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(5 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(0 rows affected)
+
+(0 rows affected)
+
+(0 rows affected)
+
+(11 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(12 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(3 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(6 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(2 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(4 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+
+(1 rows affected)
+2025-05-12 11:45:52,145 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: PartyRoles__create.sql
+2025-05-12 11:45:52,145 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\PartyRoles__create.sql
+2025-05-12 11:45:52,145 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:52,145 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:52,264 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: PartyRoles__create.sql in 0.12s
+Changed database context to 'KurtYoung_SA'.
+
+(21 rows affected)
+2025-05-12 11:45:52,264 - DEBUG - sql_runner.py - sql_runner - 26 - Starting execution of script: create_functions.sql
+2025-05-12 11:45:52,264 - DEBUG - sql_runner.py - sql_runner - 27 - Script path: D:\kurt-young\needles\conversion\utility\create_functions.sql
+2025-05-12 11:45:52,264 - DEBUG - sql_runner.py - sql_runner - 28 - Server: DylanS\MSSQLSERVER2022, Database: KurtYoung_SA
+2025-05-12 11:45:52,264 - DEBUG - sql_runner.py - sql_runner - 39 - Using Windows authentication (Trusted Connection).
+2025-05-12 11:45:52,414 - DEBUG - sql_runner.py - sql_runner - 51 - PASS: create_functions.sql in 0.15s
+Changed database context to 'KurtYoung_SA'.

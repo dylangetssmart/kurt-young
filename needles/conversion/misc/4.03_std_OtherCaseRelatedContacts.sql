@@ -10,68 +10,70 @@ requires_mapping:
 #########################################################################################
 */
 
-USE [SA]
-GO
+use KurtYoung_SA
+go
 
-DECLARE @FileId int;
-DECLARE @addnContactID int;
-DECLARE @addnAddressID int;
-DECLARE @addnContactCtgID int;
-DECLARE @UTCCreationDateTime DateTime;
-DECLARE @label varchar(100);
- 
-DECLARE OtherContact_cursor CURSOR FOR 
-SELECT DISTINCT 
-    CAS.casnCaseID,
-    IOC.CID,
-    IOC.AID,
-    '',
-    IOC.CTG,
-    case
-	   when P.[role] = 'See Relationship' then P.[relationship]
-	   when P.[role] = 'Witness' then 'Witness ' + isnull(': ' + nullif(P.relationship,''),'')
-	   else null
-    end
-FROM [Needles].[dbo].[party_Indexed] P 
-JOIN [sma_TRN_Cases] CAS on CAS.cassCaseNumber=P.case_id
-JOIN IndvOrgContacts_Indexed IOC on IOC.SAGA = P.party_id
-WHERE P.role in
-(
-'See Relationship',
-'Witness'
-)
+declare @FileId INT;
+declare @addnContactID INT;
+declare @addnAddressID INT;
+declare @addnContactCtgID INT;
+declare @UTCCreationDateTime DATETIME;
+declare @label VARCHAR(100);
+
+declare OtherContact_cursor cursor for select distinct
+	CAS.casnCaseID,
+	IOC.CID,
+	IOC.AID,
+	'',
+	IOC.CTG,
+	case
+		when P.[role] = 'See Relationship'
+			then P.[relationship]
+		when P.[role] = 'Witness'
+			then 'Witness ' + ISNULL(': ' + NULLIF(P.relationship, ''), '')
+		else null
+	end
+from [KurtYoung_Needles].[dbo].[party_Indexed] P
+join [sma_TRN_Cases] CAS
+	on CAS.cassCaseNumber = P.case_id
+join IndvOrgContacts_Indexed IOC
+	on IOC.SAGA = P.party_id
+where P.role in
+	(
+	'See Relationship',
+	'Witness'
+	)
 
 
 
-OPEN OtherContact_cursor 
+open OtherContact_cursor
 
-FETCH NEXT FROM OtherContact_cursor 
-INTO @FileId,@addnContactID,@addnAddressID,@UTCCreationDateTime,@addnContactCtgID,@label
+fetch next from OtherContact_cursor
+into @FileId, @addnContactID, @addnAddressID, @UTCCreationDateTime, @addnContactCtgID, @label
 
-WHILE @@FETCH_STATUS = 0
-BEGIN
+while @@FETCH_STATUS = 0
+begin
 
-DECLARE @p1 VARCHAR(80);
+declare @p1 VARCHAR(80);
 
-EXEC [dbo].[sma_SP_Insert_OtherCaseRelatedContacts]
-@CaseID=@FileId,   
-@ContactID=@addnContactID,
-@ContactCtgID=@addnContactCtgID,
-@ContactAddressID=@addnAddressID,
-@ContactRoleID=@label,
-@ContactCreatedUserID=368,
-@ContactComment=null,
-@identity_column_value=@p1
+exec [dbo].[sma_SP_Insert_OtherCaseRelatedContacts] @CaseID				   = @FileId,
+													@ContactID			   = @addnContactID,
+													@ContactCtgID		   = @addnContactCtgID,
+													@ContactAddressID	   = @addnAddressID,
+													@ContactRoleID		   = @label,
+													@ContactCreatedUserID  = 368,
+													@ContactComment		   = null,
+													@identity_column_value = @p1
 
-PRINT @p1
+print @p1
 
-FETCH NEXT FROM OtherContact_cursor 
-INTO @FileId,@addnContactID,@addnAddressID,@UTCCreationDateTime,@addnContactCtgID,@label
+fetch next from OtherContact_cursor
+into @FileId, @addnContactID, @addnAddressID, @UTCCreationDateTime, @addnContactCtgID, @label
 
-END 
+end
 
-CLOSE OtherContact_cursor;
-DEALLOCATE OtherContact_cursor;
+close OtherContact_cursor;
+deallocate OtherContact_cursor;
 
-GO
+go
 

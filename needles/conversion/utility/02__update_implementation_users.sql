@@ -17,7 +17,7 @@ we need to update both the user and indvContact records with a reference to the 
 --on u.usrnContactID = indv.cinnContactID
 
 
-use [SA]
+use KurtYoung_SA
 go
 
 

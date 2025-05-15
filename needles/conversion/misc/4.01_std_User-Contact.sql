@@ -10,7 +10,7 @@ requires_mapping:
 #########################################################################################
 */
 
-USE [SA]
+USE KurtYoung_SA
 GO
 /*
 update sma_MST_IndvContacts set cinsComments = NULL
@@ -47,7 +47,7 @@ FROM
 (	SELECT
 		P.party_id as PartyID,    
 		P.Spouse as Spouse_Name
-	FROM [Needles].[dbo].[user_party_data] P
+	FROM [KurtYoung_Needles].[dbo].[user_party_data] P
 	WHERE isnull(P.Spouse,'')<>''
 ) A
 WHERE A.PartyID  = saga

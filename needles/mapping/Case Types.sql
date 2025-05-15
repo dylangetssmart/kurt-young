@@ -1,20 +1,10 @@
 SELECT
-<<<<<<< HEAD
-      m.matcode AS case_type,
-=======
     m.matcode AS case_type,
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
     m.header,
     m.description,
     m.active,
     c.[count] as case_count,
-<<<<<<< HEAD
-    m.case_tab_title,
-	m.party_tab_title,
-	CASE WHEN show_value_tab = 'Y' THEN m.value_tab_title ELSE 'N/A' END AS Value_Tab,
-=======
     CASE WHEN show_value_tab = 'Y' THEN m.value_tab_title ELSE 'N/A' END AS Value_Tab,
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
     CASE WHEN show_insurance_tab = 'Y' THEN m.insurance_tab_title ELSE 'N/A' END AS Insurance_Tab,
     CASE WHEN show_negotiation_tab = 'Y' THEN m.negotiation_tab_title ELSE 'N/A' END AS Negotiation_Tab,
     CASE WHEN show_counsel_tab = 'Y' THEN m.counsel_tab_title ELSE 'N/A' END AS Counsel_Tab,
@@ -23,19 +13,6 @@ SELECT
     CASE WHEN show_status_tab = 'Y' THEN m.status_title ELSE 'N/A' END AS Status_Tab,
     CASE WHEN show_crm_tab = 'Y' THEN m.crm_title ELSE 'N/A' END AS CRM_Tab,
     CASE WHEN show_time_tab = 'Y' then m.time_tab_title ELSE 'N/A' END AS Time_Tab,
-<<<<<<< HEAD
-	CASE WHEN show_user_tab = 'Y' THEN tab_title ELSE 'N/A' END AS user_tab1_title,
-    CASE WHEN show_user_tab2 = 'Y' THEN tab2_title ELSE 'N/A' END AS user_tab2_title,
-    CASE WHEN show_user_tab3 = 'Y' THEN tab3_title  ELSE 'N/A' END AS user_tab3_title,
-    CASE WHEN show_user_tab4 = 'Y' THEN tab4_title  ELSE 'N/A' END AS user_tab4_title,
-    CASE WHEN show_user_tab5 = 'Y' THEN tab5_title  ELSE 'N/A' END AS user_tab5_title,
-    CASE WHEN show_user_tab6 = 'Y' THEN tab6_title  ELSE 'N/A' END AS user_tab6_title,
-    CASE WHEN show_user_tab7 = 'Y' THEN tab7_title  ELSE 'N/A' END AS user_tab7_title,
-    CASE WHEN show_user_tab8 = 'Y' THEN tab8_title  ELSE 'N/A' END AS user_tab8_title,
-    CASE WHEN show_user_tab9 = 'Y' THEN tab9_title  ELSE 'N/A' END AS user_tab9_title,
-    CASE WHEN show_user_tab10 = 'Y' THEN tab10_title else 'N/A' END AS user_tab10_title
-FROM kurtyoung_needles..matter m
-=======
 	CASE WHEN show_user_tab = 'Y' THEN tab_title ELSE 'N/A' END AS user_tab_1,
     CASE WHEN show_user_tab2 = 'Y' THEN tab2_title ELSE 'N/A' END AS user_tab_2,
     CASE WHEN show_user_tab3 = 'Y' THEN tab3_title  ELSE 'N/A' END AS user_tab_3,
@@ -46,25 +23,13 @@ FROM kurtyoung_needles..matter m
     CASE WHEN show_user_tab8 = 'Y' THEN tab8_title  ELSE 'N/A' END AS user_tab_8,
     CASE WHEN show_user_tab9 = 'Y' THEN tab9_title  ELSE 'N/A' END AS user_tab_9,
     CASE WHEN show_user_tab10 = 'Y' THEN tab10_title else 'N/A' END AS user_tab_10
-FROM [Needles]..matter m
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475
+FROM [KurtYoung_Needles]..matter m
 INNER JOIN (
     SELECT
         ci.matcode,
         COUNT(*) AS [count]
-<<<<<<< HEAD
-    FROM kurtyoung_needles..cases_indexed ci
+    FROM [KurtYoung_Needles]..cases_indexed ci
     GROUP BY ci.matcode
 ) c
     ON m.matcode = c.matcode
 ORDER BY m.matcode;
-
-SELECT * FROM KurtYoung_Needles..user_tab10_data utd
-SELECT * FROM KurtYoung_Needles..user_tab_data utd
-=======
-    FROM [Needles]..cases_indexed ci
-    GROUP BY ci.matcode
-) c
-    ON m.matcode = c.matcode
-ORDER BY m.matcode;
->>>>>>> d7f79dc97274c70cc19edf75cc36bfad72783475

@@ -1,16 +1,11 @@
 select
-	[field_num],
-	[field_num_location],
+	cfu.[tablename],
+	cfu.[column_name],
 	[field_title],
 	[field_type],
 	[field_len],
-	[mini_dir_id],
-	[mini_dir_title],
-	cfu.[column_name],
-	[mini_dir_id_location],
-	cfu.[tablename],
-	[caseid],
-	[ValueCount],
+	[caseid]		 as case_link,
+	[ValueCount]	 as count,
 	CFSD.field_value as [Sample Data]
 from CustomFieldUsage CFU
 left join CustomFieldSampleData CFSD
@@ -18,4 +13,5 @@ left join CustomFieldSampleData CFSD
 		and CFU.tablename = CFSD.tablename
 where
 	CFU.tablename = 'user_counsel_data'
+	and ValueCount > 0
 order by CFU.tablename, CFU.field_num

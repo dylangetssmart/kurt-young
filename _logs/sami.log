@@ -1,0 +1,596 @@
+2025-05-12 10:33:50,451 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 10:33:53,120 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 10:33:53,121 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:33:53,123 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 10:33:53,123 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:33:53,123 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : 
+2025-05-12 10:34:19,505 - DEBUG - user_config.py - get_or_prompt_env - 31 - set SQL_DIR to needles\conversion in .env
+2025-05-12 10:34:19,505 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 10:34:19,514 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:34:19,517 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:34:19,518 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:34:19,519 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:34:19,519 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:34:19,520 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:34:19,521 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:34:19,521 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:34:19,522 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:38:38,189 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 10:38:38,990 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 10:38:38,991 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:38:38,991 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 10:38:38,992 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:38:38,992 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 10:38:38,992 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 10:38:38,994 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:38:38,994 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:38:38,994 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:38:38,996 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:38:38,997 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:38:38,997 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:38:38,999 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:38:38,999 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:38:38,999 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:40:51,843 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 10:40:52,574 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 10:40:52,575 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:40:52,576 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 10:40:52,577 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:40:52,577 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 10:40:52,577 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 10:40:52,579 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:40:52,579 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:40:52,579 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:40:52,580 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:40:52,581 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:40:52,581 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:40:52,583 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:40:52,583 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:40:52,583 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:41:08,188 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 10:41:08,871 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 10:41:08,872 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:41:08,872 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 10:41:08,873 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:41:08,873 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 10:41:08,873 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 10:41:08,874 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:41:08,875 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:41:08,875 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:41:08,879 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:41:08,879 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:41:08,879 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:41:08,882 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:41:08,882 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:41:08,882 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:42:53,532 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 10:42:54,290 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 10:42:54,290 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:42:54,290 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 10:42:54,290 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:42:54,290 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 10:42:54,290 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 10:42:54,296 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 10:42:54,297 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:41:29,069 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:41:29,749 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:41:29,749 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:41:29,757 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:41:29,757 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:44:57,147 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:44:57,797 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:44:57,801 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:44:57,801 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:44:57,801 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:44:57,801 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:44:57,801 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:44:57,804 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:44:57,804 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:44:57,805 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:45:45,457 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:45:46,128 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:45:46,128 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:45:46,128 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:45:46,131 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:45:46,131 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:45:46,131 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:45:46,133 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:45:46,133 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:45:46,133 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:45:46,134 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:29,818 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:47:30,510 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:47:30,510 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:30,510 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:47:30,510 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:47:30,513 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:30,513 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:46,689 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:47:47,359 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:47:47,361 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:47:47,361 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:48:42,131 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:48:42,772 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:48:42,772 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:48:42,772 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:48:42,772 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:48:42,786 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:48:42,786 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:48:42,788 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:49:57,029 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:49:57,680 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:49:57,680 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:49:57,681 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:49:57,681 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:49:57,682 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:49:57,682 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:49:57,683 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:49:57,684 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:49:57,684 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:49:57,685 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:49:57,685 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:49:57,686 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:49:57,687 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:49:57,687 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:49:57,687 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:51:43,688 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:51:44,328 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:51:44,328 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:51:44,328 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:51:44,339 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:51:44,339 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:51:44,339 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:51:44,341 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:51:44,342 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:51:44,342 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:51:44,343 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:51:44,343 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:51:44,344 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:51:44,346 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:51:44,346 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:51:44,347 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:32,643 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:52:33,371 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:52:33,380 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:52:33,381 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:33,381 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:52,989 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:52:53,649 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:52:53,649 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:53:02,796 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 11:53:03,451 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 11:53:03,451 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:03:04,881 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:03:05,593 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:03:05,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:13,800 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:06:14,506 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:06:14,506 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:14,506 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:06:14,511 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:14,511 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:25,555 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:06:26,288 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:06:26,288 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:26,288 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:06:26,303 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:06:26,303 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:09:32,111 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:09:32,835 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:09:32,835 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:20:20,915 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:20:21,603 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:20:21,603 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:21:39,647 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:21:40,300 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:21:40,300 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:32,275 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:32:32,966 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:32,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:32,975 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:54,956 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:32:55,759 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:32:55,759 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:33:29,408 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:33:30,058 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:33:30,058 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:33:30,073 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:33:30,073 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:33:30,073 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:33:30,073 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:33:30,073 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:34:15,240 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:34:15,907 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:34:15,923 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:34:15,923 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:22,406 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:35:23,070 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:23,070 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:33,742 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:35:34,398 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:35:34,398 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:36:53,746 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:36:54,401 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:36:54,401 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:36:54,417 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:04,746 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:38:05,407 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:05,407 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:05,422 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:05,422 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:05,422 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:24,040 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:38:24,696 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:24,696 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:36,696 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:38:37,593 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:38:37,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:37,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:38:37,593 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:37,609 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:38:37,609 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:38:37,611 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:24,012 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:40:24,707 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:24,707 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:55,308 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-12 16:40:55,966 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:55,966 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-12 16:40:55,981 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-12 16:40:55,981 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-12 16:40:55,981 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-13 10:57:40,845 - DEBUG - user_config.py - <module> - 11 - ENV_PATH: D:\kurt-young\.env
+2025-05-13 10:57:41,589 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'SOURCE_DB': 'Enter the source database name', 'TARGET_DB': 'Enter the target SmartAdvocate DB name', 'SQL_DIR': 'Enter the SQL directory path'}
+2025-05-13 10:57:41,589 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-13 10:57:41,589 - DEBUG - user_config.py - get_or_prompt_env - 24 - SOURCE_DB : KurtYoung_Needles
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - SQL_DIR : needles\conversion
+2025-05-13 10:57:41,604 - DEBUG - conv.py - <module> - 32 - Config loaded from .env file: 
+{'SERVER': 'DylanS\\MSSQLSERVER2022', 'SOURCE_DB': 'KurtYoung_Needles', 'TARGET_DB': 'KurtYoung_SA', 'SQL_DIR': 'needles\\conversion'}
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - load_user_config - 47 - keys_and_prompts={'SERVER': 'Enter the SQL Server name', 'TARGET_DB': 'Enter the SQL database name'}
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - SERVER : DylanS\MSSQLSERVER2022
+2025-05-13 10:57:41,604 - DEBUG - user_config.py - get_or_prompt_env - 24 - TARGET_DB : KurtYoung_SA
