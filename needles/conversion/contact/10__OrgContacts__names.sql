@@ -13,18 +13,18 @@ Insert Org Contacts from [names]
 
 insert into [sma_MST_OrgContacts]
 	(
-	[consName],
-	[consWorkPhone],
-	[consComments],
-	[connContactCtg],
-	[connContactTypeID],
-	[connRecUserID],
-	[condDtCreated],
-	[conbStatus],
-	[saga],
-	[source_id],
-	[source_db],
-	[source_ref]
+		[consName],
+		[consWorkPhone],
+		[consComments],
+		[connContactCtg],
+		[connContactTypeID],
+		[connRecUserID],
+		[condDtCreated],
+		[conbStatus],
+		[saga],
+		[source_id],
+		[source_db],
+		[source_ref]
 	)
 	select
 		n.[last_long_name] as [consname],
@@ -50,7 +50,7 @@ insert into [sma_MST_OrgContacts]
 		(
 			select
 				octnOrigContactTypeID
-			from.[sma_MST_OriginalContactTypes]
+			from [sma_MST_OriginalContactTypes]
 			where octsDscrptn = 'General'
 				and octnContactCtgID = 2
 		)				   as [conncontacttypeid],
@@ -63,5 +63,6 @@ insert into [sma_MST_OrgContacts]
 		'needles'		   as [source_db],
 		'names'			   as [source_ref]
 	from [KurtYoung_Needles].[dbo].[names] n
-	where n.[person] <> 'Y'
+	where
+		n.[person] <> 'Y'
 go
