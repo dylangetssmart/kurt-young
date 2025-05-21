@@ -1,10 +1,3 @@
-/*---
-priority: 1
-sequence: 1
-description: Create office record
-data-source:
----*/
-
 use [KurtYoung_SA]
 go
 
@@ -39,23 +32,37 @@ insert into [sma_TRN_Incidents]
 				then CONVERT(DATE, c.[date_of_incident])
 			else null
 		end			   as incidentdate,
-		(
-			select
-				sttnStateID
-			from sma_MST_States
-			where sttsDescription = (
+		case			
+			when exists (
 					select
-						StateName
-					from conversion.office
+						*
+					from sma_MST_States
+					where sttsCode = ucd.[State]
 				)
-		)			   as [stateid],
+				then (
+						select
+							sttnStateID
+						from sma_MST_States
+						where sttsCode = ucd.[State]
+					)
+			else (
+					select
+						sttnStateID
+					from sma_MST_States
+					where sttsDescription = (
+							select
+								StateName
+							from conversion.office
+						)
+				)
+		end			   as [stateid],
 		0			   as liabilitycodeid,
 		c.synopsis + CHAR(13) +
 		--isnull('Description of Accident:' + nullif(u.Description_of_Accident,'') + CHAR(13),'') + 
 		''			   as incidentfacts,
 		''			   as [mergedfacts],
 		null		   as [comments],
-		null		   as [incidenttime],
+		ucd.Time_of_Accident		   as [incidenttime],
 		368			   as [recuserid],
 		GETDATE()	   as [dtcreated],
 		null		   as [modifyuserid],
@@ -63,6 +70,10 @@ insert into [sma_TRN_Incidents]
 	from [KurtYoung_Needles].[dbo].[cases_Indexed] c
 	join [sma_TRN_cases] cas
 		on cas.cassCaseNumber = CONVERT(VARCHAR, c.casenum)
+	join KurtYoung_Needles..user_case_data ucd
+		on ucd.casenum = c.casenum
+
+
 
 update CAS
 set CAS.casdIncidentDate = INC.IncidentDate,
