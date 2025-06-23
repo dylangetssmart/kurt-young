@@ -15,3 +15,7 @@ where
 	CFU.tablename = 'user_counsel_data'
 	and ValueCount > 0
 order by CFU.tablename, CFU.field_num
+
+
+SELECT * FROM KurtYoung_Needles..user_counsel_data ucd
+SELECT * FROM KurtYoung_Needles..user_counsel_name ucn

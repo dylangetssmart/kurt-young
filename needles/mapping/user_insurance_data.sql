@@ -15,3 +15,7 @@ where
 	CFU.tablename = 'user_insurance_data'
 	and ValueCount > 0
 order by CFU.tablename, CFU.field_num
+
+
+SELECT * FROM KurtYoung_Needles..user_insurance_data uid
+SELECT * FROM KurtYoung_Needles..user_insurance_name uin
